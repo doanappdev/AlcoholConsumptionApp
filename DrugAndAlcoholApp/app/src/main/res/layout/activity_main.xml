@@ -11,24 +11,33 @@
     <TextView
         android:text="@string/app_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:id="@+id/textView" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:id="@+id/button"
-        android:layout_centerVertical="true"
+        android:text="Details"
+        android:id="@+id/btnDetails"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Consumption"
+        android:id="@+id/btnConsumption"
+        android:layout_below="@+id/btnDetails"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="You Suck!"
-        android:id="@+id/button2"
-        android:layout_above="@+id/button"
-        android:layout_alignRight="@+id/button"
-        android:layout_alignEnd="@+id/button"
-        android:layout_marginBottom="67dp" />
+        android:text="Emergency"
+        android:id="@+id/btnEmergency"
+
+        android:layout_below="@+id/btnConsumption"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
