@@ -32,9 +32,9 @@ for UI elements in the XML layout file use the following:
     Spinner       -  spinnerName
 
 
-To maintain version version control follow these steps:
+To maintain version control follow these steps:
 
 1. Open Source Tree and pull the latest version
 2. Add changes to code using android studio
 3. Save changes to project
-4. __Push__ the changes to the repository using Source Tree by clicking on the __Commit__ button, add your name and comment 
+4. __Push__ the changes to the repository using Source Tree by clicking on the __Commit__ button, add your name and comment
