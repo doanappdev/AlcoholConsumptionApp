@@ -17,7 +17,7 @@ If you want to make changes to project without effecting the overall project you
 * When writing code we will use the
 [Java naming convention](http://www.oracle.com/technetwork/java/codeconvtoc-136057.html) which uses the following:
 
-__Class__ start with capital letters           e.g.   class Alcohol
+__Classes__ start with capital letters           e.g.   class Alcohol
 
 **Methods** start with lower case (camel case) e.g.   addDrinks()
 
