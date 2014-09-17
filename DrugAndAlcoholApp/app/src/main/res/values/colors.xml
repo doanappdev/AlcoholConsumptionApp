@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="blue_grey_900">#263238</color>
+
+    <color name="fragment_bg">#2a3042</color>
+
+    <color name="font_dark">#313131</color>
+    <color name="font_lite">#7d7d7d</color>
+    <color name="font1">#d6d0c7</color>
+
+    <color name="white">#ffffff</color>
+    <color name="orange">#fdc32e</color>
+    <color name="lite_blue">#02bdef</color>
+
+
+</resources>

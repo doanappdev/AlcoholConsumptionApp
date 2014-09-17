@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    This drawable is used to create a rounded corners for the dialog
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape
+            android:shape="rectangle">
+            <solid android:color="@color/blue_grey_900" />
+            <corners android:radius="@dimen/border_radius"/>
+        </shape>
+    </item>
+    <item
+        android:left="@dimen/border_width"
+        android:right="@dimen/border_width"
+        android:top="@dimen/border_width"
+        android:bottom="@dimen/border_width" >
+
+        <shape android:shape="rectangle">
+            <solid android:color="@color/blue_grey_900" />
+            <corners android:radius="@dimen/border_radius"/>
+        </shape>
+    </item>
+</layer-list>

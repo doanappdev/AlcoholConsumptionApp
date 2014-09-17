@@ -2,34 +2,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context="uc.edu.itp.drugandalcohol.fragments.EULAFragment">
+    android:padding="@dimen/border_width"
 
+    tools:context="uc.edu.itp.drugandalcohol.fragments.EULAFragment">
 
     <TextView
         android:id="@+id/txtViewEULA"
+        android:text="EULA"
+        android:textSize="16dp"
+        android:textColor="@color/font_dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:background="#fffff4f2" />
+
+    <TextView
+        android:id="@+id/txtViewDescription"
         android:text="@string/eula_agreement"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <Button android:id="@+id/btnCancel"
+        android:textSize="14dp"
+        android:textColor="@color/font_lite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/navigation_cancel"
-        android:layout_below="@+id/txtViewEULA"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="63dp" />
+        android:layout_below="@id/txtViewEULA"/>
 
-    <Button android:id="@+id/btnOK"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/navigation_accept"
-        android:gravity="right"
-        android:layout_below="@+id/txtViewEULA"
-        android:layout_toRightOf="@+id/btnCancel"
-        android:layout_toEndOf="@+id/btnCancel"
-        android:layout_marginLeft="70dp" />
+
 
 
 

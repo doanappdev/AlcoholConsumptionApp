@@ -1,43 +1,75 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:text="@string/app_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView" />
+    <LinearLayout
+        android:background="@color/orange"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_weight="2" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Details"
-        android:id="@+id/btnDetails"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Consumption"
-        android:id="@+id/btnConsumption"
-        android:layout_below="@+id/btnDetails"
-        android:layout_centerHorizontal="true" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/lite_blue"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_weight="1" >
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Emergency"
-        android:id="@+id/btnEmergency"
+        <Button
+            android:id="@+id/btnDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:text="Details"
+            android:textSize="30sp"
+            android:textColor="#ffffffff"
+            android:background="@color/lite_blue"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal" />
 
-        android:layout_below="@+id/btnConsumption"
-        android:layout_centerHorizontal="true" />
+        <Button
+            android:id="@+id/btnConsumption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:text="Consumption"
+            android:textSize="30sp"
+            android:textColor="#ffffffff"
+            android:background="@color/lite_blue"
+            android:layout_gravity="center_horizontal" />
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/btnExit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:text="Exit"
+            android:textSize="30sp"
+            android:textColor="#ffffffff"
+            android:background="@color/lite_blue"
+            android:layout_gravity="center_horizontal" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@color/orange"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_weight="2" />
+
+
+
+
+</LinearLayout>
+
+
