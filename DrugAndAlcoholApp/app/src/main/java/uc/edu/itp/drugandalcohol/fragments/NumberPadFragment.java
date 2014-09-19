@@ -51,7 +51,7 @@ public class NumberPadFragment extends DialogFragment
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(rLayout);
         dialog.getWindow().setBackgroundDrawable(
-                new ColorDrawable(Color.argb(120, 125, 125, 125)));
+                new ColorDrawable(Color.argb(180, 125, 125, 125)));
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
 

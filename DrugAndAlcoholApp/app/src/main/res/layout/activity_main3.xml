@@ -1,0 +1,313 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/md_purple_500"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_weight="0.40"
+        android:weightSum="1">
+
+
+        <TextView
+            android:text="Welcome to"
+            android:textColor="@color/white1"
+            android:textSize="14dp"
+            android:layout_gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"/>
+
+        <TextView
+            android:text="Alcohol Consumption"
+            android:textColor="@color/white1"
+            android:textSize="24dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <ImageView
+            android:id="@+id/imgViewBeer"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.31"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:src="@drawable/beer2_icon"/>
+
+        <TextView
+            android:text="Drink responsibly"
+            android:textColor="@color/white1"
+            android:textSize="18dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:text="While having a good time"
+            android:textColor="@color/white1"
+            android:textSize="14dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <!-- bottom half of screen -->
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_weight="0.60"
+       android:orientation="vertical">
+
+       <!-- icon row 1 -->
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:layout_margin="@dimen/border_width">
+
+           <!-- 1st column row 1 -->
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:layout_weight="1"
+               >
+
+               <!-- enter user details -->
+               <RelativeLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="@dimen/border_width"
+                   android:layout_marginTop="4dp"
+                   android:layout_row="0"
+                   android:layout_column="0">
+
+                   <ImageButton
+                       android:id="@+id/imgEnterDetails"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="16dp"
+                       android:layout_centerHorizontal="true"
+                       android:src="@drawable/user_icon_48"
+                       android:background="@color/white1"/>
+
+                   <TextView
+                       android:id="@+id/txtViewEnterDetails"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="bottom"
+                       android:text="Enter Details"
+                       android:layout_below="@+id/imgEnterDetails"/>
+
+
+               </RelativeLayout>
+           </LinearLayout>
+
+           <!-- 2nd column row 1 -->
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:layout_weight="1"
+               >
+
+               <!-- calculate BAC -->
+               <RelativeLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="@dimen/border_width"
+                   android:layout_marginTop="4dp"
+                   >
+
+                   <ImageButton
+                       android:id="@+id/imgCalculateBAC"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="16dp"
+                       android:layout_centerHorizontal="true"
+                       android:src="@drawable/calculator_48"
+                       android:background="@color/white1"/>
+
+                   <TextView
+                       android:id="@+id/txtViewEnterDetails"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="bottom"
+                       android:text="Calculate BAC"
+                       android:layout_below="@+id/imgCalculateBAC"/>
+
+               </RelativeLayout>
+           </LinearLayout>
+
+           <!-- 3rd column row 1 -->
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:layout_weight="1"
+               >
+
+               <!-- reaction test -->
+               <RelativeLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="@dimen/border_width"
+                   android:layout_marginTop="4dp"
+                   >
+
+                   <ImageButton
+                       android:id="@+id/imgReactionTest"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="16dp"
+                       android:layout_centerHorizontal="true"
+                       android:src="@drawable/puzzle_48"
+                       android:background="@color/white1"/>
+
+                   <TextView
+                       android:id="@+id/txtViewEnterDetails"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="bottom"
+                       android:text="Reaction Test"
+                       android:layout_below="@+id/imgReactionTest"/>
+
+               </RelativeLayout>
+           </LinearLayout>
+       </LinearLayout> <!-- end row 1 -->
+
+       <!-- icon row 2 -->
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:layout_margin="@dimen/border_width">
+
+           <!-- 1st column row 2 -->
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:layout_weight="1"
+               >
+
+               <!-- proximity tracking -->
+               <RelativeLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="@dimen/border_width"
+                   android:layout_marginTop="4dp">
+
+                   <ImageButton
+                       android:id="@+id/imgProximity"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="16dp"
+                       android:layout_centerHorizontal="true"
+                       android:src="@drawable/world_map_48"
+                       android:background="@color/white1"/>
+
+                   <TextView
+                       android:id="@+id/txtViewProximity"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="bottom"
+                       android:text="Proximity"
+                       android:layout_below="@+id/imgProximity"/>
+
+
+               </RelativeLayout>
+           </LinearLayout>
+
+           <!-- 2nd column row 2 -->
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:layout_weight="1"
+               >
+
+               <!-- send SMS -->
+               <RelativeLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="@dimen/border_width"
+                   android:layout_marginTop="4dp"
+                   >
+
+                   <ImageButton
+                       android:id="@+id/imgSendSMS"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="16dp"
+                       android:layout_centerHorizontal="true"
+                       android:src="@drawable/send_sms_48"
+                       android:background="@color/white1"/>
+
+                   <TextView
+                       android:id="@+id/txtViewSendSMS"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="bottom"
+                       android:text="Send SMS"
+                       android:layout_below="@+id/imgSendSMS"/>
+
+               </RelativeLayout>
+           </LinearLayout>
+
+           <!-- 3rd column row 2 -->
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:layout_weight="1"
+               >
+
+               <!-- exit -->
+               <RelativeLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="@dimen/border_width"
+                   android:layout_marginTop="4dp"
+                   >
+
+                   <ImageButton
+                       android:id="@+id/imgExit"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="16dp"
+                       android:layout_centerHorizontal="true"
+                       android:src="@drawable/close_cross_48"
+                       android:background="@color/white1"/>
+
+                   <TextView
+                       android:id="@+id/txtViewExit"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:text="Exit"
+                       android:layout_below="@+id/imgExit"
+                       android:layout_centerHorizontal="true" />
+
+               </RelativeLayout>
+           </LinearLayout>
+
+       </LinearLayout> <!-- end row 2 -->
+
+   </LinearLayout>
+
+
+</LinearLayout>
+
+
+

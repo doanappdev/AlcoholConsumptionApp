@@ -1,17 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="blue_grey_900">#263238</color>
+    <!-- theme1 colors -->
+    <color name="theme1_dark_grey">#2a3042</color>
+    <color name="theme1_dark_blue1">#182365</color>
+    <color name="theme1_dark_blue2">#1b2776</color>
+    <color name="theme1_dark_blue3">#0a0a3b</color>
+    <color name="theme1_pink">#c89788</color>
+    <color name="theme1_yellow1">#f3cb54</color>
+    <color name="theme1_yellow2">#fdc32e</color>
+    <color name="theme1_lite_blue">#02bdef</color>
 
-    <color name="fragment_bg">#2a3042</color>
+    <!-- color theme for #nwplyng example -->
+    <color name="nwplyng_green">#47b657</color>
+    <color name="nwplyng_grey">#c4c4c6</color>
+    <color name="nwplyng_blue">#257fcd</color>
+    <color name="nwplyng_bg">#2e313a</color>
 
-    <color name="font_dark">#313131</color>
-    <color name="font_lite">#7d7d7d</color>
-    <color name="font1">#d6d0c7</color>
+    <!-- theme2 colors -->
+    <color name="theme2_blue">#485bbd</color>
+    <color name="theme2_orange">#ffa300</color>
 
-    <color name="white">#ffffff</color>
-    <color name="orange">#fdc32e</color>
-    <color name="lite_blue">#02bdef</color>
+
+    <!-- material design colors -->
+    <color name="md_red_500">#e51c23</color>
+    <color name="md_purple_500">#9c27b0</color>
+    <color name="md_teal_500">#009688</color>
+    <color name="md_pink_500">#e91e63</color>
+    <color name="md_deep_purple_500">#673ab7</color>
+    <color name="md_green_500">#259b24</color>
+    <color name="md_yellow_500">#ffeb3b</color>
+    <color name="md_amber_500">#ffc107</color>
+
+    <color name="md_blue_grey_900">#263238</color>
+
+
+
+
+    <color name="md_blue_500">#5677fc</color>
+    <color name="md_blue_100">#d0d9ff</color>
+    <color name="md_blue_a100">#a6baff</color>
+    <color name="md_blue_a200">#6889ff</color>
+    <color name="md_blue_a400">#4d73ff</color>
+    <color name="md_blue_a700">#4d69ff</color>
+
+
+    <color name="md_font_87_percent_black">#313131</color>
+    <color name="md_font_54_percent_black">#7d7d7d</color>
+
+
+
+
+
+    <!-- standard colors -->
+    <color name="white1">#ffffff</color>
+    <color name="white2">#d6d0c7</color>
+
+
+
+
+
+
+
+
 
 
 </resources>

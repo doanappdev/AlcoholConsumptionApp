@@ -30,8 +30,9 @@ public class MainActivity extends Activity
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main3);
 
+        /*
         consumptionBtn = (Button)findViewById(R.id.btnConsumption);
         consumptionBtn.setOnClickListener(new View.OnClickListener()
         {
@@ -42,6 +43,8 @@ public class MainActivity extends Activity
                 startActivity(consumptionIntent);
             }
         });
+
+        */
 
 
 

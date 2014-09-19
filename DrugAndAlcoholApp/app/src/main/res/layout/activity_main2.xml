@@ -1,0 +1,67 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:background="@drawable/city2"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_weight="1" />
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_weight="1" >
+
+
+        <Button
+            android:id="@+id/btnDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:text="User Details"
+            android:textColor="@color/theme1_yellow2"
+            android:background="@drawable/btn_round_bg"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:id="@+id/btnConsumption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:text="Calculate BAC"
+            android:textColor="@color/white1"
+            android:background="@color/theme1_yellow1"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:id="@+id/btnExit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:text="EXIT"
+            android:textSize="24sp"
+            android:textColor="@color/theme1_yellow1"
+            android:background="@color/theme1_pink"
+            android:layout_gravity="center_horizontal" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+

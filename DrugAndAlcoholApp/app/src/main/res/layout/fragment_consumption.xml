@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:background="@color/orange"
+    android:background="@color/theme1_yellow2"
     tools:context="uc.edu.itp.drugandalcohol.fragments.ConsumptionFragment">
 
     <TextView
@@ -12,7 +12,7 @@
         android:text="Fragment - Consumption"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
-        android:textColor="@color/font_dark"
+        android:textColor="@color/md_font_87_percent_black"
         android:textSize="20dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -32,7 +32,7 @@
             android:layout_below="@+id/txtViewHeading"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:background="@color/orange"
+            android:background="@color/theme1_yellow1"
             android:src="@drawable/beer_icon" />
 
         <TextView
@@ -76,7 +76,7 @@
             android:layout_below="@+id/txtViewHeading"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:background="@color/orange"
+            android:background="@color/theme1_yellow2"
             android:src="@drawable/wine2_glass_icon"
             android:adjustViewBounds="false"
              />
@@ -95,7 +95,7 @@
             android:id="@+id/txtViewWineInput"
             android:text="0"
             android:textSize="34sp"
-            android:textColor="@color/font_dark"
+            android:textColor="@color/md_font_87_percent_black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.25"

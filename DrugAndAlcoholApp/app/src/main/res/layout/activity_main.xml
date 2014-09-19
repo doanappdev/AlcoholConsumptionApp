@@ -5,67 +5,113 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <!--
     <LinearLayout
-        android:background="@color/orange"
+        android:background="@color/font_yellow1"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:layout_weight="2" />
+    -->
 
 
     <LinearLayout
         android:orientation="vertical"
-        android:background="@color/lite_blue"
+        android:background="@color/nwplyng_bg"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_weight="1" >
+        android:layout_weight="0.40" >
+
+
+        <TextView
+            android:text="Welcome to"
+            android:textColor="@color/nwplyng_grey"
+            android:textSize="24dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"/>
+
+        <TextView
+            android:text="Alcohol Consumption"
+            android:textColor="@color/nwplyng_grey"
+            android:textSize="24dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:text="Drink responsibly"
+            android:textColor="@color/nwplyng_grey"
+            android:textSize="18dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="34dp"/>
+
+        <TextView
+            android:text="While having a good time"
+            android:textColor="@color/nwplyng_grey"
+            android:textSize="14dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="#fff"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_weight="0.60"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/btnDetails"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:text="Details"
-            android:textSize="30sp"
-            android:textColor="#000"
-            android:background="@color/lite_blue"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="@dimen/border_width"
+            android:layout_marginRight="@dimen/border_width"
+            android:text="User Details"
+            android:textSize="24sp"
+            android:textColor="@color/white1"
+            android:background="@color/nwplyng_green"
             android:layout_below="@+id/textView"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal" />
 
         <Button
             android:id="@+id/btnConsumption"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="@dimen/border_width"
+            android:layout_marginRight="@dimen/border_width"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:text="Consumption"
-            android:textSize="30sp"
-            android:textColor="#000"
-            android:background="@color/lite_blue"
+            android:text="Calculate BAC"
+            android:textSize="24sp"
+            android:textColor="#fff"
+            android:background="@color/nwplyng_green"
             android:layout_gravity="center_horizontal" />
 
         <Button
             android:id="@+id/btnExit"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="@dimen/border_width"
+            android:layout_marginRight="@dimen/border_width"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:text="Exit"
-            android:textSize="30sp"
-            android:textColor="#000"
-            android:background="@color/lite_blue"
+            android:text="EXIT"
+            android:textSize="24sp"
+            android:textColor="@color/white1"
+            android:background="@color/nwplyng_green"
             android:layout_gravity="center_horizontal" />
 
-
     </LinearLayout>
-
-    <LinearLayout
-        android:background="@color/fragment_bg"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:layout_weight="2" />
 
 
 

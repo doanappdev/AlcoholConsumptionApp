@@ -10,7 +10,7 @@
         android:id="@+id/txtViewEULA"
         android:text="EULA"
         android:textSize="16dp"
-        android:textColor="@color/font_dark"
+        android:textColor="@color/md_font_87_percent_black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
@@ -20,7 +20,7 @@
         android:id="@+id/txtViewDescription"
         android:text="@string/eula_agreement"
         android:textSize="14dp"
-        android:textColor="@color/font_lite"
+        android:textColor="@color/md_font_87_percent_black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtViewEULA"/>
