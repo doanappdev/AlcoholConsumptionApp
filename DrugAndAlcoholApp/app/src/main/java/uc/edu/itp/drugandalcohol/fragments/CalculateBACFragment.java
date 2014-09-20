@@ -1,9 +1,6 @@
 package uc.edu.itp.drugandalcohol.fragments;
 
-import android.app.Activity;
 import android.app.FragmentManager;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
@@ -12,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import uc.edu.itp.drugandalcohol.R;
 
@@ -22,16 +18,16 @@ import uc.edu.itp.drugandalcohol.R;
  */
 public class CalculateBACFragment extends Fragment
 {
-    RelativeLayout rLayoutConsumption;
+    RelativeLayout rLayoutClaculateBAC;
     TextView beerInputTxtView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
     {
         // inflate the view with RelativeLayout so we can have functionality with buttons etc..
-        rLayoutConsumption = (RelativeLayout)inflater.inflate(R.layout.fragment_consumption, container, false);
+        rLayoutClaculateBAC = (RelativeLayout)inflater.inflate(R.layout.fragment_calculate_bac, container, false);
 
-        beerInputTxtView = (TextView)rLayoutConsumption.findViewById(R.id.txtViewBeerInput);
+        beerInputTxtView = (TextView) rLayoutClaculateBAC.findViewById(R.id.txtViewBeerInput);
         beerInputTxtView.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -48,7 +44,7 @@ public class CalculateBACFragment extends Fragment
         });
 
 
-        return rLayoutConsumption;
+        return rLayoutClaculateBAC;
     }
 
     void showNumberPad()

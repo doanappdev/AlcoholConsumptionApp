@@ -24,18 +24,23 @@
 
     <!-- material design colors -->
     <color name="md_red_500">#e51c23</color>
-    <color name="md_purple_500">#9c27b0</color>
     <color name="md_teal_500">#009688</color>
     <color name="md_pink_500">#e91e63</color>
     <color name="md_deep_purple_500">#673ab7</color>
     <color name="md_green_500">#259b24</color>
     <color name="md_yellow_500">#ffeb3b</color>
     <color name="md_amber_500">#ffc107</color>
+    <color name="md_cyan_500">#00bcd4</color>
 
     <color name="md_blue_grey_900">#263238</color>
 
 
-
+    <color name="md_purple_500">#9c27b0</color>
+    <color name="md_purple_50">#f3e5f5</color>
+    <color name="md_purple_200">#ce93d8</color>
+    <color name="md_purple_700">#7b1fa2</color>
+    <color name="md_purple_a100">#ea80fc</color>
+    <color name="md_purple_a400">#d500f9</color>
 
     <color name="md_blue_500">#5677fc</color>
     <color name="md_blue_100">#d0d9ff</color>
