@@ -8,5 +8,8 @@
     <string name="eula_agreement">The information provided is not meant to be relied
             upon. It is general in nature.....Do you agree to this?</string>
     <string name="title_activity_consumption">ConsumptionActivity</string>
+    <string name="title_activity_user_details">User Details</string>
+    <string name="title_activity_emergency_sms">EmergencySMSActivity</string>
+    <string name="title_activity_emergency">Emergency SMS</string>
 
 </resources>

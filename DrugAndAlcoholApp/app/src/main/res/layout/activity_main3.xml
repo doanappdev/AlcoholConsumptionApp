@@ -93,7 +93,7 @@
                    android:layout_column="0">
 
                    <ImageButton
-                       android:id="@+id/imgEnterDetails"
+                       android:id="@+id/imgBtnEnterDetails"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_marginLeft="16dp"
@@ -107,7 +107,7 @@
                        android:layout_height="wrap_content"
                        android:layout_gravity="bottom"
                        android:text="Enter Details"
-                       android:layout_below="@+id/imgEnterDetails"/>
+                       android:layout_below="@+id/imgBtnEnterDetails"/>
 
 
                </RelativeLayout>
@@ -130,7 +130,7 @@
                    >
 
                    <ImageButton
-                       android:id="@+id/imgCalculateBAC"
+                       android:id="@+id/imgBtnCalculateBAC"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_marginLeft="16dp"
@@ -144,7 +144,7 @@
                        android:layout_height="wrap_content"
                        android:layout_gravity="bottom"
                        android:text="Calculate BAC"
-                       android:layout_below="@+id/imgCalculateBAC"/>
+                       android:layout_below="@+id/imgBtnCalculateBAC"/>
 
                </RelativeLayout>
            </LinearLayout>
@@ -166,7 +166,7 @@
                    >
 
                    <ImageButton
-                       android:id="@+id/imgReactionTest"
+                       android:id="@+id/imgBtnReactionTest"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_marginLeft="16dp"
@@ -180,7 +180,7 @@
                        android:layout_height="wrap_content"
                        android:layout_gravity="bottom"
                        android:text="Reaction Test"
-                       android:layout_below="@+id/imgReactionTest"/>
+                       android:layout_below="@+id/imgBtnReactionTest"/>
 
                </RelativeLayout>
            </LinearLayout>
@@ -209,7 +209,7 @@
                    android:layout_marginTop="4dp">
 
                    <ImageButton
-                       android:id="@+id/imgProximity"
+                       android:id="@+id/imgBtnProximity"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_marginLeft="16dp"
@@ -223,7 +223,7 @@
                        android:layout_height="wrap_content"
                        android:layout_gravity="bottom"
                        android:text="Proximity"
-                       android:layout_below="@+id/imgProximity"/>
+                       android:layout_below="@+id/imgBtnProximity"/>
 
 
                </RelativeLayout>
@@ -246,7 +246,7 @@
                    >
 
                    <ImageButton
-                       android:id="@+id/imgSendSMS"
+                       android:id="@+id/imgBtnEmergencySMS"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_marginLeft="16dp"
@@ -259,8 +259,8 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_gravity="bottom"
-                       android:text="Send SMS"
-                       android:layout_below="@+id/imgSendSMS"/>
+                       android:text="Emergency SMS"
+                       android:layout_below="@+id/imgBtnEmergencySMS"/>
 
                </RelativeLayout>
            </LinearLayout>
@@ -282,7 +282,7 @@
                    >
 
                    <ImageButton
-                       android:id="@+id/imgExit"
+                       android:id="@+id/imgBtnExit"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_marginLeft="16dp"
@@ -296,7 +296,7 @@
                        android:layout_height="wrap_content"
                        android:layout_gravity="center"
                        android:text="Exit"
-                       android:layout_below="@+id/imgExit"
+                       android:layout_below="@+id/imgBtnExit"
                        android:layout_centerHorizontal="true" />
 
                </RelativeLayout>

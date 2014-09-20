@@ -20,7 +20,7 @@ import uc.edu.itp.drugandalcohol.R;
  * A simple {@link Fragment} subclass.
  *
  */
-public class ConsumptionFragment extends Fragment
+public class CalculateBACFragment extends Fragment
 {
     RelativeLayout rLayoutConsumption;
     TextView beerInputTxtView;

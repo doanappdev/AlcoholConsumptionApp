@@ -3,7 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:background="@color/theme1_yellow2"
-    tools:context="uc.edu.itp.drugandalcohol.fragments.ConsumptionFragment">
+    tools:context="uc.edu.itp.drugandalcohol.fragments.CalculateBACFragment">
 
     <TextView
         android:id="@+id/txtViewHeading"

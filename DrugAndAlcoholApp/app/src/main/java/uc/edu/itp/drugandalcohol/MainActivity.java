@@ -2,28 +2,22 @@ package uc.edu.itp.drugandalcohol;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 
-import uc.edu.itp.drugandalcohol.fragments.EULAFragment;
-import uc.edu.itp.drugandalcohol.view.ConsumptionActivity;
+import uc.edu.itp.drugandalcohol.view.CalculateBACActivity;
+import uc.edu.itp.drugandalcohol.view.EmergencyActivity;
+import uc.edu.itp.drugandalcohol.view.UserDetailsActivity;
 
 
 public class MainActivity extends Activity
 {
-    Button consumptionBtn, detailsBtn, exitBtn;
+    ImageButton detailsImgBtn, calculateImgBtn, emergencyImgBtn, exitImgBtn;
 
 
     @Override
@@ -32,19 +26,40 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
 
-        /*
-        consumptionBtn = (Button)findViewById(R.id.btnConsumption);
-        consumptionBtn.setOnClickListener(new View.OnClickListener()
-        {
+        detailsImgBtn = (ImageButton)findViewById(R.id.imgBtnEnterDetails);
+        calculateImgBtn = (ImageButton)findViewById(R.id.imgBtnCalculateBAC);
+        emergencyImgBtn = (ImageButton)findViewById(R.id.imgBtnEmergencySMS);
+
+        detailsImgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
-                Intent consumptionIntent = new Intent(getApplicationContext(), ConsumptionActivity.class);
-                startActivity(consumptionIntent);
+            public void onClick(View view) {
+
+                Intent userDetailsIntent = new Intent(getApplicationContext(), UserDetailsActivity.class);
+                startActivity(userDetailsIntent);
             }
         });
 
-        */
+        calculateImgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent calculateBACIntent = new Intent(getApplicationContext(), CalculateBACActivity.class);
+                startActivity(calculateBACIntent);
+            }
+        });
+
+        emergencyImgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent emergencyIntent = new Intent(getApplicationContext(), EmergencyActivity.class);
+                startActivity(emergencyIntent);
+            }
+        });
+
+
+
+
 
 
 
@@ -55,40 +70,7 @@ public class MainActivity extends Activity
     {
         super.onStart();
 
-        /*
-         * code for a dialog which is slightly different to
-         * AlertDialog
-        final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.fragment_eula);
-        //dialog.setTitle("EULA");
 
-        // to set background color for the dialog fragment set values for argb(alpha, red, green, blue)
-        // 0 has less color while 255 has more color for rbg colors.
-        // for alpha 0 is transparent and 0 has no less transparency.
-        //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255, 47, 53, 71)));
-
-        //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(R.color.fragment_bg));
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        Button button = (Button) dialog.findViewById(R.id.btnOK);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-                dialog.dismiss();
-            }
-        });
-
-        Button cancelBtn = (Button) dialog.findViewById(R.id.btnCancel);
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-                // ToDo: add code to handle the cancel event to exit app
-                dialog.dismiss();
-            }
-        });
-        */
 
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
         alertDialog.setPositiveButton("ACCEPT", new DialogInterface.OnClickListener() {

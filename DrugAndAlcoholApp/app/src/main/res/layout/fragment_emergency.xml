@@ -1,0 +1,19 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_green_500"
+    tools:context="uc.edu.itp.drugandalcohol.fragments.EmergencyFragment">
+
+    <!--
+        This text view is to help identify where the fragment begin.
+        It will be removed later
+    -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Fragment - Emergency SMS" />
+
+    <!-- Todo: add code here for the emergency SMS layout -->
+
+</FrameLayout>
