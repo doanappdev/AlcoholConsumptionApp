@@ -19,6 +19,133 @@
 
          />
 
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="306dp"
+        android:layout_gravity="right|top">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Age"
+            android:id="@+id/txtViewAge"
+            android:textSize="24sp"
+            android:layout_above="@+id/txtViewAge"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:background = "#FFFFFF"
+            android:id="@+id/editTxtAge"
+            android:layout_toEndOf="@+id/txtViewWeight"
+            android:layout_toRightOf="@+id/txtViewWeight"
+            android:layout_alignBottom="@+id/txtViewAge"
+            android:layout_alignRight="@+id/radioBtnFemale"
+            android:layout_alignEnd="@+id/radioBtnFemale" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Weight"
+            android:id="@+id/txtViewWeight"
+            android:textSize="24sp"
+            android:layout_below="@+id/txtViewAge"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/editTxtWeight"
+            android:layout_toStartOf="@+id/editTxtWeight" />
+
+        <EditText
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:background = "#FFFFFF"
+            android:id="@+id/editTxtWeight"
+            android:layout_alignBottom="@+id/txtViewWeight"
+            android:layout_alignRight="@+id/radioBtnFemale"
+            android:layout_alignEnd="@+id/radioBtnFemale" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gender"
+            android:id="@+id/txtViewGender"
+            android:textSize="24sp"
+            android:layout_below="@+id/txtViewWeight"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/editTxtWeight"
+            android:layout_toStartOf="@+id/editTxtWeight" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Male"
+            android:id="@+id/radioBtnMale"
+            android:layout_below="@+id/txtViewGender"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Female"
+            android:id="@+id/radioBtnFemale"
+            android:layout_toEndOf="@+id/radioBtnMale"
+            android:layout_below="@+id/txtViewGender"
+            android:layout_toRightOf="@+id/radioBtnMale" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pregnant"
+            android:id="@+id/txtViewPregnant"
+            android:textSize="24sp"
+            android:layout_below="@+id/radioBtnMale"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/radioBtnFemale"
+            android:layout_alignEnd="@+id/radioBtnFemale" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:id="@+id/radioBtnYes"
+            android:layout_below="@+id/txtViewPregnant"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"
+            android:id="@+id/radioBtnNo"
+            android:layout_toEndOf="@+id/radioBtnMale"
+            android:layout_alignTop="@+id/radioBtnYes"
+            android:layout_alignRight="@+id/editTxtWeight"
+            android:layout_alignEnd="@+id/editTxtWeight" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter User Details"
+            android:id="@+id/btnEnterDetails"
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/txtViewPregnant"
+            android:layout_alignEnd="@+id/txtViewPregnant" />
+
+    </RelativeLayout>
+
     <!-- Todo: add your code here for the enter user details -->
 
 
