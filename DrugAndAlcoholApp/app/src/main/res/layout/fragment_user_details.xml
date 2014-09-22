@@ -1,15 +1,15 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/md_blue_100"
+    android:layout_margin="@dimen/border_width"
     tools:context="uc.edu.itp.drugandalcohol.fragments.UserDetailsFragment">
 
    <!--
         This text view is here to help you identify
         where the fragment begins and ends in the activity
         we will remove this later
-   -->
+
 
     <TextView
         android:id="@+id/txtViewDetailsH1"
@@ -18,136 +18,188 @@
         android:layout_height="wrap_content"
 
          />
+   -->
 
+    <!-- age -->
     <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="306dp"
-        android:layout_gravity="right|top">
+        android:id="@+id/rLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginRight="16dp">
 
-        <TextView
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/imgViewUser1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Age"
-            android:id="@+id/txtViewAge"
-            android:textSize="24sp"
-            android:layout_above="@+id/txtViewAge"
+            android:src="@drawable/content_edit_32"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="40dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
-        <EditText
-            android:layout_width="60dp"
+        <TextView
+            android:id="@+id/txtViewAge"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:background = "#FFFFFF"
+            android:layout_marginLeft="30dp"
+            android:text="Age"
+            android:textColor="@color/md_font_54_percent_black"
+            android:textSize="16sp"
+            android:layout_toEndOf="@+id/imgViewUser1"
+            android:layout_toRightOf="@+id/imgViewUser1"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <EditText
             android:id="@+id/editTxtAge"
-            android:layout_toEndOf="@+id/txtViewWeight"
-            android:layout_toRightOf="@+id/txtViewWeight"
-            android:layout_alignBottom="@+id/txtViewAge"
-            android:layout_alignRight="@+id/radioBtnFemale"
-            android:layout_alignEnd="@+id/radioBtnFemale" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Weight"
-            android:id="@+id/txtViewWeight"
-            android:textSize="24sp"
-            android:layout_below="@+id/txtViewAge"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="10dp"
-            android:layout_toLeftOf="@+id/editTxtWeight"
-            android:layout_toStartOf="@+id/editTxtWeight" />
-
-        <EditText
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:ems="10"
-            android:background = "#FFFFFF"
-            android:id="@+id/editTxtWeight"
-            android:layout_alignBottom="@+id/txtViewWeight"
-            android:layout_alignRight="@+id/radioBtnFemale"
-            android:layout_alignEnd="@+id/radioBtnFemale" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Gender"
-            android:id="@+id/txtViewGender"
-            android:textSize="24sp"
-            android:layout_below="@+id/txtViewWeight"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="10dp"
-            android:layout_toLeftOf="@+id/editTxtWeight"
-            android:layout_toStartOf="@+id/editTxtWeight" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Male"
-            android:id="@+id/radioBtnMale"
-            android:layout_below="@+id/txtViewGender"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Female"
-            android:id="@+id/radioBtnFemale"
-            android:layout_toEndOf="@+id/radioBtnMale"
-            android:layout_below="@+id/txtViewGender"
-            android:layout_toRightOf="@+id/radioBtnMale" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Pregnant"
-            android:id="@+id/txtViewPregnant"
-            android:textSize="24sp"
-            android:layout_below="@+id/radioBtnMale"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/radioBtnFemale"
-            android:layout_alignEnd="@+id/radioBtnFemale" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Yes"
-            android:id="@+id/radioBtnYes"
-            android:layout_below="@+id/txtViewPregnant"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="No"
-            android:id="@+id/radioBtnNo"
-            android:layout_toEndOf="@+id/radioBtnMale"
-            android:layout_alignTop="@+id/radioBtnYes"
-            android:layout_alignRight="@+id/editTxtWeight"
-            android:layout_alignEnd="@+id/editTxtWeight" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Enter User Details"
-            android:id="@+id/btnEnterDetails"
-            android:layout_alignParentBottom="true"
-            android:layout_alignRight="@+id/txtViewPregnant"
-            android:layout_alignEnd="@+id/txtViewPregnant" />
+            android:background="#FFF"
+            android:layout_alignTop="@+id/txtViewAge"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 
-    <!-- Todo: add your code here for the enter user details -->
+    <!-- weight -->
+    <RelativeLayout
+        android:id="@+id/rLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginRight="16dp"
+        android:layout_below="@id/rLayout1">
+
+
+        <TextView
+            android:id="@+id/txtViewWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Weight"
+            android:textSize="16sp"
+            android:textColor="@color/md_font_54_percent_black"
+            android:layout_marginLeft="56dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <EditText
+            android:id="@+id/editTxtWeight"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:background="#FFF"
+            android:layout_alignTop="@id/txtViewWeight"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+    <!-- Gender -->
+    <RelativeLayout
+        android:id="@+id/rLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginRight="16dp"
+        android:layout_below="@id/rLayout2">
+
+        <TextView
+            android:id="@+id/txtViewGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gender"
+            android:textSize="16sp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
 
 
-</FrameLayout>
+    </RelativeLayout>
+
+    <!-- female switch -->
+    <RelativeLayout
+        android:id="@+id/rLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginRight="16dp"
+        android:layout_below="@id/rLayout3">
+
+
+        <Switch
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Female"
+            android:textColor="@color/md_font_54_percent_black"
+            android:id="@+id/switchMale"
+            android:layout_marginLeft="56dp"
+            android:checked="false" />
+
+    </RelativeLayout>
+
+    <!--
+        pregnancy switch, this will be invisible at first and turn
+        on when the user selects true for female
+    -->
+    <RelativeLayout
+        android:id="@+id/rLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginRight="16dp"
+        android:layout_below="@id/rLayout4">
+
+
+        <Switch
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="pregnant"
+            android:textColor="@color/md_font_54_percent_black"
+            android:id="@+id/switchPregnant"
+            android:layout_marginLeft="56dp"
+            android:checked="false"
+            android:visibility="invisible"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rLayout6"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rLayout5">
+
+
+        <Button
+            android:id="@+id/btnAccept"
+            android:text="Accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="8dp"
+            android:background="@drawable/btn_state_user_details"/>
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:text="Cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/btnAccept"
+            android:layout_toStartOf="@+id/btnAccept"
+            android:layout_margin="8dp"
+            android:background="@drawable/btn_state_user_details"/>
+
+
+        <Button
+            android:id="@+id/btnEdit"
+            android:text="Edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/btn_state_user_details"
+            />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
