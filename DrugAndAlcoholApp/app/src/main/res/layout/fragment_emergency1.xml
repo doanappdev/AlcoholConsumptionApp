@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerHorizontal="true"
+        android:weightSum="1"
+        android:id="@+id/">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:id="@+id/editText"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="false"
+                android:layout_alignParentEnd="false"
+                android:text="Emergency Message"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton"
+                android:adjustViewBounds="false"
+                android:src="@android:drawable/ic_delete" />
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText2"
+            android:text="To:"
+            android:autoText="false"
+            android:singleLine="false"
+            android:phoneNumber="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:text=" Enter Message"
+            android:id="@+id/textView"
+            android:editable="true"
+            android:maxLines="25"
+            android:textSize="18dp" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="129dp"
+            android:layout_height="wrap_content"
+            android:text="Change Contact"
+            android:id="@+id/button2"
+            android:layout_gravity="right"
+            android:textColor="@color/md_blue_a400"
+            android:textStyle="bold"
+            android:background="@android:drawable/stat_notify_missed_call"
+            android:layout_weight="0.13"
+            android:textSize="16dp" />
+
+        <Button
+            style="@android:style/TextAppearance.DeviceDefault.Widget.TextView"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Send"
+            android:id="@+id/button"
+            android:layout_gravity="right"
+            android:textColor="@color/md_blue_a400"
+            android:textStyle="bold"
+            android:background="@android:drawable/stat_notify_chat"
+            android:singleLine="false"
+            android:textSize="16dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
