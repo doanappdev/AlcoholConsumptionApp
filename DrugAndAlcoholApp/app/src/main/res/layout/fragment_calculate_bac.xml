@@ -2,33 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:background="@color/theme1_yellow2"
     tools:context="uc.edu.itp.drugandalcohol.fragments.CalculateBACFragment">
-
-    <!--
-        this textView is used for testing purposes
-        visibility has been turned off
-        remove later
-    -->
-    <TextView
-        android:id="@+id/txtViewHeading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fragment - Consumption"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center"
-        android:textColor="@color/md_font_87_percent_black"
-        android:textSize="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:visibility="invisible"/>
-
 
 
     <LinearLayout
         android:id="@+id/linearLayoutRow1"
         android:orientation="horizontal"
-        android:layout_below="@id/txtViewHeading"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/border_width">
@@ -40,7 +19,7 @@
             android:layout_below="@+id/txtViewHeading"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:background="@color/theme1_yellow1"
+
             android:src="@drawable/beer_icon" />
 
         <TextView
@@ -80,11 +59,10 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imgBtnBeer"
+            android:id="@+id/imgBtnWineGlass"
             android:layout_below="@+id/txtViewHeading"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:background="@color/theme1_yellow2"
             android:src="@drawable/wine2_glass_icon"
             android:adjustViewBounds="false"
              />
@@ -113,6 +91,74 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/linearLayoutRow3"
+        android:orientation="horizontal"
+        android:layout_below="@id/linearLayoutRow2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/border_width">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgBtnWineGlass"
+            android:layout_below="@+id/txtViewHeading"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/spirits_48"
+            android:adjustViewBounds="false"
+            />
+
+        <TextView
+            android:id="@+id/txtViewSpirits"
+            android:text="Spirits"
+            android:textSize="24sp"
+            android:layout_weight="0.50"
+            android:paddingLeft="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/txtViewSpiritsInput"
+            android:text="0"
+            android:textSize="24sp"
+            android:textColor="@color/md_font_87_percent_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:paddingLeft="24dp"
+            android:background="@android:color/white"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutRow4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayoutRow3"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="0.00%"
+            android:textSize="78dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="16dp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="BAC"
+            android:textSize="32dp"
+            android:layout_weight="2"/>
+
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/btnCalculateBAC"
@@ -120,7 +166,7 @@
         android:layout_height="wrap_content"
         android:text="Calculate"
         android:layout_marginTop="140dp"
-        android:layout_below="@+id/linearLayoutRow2"
+        android:layout_below="@+id/linearLayoutRow4"
         android:layout_alignParentRight="true"/>
 
 

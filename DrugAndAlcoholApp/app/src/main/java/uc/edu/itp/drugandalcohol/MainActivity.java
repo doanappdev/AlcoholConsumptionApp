@@ -1,8 +1,6 @@
 package uc.edu.itp.drugandalcohol;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -24,7 +22,7 @@ public class MainActivity extends Activity
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main3);
+        setContentView(R.layout.activity_main2);
 
         detailsImgBtn = (ImageButton)findViewById(R.id.imgBtnEnterDetails);
         calculateImgBtn = (ImageButton)findViewById(R.id.imgBtnCalculateBAC);

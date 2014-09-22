@@ -1,7 +1,5 @@
 package uc.edu.itp.drugandalcohol.fragments;
 
-
-
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -26,7 +24,7 @@ public class EmergencyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_emergency, container, false);
+        return inflater.inflate(R.layout.fragment_emergency1, container, false);
     }
 
 

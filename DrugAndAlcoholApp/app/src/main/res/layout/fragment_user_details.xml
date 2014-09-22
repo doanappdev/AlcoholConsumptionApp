@@ -1,30 +1,40 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rLayoutDetails"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/border_width"
     tools:context="uc.edu.itp.drugandalcohol.fragments.UserDetailsFragment">
 
-   <!--
-        This text view is here to help you identify
-        where the fragment begins and ends in the activity
-        we will remove this later
+    <LinearLayout
+        android:id="@+id/lLayout0"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
 
+        <TextView
+            android:id="@+id/txtViewAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="User Age"
+            android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/txtViewDetailsH1"
-        android:text="Fragment - User Details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        <TextView
+            android:id="@+id/txtViewWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="User Weight"
+            android:textSize="16sp" />
 
-         />
-   -->
+    </LinearLayout>
 
     <!-- age & weight -->
     <LinearLayout
         android:id="@+id/lLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/lLayout0"
         android:orientation="horizontal">
 
 
@@ -36,7 +46,7 @@
             android:layout_marginLeft="16dp"
             android:inputType="number"
             android:background="#FFF"
-            android:hint="User age"
+            android:hint="age"
             android:textColor="@color/md_font_54_percent_black" />
 
         <View
@@ -54,7 +64,7 @@
             android:layout_marginLeft="16dp"
             android:inputType="number"
             android:background="#FFF"
-            android:hint="User weight"
+            android:hint="weight (kg)"
             android:textColor="@color/md_font_54_percent_black"/>
 
     </LinearLayout>
@@ -88,13 +98,12 @@
             android:layout_gravity="top" />
 
         <Switch
-            android:layout_width="fill_parent"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:textOff="female"
             android:textOn="male"
             android:textColor="@color/md_font_54_percent_black"
-            android:id="@+id/switchMale"
+            android:id="@+id/switchGender"
             android:layout_marginLeft="56dp"
             android:checked="true"
             android:layout_gravity="center_vertical" />
@@ -104,13 +113,91 @@
 
     <LinearLayout
         android:id="@+id/lLayout3"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lLayout2"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/txtViewPregnant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="16dp"
+            android:text="Pregnant"
+            android:textSize="16sp"
+            android:layout_gravity="top"
+            />
+
+        <Switch
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:textOff="No"
+            android:textOn="Yes"
+            android:textColor="@color/md_font_54_percent_black"
+            android:id="@+id/switchMale"
+            android:layout_marginLeft="56dp"
+            android:checked="false"
+            android:layout_gravity="center_vertical"
+           />
+
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/lLayout3"
+        android:layout_marginLeft="16dp"
+        android:background="@android:color/darker_gray"/>
+
+    <LinearLayout
+        android:id="@+id/lLayout4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider2"
         android:orientation="horizontal">
 
+        <TextView
+            android:id="@+id/txtViewBuddyDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="16dp"
+            android:text="Buddy Details"
+            android:textSize="16sp"
+            android:layout_gravity="top" />
 
+    </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/lLayout5"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lLayout4"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editTxtName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="52dp"
+            android:layout_marginBottom="16dp"
+            android:background="#FFF"
+            android:hint="Name"
+            android:textColor="@color/md_font_54_percent_black" />
+
+        <EditText
+            android:id="@+id/editTxtBuddyNumber"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="52dp"
+            android:inputType="number"
+            android:background="#FFF"
+            android:hint="mobile"
+            android:textColor="@color/md_font_54_percent_black" />
 
     </LinearLayout>
 

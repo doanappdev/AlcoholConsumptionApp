@@ -12,4 +12,21 @@
     <string name="title_activity_emergency_sms">EmergencySMSActivity</string>
     <string name="title_activity_emergency">Emergency SMS</string>
 
+    <string name="emergency_prompt">Choose a friend</string>
+    <string-array name="emergency_contacts">
+        <item>Joe</item>
+        <item>Jane</item>
+        <item>John</item>
+        <item>Jenny</item>
+    </string-array>
+
+    <string name="standard_msg_prompt">Select Message</string>
+    <string-array name="standard_msg">
+        <item>I have hurt myself can you call me?</item>
+        <item>I am lost can you track my position?</item>
+        <item>I need help now!</item>
+        <item>Can you track my position, using app?</item>
+    </string-array>
+
+    
 </resources>

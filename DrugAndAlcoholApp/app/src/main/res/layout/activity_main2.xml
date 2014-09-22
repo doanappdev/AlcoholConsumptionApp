@@ -1,67 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:background="@drawable/city2"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:layout_weight="1" />
-
-
+    <!-- top half of screen -->
     <LinearLayout
         android:orientation="vertical"
+        android:background="@color/md_purple_500"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_weight="1" >
+        android:layout_weight="0.40"
+        android:weightSum="1">
 
 
-        <Button
-            android:id="@+id/btnDetails"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:text="User Details"
-            android:textColor="@color/theme1_yellow2"
-            android:background="@drawable/btn_round_bg"
-            android:layout_below="@+id/textView"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal" />
-
-        <Button
-            android:id="@+id/btnConsumption"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:text="Calculate BAC"
+        <TextView
+            android:text="Welcome to"
             android:textColor="@color/white1"
-            android:background="@color/theme1_yellow1"
-            android:layout_gravity="center_horizontal" />
-
-        <Button
-            android:id="@+id/btnExit"
-            android:layout_width="match_parent"
+            android:textSize="14dp"
+            android:layout_gravity="left"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:text="EXIT"
-            android:textSize="24sp"
-            android:textColor="@color/theme1_yellow1"
-            android:background="@color/theme1_pink"
-            android:layout_gravity="center_horizontal" />
+            android:layout_margin="16dp"/>
+
+        <TextView
+            android:text="Alcohol Consumption"
+            android:textColor="@color/white1"
+            android:textSize="24dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <ImageView
+            android:id="@+id/imgViewBeer"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.31"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:src="@drawable/beer2_icon"/>
+
+        <TextView
+            android:text="Drink responsibly"
+            android:textColor="@color/white1"
+            android:textSize="18dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:text="While having a good time"
+            android:textColor="@color/white1"
+            android:textSize="14dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout> <!-- end of top half -->
+
+    <!-- bottom half of screen -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.60"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
+        android:orientation="vertical">
+
+        <!-- icon row 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            >
+
+            <ImageButton
+                android:id="@+id/imgBtnEnterDetails"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:src="@drawable/user_icon_48"
+                android:background="@drawable/btn_state_home_screen"/>
+
+            <ImageButton
+                android:id="@+id/imgBtnCalculateBAC"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:src="@drawable/calculator_48"
+                android:background="@drawable/btn_state_home_screen"/>
+
+            <ImageButton
+                android:id="@+id/imgBtnReactionTest"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:src="@drawable/puzzle_48"
+                android:background="@drawable/btn_state_home_screen"/>
+
+        </LinearLayout>
+
+        <!-- text row 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:orientation="horizontal">
 
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/txtViewEnterDetails"
+                android:layout_width="48dp"
+                android:layout_height="16dp"
+                android:text="Enter Details"
+                android:textColor="@color/md_font_87_percent_black"
+                android:layout_weight="1"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/txtViewCalculateBAC"
+                android:layout_width="48dp"
+                android:layout_height="16dp"
+                android:text="Calculate BAC"
+                android:textColor="@color/md_font_87_percent_black"
+                android:layout_weight="1"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/txtViewReactionTest"
+                android:layout_width="48dp"
+                android:layout_height="16dp"
+                android:text="Reaction Test"
+                android:textColor="@color/md_font_87_percent_black"
+                android:layout_weight="1"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <!-- icon row 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            >
+
+            <ImageButton
+                android:id="@+id/imgBtnProximity"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:src="@drawable/world_map_48"
+                android:background="@drawable/btn_state_home_screen"/>
+
+            <ImageButton
+                android:id="@+id/imgBtnEmergencySMS"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:src="@drawable/send_sms_48"
+                android:background="@drawable/btn_state_home_screen"/>
+
+            <ImageButton
+                android:id="@+id/imgBtnExit"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:src="@drawable/close_cross_48"
+                android:background="@drawable/btn_state_home_screen"/>
+
+        </LinearLayout>
+
+        <!-- text row 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/txtViewProximity"
+                android:layout_width="48dp"
+                android:layout_height="16dp"
+                android:text="Proximity"
+                android:textColor="@color/md_font_87_percent_black"
+                android:layout_weight="1"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/txtViewEmergencySMS"
+                android:layout_width="48dp"
+                android:layout_height="16dp"
+                android:text="Emergency SMS"
+                android:textColor="@color/md_font_87_percent_black"
+                android:layout_weight="1"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/txtViewClose"
+                android:layout_width="48dp"
+                android:layout_height="16dp"
+                android:text="Close"
+                android:textColor="@color/md_font_87_percent_black"
+                android:layout_weight="1"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+
+    </LinearLayout> <!-- end of bottom half -->
+
 
 
 </LinearLayout>
-
-
