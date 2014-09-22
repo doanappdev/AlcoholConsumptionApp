@@ -99,7 +99,7 @@
                        android:layout_marginLeft="16dp"
                        android:layout_centerHorizontal="true"
                        android:src="@drawable/user_icon_48"
-                       android:background="@color/white1"/>
+                       android:background="@drawable/btn_state_home_screen"/>
 
                    <TextView
                        android:id="@+id/txtViewEnterDetails"
@@ -136,10 +136,10 @@
                        android:layout_marginLeft="16dp"
                        android:layout_centerHorizontal="true"
                        android:src="@drawable/calculator_48"
-                       android:background="@color/white1"/>
+                       android:background="@drawable/btn_state_home_screen"/>
 
                    <TextView
-                       android:id="@+id/txtViewEnterDetails"
+                       android:id="@+id/txtViewCalculateBAC"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_gravity="bottom"
@@ -172,10 +172,10 @@
                        android:layout_marginLeft="16dp"
                        android:layout_centerHorizontal="true"
                        android:src="@drawable/puzzle_48"
-                       android:background="@color/white1"/>
+                       android:background="@drawable/btn_state_home_screen"/>
 
                    <TextView
-                       android:id="@+id/txtViewEnterDetails"
+                       android:id="@+id/txtViewReactionTest"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_gravity="bottom"
@@ -215,7 +215,7 @@
                        android:layout_marginLeft="16dp"
                        android:layout_centerHorizontal="true"
                        android:src="@drawable/world_map_48"
-                       android:background="@color/white1"/>
+                       android:background="@drawable/btn_state_home_screen"/>
 
                    <TextView
                        android:id="@+id/txtViewProximity"
@@ -252,7 +252,7 @@
                        android:layout_marginLeft="16dp"
                        android:layout_centerHorizontal="true"
                        android:src="@drawable/send_sms_48"
-                       android:background="@color/white1"/>
+                       android:background="@drawable/btn_state_home_screen"/>
 
                    <TextView
                        android:id="@+id/txtViewSendSMS"
@@ -288,7 +288,7 @@
                        android:layout_marginLeft="16dp"
                        android:layout_centerHorizontal="true"
                        android:src="@drawable/close_cross_48"
-                       android:background="@color/white1"/>
+                       android:background="@drawable/btn_state_home_screen"/>
 
                    <TextView
                        android:id="@+id/txtViewExit"
@@ -305,7 +305,6 @@
        </LinearLayout> <!-- end row 2 -->
 
    </LinearLayout>
-
 
 </LinearLayout>
 

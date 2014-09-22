@@ -71,6 +71,8 @@ public class MainActivity extends Activity
         super.onStart();
 
 
+        /**
+         * commenting out the EULA fragment while testing the app
 
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
         alertDialog.setPositiveButton("ACCEPT", new DialogInterface.OnClickListener() {
@@ -95,6 +97,8 @@ public class MainActivity extends Activity
 
 
         dialog.show();
+
+         */
     }
 
     @Override

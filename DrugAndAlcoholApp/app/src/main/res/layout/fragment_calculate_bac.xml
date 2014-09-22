@@ -5,6 +5,11 @@
     android:background="@color/theme1_yellow2"
     tools:context="uc.edu.itp.drugandalcohol.fragments.CalculateBACFragment">
 
+    <!--
+        this textView is used for testing purposes
+        visibility has been turned off
+        remove later
+    -->
     <TextView
         android:id="@+id/txtViewHeading"
         android:layout_width="wrap_content"
@@ -15,7 +20,10 @@
         android:textColor="@color/md_font_87_percent_black"
         android:textSize="20dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
+
+
 
     <LinearLayout
         android:id="@+id/linearLayoutRow1"
@@ -38,7 +46,7 @@
         <TextView
             android:id="@+id/txtViewBeer"
             android:text="Beer"
-            android:textSize="34sp"
+            android:textSize="24sp"
             android:layout_weight="0.50"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,7 +57,7 @@
         <TextView
             android:id="@+id/txtViewBeerInput"
             android:text="0"
-            android:textSize="34sp"
+            android:textSize="24sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.25"
@@ -84,7 +92,7 @@
         <TextView
             android:id="@+id/txtViewWine"
             android:text="Wine"
-            android:textSize="34sp"
+            android:textSize="24sp"
             android:layout_weight="0.50"
             android:paddingLeft="24dp"
             android:layout_width="wrap_content"
@@ -94,7 +102,7 @@
         <TextView
             android:id="@+id/txtViewWineInput"
             android:text="0"
-            android:textSize="34sp"
+            android:textSize="24sp"
             android:textColor="@color/md_font_87_percent_black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -106,18 +114,14 @@
     </LinearLayout>
 
 
-
     <Button
         android:id="@+id/btnCalculateBAC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_gravity="center"
         android:text="Calculate"
         android:layout_marginTop="140dp"
         android:layout_below="@+id/linearLayoutRow2"
-        android:layout_centerHorizontal="true" />
-
+        android:layout_alignParentRight="true"/>
 
 
 </RelativeLayout>
