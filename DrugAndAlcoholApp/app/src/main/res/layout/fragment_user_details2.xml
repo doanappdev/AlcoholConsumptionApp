@@ -1,0 +1,207 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/border_width"
+    tools:context="uc.edu.itp.drugandalcohol.fragments.UserDetailsFragment">
+
+    <!--
+         This text view is here to help you identify
+         where the fragment begins and ends in the activity
+         we will remove this later
+
+
+     <TextView
+         android:id="@+id/txtViewDetailsH1"
+         android:text="Fragment - User Details"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+
+          />
+    -->
+
+    <!-- age -->
+    <RelativeLayout
+        android:id="@+id/rLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginRight="16dp">
+
+        <ImageView
+            android:id="@+id/imgViewUser1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/content_edit_32"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/txtViewAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="Age"
+            android:textColor="@color/md_font_54_percent_black"
+            android:textSize="16sp"
+            android:layout_toEndOf="@+id/imgViewUser1"
+            android:layout_toRightOf="@+id/imgViewUser1"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <EditText
+            android:id="@+id/editTxtAge"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:background="#FFF"
+            android:layout_alignTop="@+id/txtViewAge"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+    <!-- weight -->
+    <RelativeLayout
+        android:id="@+id/rLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginRight="16dp"
+        android:layout_below="@id/rLayout1">
+
+
+        <TextView
+            android:id="@+id/txtViewWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Weight"
+            android:textSize="16sp"
+            android:textColor="@color/md_font_54_percent_black"
+            android:layout_marginLeft="56dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <EditText
+            android:id="@+id/editTxtWeight"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:background="#FFF"
+            android:layout_alignTop="@id/txtViewWeight"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+    <!-- Gender -->
+    <RelativeLayout
+        android:id="@+id/rLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginRight="16dp"
+        android:layout_below="@id/rLayout2">
+
+        <TextView
+            android:id="@+id/txtViewGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gender"
+            android:textSize="16sp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+
+
+    </RelativeLayout>
+
+    <!-- female switch -->
+    <RelativeLayout
+        android:id="@+id/rLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginRight="16dp"
+        android:layout_below="@id/rLayout3">
+
+
+        <Switch
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Female"
+            android:textColor="@color/md_font_54_percent_black"
+            android:id="@+id/switchMale"
+            android:layout_marginLeft="56dp"
+            android:checked="false" />
+
+    </RelativeLayout>
+
+    <!--
+        pregnancy switch, this will be invisible at first and turn
+        on when the user selects true for female
+    -->
+    <RelativeLayout
+        android:id="@+id/rLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginRight="16dp"
+        android:layout_below="@id/rLayout4">
+
+
+        <Switch
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="pregnant"
+            android:textColor="@color/md_font_54_percent_black"
+            android:id="@+id/switchPregnant"
+            android:layout_marginLeft="56dp"
+            android:checked="false"
+            android:visibility="invisible"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rLayout6"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+
+        <Button
+            android:id="@+id/btnAccept"
+            android:text="ACCEPT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="8dp"
+            android:background="@drawable/btn_state_user_details"/>
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:text="CANCEL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/btnAccept"
+            android:layout_toStartOf="@+id/btnAccept"
+            android:layout_margin="8dp"
+            android:background="@drawable/btn_state_user_details"/>
+
+
+        <Button
+            android:id="@+id/btnEdit"
+            android:text="EDIT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/btn_state_user_details"
+            />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
