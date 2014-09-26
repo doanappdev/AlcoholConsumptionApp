@@ -18,17 +18,17 @@ import uc.edu.itp.drugandalcohol.R;
  */
 public class CalculateBACFragment extends Fragment
 {
-    RelativeLayout rLayoutClaculateBAC;
-    TextView beerInputTxtView;
+    RelativeLayout rLayoutCalculateBAC;
+    TextView beerSmInputTxtView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
     {
         // inflate the view with RelativeLayout so we can have functionality with buttons etc..
-        rLayoutClaculateBAC = (RelativeLayout)inflater.inflate(R.layout.fragment_calculate_bac, container, false);
+        rLayoutCalculateBAC = (RelativeLayout)inflater.inflate(R.layout.fragment_calculate_bac, container, false);
 
-        beerInputTxtView = (TextView) rLayoutClaculateBAC.findViewById(R.id.txtViewBeerInput);
-        beerInputTxtView.setOnClickListener(new View.OnClickListener()
+        beerSmInputTxtView = (TextView) rLayoutCalculateBAC.findViewById(R.id.txtViewBeerSmallInput);
+        beerSmInputTxtView.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -44,7 +44,7 @@ public class CalculateBACFragment extends Fragment
         });
 
 
-        return rLayoutClaculateBAC;
+        return rLayoutCalculateBAC;
     }
 
     void showNumberPad()

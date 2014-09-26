@@ -4,170 +4,363 @@
     android:layout_height="match_parent"
     tools:context="uc.edu.itp.drugandalcohol.fragments.CalculateBACFragment">
 
+    <!--
+        begin beer heading row 0
+    -->
+    <LinearLayout
+        android:id="@+id/linearLayoutRow0"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:background="@color/md_grey_400"
+        >
 
+        <TextView
+            android:id="@+id/txtViewBeer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/border_width"
+            android:layout_marginRight="@dimen/border_width"
+            android:text="Beer"
+            android:textColor="@color/md_font_87_percent_black"
+            android:textSize="16dp"
+            android:gravity="center_vertical"/>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="fill_parent"
+        android:layout_height="8dp"
+        android:layout_below="@+id/linearLayoutRow0" />
+
+    <!--
+        begin beer row 1
+    -->
     <LinearLayout
         android:id="@+id/linearLayoutRow1"
         android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/border_width">
+        android:layout_height="72dp"
+        android:layout_below="@+id/view1">
 
-        <ImageView
+        <FrameLayout
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="12dp"
+            android:layout_gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/imgViewBeer"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/sm_glass"
+                 />
+        </FrameLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imgBtnBeer"
-            android:layout_below="@+id/txtViewHeading"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
+            android:layout_height="72dp"
+            android:layout_marginRight="@dimen/border_width"
+            android:orientation="vertical">
 
-            android:src="@drawable/beer_icon" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="36dp"
+                android:text="Full Strength (small)"
+                android:textSize="16sp"
+                android:textColor="@color/md_font_54_percent_black"
+                android:gravity="center_vertical"/>
 
-        <TextView
-            android:id="@+id/txtViewBeer"
-            android:text="Beer"
-            android:textSize="24sp"
-            android:layout_weight="0.50"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="24dp"
-             />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="36dp"
+                android:text="285ml (4.8% Alc. Vol)"
+                android:textColor="@color/md_font_87_percent_black"
+                android:gravity="center_vertical"/>
 
 
-        <TextView
-            android:id="@+id/txtViewBeerInput"
-            android:text="0"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.25"
-            android:background="@android:color/white"
-            android:paddingLeft="24dp"
-            android:clickable="true"/>
+        </LinearLayout>
 
+        <!--
+            to support API lower than 15 use layoutMarginRight=""
+        -->
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+           >
+
+            <TextView
+                android:id="@+id/txtViewBeerSmallInput"
+                android:layout_width="36dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/md_blue_a200"
+                android:textSize="32sp"
+                android:layout_gravity="right|center_vertical" />
+
+
+        </FrameLayout>
 
     </LinearLayout>
 
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/linearLayoutRow1"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:background="@android:color/darker_gray"
+
+        />
+
+    <!--
+        begin beer row 2
+    -->
     <LinearLayout
         android:id="@+id/linearLayoutRow2"
         android:orientation="horizontal"
-        android:layout_below="@id/linearLayoutRow1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/border_width">
+        android:layout_height="72dp"
+        android:layout_below="@+id/divider1">
 
+        <FrameLayout
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="12dp"
+            android:layout_gravity="center_vertical">
 
-        <ImageView
+            <ImageView
+                android:id="@+id/imgViewBeer2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/beer_lg"
+                />
+        </FrameLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imgBtnWineGlass"
-            android:layout_below="@+id/txtViewHeading"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:src="@drawable/wine2_glass_icon"
-            android:adjustViewBounds="false"
-             />
+            android:layout_height="72dp"
+            android:layout_marginRight="@dimen/border_width"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/txtViewWine"
-            android:text="Wine"
-            android:textSize="24sp"
-            android:layout_weight="0.50"
-            android:paddingLeft="24dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="36dp"
+                android:text="Full Strength (large)"
+                android:textSize="16sp"
+                android:textColor="@color/md_font_54_percent_black"
+                android:gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="36dp"
+                android:text="425ml (4.8% Alc. Vol)"
+                android:textColor="@color/md_font_87_percent_black"
+                android:gravity="center_vertical"/>
 
 
-        <TextView
-            android:id="@+id/txtViewWineInput"
-            android:text="0"
-            android:textSize="24sp"
-            android:textColor="@color/md_font_87_percent_black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.25"
-            android:paddingLeft="24dp"
-            android:background="@android:color/white"/>
+        </LinearLayout>
 
+        <!--
+            to support API lower than 15 use layoutMarginRight=""
+        -->
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            >
+
+            <TextView
+                android:id="@+id/txtViewBeerLargeInput"
+                android:layout_width="36dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/md_blue_a200"
+                android:textSize="32sp"
+                android:layout_gravity="end|center_vertical" />
+
+
+        </FrameLayout>
 
     </LinearLayout>
 
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/linearLayoutRow2"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:background="@android:color/darker_gray"
+
+        />
+
+    <!--
+        begin beer row 3
+    -->
     <LinearLayout
         android:id="@+id/linearLayoutRow3"
         android:orientation="horizontal"
-        android:layout_below="@id/linearLayoutRow2"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/border_width">
+        android:layout_height="72dp"
+        android:layout_below="@+id/divider2">
 
+        <FrameLayout
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="12dp"
+            android:layout_gravity="center_vertical">
 
-        <ImageView
+            <ImageView
+                android:id="@+id/imgViewBeer3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/beer_bottle"
+                />
+        </FrameLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imgBtnWineGlass"
-            android:layout_below="@+id/txtViewHeading"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:src="@drawable/spirits_48"
-            android:adjustViewBounds="false"
-            />
+            android:layout_height="72dp"
+            android:layout_marginRight="@dimen/border_width"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/txtViewSpirits"
-            android:text="Spirits"
-            android:textSize="24sp"
-            android:layout_weight="0.50"
-            android:paddingLeft="24dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="36dp"
+                android:text="Full Strength (bottle)"
+                android:textSize="16sp"
+                android:textColor="@color/md_font_54_percent_black"
+                android:gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="36dp"
+                android:text="375ml (4.8% Alc. Vol)"
+                android:textColor="@color/md_font_87_percent_black"
+                android:gravity="center_vertical"/>
 
 
-        <TextView
-            android:id="@+id/txtViewSpiritsInput"
-            android:text="0"
-            android:textSize="24sp"
-            android:textColor="@color/md_font_87_percent_black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.25"
-            android:paddingLeft="24dp"
-            android:background="@android:color/white"/>
+        </LinearLayout>
 
+        <!--
+            to support API lower than 15 use layoutMarginRight=""
+        -->
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            >
+
+            <TextView
+                android:id="@+id/txtViewBeerBottleInput"
+                android:layout_width="36dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/md_blue_a200"
+                android:textSize="32sp"
+
+                android:layout_gravity="end|center_vertical" />
+
+
+        </FrameLayout>
 
     </LinearLayout>
 
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/linearLayoutRow3"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:background="@android:color/darker_gray"
+
+        />
+
+    <!--
+        begin beer row 4
+    -->
     <LinearLayout
         android:id="@+id/linearLayoutRow4"
+        android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayoutRow3"
-        android:orientation="horizontal">
+        android:layout_height="72dp"
+        android:layout_below="@+id/divider3">
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="0.00%"
-            android:textSize="78dp"
-            android:layout_weight="1"
-            android:layout_marginLeft="16dp" />
+        <FrameLayout
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="12dp"
+            android:layout_gravity="center_vertical">
 
-        <TextView
+            <ImageView
+                android:id="@+id/imgViewBeer4"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/beer_can"
+                />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
+            android:layout_marginRight="@dimen/border_width"
+            android:layout_marginEnd="@dimen/border_width"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="36dp"
+                android:text="Full Strength (can)"
+                android:textSize="16sp"
+                android:textColor="@color/md_font_54_percent_black"
+                android:gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="36dp"
+                android:text="375ml (4.8% Alc. Vol)"
+                android:textColor="@color/md_font_87_percent_black"
+                android:gravity="center_vertical"/>
+
+
+        </LinearLayout>
+
+        <!--
+            to support API lower than 15 use layoutMarginRight=""
+        -->
+        <FrameLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="BAC"
-            android:textSize="32dp"
-            android:layout_weight="2"/>
+            android:layout_height="fill_parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            >
+
+            <TextView
+                android:id="@+id/txtViewBeerCanInput"
+                android:layout_width="36dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/md_blue_a200"
+                android:textSize="32sp"
+
+                android:layout_gravity="end|center_vertical" />
+
+
+        </FrameLayout>
 
     </LinearLayout>
 
 
-    <Button
-        android:id="@+id/btnCalculateBAC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Calculate"
-        android:layout_marginTop="140dp"
-        android:layout_below="@+id/linearLayoutRow4"
-        android:layout_alignParentRight="true"/>
+
+
 
 
 </RelativeLayout>

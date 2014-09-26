@@ -9,6 +9,7 @@
     tools:context="uc.edu.itp.drugandalcohol.view.CalculateBACActivity">
 
 
+
     <fragment class="uc.edu.itp.drugandalcohol.fragments.CalculateBACFragment"
         android:id="@+id/fragmentConsumption"
         android:layout_width="match_parent"
@@ -16,6 +17,16 @@
         tools:layout="@layout/fragment_consumption"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+
+    <!-- experiment with expandable list view
+    <fragment
+        android:id="@+id/fragmentCalculate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        class="uc.edu.itp.drugandalcohol.fragments.CalculateBACFragment2" />
+
+    -->
 
 
 </RelativeLayout>
