@@ -27,7 +27,7 @@ public class CalculateBACFragment extends Fragment
         // inflate the view with RelativeLayout so we can have functionality with buttons etc..
         rLayoutCalculateBAC = (RelativeLayout)inflater.inflate(R.layout.fragment_calculate_bac, container, false);
 
-        beerSmInputTxtView = (TextView) rLayoutCalculateBAC.findViewById(R.id.txtViewBeerSmallInput);
+        beerSmInputTxtView = (TextView) rLayoutCalculateBAC.findViewById(R.id.txtViewBeerInput1);
         beerSmInputTxtView.setOnClickListener(new View.OnClickListener()
         {
             @Override

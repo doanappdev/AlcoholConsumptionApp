@@ -36,14 +36,15 @@ public class CalculateBACFragment2 extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View v = inflater.inflate(R.layout.fragment_calculate_bac2, null);
-        expListView = (ExpandableListView)v.findViewById(R.id.expListView);
+        View v = inflater.inflate(R.layout.fragment_calculate_bac, null);
+
+        //expListView = (ExpandableListView)v.findViewById(R.id.expListView);
 
         // prepare data for list
-        prepareListData();
+        //prepareListData();
 
-        listAdapter = new ExpandableListAdapter(getActivity(), listDataHeader, listDataChild);
-        expListView.setAdapter(listAdapter);
+        //listAdapter = new ExpandableListAdapter(getActivity(), listDataHeader, listDataChild);
+        //expListView.setAdapter(listAdapter);
 
         // Inflate the layout for this fragment
         return v;
@@ -57,38 +58,33 @@ public class CalculateBACFragment2 extends Fragment
         listDataChild = new HashMap<String, List<String>>();
 
         // Adding child data
-        listDataHeader.add("Top 250");
-        listDataHeader.add("Now Showing");
-        listDataHeader.add("Coming Soon..");
+        listDataHeader.add("Beer");
+        listDataHeader.add("Wine");
+        listDataHeader.add("Spirits");
 
         // Adding child data
-        List<String> top250 = new ArrayList<String>();
-        top250.add("The Shawshank Redemption");
-        top250.add("The Godfather");
-        top250.add("The Godfather: Part II");
-        top250.add("Pulp Fiction");
-        top250.add("The Good, the Bad and the Ugly");
-        top250.add("The Dark Knight");
-        top250.add("12 Angry Men");
+        List<String> beer = new ArrayList<String>();
+        beer.add("Beer Full Strength");
+        beer.add("Beer Glass Small");
+        beer.add("Beer Glass Large");
 
-        List<String> nowShowing = new ArrayList<String>();
-        nowShowing.add("The Conjuring");
-        nowShowing.add("Despicable Me 2");
-        nowShowing.add("Turbo");
-        nowShowing.add("Grown Ups 2");
-        nowShowing.add("Red 2");
-        nowShowing.add("The Wolverine");
 
-        List<String> comingSoon = new ArrayList<String>();
-        comingSoon.add("2 Guns");
-        comingSoon.add("The Smurfs 2");
-        comingSoon.add("The Spectacular Now");
-        comingSoon.add("The Canyons");
-        comingSoon.add("Europa Report");
+        List<String> wine = new ArrayList<String>();
+        wine.add("Wine1");
+        wine.add("Wine2");
+        wine.add("Wine3");
+        wine.add("Wine4");
 
-        listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
-        listDataChild.put(listDataHeader.get(1), nowShowing);
-        listDataChild.put(listDataHeader.get(2), comingSoon);
+        List<String> spirits = new ArrayList<String>();
+        spirits.add("Spirits1");
+        spirits.add("Spirits2");
+        spirits.add("Spirits3");
+        spirits.add("Spirits4");
+
+
+        listDataChild.put(listDataHeader.get(0), beer); // Header, Child data
+        listDataChild.put(listDataHeader.get(1), wine);
+        listDataChild.put(listDataHeader.get(2), spirits);
     }
 
 }
