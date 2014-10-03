@@ -32,6 +32,18 @@
     <color name="md_amber_500">#ffc107</color>
     <color name="md_cyan_500">#00bcd4</color>
 
+    <color name="md_grey_500">#9e9e9e</color>
+    <color name="md_grey_200">#eeeeee</color>
+    <color name="md_grey_400">#bdbdbd</color>
+    <color name="md_grey_600">#757575</color>
+    <color name="md_grey_700">#616161</color>
+
+
+    <color name="md_blue_grey_50">#eceff1</color>
+    <color name="md_blue_grey_100">#cfd8dc</color>
+    <color name="md_blue_grey_200">#b0bec5</color>
+    <color name="md_blue_grey_300">#90a4ae</color>
+    <color name="md_blue_grey_500">#607d8b</color>
     <color name="md_blue_grey_900">#263238</color>
 
 
@@ -49,10 +61,7 @@
     <color name="md_blue_a400">#4d73ff</color>
     <color name="md_blue_a700">#4d69ff</color>
 
-    <color name="md_grey_500">#9e9e9e</color>
-    <color name="md_grey_200">#eeeeee</color>
-    <color name="md_grey_400">#bdbdbd</color>
-    <color name="md_grey_600">#757575</color>
+
 
 
     <color name="md_font_87_percent_black">#313131</color>

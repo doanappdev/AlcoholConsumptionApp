@@ -22,7 +22,7 @@ public class TabListener implements ActionBar.TabListener
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
         // TODO Auto-generated method stub
-        ft.replace(R.id.fragment_calculate_container, mFragment);
+        //ft.replace(R.id.fragment_calculate_container, mFragment);
     }
 
     @Override

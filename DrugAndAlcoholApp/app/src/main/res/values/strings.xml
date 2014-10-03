@@ -28,5 +28,9 @@
         <item>Can you track my position, using app?</item>
     </string-array>
 
+    <string name="beer_tab">Beer</string>
+    <string name="wine_tab">Wine</string>
+    <string name="spirits_tab">Spirits</string>
+
     
 </resources>

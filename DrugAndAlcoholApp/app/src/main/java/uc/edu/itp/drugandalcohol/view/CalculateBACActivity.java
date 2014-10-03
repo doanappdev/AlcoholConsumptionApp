@@ -14,48 +14,13 @@ import uc.edu.itp.drugandalcohol.fragments.TabWineFragment;
 
 public class CalculateBACActivity extends Activity
 {
-    // Declare Tab variable
-    ActionBar.Tab beerTab, wineTab, spiritsTab;
-    Fragment fragmentBeer = new TabBeerFragment();
-    Fragment fragmentWine = new TabWineFragment();
-    Fragment fragmentSpirits = new TabSpiritsFragment();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tab_calculate);
-
-        ActionBar actionBar = getActionBar();
-
-        // hide actionbar icon
-        actionBar.setDisplayHomeAsUpEnabled(false);
-
-        // hide actionbar title
-        actionBar.setDisplayShowTitleEnabled(false);
-
-        // create actionbar tabs
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-        // set tab icon and titles
-        // .setIcon(R.drawable.beer_glass_icon)
-        // .setIcon(R.drawable.wine_glass_icon)
-        // .setIcon(R.drawable.spirits_48)
-        beerTab = actionBar.newTab().setText("Beer");
-
-        wineTab = actionBar.newTab().setText("Wine");
-
-        spiritsTab = actionBar.newTab().setText("Spirits");
-
-        // set tab listeners
-        beerTab.setTabListener(new TabListener(fragmentBeer));
-        wineTab.setTabListener(new TabListener(fragmentWine));
-        spiritsTab.setTabListener(new TabListener(fragmentSpirits));
-
-        // add tabs to action bar
-        actionBar.addTab(beerTab);
-        actionBar.addTab(wineTab);
-        actionBar.addTab(spiritsTab);
+        setContentView(R.layout.activity_calculate_bac);
 
     }
 
