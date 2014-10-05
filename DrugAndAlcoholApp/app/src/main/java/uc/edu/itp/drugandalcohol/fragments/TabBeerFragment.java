@@ -61,6 +61,7 @@ public class TabBeerFragment extends Fragment
 
         FragmentManager fm = getFragmentManager();
         NumberPadFragment numberPadFragment = new NumberPadFragment();
+        numberPadFragment.setTargetFragment(this, 0);
         numberPadFragment.show(fm, "Alcohol Consumption");
     }
 

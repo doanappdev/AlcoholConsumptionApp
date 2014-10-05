@@ -9,7 +9,7 @@ android:padding="10dp">
 -->
 
 <!-- use this color for activity_main buttons -->
-<solid android:color="@color/nwplyng_blue" />
+<solid android:color="@color/md_yellow_a200" />
 
 <corners
     android:bottomRightRadius="20dp"

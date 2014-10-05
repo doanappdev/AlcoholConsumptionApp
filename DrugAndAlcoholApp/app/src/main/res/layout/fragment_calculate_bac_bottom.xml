@@ -24,6 +24,16 @@
             android:textSize="16sp"/>
 
         <TextView
+            android:id="@+id/txtViewSubHeadingBAC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your BAC is:"
+            android:textSize="16sp"
+            android:layout_alignBottom="@+id/txtViewDisplayBAC"
+            android:layout_alignRight="@+id/txtViewHeadingBAC"
+            android:layout_alignEnd="@+id/txtViewHeadingBAC" />
+
+        <TextView
             android:id="@+id/txtViewDisplayBAC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

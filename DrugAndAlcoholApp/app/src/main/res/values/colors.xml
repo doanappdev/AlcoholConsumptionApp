@@ -28,7 +28,7 @@
     <color name="md_pink_500">#e91e63</color>
     <color name="md_deep_purple_500">#673ab7</color>
     <color name="md_green_500">#259b24</color>
-    <color name="md_yellow_500">#ffeb3b</color>
+
     <color name="md_amber_500">#ffc107</color>
     <color name="md_cyan_500">#00bcd4</color>
 
@@ -61,11 +61,27 @@
     <color name="md_blue_a400">#4d73ff</color>
     <color name="md_blue_a700">#4d69ff</color>
 
+    <color name="md_yellow_50">#fffde7</color>
+    <color name="md_yellow_100">#fff9c4</color>
+    <color name="md_yellow_200">#fff59d</color>
+    <color name="md_yellow_300">#fff176</color>
+    <color name="md_yellow_400">#ffee58</color>
+    <color name="md_yellow_500">#ffeb3b</color>
+    <color name="md_yellow_600">#fdd835</color>
+    <color name="md_yellow_700">#fbc02d</color>
+    <color name="md_yellow_800">#f9a825</color>
+    <color name="md_yellow_900">#f57f17</color>
+    <color name="md_yellow_a100">#ffff8d</color>
+    <color name="md_yellow_a200">#ffff00</color>
+    <color name="md_yellow_a400">#ffea00</color>
+    <color name="md_yellow_a700">#ffd600</color>
+
 
 
 
     <color name="md_font_87_percent_black">#313131</color>
     <color name="md_font_54_percent_black">#7d7d7d</color>
+    <color name="md_font_24_percent_black">#24000000</color>
 
 
 
