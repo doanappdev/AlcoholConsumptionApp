@@ -17,11 +17,8 @@ import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
-
-import org.w3c.dom.Text;
-
 import uc.edu.itp.drugandalcohol.R;
-import uc.edu.itp.drugandalcohol.SimpleTabDefinition;
+import uc.edu.itp.drugandalcohol.controller.SimpleTabDefinition;
 import uc.edu.itp.drugandalcohol.controller.TabDefinition;
 import uc.edu.itp.drugandalcohol.model.AlcoholType;
 
@@ -32,7 +29,6 @@ import uc.edu.itp.drugandalcohol.model.AlcoholType;
 public class CalculateBACTopFragment extends Fragment
         implements TabHost.OnTabChangeListener, View.OnClickListener
 {
-
     // set text for tab heading
     private final TabDefinition[] tabDefinitions = new TabDefinition[] {
             new SimpleTabDefinition(R.id.tab1, R.layout.tab_heading,
@@ -46,23 +42,26 @@ public class CalculateBACTopFragment extends Fragment
 
 
     // fields
-    private final int NUMBER_PAD_REQUEST_CODE = 1;
-    private static final String BeerSmall = "beerSmallKey";
-    private static final String BeerLarge = "beerLargeKey";
-    private static final String BeerBottle = "beerBottleKey";
-    private static final String BeerCan = "beerCanKey";
+    private boolean DRINKS_ENTERED_ALREADY = false;
+
+    //private String test
 
     private static final int SM_BEER_CLICKED = 0;
     private static final int LG_BEER_CLICKED = 1;
     private static final int BEER_BOTTLE_CLICKED = 2;
     private static final int BEER_CAN_CLICKED = 3;
-
+    private static final int SPARKLING_WINE_CLICKED = 4;
+    private static final int RED_WINE_CLICKED = 5;
+    private static final int WHITE_WINE_CLICKED = 6;
+    private static final int BOTTLE_WINE_CLICKED = 7;
 
     RelativeLayout relativeLayoutBeer;
     View _viewRoot;
     TabHost _tabHost;
     TextView beer1InputTxtView, beer2InputTxtView, beer3InputTxtView, beer4InputTxtView;
+    TextView wine1InputTxtView, wine2InputTxtView, wine3InputTxtView, wine4InputTxtView;
     SharedPreferences sharedPrefs;
+    AlcoholType alcoholType;
 
     public CalculateBACTopFragment() {
         // Required empty public constructor
@@ -104,18 +103,39 @@ public class CalculateBACTopFragment extends Fragment
             _tabHost.addTab(createTab(inflater, _tabHost, _viewRoot, tab));
         }
 
+        alcoholType = new AlcoholType();
+
         beer1InputTxtView = (TextView) _viewRoot.findViewById(R.id.txtViewBeerInput1);
         beer2InputTxtView = (TextView) _viewRoot.findViewById(R.id.txtViewBeerInput2);
         beer3InputTxtView = (TextView) _viewRoot.findViewById(R.id.txtViewBeerInput3);
         beer4InputTxtView = (TextView) _viewRoot.findViewById(R.id.txtViewBeerInput4);
+
+        wine1InputTxtView = (TextView) _viewRoot.findViewById(R.id.txtViewWineInput1);
+        wine2InputTxtView = (TextView) _viewRoot.findViewById(R.id.txtViewWineInput2);
+        wine3InputTxtView = (TextView) _viewRoot.findViewById(R.id.txtViewWineInput3);
+        wine4InputTxtView = (TextView) _viewRoot.findViewById(R.id.txtViewWineInput4);
 
         beer1InputTxtView.setOnClickListener(this);
         beer2InputTxtView.setOnClickListener(this);
         beer3InputTxtView.setOnClickListener(this);
         beer4InputTxtView.setOnClickListener(this);
 
+        wine1InputTxtView.setOnClickListener(this);
+        wine2InputTxtView.setOnClickListener(this);
+        wine3InputTxtView.setOnClickListener(this);
+        wine4InputTxtView.setOnClickListener(this);
+
+
         // initialise shared preference object
         sharedPrefs = getActivity().getSharedPreferences("DrinkPrefs", Context.MODE_PRIVATE);
+
+
+        // this will only call method when number pad has been displayed
+        if(DRINKS_ENTERED_ALREADY)
+        {
+            // load number of drinks consumed into text view
+            getDrinksConsumed();
+        }
 
         return _viewRoot;
     }
@@ -182,6 +202,10 @@ public class CalculateBACTopFragment extends Fragment
         // must call getActivity() when calling Toast from fragment
         //Toast.makeText(getActivity(), "Beer Input TextView click event works", Toast.LENGTH_LONG).show();
 
+        // if user enters drink for the first time the DRINKS_ENTERED_ALREADY will be false
+        // we change the value after the number pad has been shown.
+        if(!DRINKS_ENTERED_ALREADY) { DRINKS_ENTERED_ALREADY = true; }
+
         switch(v.getId())
         {
             // handle click event for beer input
@@ -191,7 +215,6 @@ public class CalculateBACTopFragment extends Fragment
             case R.id.txtViewBeerInput2:
                 showNumberPad(LG_BEER_CLICKED);
                 break;
-
             case R.id.txtViewBeerInput3:
                 showNumberPad(BEER_BOTTLE_CLICKED);
                 break;
@@ -199,11 +222,13 @@ public class CalculateBACTopFragment extends Fragment
                 showNumberPad(BEER_CAN_CLICKED);
                 break;
 
-             /*
+
             // handle click event for wine input
             case R.id.txtViewWineInput1:
-                showNumberPad();
+                showNumberPad(SPARKLING_WINE_CLICKED);
                 break;
+
+             /*
             case R.id.txtViewWineInput2:
                 showNumberPad();
                 break;
@@ -258,7 +283,6 @@ public class CalculateBACTopFragment extends Fragment
             switch (requestCode)
             {
                 case SM_BEER_CLICKED:
-                    //standardDrinks = bundle.getInt("NumOfDrinks");
                     // assign value from number pad to text view
                     beer1InputTxtView.setText(Integer.toString(standardDrinks));
                     // for testing: check if value is passed back to fragment
@@ -266,7 +290,6 @@ public class CalculateBACTopFragment extends Fragment
                     break;
 
                 case LG_BEER_CLICKED:
-                    //standardDrinks = bundle.getInt("NumOfDrinks");
                     beer2InputTxtView.setText(Integer.toString(standardDrinks));
                     break;
 
@@ -278,25 +301,59 @@ public class CalculateBACTopFragment extends Fragment
                     beer4InputTxtView.setText(Integer.toString(standardDrinks));
                     break;
 
+                case SPARKLING_WINE_CLICKED:
+                    wine1InputTxtView.setText(Integer.toString(standardDrinks));
+
             }
         }
 
 
         // get values from text view
-
         int numOfSmBeers = Integer.parseInt(beer1InputTxtView.getText().toString());
         int numOfLgBeers = Integer.parseInt(beer2InputTxtView.getText().toString());
         int numOfBeerBottles = Integer.parseInt(beer3InputTxtView.getText().toString());
         int numOfBeerCans = Integer.parseInt(beer4InputTxtView.getText().toString());
+        int numOfSparkWine = Integer.parseInt(wine1InputTxtView.getText().toString());
 
-        // save values to shared preferences
+
+        // save values to shared preferences, values are saved as (Key, Value) pairs
+        // key value is stored in strings.xml to allow other fragments easy access
+        // to them
         SharedPreferences.Editor editor = sharedPrefs.edit();
-        editor.putInt(BeerSmall, numOfSmBeers);
-        editor.putInt(BeerLarge, numOfLgBeers);
-        editor.putInt(BeerBottle, numOfBeerBottles);
-        editor.putInt(BeerCan, numOfBeerCans);
+        editor.putInt(getString(R.string.sm_beer_key), numOfSmBeers);
+        editor.putInt(getString(R.string.lg_beer_key), numOfLgBeers);
+        editor.putInt(getString(R.string.beer_bottle_key), numOfBeerBottles);
+        editor.putInt(getString(R.string.beer_can_key), numOfBeerCans);
+        editor.putInt(getString(R.string.wine_sparkling_key), numOfSparkWine);
         editor.commit();
 
+
+    }
+
+    private void getDrinksConsumed()
+    {
+        /*
+         * get values from shared preferences and display in text view
+         */
+        if(sharedPrefs.contains(getActivity().getString(R.string.sm_beer_key)))
+        {
+            beer1InputTxtView.setText(Integer.toString(sharedPrefs.getInt(getActivity().getString(R.string.sm_beer_key), 0)));
+        }
+
+        if(sharedPrefs.contains(getActivity().getString(R.string.lg_beer_key)))
+        {
+            beer2InputTxtView.setText(Integer.toString(sharedPrefs.getInt(getActivity().getString(R.string.lg_beer_key), 0)));
+        }
+
+        if(sharedPrefs.contains(getActivity().getString(R.string.beer_bottle_key)))
+        {
+            beer3InputTxtView.setText(Integer.toString(sharedPrefs.getInt(getActivity().getString(R.string.beer_bottle_key), 0)));
+        }
+
+        if(sharedPrefs.contains(getActivity().getString(R.string.beer_can_key)))
+        {
+            beer4InputTxtView.setText(Integer.toString(sharedPrefs.getInt(getActivity().getString(R.string.beer_can_key), 0)));
+        }
 
     }
 

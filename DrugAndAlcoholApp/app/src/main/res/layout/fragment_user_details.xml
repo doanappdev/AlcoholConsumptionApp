@@ -98,15 +98,16 @@
             android:layout_gravity="top" />
 
         <Switch
+            android:id="@+id/switchGender"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="56dp"
+            android:layout_gravity="center_vertical"
             android:textOff="female"
             android:textOn="male"
             android:textColor="@color/md_font_54_percent_black"
-            android:id="@+id/switchGender"
-            android:layout_marginLeft="56dp"
             android:checked="true"
-            android:layout_gravity="center_vertical" />
+             />
 
 
     </LinearLayout>
@@ -131,18 +132,17 @@
             />
 
         <Switch
+            android:id="@+id/switchPregnant"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:textOff="No"
-            android:textOn="Yes"
-            android:textColor="@color/md_font_54_percent_black"
-            android:id="@+id/switchMale"
             android:layout_marginLeft="56dp"
-            android:checked="false"
             android:layout_gravity="center_vertical"
+            android:textOff="no"
+            android:textOn="yes"
+            android:textColor="@color/md_font_54_percent_black"
+            android:checked="false"
+
            />
-
-
     </LinearLayout>
 
     <View
@@ -180,13 +180,13 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/editTxtName"
+            android:id="@+id/editTxtBuddyName"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="52dp"
             android:layout_marginBottom="16dp"
             android:background="#FFF"
-            android:hint="Name"
+            android:hint="name"
             android:textColor="@color/md_font_54_percent_black" />
 
         <EditText

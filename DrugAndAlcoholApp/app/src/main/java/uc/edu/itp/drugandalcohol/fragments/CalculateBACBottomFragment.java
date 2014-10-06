@@ -26,12 +26,9 @@ public class CalculateBACBottomFragment extends Fragment
     TextView displayBACtxtView;
     Button calculateBACBtn;
 
-    SharedPreferences sharedPrefs;
+    SharedPreferences drinkSharedPrefs, userSharedPrefs;
 
-    private static final String BeerSmall = "beerSmallKey";
-    private static final String BeerLarge = "beerLargeKey";
-    private static final String BeerBottle = "beerBottleKey";
-    private static final String BeerCan = "beerCanKey";
+    private static final String USER_WEIGHT = "userWeightKey";
 
     public CalculateBACBottomFragment() {
         // Required empty public constructor
@@ -49,7 +46,9 @@ public class CalculateBACBottomFragment extends Fragment
 
         calculateBACBtn.setOnClickListener(this);
 
-        sharedPrefs = getActivity().getSharedPreferences("DrinkPrefs", Context.MODE_PRIVATE);
+        drinkSharedPrefs = getActivity().getSharedPreferences("DrinkPrefs", Context.MODE_PRIVATE);
+        userSharedPrefs = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+
 
         return v;
     }
@@ -67,64 +66,51 @@ public class CalculateBACBottomFragment extends Fragment
     }
 
 
+
+
     private void calculateBAC()
     {
         double totalStandardDrinks, bacValue;
-        int numOfSmBeers = sharedPrefs.getInt(BeerSmall, 0);
-        int numOfLgBeers = sharedPrefs.getInt(BeerLarge, 0);
-        //int numOfBeerBottles = sharedPrefs.getInt(BeerBottle, 0);
-        //int numOfBeerCans = sharedPrefs.getInt(BeerCan, 0);
+        int numOfSmBeers = drinkSharedPrefs.getInt(getString(R.string.sm_beer_key), 0);
+        int numOfLgBeers = drinkSharedPrefs.getInt(getString(R.string.lg_beer_key), 0);
+        int numOfBeerBottles = drinkSharedPrefs.getInt(getString(R.string.beer_bottle_key), 0);
+        int numOfBeerCans = drinkSharedPrefs.getInt(getString(R.string.beer_can_key), 0);
+        int numOfSparklingWine = drinkSharedPrefs.getInt(getString(R.string.wine_sparkling_key), 0);
+        int numOfRedWine = drinkSharedPrefs.getInt(getString(R.string.wine_red_key), 0);
+        int numOfWhiteWine = drinkSharedPrefs.getInt(getString(R.string.wine_white_key), 0);
+        int numOfBottleWine = drinkSharedPrefs.getInt(getString(R.string.wine_bottle_key), 0);
 
         // apply standard drinks value to number of drinks
         // e.g 1 small beer = 1.1 standard drinks
         //       large beer = 1.6 standard drinks
         double smBeerStandardDrinks = 1.1 * numOfSmBeers;
         double lgBeerStandardDrinks = 1.6 * numOfLgBeers;
+        double bottleBeerStandardDrinks = 1.4 * numOfBeerBottles;
+        double canBeerStandDrinks = 1.4 * numOfBeerCans;
 
-        // use test values for debugging
-        // BAC should display 14 (5 + 2 + 3 + 4)
-        totalStandardDrinks = smBeerStandardDrinks + lgBeerStandardDrinks;
+        double sparklingWineStandardDrinks = 1.4 * numOfSparklingWine;
+        double redWineStandardDrinks = 1.6 * numOfRedWine;
+        double whiteWineStandardDrinks = 1.4 * numOfWhiteWine;
+        double bottleWineStandardDrinks = 8.0 * numOfBottleWine;
+
+        totalStandardDrinks = smBeerStandardDrinks + lgBeerStandardDrinks + bottleBeerStandardDrinks + canBeerStandDrinks
+                + sparklingWineStandardDrinks + redWineStandardDrinks + whiteWineStandardDrinks + bottleWineStandardDrinks;
+
+        // call method to calculate bac using formula
         bacValue = bacFormula(totalStandardDrinks);
 
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
         displayBACtxtView.setText(decimalFormat.format(bacValue));
 
-        /* can use this code to load value of number of drinks into text view
-        // get values from shared preferences
-        if(sharedPrefs.contains(BeerSmall))
-        {
-            // return the value of BeerSmall in shared preferences
-            // if no value return 0.
-            numOfSmBeers = sharedPrefs.getInt(BeerSmall, 0);
-        }
-
-        if(sharedPrefs.contains(BeerLarge))
-        {
-            numOfLgBeers = sharedPrefs.getInt(BeerLarge, 0);
-        }
-
-        if(sharedPrefs.contains(BeerBottle))
-        {
-            numOfBeerBottles = sharedPrefs.getInt(BeerBottle, 0);
-        }
-
-        if(sharedPrefs.contains(BeerCan))
-        {
-            numOfBeerCans = sharedPrefs.getInt(BeerCan, 0);
-        }
-        */
-
-        //totalStandardDrinks = numOfSmBeers + numOfLgBeers + numOfBeerBottles + numOfBeerCans;
-
 
     }
 
     /*
-     * The formula to calculate alcohol blood content is
+     * formula to calculate blood alcohol content is
      * based on Widmark's formula:
      *
-     * BAC = (10N - 7.5H) / 6.8M        *for males
-     * BAC = (10N - 7.5H) / 5.5M        *for females
+     * BAC = (10N - 7.5H) / 6.8M        -for males
+     * BAC = (10N - 7.5H) / 5.5M        -for females
      *
      * where N = number of standard drinks consumed
      *       H = hours since started drinking
@@ -134,11 +120,11 @@ public class CalculateBACBottomFragment extends Fragment
     {
         // TODO: add code to check if user is male or female then apply appropriate formula
 
-        double N, H, M, bac = 0;
+        double N, H, M, bac;
 
         N = numOfDrinks;
         H = 1;
-        M = 70;
+        M = userSharedPrefs.getInt(USER_WEIGHT, 0);
 
         bac = ((10 * N) - (7.5 * H)) / (6.8 * M);
 

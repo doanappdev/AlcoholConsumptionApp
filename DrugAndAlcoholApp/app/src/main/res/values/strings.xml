@@ -12,6 +12,27 @@
     <string name="title_activity_emergency_sms">EmergencySMSActivity</string>
     <string name="title_activity_emergency">Emergency SMS</string>
 
+    <string name="beer_tab">Beer</string>
+    <string name="wine_tab">Wine</string>
+    <string name="spirits_tab">Spirits</string>
+
+    <!-- string key values for shared preferences -->
+    <string name="sm_beer_key">SmallBeerKey</string>
+    <string name="lg_beer_key">LargeBeerKey</string>
+    <string name="beer_bottle_key">BeerBottleKey</string>
+    <string name="beer_can_key">BeerCanKey</string>
+    <string name="wine_sparkling_key">WineSparklingKey</string>
+    <string name="wine_red_key">WineRedKey</string>
+    <string name="wine_white_key">WineWhiteKey</string>
+    <string name="wine_bottle_key">WineBottleKey</string>
+    <string name="spirits_ready_drink_key">SpiritsReadyToDrinkKey</string>
+    <string name="spirits_shoot_key">SpiritsShootKey</string>
+    <string name="spirits_premix_full_key">SpiritsPremixFullKey</string>
+    <string name="spirits_premix_high_key">SpiritsPremixHighKey</string>
+
+
+
+
     <string name="emergency_prompt">Choose a friend</string>
     <string-array name="emergency_contacts">
         <item>Joe</item>
@@ -28,9 +49,7 @@
         <item>Can you track my position, using app?</item>
     </string-array>
 
-    <string name="beer_tab">Beer</string>
-    <string name="wine_tab">Wine</string>
-    <string name="spirits_tab">Spirits</string>
+
 
     
 </resources>

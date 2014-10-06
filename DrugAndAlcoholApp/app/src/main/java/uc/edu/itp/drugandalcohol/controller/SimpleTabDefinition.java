@@ -1,4 +1,4 @@
-package uc.edu.itp.drugandalcohol;
+package uc.edu.itp.drugandalcohol.controller;
 
 import android.app.Fragment;
 import android.view.Gravity;

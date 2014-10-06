@@ -6,6 +6,12 @@ package uc.edu.itp.drugandalcohol.model;
  */
 public class AlcoholType
 {
+    public static final String SMALL_BEER_KEY = "smallBeer";
+    private static final String LARGE_BEER_KEY = "largeBeer";
+    private static final String BEER_BOTTLE_KEY = "beerBottle";
+    private static final String BEER_CAN_KEY = "beerCan";
+    private static final String WINE_SPARKLING_KEY = "sparklingWine";
+
     // standard drink value
     // e.g. 1 midi = 1.1 standard drinks
     //      1 scooner = 1.6 standard drinks
