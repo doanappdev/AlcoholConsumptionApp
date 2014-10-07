@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- the theme applied to the application or activity -->
-    <style name="CustomActionBarTheme"
-        parent="@android:style/Theme.Holo.Light.DarkActionBar">
+    <style name="CustomActionBarTheme" parent="android:Theme.Holo.Light">
 
-        <item name="android:actionBarStyle">@style/MyActionBar</item>
+    <!--
+        create action bar item to apply custom theme
+        [android:] prefix is used to support API 11 and above
+        without prefix is to support API <11
+    -->
+    <item name="android:actionBarStyle">@style/MyActionBar</item>
+</style>
+
+    <!-- define style for MyActionBar theme -->
+    <style name="MyActionBar" parent="android:style/Widget.Holo.Light.ActionBar">
+        <!-- set background color for action bar -->
+        <item name="android:background">@color/theme2_orange</item>
+        <item name="android:titleTextStyle">@style/ActionBar.TitleBarTextColor</item>
     </style>
 
-    <!-- ActionBar styles -->
-    <style name="MyActionBar"
-        parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
 
-        <item name="android:background">@color/md_purple_500</item>
+    <!-- define color for action bar text -->
+    <style name="ActionBar.TitleBarTextColor" parent="android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">#ffffff</item>
     </style>
 
 </resources>

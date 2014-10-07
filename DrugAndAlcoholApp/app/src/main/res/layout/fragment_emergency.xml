@@ -36,15 +36,15 @@
         android:id="@+id/layoutRow2"
         android:layout_width="fill_parent"
         android:layout_height="48dp"
-        android:layout_below="@id/layoutRow1">
+        android:layout_below="@id/layoutRow1"
+        android:orientation="vertical">
 
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="48dp"
             android:hint="Number"/>
 
-<<<<<<< HEAD
-            </TableRow>
+
 
             <TableRow
                 android:layout_width="fill_parent"
@@ -64,10 +64,9 @@
                     android:phoneNumber="true"
                     android:layout_gravity="left|top" />
             </TableRow>
-=======
 
     </LinearLayout>
->>>>>>> 5493400abe86792d96d632a5d40da1d4f6576e0b
+
 
     <LinearLayout
         android:id="@+id/layoutRow3"

@@ -31,8 +31,6 @@
     <string name="spirits_premix_high_key">SpiritsPremixHighKey</string>
 
 
-
-
     <string name="emergency_prompt">Choose a friend</string>
     <string-array name="emergency_contacts">
         <item>Joe</item>

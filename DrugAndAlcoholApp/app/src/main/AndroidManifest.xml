@@ -26,7 +26,8 @@
         </activity>
         <activity
             android:name=".view.EmergencyActivity"
-            android:label="@string/title_activity_emergency" >
+            android:label="@string/title_activity_emergency"
+            android:theme="@style/CustomActionBarTheme">
         </activity>
     </application>
 

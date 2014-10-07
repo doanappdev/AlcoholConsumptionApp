@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/border_width">
@@ -39,17 +37,12 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
+
             android:id="@+id/txtViewPhoneNum"
             android:text="To:"
             android:autoText="false"
             android:singleLine="false"
             android:phoneNumber="true" />
-=======
-            android:id="@+id/editText2"
-            android:hint="To"
-            android:inputType="phone" />
->>>>>>> 5493400abe86792d96d632a5d40da1d4f6576e0b
 
         <Spinner
             android:layout_width="match_parent"
