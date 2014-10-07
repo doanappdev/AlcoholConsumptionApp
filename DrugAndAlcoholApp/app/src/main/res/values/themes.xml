@@ -1,23 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- the theme applied to the application or activity -->
-    <style name="CustomActionBarTheme" parent="android:Theme.Holo.Light">
+    <!--
+        the theme applied to the application or activity
 
+        we can set the theme for:
+         android:Theme.Holo.Light
+         android:Theme.Holo.Dark
+         etc..
+    -->
+
+    <!-- ************************************************************************* -->
+
+    <style name="EmergencySMSTheme" parent="android:Theme.Holo.Light">
     <!--
         create action bar item to apply custom theme
         [android:] prefix is used to support API 11 and above
         without prefix is to support API <11
     -->
-    <item name="android:actionBarStyle">@style/MyActionBar</item>
-</style>
-
-    <!-- define style for MyActionBar theme -->
-    <style name="MyActionBar" parent="android:style/Widget.Holo.Light.ActionBar">
-        <!-- set background color for action bar -->
-        <item name="android:background">@color/theme2_orange</item>
-        <item name="android:titleTextStyle">@style/ActionBar.TitleBarTextColor</item>
+        <item name="android:actionBarStyle">@style/EmergencySMSTheme.ActionBar</item>
     </style>
 
+    <!--
+        define style for MyActionBar theme e.g.
+        background color, text color, icon
+    -->
+    <style name="EmergencySMSTheme.ActionBar" parent="android:style/Widget.Holo.Light.ActionBar">
+        <!-- Customize theme here. -->
+        <item name="android:background">@color/theme2_orange</item>
+        <item name="android:titleTextStyle">@style/ActionBar.TitleBarTextColor</item>
+        <item name="android:icon">@drawable/ic_navigation_cancel_white</item>
+    </style>
+
+    <!-- ************************************************************************* -->
+
+    <style name="UserDetailsActivityTheme" parent="android:Theme.Holo.Light">
+
+        <item name="android:actionBarStyle">@style/UserDetailsActivityTheme.ActionBar</item>
+
+    </style>
+
+    <!-- define action bar theme for user details activity -->
+    <style name="UserDetailsActivityTheme.ActionBar" parent="android:style/Widget.Holo.Light.ActionBar">
+        <!-- Customize theme here. -->
+        <item name="android:background">@color/md_purple_700</item>
+        <item name="android:titleTextStyle">@style/ActionBar.TitleBarTextColor</item>
+        <item name="android:icon">@drawable/ic_social_add_person_white</item>
+
+    </style>
+
+    <!-- ************************************************************************* -->
+
+    <style name="CalculateBACActivityTheme" parent="android:Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/CalculateBACActivityTheme.ActionBar</item>
+    </style>
+
+    <!-- define action bar theme for user details activity -->
+    <style name="CalculateBACActivityTheme.ActionBar" parent="android:style/Widget.Holo.Light.ActionBar">
+        <!-- Customize theme here. -->
+        <item name="android:background">@color/md_green_500</item>
+        <item name="android:titleTextStyle">@style/ActionBar.TitleBarTextColor</item>
+        <item name="android:icon">@drawable/ic_circle_calculator_white</item>
+
+    </style>
+
+    <!-- ************************************************************************* -->
+
+    <!-- define no action bar theme for main activity -->
+    <style name="MainActivityTheme" parent="android:Theme.Holo.Light.NoActionBar">
+        <!-- Customize theme here. -->
+
+    </style>
 
     <!-- define color for action bar text -->
     <style name="ActionBar.TitleBarTextColor" parent="android:style/TextAppearance.Holo.Widget.ActionBar.Title">

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="uc.edu.itp.drugandalcohol.fragments.TabBeerFragment"
-    android:theme="@style/CustomActionBarTheme">
+    android:theme="@style/AppTheme">
 
     <!--
        begin beer heading row 0

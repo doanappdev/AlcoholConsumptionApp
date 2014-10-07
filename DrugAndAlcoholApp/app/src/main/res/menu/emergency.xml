@@ -1,8 +1,30 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="uc.edu.itp.drugandalcohol.view.EmergencyActivity" >
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never" />
+    <!--
+       this is default code for action bar menu
+       we comment this out to remove move menu
+   <item android:id="@+id/action_settings"
+       android:title="@string/action_settings"
+       android:orderInCategory="100"
+       android:showAsAction="never" />
+
+        to display icon at left of action bar
+        declare icon in AndroidManifest.xml
+
+
+
+   -->
+
+    <!--
+        we replace menu icon with our own icon
+    -->
+    <item
+        android:id="@+id/action_send_sms"
+        android:title="Send SMS"
+        android:icon="@drawable/ic_social_send_now_white"
+        android:showAsAction="ifRoom" />
+
+
+
 </menu>

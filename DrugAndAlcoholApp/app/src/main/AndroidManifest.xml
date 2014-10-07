@@ -2,14 +2,26 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="uc.edu.itp.drugandalcohol" >
 
+    <!--
+        to apply icon or logo use on action bar ues
+        android:icon="@drawable/icon_name"
+        android:logo="@drawable/logo_name"
+
+        to change default them for app or activity
+        modify styles.xml and themes.xml files
+    -->
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <!--
+            to apply custom action bar to activities we
+            define style in themes.xml
+        -->
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:theme="@style/MainActivityTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,16 +30,19 @@
         </activity>
         <activity
             android:name=".view.CalculateBACActivity"
-            android:label="@string/title_activity_calculate" >
+            android:label="@string/title_activity_calculate"
+            android:theme="@style/CalculateBACActivityTheme">
         </activity>
         <activity
             android:name=".view.UserDetailsActivity"
-            android:label="@string/title_activity_user_details" >
+            android:label="@string/title_activity_user_details"
+            android:theme="@style/UserDetailsActivityTheme">
         </activity>
+
         <activity
             android:name=".view.EmergencyActivity"
             android:label="@string/title_activity_emergency"
-            android:theme="@style/CustomActionBarTheme">
+            android:theme="@style/EmergencySMSTheme">
         </activity>
     </application>
 

@@ -4,10 +4,15 @@
 
         The following line applies Dark theme to actionbar (default)
         parent="android:Theme.Holo.Light.DarkActionBar"
+
+
     -->
     <style name="AppTheme" parent="android:Theme.Holo.Light">
         <!-- Customize your theme here. -->
+
     </style>
+
+
 
 
 
