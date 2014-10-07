@@ -1,5 +1,7 @@
 package uc.edu.itp.drugandalcohol.fragments;
 
+
+
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -16,19 +18,25 @@ import uc.edu.itp.drugandalcohol.R;
  * A simple {@link Fragment} subclass.
  *
  */
-public class CalculateBACFragment extends Fragment
+public class TabBeerFragment extends Fragment
 {
-    RelativeLayout rLayoutClaculateBAC;
-    TextView beerInputTxtView;
+    RelativeLayout relativeLayoutBeer;
+    TextView beer1InputTxtView, beer2InputTxtView, beer3InputTxtView, beer4InputTxtView;
+
+    public TabBeerFragment() {
+        // Required empty public constructor
+    }
+
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState)
     {
         // inflate the view with RelativeLayout so we can have functionality with buttons etc..
-        rLayoutClaculateBAC = (RelativeLayout)inflater.inflate(R.layout.fragment_calculate_bac, container, false);
+        relativeLayoutBeer = (RelativeLayout)inflater.inflate(R.layout.fragment_tab_beer, container, false);
 
-        beerInputTxtView = (TextView) rLayoutClaculateBAC.findViewById(R.id.txtViewBeerInput);
-        beerInputTxtView.setOnClickListener(new View.OnClickListener()
+        beer1InputTxtView = (TextView) relativeLayoutBeer.findViewById(R.id.txtViewBeerInput1);
+        beer1InputTxtView.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -43,8 +51,8 @@ public class CalculateBACFragment extends Fragment
             }
         });
 
-
-        return rLayoutClaculateBAC;
+        // Inflate the layout for this fragment
+        return relativeLayoutBeer;
     }
 
     void showNumberPad()
@@ -53,10 +61,9 @@ public class CalculateBACFragment extends Fragment
 
         FragmentManager fm = getFragmentManager();
         NumberPadFragment numberPadFragment = new NumberPadFragment();
+        numberPadFragment.setTargetFragment(this, 0);
         numberPadFragment.show(fm, "Alcohol Consumption");
     }
-
-
 
 
 }

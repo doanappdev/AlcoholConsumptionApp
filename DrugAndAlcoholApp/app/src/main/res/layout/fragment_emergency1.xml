@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/border_width">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_centerHorizontal="true"
-        android:weightSum="1"
-        android:id="@+id/">
+        android:weightSum="1">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -38,11 +39,17 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             android:id="@+id/txtViewPhoneNum"
             android:text="To:"
             android:autoText="false"
             android:singleLine="false"
             android:phoneNumber="true" />
+=======
+            android:id="@+id/editText2"
+            android:hint="To"
+            android:inputType="phone" />
+>>>>>>> 5493400abe86792d96d632a5d40da1d4f6576e0b
 
         <Spinner
             android:layout_width="match_parent"
@@ -69,8 +76,8 @@
             android:layout_gravity="right"
             android:textColor="@color/md_blue_a400"
             android:textStyle="bold"
-            android:background="@android:drawable/stat_notify_missed_call"
             android:layout_weight="0.13"
+            android:background="#fff"
             android:textSize="16dp" />
 
         <Button
@@ -82,7 +89,7 @@
             android:layout_gravity="right"
             android:textColor="@color/md_blue_a400"
             android:textStyle="bold"
-            android:background="@android:drawable/stat_notify_chat"
+            android:background="#fff"
             android:singleLine="false"
             android:textSize="16dp" />
 

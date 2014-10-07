@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rLayout_calculate_bottom"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/border_shadow">
+
+    <!--
+    <View
+        android:id="@+id/viewBorder"
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:background="@drawable/border_shadow" />
+    -->
+        <TextView
+            android:id="@+id/txtViewHeadingBAC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/border_width"
+            android:text="Blood Alcohol Content"
+            android:textColor="@color/md_red_500"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/txtViewSubHeadingBAC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your BAC is:"
+            android:textSize="16sp"
+            android:layout_alignBottom="@+id/txtViewDisplayBAC"
+            android:layout_alignRight="@+id/txtViewHeadingBAC"
+            android:layout_alignEnd="@+id/txtViewHeadingBAC" />
+
+        <TextView
+            android:id="@+id/txtViewDisplayBAC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.00"
+            android:textSize="34sp"
+
+            android:layout_below="@+id/txtViewHeadingBAC"
+            android:layout_toRightOf="@+id/txtViewHeadingBAC"
+            android:layout_toEndOf="@+id/txtViewHeadingBAC" />
+
+        <Button
+            android:id="@+id/btnCalculateBAC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/border_width"
+            android:layout_below="@+id/txtViewDisplayBAC"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:text="Calculate"
+            android:textColor="@color/md_purple_500"
+            android:background="@color/white1"/>
+
+
+
+</RelativeLayout>

@@ -1,17 +1,27 @@
 package uc.edu.itp.drugandalcohol.view;
 
+import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import uc.edu.itp.drugandalcohol.R;
+import uc.edu.itp.drugandalcohol.controller.TabListener;
+import uc.edu.itp.drugandalcohol.fragments.TabBeerFragment;
+import uc.edu.itp.drugandalcohol.fragments.TabSpiritsFragment;
+import uc.edu.itp.drugandalcohol.fragments.TabWineFragment;
 
-public class CalculateBACActivity extends Activity {
+public class CalculateBACActivity extends Activity
+{
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculate_bac);
+
     }
 
 
