@@ -66,6 +66,16 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent">
 
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"></TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -73,8 +83,8 @@
                     android:text=" Number"
                     android:id="@+id/textView4"
                     android:layout_column="0"
-                    android:phoneNumber="true" />
-
+                    android:phoneNumber="true"
+                    android:layout_gravity="left|top" />
             </TableRow>
 
         </TableLayout>

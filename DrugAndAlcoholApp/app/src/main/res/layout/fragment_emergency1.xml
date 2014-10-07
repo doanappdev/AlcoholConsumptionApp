@@ -20,7 +20,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:id="@+id/editText"
+                android:id="@+id/editTxtEmTitle"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="false"
                 android:layout_alignParentEnd="false"
@@ -30,7 +30,7 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageButton"
+                android:id="@+id/imgBtnCancelMsg"
                 android:adjustViewBounds="false"
                 android:src="@android:drawable/ic_delete" />
         </LinearLayout>
@@ -38,17 +38,24 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText2"
+            android:id="@+id/txtViewPhoneNum"
             android:text="To:"
             android:autoText="false"
             android:singleLine="false"
             android:phoneNumber="true" />
 
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:id="@+id/spinnerCon"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerStyle="@android:style/Widget.Spinner.DropDown"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:text=" Enter Message"
-            android:id="@+id/textView"
+            android:id="@+id/txtViewEmergencyMsg"
             android:editable="true"
             android:maxLines="25"
             android:textSize="18dp" />
@@ -58,7 +65,7 @@
             android:layout_width="129dp"
             android:layout_height="wrap_content"
             android:text="Change Contact"
-            android:id="@+id/button2"
+            android:id="@+id/btnAddCon"
             android:layout_gravity="right"
             android:textColor="@color/md_blue_a400"
             android:textStyle="bold"
@@ -71,7 +78,7 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:text="Send"
-            android:id="@+id/button"
+            android:id="@+id/btnSendEmSMS"
             android:layout_gravity="right"
             android:textColor="@color/md_blue_a400"
             android:textStyle="bold"
