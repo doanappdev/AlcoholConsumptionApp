@@ -35,6 +35,7 @@ public class UserDetailsActivity extends Activity {
 
             case R.id.action_expandable_list:
                 loadExampleList();
+                return true;
 
             default:
                 return super.onOptionsItemSelected(item);
