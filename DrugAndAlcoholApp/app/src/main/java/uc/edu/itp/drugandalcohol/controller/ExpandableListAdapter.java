@@ -43,13 +43,17 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
         return childPosition;
     }
 
+    /*
+     * we can change the layout for child view by changing R.layout.XXXXXX
+     */
     @Override
     public View getChildView(int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
 
         final String childText = (String) getChild(groupPosition, childPosition);
 
-        if (convertView == null) {
+        if (convertView == null)
+        {
             LayoutInflater layoutInflater = (LayoutInflater) this.mContext
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.expand_list_item, null);
@@ -83,11 +87,16 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
         return groupPosition;
     }
 
+    /*
+     * we can inflate a different layout for group header
+     * be changing the value of R.layout.XXXXX
+     */
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
         String headerTitle = (String) getGroup(groupPosition);
-        if (convertView == null) {
+        if (convertView == null)
+        {
             LayoutInflater layoutInflater = (LayoutInflater) this.mContext
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.expand_list_group, null);

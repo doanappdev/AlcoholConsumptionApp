@@ -14,6 +14,7 @@
         android:allowBackup="true"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
         <!--
             to apply custom action bar to activities we
             define style in themes.xml
@@ -21,7 +22,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/MainActivityTheme">
+            android:theme="@style/MainActivityTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,18 +32,21 @@
         <activity
             android:name=".view.CalculateBACActivity"
             android:label="@string/title_activity_calculate"
-            android:theme="@style/CalculateBACActivityTheme">
+            android:theme="@style/CalculateBACActivityTheme" >
         </activity>
         <activity
             android:name=".view.UserDetailsActivity"
             android:label="@string/title_activity_user_details"
-            android:theme="@style/UserDetailsActivityTheme">
+            android:theme="@style/UserDetailsActivityTheme" >
         </activity>
-
         <activity
             android:name=".view.EmergencyActivity"
             android:label="@string/title_activity_emergency"
-            android:theme="@style/EmergencySMSTheme">
+            android:theme="@style/EmergencySMSTheme" >
+        </activity>
+        <activity
+            android:name=".view.ExpandableListActivity"
+            android:label="@string/title_activity_expandable_list" >
         </activity>
     </application>
 

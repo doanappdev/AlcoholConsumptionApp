@@ -11,7 +11,6 @@
     <string name="title_activity_user_details">User Details</string>
     <string name="title_activity_emergency_sms">EmergencySMSActivity</string>
     <string name="title_activity_emergency">Emergency SMS</string>
-
     <string name="beer_tab">Beer</string>
     <string name="wine_tab">Wine</string>
     <string name="spirits_tab">Spirits</string>
@@ -29,9 +28,8 @@
     <string name="spirits_shoot_key">SpiritsShootKey</string>
     <string name="spirits_premix_full_key">SpiritsPremixFullKey</string>
     <string name="spirits_premix_high_key">SpiritsPremixHighKey</string>
-
-
     <string name="emergency_prompt">Choose a friend</string>
+
     <string-array name="emergency_contacts">
         <item>Joe</item>
         <item>Jane</item>
@@ -40,6 +38,7 @@
     </string-array>
 
     <string name="standard_msg_prompt">Select Message</string>
+
     <string-array name="standard_msg">
         <item>I have hurt myself can you call me?</item>
         <item>I am lost can you track my position?</item>
@@ -47,7 +46,6 @@
         <item>Can you track my position, using app?</item>
     </string-array>
 
+    <string name="title_activity_expandable_list">ExpandableListActivity</string>
 
-
-    
 </resources>
