@@ -32,15 +32,7 @@ public class UserDetailsFragment extends Fragment
     EditText userAgeEditTxt, userWeightEditTxt, buddyNameEditTxt, buddyNumberEditTxt;
     Switch genderSwitch;
 
-    // key values used for shared preferences
-    private static final String USER_AGE = "userAgeKey";
-    private static final String USER_WEIGHT = "userWeightKey";
-    private static final String USER_GENDER = "userGenderKey";
-    private static final String USER_PREGNANT = "userPregnantKey";
-    private static final String BUDDY_CONTACT_NAME = "buddyNameKey";
-    private static final String BUDDY_CONTACT_NUMBER = "buddyNumberKey";
-
-    private boolean gender;
+    private boolean gender, pregnant;
 
 
 
@@ -111,25 +103,50 @@ public class UserDetailsFragment extends Fragment
      */
     private void saveUserPrefs()
     {
+        int buddyNumInt = 0;
         // get values from UI
         int userAge = Integer.parseInt(userAgeEditTxt.getText().toString());
         int userWeight = Integer.parseInt(userWeightEditTxt.getText().toString());
-        int buddyNumber = Integer.parseInt(buddyNumberEditTxt.getText().toString());
-
+        String buddyNumString = buddyNumberEditTxt.getText().toString();
         String buddyName = buddyNameEditTxt.getText().toString();
+
+
+        // check user has entered information
+        if(userWeight == 0)
+        {
+            // display error message
+            // weight is needed to calculate BAC
+            Toast.makeText(getActivity(),  "Please enter a value for weight", Toast.LENGTH_LONG).show();
+        }
+
+        if(buddyName.equals(""))
+        {
+            // if buddy name equals " " assign no value to name
+            buddyName = "No name entered";
+        }
+
+        if(buddyNumString.equals(""))
+        {
+            buddyNumberEditTxt.setError("number not entered");
+        }
+        else
+        {
+            // if number has been entered convert to a int
+            buddyNumInt = Integer.parseInt(buddyNumString);
+        }
 
 
         // save values to user shared preferences
         SharedPreferences.Editor editor = userSharedPrefs.edit();
-        editor.putInt(USER_AGE, userAge);
-        editor.putInt(USER_WEIGHT, userWeight);
-        editor.putInt(BUDDY_CONTACT_NUMBER, buddyNumber);
-        editor.putString(BUDDY_CONTACT_NAME, buddyName);
-        editor.putBoolean(USER_GENDER, gender);
+        editor.putInt(getString(R.string.user_age_key), userAge);
+        editor.putInt(getString(R.string.user_weight_key), userWeight);
+        editor.putInt(getString(R.string.buddy_number_key), buddyNumInt);
+        editor.putString(getString(R.string.buddy_name_key), buddyName);
+        editor.putBoolean(getString(R.string.user_gender_key), gender);
         editor.commit();
 
-        // display toast for testing
-        Toast.makeText(getActivity(),  "User Details " + userAge + userWeight, Toast.LENGTH_LONG).show();
+        // display toast to confirm details saved
+        Toast.makeText(getActivity(),  "User Details:" + userAge + " " + userWeight + " " + gender, Toast.LENGTH_LONG).show();
 
 
     }

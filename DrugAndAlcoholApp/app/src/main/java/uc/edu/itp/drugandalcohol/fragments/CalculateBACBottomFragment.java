@@ -2,6 +2,7 @@ package uc.edu.itp.drugandalcohol.fragments;
 
 
 
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,12 +24,13 @@ import uc.edu.itp.drugandalcohol.R;
 public class CalculateBACBottomFragment extends Fragment
     implements View.OnClickListener
 {
-    TextView displayBACtxtView;
-    Button calculateBACBtn;
+    //TextView displayBACtxtView;
+    //Button calculateBACBtn;
+    Button calculateBAC2Btn;
 
     SharedPreferences drinkSharedPrefs, userSharedPrefs;
 
-    private static final String USER_WEIGHT = "userWeightKey";
+    //private static final String USER_WEIGHT = "userWeightKey";
 
     public CalculateBACBottomFragment() {
         // Required empty public constructor
@@ -39,12 +41,14 @@ public class CalculateBACBottomFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View v = inflater.inflate(R.layout.fragment_calculate_bac_bottom, null);
+        View v = inflater.inflate(R.layout.fragment_calculate_bac_bottom2, null);
 
-        displayBACtxtView = (TextView)v.findViewById(R.id.txtViewDisplayBAC);
-        calculateBACBtn = (Button)v.findViewById(R.id.btnCalculateBAC);
+        //displayBACtxtView = (TextView)v.findViewById(R.id.txtViewDisplayBAC);
+        //calculateBACBtn = (Button)v.findViewById(R.id.btnCalculateBAC);
+        //calculateBACBtn.setOnClickListener(this);
 
-        calculateBACBtn.setOnClickListener(this);
+        calculateBAC2Btn = (Button)v.findViewById(R.id.btnCalculateBAC2);
+        calculateBAC2Btn.setOnClickListener(this);
 
         drinkSharedPrefs = getActivity().getSharedPreferences("DrinkPrefs", Context.MODE_PRIVATE);
         userSharedPrefs = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
@@ -58,14 +62,25 @@ public class CalculateBACBottomFragment extends Fragment
     {
         switch(v.getId())
         {
-            case R.id.btnCalculateBAC:
-                calculateBAC();
+            //case R.id.btnCalculateBAC:
+                //calculateBAC();
+                //break;
+
+            case R.id.btnCalculateBAC2:
+                showBACDialog();
                 break;
 
         }
     }
 
+    void showBACDialog()
+    {
+        FragmentManager fm = getFragmentManager();
+        BACDialogFragment bacDialogFragment = new BACDialogFragment();
+        bacDialogFragment.setTargetFragment(this, 0);
+        bacDialogFragment.show(fm, "Calculate BAC Bottom");
 
+    }
 
 
     private void calculateBAC()
@@ -100,7 +115,7 @@ public class CalculateBACBottomFragment extends Fragment
         bacValue = bacFormula(totalStandardDrinks);
 
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
-        displayBACtxtView.setText(decimalFormat.format(bacValue));
+        //displayBACtxtView.setText(decimalFormat.format(bacValue));
 
 
     }
@@ -118,15 +133,31 @@ public class CalculateBACBottomFragment extends Fragment
      */
     private double bacFormula(double numOfDrinks)
     {
-        // TODO: add code to check if user is male or female then apply appropriate formula
-
         double N, H, M, bac;
+        boolean gender;
 
         N = numOfDrinks;
         H = 1;
-        M = userSharedPrefs.getInt(USER_WEIGHT, 0);
+        M = userSharedPrefs.getInt(getString(R.string.user_weight_key), 0);
 
-        bac = ((10 * N) - (7.5 * H)) / (6.8 * M);
+        // get gender value from shared prefs, if no value is stored we return a default
+        // value of true to represent a male.
+        gender = userSharedPrefs.getBoolean(getString(R.string.user_gender_key), true);
+
+        // true = male
+        // false = female
+        if(gender)
+        {
+            // calculate BAC for a male
+            bac = ((10 * N) - (7.5 * H)) / (6.8 * M);
+        }
+        else
+        {
+            // calculate BAC for female
+            bac = ((10 * N) - (7.5 * H)) / (5.5 * M);
+        }
+
+
 
         return bac;
 

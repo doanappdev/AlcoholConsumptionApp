@@ -15,17 +15,13 @@ import android.view.ViewGroup;
 import uc.edu.itp.drugandalcohol.R;
 
 /**
- * Dialog fragment to represent the EULA,
- * need to decide if we are going to use this fragment
- * for the EULA??
- *
+ * A simple {@link Fragment} subclass.
  *
  */
-public class EULAFragment extends DialogFragment
-{
+public class BACDialogFragment extends DialogFragment {
 
 
-    public EULAFragment() {
+    public BACDialogFragment() {
         // Required empty public constructor
     }
 
@@ -34,10 +30,10 @@ public class EULAFragment extends DialogFragment
         return new AlertDialog.Builder(getActivity())
                 // Set Dialog Icon
                 //.setIcon(R.drawable.iconname)
-                        // Set Dialog Title
-                .setTitle("Alert DialogFragment")
+                // Set Dialog Title
+                .setTitle("Blood Alcohol Content")
                         // Set Dialog Message
-                .setMessage("Alert DialogFragment Tutorial")
+                .setMessage("Your current BAC is")
 
                         // Positive button
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -55,7 +51,17 @@ public class EULAFragment extends DialogFragment
     }
 
 
+    /*
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState)
+    {
 
 
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_bacdialog, container, false);
+    }
 
+    */
 }

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rLayout_calculate_bottom"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/border_shadow">
+
+    <!--
+    <View
+        android:id="@+id/viewBorder"
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:background="@drawable/border_shadow" />
+    -->
+
+    <TextView
+        android:id="@+id/txtViewHeadingBAC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/border_width"
+        android:text="Blood Alcohol Content"
+        android:textColor="@color/md_red_500"
+        android:textSize="16sp"/>
+
+        <LinearLayout
+            android:id="@+id/lLayoutBottomBACRow0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtViewHeadingBAC">
+
+            <TextView
+                android:id="@+id/txtViewHrsDrinking"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_below="@+id/spinnerHrsDrinking"
+                android:layout_marginLeft="@dimen/border_width"
+                android:text="Hours since drinking: "/>
+
+            <Spinner
+                android:id="@+id/spinnerHrsDrinking"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/number_of_hours"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lLayoutBottomBACRow1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lLayoutBottomBACRow0">
+
+            <TextView
+                android:id="@+id/txtViewBACWeight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/border_width"
+                android:text="Your weight: "/>
+
+            <EditText
+                android:id="@+id/editTxtBACWeight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="@dimen/border_width"
+                android:gravity="right"
+                />
+
+
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btnCalculateBAC2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/border_width"
+            android:layout_marginTop="@dimen/border_width"
+            android:layout_below="@+id/lLayoutBottomBACRow1"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:text="Calculate"/>
+
+
+
+
+
+
+</RelativeLayout>

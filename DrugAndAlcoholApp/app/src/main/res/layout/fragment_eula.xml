@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/border_width"
 
-    tools:context="uc.edu.itp.drugandalcohol.fragments.EULAFragment">
+    tools:context="uc.edu.itp.drugandalcohol.fragments.EULADialogFragment">
 
     <TextView
         android:id="@+id/txtViewEULA"

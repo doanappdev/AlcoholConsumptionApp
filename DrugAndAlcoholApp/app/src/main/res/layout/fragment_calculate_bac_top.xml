@@ -15,9 +15,29 @@
             android:id="@android:id/tabs"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-
             android:orientation="horizontal"
             android:divider="@color/md_deep_purple_500" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutRow0"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="48dp" >
+
+            <TextView
+                android:id="@+id/txtViewBeerType"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/border_width"
+                android:layout_marginRight="@dimen/border_width"
+                android:text="Type"
+                android:textColor="@color/md_font_54_percent_black"
+                android:textSize="16dp"
+                android:gravity="center_vertical"/>
+
+        </LinearLayout>
+
+
 
         <FrameLayout
             android:id="@android:id/tabcontent"
@@ -40,34 +60,13 @@
                         android:layout_height="match_parent">
 
                         <!--
-                            begin beer heading row 0
-                        -->
-
-                        <LinearLayout
-                            android:id="@+id/linearLayoutRow0"
-                            android:orientation="horizontal"
-                            android:layout_width="fill_parent"
-                            android:layout_height="48dp" >
-
-                            <TextView
-                                android:id="@+id/txtViewBeerType"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="@dimen/border_width"
-                                android:layout_marginRight="@dimen/border_width"
-                                android:text="Type"
-                                android:textColor="@color/md_font_54_percent_black"
-                                android:textSize="16dp"
-                                android:gravity="center_vertical"/>
-
-                        </LinearLayout>
-
                         <View
                             android:id="@+id/view1"
                             android:layout_width="fill_parent"
                             android:layout_height="0dp"
                             android:layout_below="@+id/linearLayoutRow0" />
-
+                        -->
+                        
                         <!--
                             begin beer row 1
                         -->
@@ -421,7 +420,6 @@
 
                         <!--
                             begin wine row 0
-                        -->
 
                         <LinearLayout
                             android:id="@+id/linearLayoutWineRow0"
@@ -445,11 +443,13 @@
 
 
 
+
                         <View
                             android:id="@+id/viewWine1"
                             android:layout_width="fill_parent"
                             android:layout_height="0dp"
                             android:layout_below="@+id/linearLayoutWineRow0" />
+                        -->
 
                         <!--
                             begin wine row 1
@@ -803,8 +803,8 @@
                         android:layout_height="match_parent">
 
                         <!--
-                            begin wine heading row 0
-                        -->
+                            begin spirits heading row 0
+
 
                         <LinearLayout
                             android:id="@+id/linearLayoutRowSpirits0"
@@ -813,6 +813,7 @@
                             android:layout_height="48dp"
 
                             >
+
 
                             <TextView
                                 android:id="@+id/txtViewSpiritsType"
@@ -825,6 +826,7 @@
                                 android:textSize="16dp"
                                 android:gravity="center_vertical"/>
 
+
                         </LinearLayout>
 
                         <View
@@ -832,6 +834,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="0dp"
                             android:layout_below="@+id/linearLayoutRowSpirits0" />
+                         -->
 
                         <!--
                             begin spirits row 1
