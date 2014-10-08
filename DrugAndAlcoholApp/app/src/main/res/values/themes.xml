@@ -26,7 +26,7 @@
     -->
     <style name="EmergencySMSTheme.ActionBar" parent="android:style/Widget.Holo.Light.ActionBar">
         <!-- Customize theme here. -->
-        <item name="android:background">@color/theme2_orange</item>
+        <item name="android:background">@color/md_orange_500</item>
         <item name="android:titleTextStyle">@style/ActionBar.TitleBarTextColor</item>
         <item name="android:icon">@drawable/ic_navigation_cancel_white</item>
     </style>
@@ -59,7 +59,7 @@
         <!-- Customize theme here. -->
         <item name="android:background">@color/md_green_500</item>
         <item name="android:titleTextStyle">@style/ActionBar.TitleBarTextColor</item>
-        <item name="android:icon">@drawable/ic_circle_calculator_white</item>
+        <item name="android:icon">@drawable/ic_navigation_back_white</item>
 
     </style>
 

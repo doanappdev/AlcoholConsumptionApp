@@ -8,10 +8,7 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.text.Layout;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import uc.edu.itp.drugandalcohol.R;
 
@@ -19,10 +16,10 @@ import uc.edu.itp.drugandalcohol.R;
  * A simple {@link Fragment} subclass.
  *
  */
-public class BACDialogFragment extends DialogFragment {
+public class DisplayBACDialogFragment extends DialogFragment {
 
 
-    public BACDialogFragment() {
+    public DisplayBACDialogFragment() {
         // Required empty public constructor
     }
 
@@ -34,26 +31,30 @@ public class BACDialogFragment extends DialogFragment {
         // get the layout inflater
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        builder.setView(inflater.inflate(R.layout.fragment_bacdialog, null))
+        builder.setView(inflater.inflate(R.layout.display_bac_dialog, null));
+
+        /* to create an alert dialog with icon, title, and buttons use the code below */
                 // Set Dialog Icon
-                //.setIcon(R.drawable.iconname)
+                //.setIcon(R.drawable.icon_name)
                 // Set Dialog Title
-                .setTitle("Blood Alcohol Content")
-                        // Set Dialog Message
-                        // Positive button
+                //.setTitle("Blood Alcohol Content")
+                // Set Dialog Message
+                //.setMessage("message")
+                // Positive button
+                 /*
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id)
-                    {
-                        // Do something else
-                    }
-                })
-                        // Negative Button
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,    int id)
-                    {
+                    public void onClick(DialogInterface dialog, int id) {
                         // Do something else
                     }
                 });
+
+                        // Negative Button
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // Do something else
+                    }
+                });
+                */
 
         return builder.create();
     }
@@ -68,7 +69,7 @@ public class BACDialogFragment extends DialogFragment {
 
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bacdialog, container, false);
+        return inflater.inflate(R.layout.display_bac_dialog, container, false);
     }
 
     */

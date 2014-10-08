@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import java.text.DecimalFormat;
 
@@ -76,7 +75,7 @@ public class CalculateBACBottomFragment extends Fragment
     void showBACDialog()
     {
         FragmentManager fm = getFragmentManager();
-        BACDialogFragment bacDialogFragment = new BACDialogFragment();
+        DisplayBACDialogFragment bacDialogFragment = new DisplayBACDialogFragment();
         bacDialogFragment.setTargetFragment(this, 0);
         bacDialogFragment.show(fm, "Calculate BAC Bottom");
 

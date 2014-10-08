@@ -178,7 +178,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_margin="8dp"
-            android:background="@drawable/btn_state_user_details"/>
+            android:background="@drawable/btn_state_white"/>
 
         <Button
             android:id="@+id/btnCancel"
@@ -189,7 +189,7 @@
             android:layout_toLeftOf="@+id/btnAccept"
             android:layout_toStartOf="@+id/btnAccept"
             android:layout_margin="8dp"
-            android:background="@drawable/btn_state_user_details"/>
+            android:background="@drawable/btn_state_white"/>
 
 
         <Button
@@ -198,7 +198,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:background="@drawable/btn_state_user_details"
+            android:background="@drawable/btn_state_white"
             />
 
     </RelativeLayout>

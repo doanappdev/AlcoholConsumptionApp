@@ -1,0 +1,82 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rLayout_display_bac1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
+        android:id="@+id/rLayout_display_bac2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/md_orange_500">
+
+        <TextView
+            android:id="@+id/txtViewSubHeadingDisplayBAC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your BAC is:"
+            android:textSize="16sp"
+            android:textColor="@color/white1"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp" />
+
+        <!-- to center text in the text view use android:gravity="center" -->
+        <TextView
+            android:id="@+id/txtViewDisplayBAC"
+            android:layout_width="124dp"
+            android:layout_height="124dp"
+            android:layout_below="@+id/txtViewSubHeadingDisplayBAC"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:background="@drawable/circle_background"
+            android:text="0.00"
+            android:textSize="56sp"
+            android:textColor="@color/white1"/>
+
+        <TextView
+            android:id="@+id/txtViewDisplayMsgBAC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtViewDisplayBAC"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:text="The legal limit for a full licence holder is 0.05"
+            android:textSize="16sp"
+            android:textColor="@color/white1"
+            android:gravity="center" />
+
+
+        </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/lLayout_display_bac"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rLayout_display_bac2"
+        android:background="@color/white1">
+
+        <Button
+            android:layout_width="88dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="@dimen/border_width"
+            android:layout_marginBottom="@dimen/border_width"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:text="OK"
+            android:textColor="@color/md_blue_500"
+            android:background="@drawable/btn_state_white"
+            android:gravity="center_vertical|center_horizontal" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

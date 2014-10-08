@@ -2,13 +2,13 @@
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true"
-        android:drawable="@color/md_grey_400" /> <!-- pressed -->
+        android:drawable="@color/md_grey_700" /> <!-- pressed -->
 
     <item android:state_focused="true"
-        android:drawable="@color/md_grey_600" /> <!-- focused -->
+        android:drawable="@color/md_grey_700" /> <!-- focused -->
 
     <item android:state_hovered="true"
-        android:drawable="@color/md_grey_400" /> <!-- hovered -->
+        android:drawable="@color/md_grey_600" /> <!-- hovered -->
 
     <item android:drawable="@color/white1" /> <!-- default -->
 </selector>

@@ -75,18 +75,25 @@
 
         </LinearLayout>
 
+        <!--
+            recommended button size for material design is
+            min width = 88dp
+            max width = 124dp
+
+            height = 36dp
+        -->
         <Button
             android:id="@+id/btnCalculateBAC2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="124dp"
+            android:layout_height="36dp"
             android:layout_marginRight="@dimen/border_width"
             android:layout_marginTop="@dimen/border_width"
             android:layout_below="@+id/lLayoutBottomBACRow1"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:text="Calculate"
-            android:textColor="@color/md_purple_500"
-            android:background="@color/white1"/>
+            android:text="CALCULATE"
+            android:textColor="@color/white1"
+            android:background="@drawable/btn_state_orange" />
 
 
 

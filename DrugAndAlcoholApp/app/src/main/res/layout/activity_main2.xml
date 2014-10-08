@@ -85,7 +85,7 @@
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:src="@drawable/user_icon_48"
-                android:background="@drawable/btn_state_home_screen"/>
+                android:background="@drawable/btn_state_white"/>
 
             <ImageButton
                 android:id="@+id/imgBtnCalculateBAC"
@@ -93,7 +93,7 @@
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:src="@drawable/ic_calculator"
-                android:background="@drawable/btn_state_home_screen"/>
+                android:background="@drawable/btn_state_white"/>
 
             <ImageButton
                 android:id="@+id/imgBtnReactionTest"
@@ -101,7 +101,7 @@
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:src="@drawable/puzzle_48"
-                android:background="@drawable/btn_state_home_screen"/>
+                android:background="@drawable/btn_state_white"/>
 
         </LinearLayout>
 
@@ -160,7 +160,7 @@
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:src="@drawable/world_map_48"
-                android:background="@drawable/btn_state_home_screen"/>
+                android:background="@drawable/btn_state_white"/>
 
             <ImageButton
                 android:id="@+id/imgBtnEmergencySMS"
@@ -168,7 +168,7 @@
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:src="@drawable/send_sms_48"
-                android:background="@drawable/btn_state_home_screen"/>
+                android:background="@drawable/btn_state_white"/>
 
             <ImageButton
                 android:id="@+id/imgBtnExit"
@@ -176,7 +176,7 @@
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:src="@drawable/close_cross_48"
-                android:background="@drawable/btn_state_home_screen"/>
+                android:background="@drawable/btn_state_white"/>
 
         </LinearLayout>
 
