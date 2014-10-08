@@ -79,6 +79,8 @@ public class NumberPadFragment extends DialogFragment
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
 
+
+
         return dialog;
 
          /*

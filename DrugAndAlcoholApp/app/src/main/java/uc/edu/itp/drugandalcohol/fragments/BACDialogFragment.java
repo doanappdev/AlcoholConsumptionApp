@@ -8,6 +8,7 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,28 +27,35 @@ public class BACDialogFragment extends DialogFragment {
     }
 
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        return new AlertDialog.Builder(getActivity())
+    public Dialog onCreateDialog(Bundle savedInstanceState)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+        // get the layout inflater
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+
+        builder.setView(inflater.inflate(R.layout.fragment_bacdialog, null))
                 // Set Dialog Icon
                 //.setIcon(R.drawable.iconname)
                 // Set Dialog Title
                 .setTitle("Blood Alcohol Content")
                         // Set Dialog Message
-                .setMessage("Your current BAC is")
-
                         // Positive button
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
                         // Do something else
                     }
                 })
-
                         // Negative Button
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,    int which) {
+                    public void onClick(DialogInterface dialog,    int id)
+                    {
                         // Do something else
                     }
-                }).create();
+                });
+
+        return builder.create();
     }
 
 

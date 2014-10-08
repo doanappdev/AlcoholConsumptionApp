@@ -39,6 +39,8 @@
     <string name="user_weight_key">UserWeightKey</string>
     <string name="user_gender_key">UserGenderKey</string>
     <string name="user_pregnant_key">UserPregnantKey</string>
+    <string name="user_current_bac_key">UserBACKey</string>
+    <string name="user_old_bac_key">UserOldBACKey</string>
     <string name="buddy_name_key">BuddyNameKey</string>
     <string name="buddy_number_key">BuddyNumberKey</string>
 
