@@ -14,7 +14,6 @@
     <string name="title_activity_emergency_sms">EmergencySMSActivity</string>
     <string name="title_activity_emergency">Emergency SMS</string>
     <string name="title_activity_expandable_list">ExpandableListActivity</string>
-
     <string name="beer_tab">Beer</string>
     <string name="wine_tab">Wine</string>
     <string name="spirits_tab">Spirits</string>
@@ -24,17 +23,14 @@
     <string name="lg_beer_key">LargeBeerKey</string>
     <string name="beer_bottle_key">BeerBottleKey</string>
     <string name="beer_can_key">BeerCanKey</string>
-
     <string name="wine_sparkling_key">WineSparklingKey</string>
     <string name="wine_red_key">WineRedKey</string>
     <string name="wine_white_key">WineWhiteKey</string>
     <string name="wine_bottle_key">WineBottleKey</string>
-
     <string name="spirits_ready_drink_key">SpiritsReadyToDrinkKey</string>
     <string name="spirits_shoot_key">SpiritsShootKey</string>
     <string name="spirits_premix_full_key">SpiritsPremixFullKey</string>
     <string name="spirits_premix_high_key">SpiritsPremixHighKey</string>
-
     <string name="user_age_key">UserAgeKey</string>
     <string name="user_weight_key">UserWeightKey</string>
     <string name="user_gender_key">UserGenderKey</string>
@@ -43,9 +39,8 @@
     <string name="user_old_bac_key">UserOldBACKey</string>
     <string name="buddy_name_key">BuddyNameKey</string>
     <string name="buddy_number_key">BuddyNumberKey</string>
-
-
     <string name="emergency_prompt">Choose a friend</string>
+
     <string-array name="emergency_contacts">
         <item>Joe</item>
         <item>Jane</item>
@@ -54,6 +49,7 @@
     </string-array>
 
     <string name="standard_msg_prompt">Select Message</string>
+
     <string-array name="standard_msg">
         <item>I have hurt myself can you call me?</item>
         <item>I am lost can you track my position?</item>
@@ -62,6 +58,7 @@
     </string-array>
 
     <string name="hours_drinking_prompt">Select value</string>
+
     <string-array name="number_of_hours">
         <item>30 min</item>
         <item>1 hour</item>
@@ -73,8 +70,6 @@
         <item>4 hours</item>
     </string-array>
 
-
-
-
+    <string name="title_activity_reaction_test">ReactionTestActivity</string>
 
 </resources>
