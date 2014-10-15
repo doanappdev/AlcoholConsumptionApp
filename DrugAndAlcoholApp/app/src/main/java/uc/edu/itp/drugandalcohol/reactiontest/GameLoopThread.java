@@ -10,12 +10,8 @@ import android.graphics.Paint;
 import android.os.Handler;
 import android.view.SurfaceHolder;
 
-/**
- * Created by AppDev on 12/10/2014.
- */
 public class GameLoopThread extends Thread
 {
-    // limit drawing to 10 FPS, that is 100ms
     static final long FPS = 60;
     private GameView view;
     private boolean running = false;
@@ -30,6 +26,7 @@ public class GameLoopThread extends Thread
 
     @Override
     public void run() {
+        // limit drawing to 10 FPS, that is 100ms
         long ticksPS = 1000 / FPS;
         long startTime;
         long sleepTime;
@@ -60,5 +57,37 @@ public class GameLoopThread extends Thread
     }
 }
 
+//Test Code below
+/*
+public class GameLoopThread extends Thread
+{
+    private GameView view;
+    private boolean running = false;
 
+    public GameLoopThread(GameView view) {
+        this.view = view;
+    }
+
+    public void setRunning(boolean run) {
+        running = run;
+    }
+
+    @Override
+    public void run() {
+        while (running) {
+            Canvas c = null;
+            try {
+                c = view.getHolder().lockCanvas();
+                synchronized (view.getHolder()) {
+                    view.onDraw(c);
+                }
+            } finally {
+                if (c != null) {
+                    view.getHolder().unlockCanvasAndPost(c);
+                }
+            }
+        }
+    }
+}
+* */
 

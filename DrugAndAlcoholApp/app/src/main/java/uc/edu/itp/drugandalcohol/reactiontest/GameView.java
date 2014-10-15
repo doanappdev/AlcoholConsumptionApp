@@ -5,6 +5,7 @@ package uc.edu.itp.drugandalcohol.reactiontest;
  */
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -15,32 +16,42 @@ import android.view.SurfaceView;
 import java.util.ArrayList;
 import java.util.List;
 
+import uc.edu.itp.drugandalcohol.R;
+
 
 /**
  * Created by AppDev on 12/10/2014.
  */
 public class GameView extends SurfaceView
 {
-    private String TAG = "GameView";
+    private final int MAIN_MENU = 0;
+    private final int GAMEPLAY = 1;
+
     private Bitmap bmp;
     private SurfaceHolder holder;
     private GameLoopThread gameLoopThread;
-    private Rectangle rectangle, rectangle2, rectangle3;
-    private List<Rectangle> rectangles = new ArrayList<Rectangle>();
-    private List<Sprite> sprites = new ArrayList<Sprite>();
-    private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private long lastClick;
-    private long gameTime;
+    private long currentTime;
+    private long previousTime;
 
+    private GameComponent screens[];
+    private int currentScreen;
+
+    //THROWAWAY VARIABLES
+    /*
+    private int gameSpeed; //This one is used in a different class
+    private String TAG = "GameView";
     private int blockWidth;
     private int blockHeight;
     private static int ROWS = 3;
     private static int COLS = 5;
+    private Rectangle rectangle, rectangle2, rectangle3;
+    private List<Rectangle> rectangles = new ArrayList<Rectangle>();
+    private List<TestSprite> sprites = new ArrayList<TestSprite>();
+    private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    */
 
-    private int gameSpeed;
-
-    public GameView(Context context)
-    {
+    public GameView(Context context){
         super(context);
 
         gameLoopThread = new GameLoopThread(this);
@@ -56,14 +67,14 @@ public class GameView extends SurfaceView
                         gameLoopThread.join();
                         retry = false;
                     } catch (InterruptedException e) {
+                        //Insert Error here.
                     }
                 }
             }
 
             @Override
-            public void surfaceCreated(SurfaceHolder holder)
-            {
-                createRectangles();
+            public void surfaceCreated(SurfaceHolder holder){
+                init();
                 gameLoopThread.setRunning(true);
                 gameLoopThread.start();
             }
@@ -71,13 +82,86 @@ public class GameView extends SurfaceView
             @Override
             public void surfaceChanged(SurfaceHolder holder, int format,
                                        int width, int height) {
+                //Do something
             }
         });
 
+        //init();
+    }
+
+    private void init(){
+        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.alcohol_sprites);
+
+        screens = new GameComponent[]{
+                new MainMenu(),
+                new GameplayFunction(this, bmp)
+        };
+
+        //currentScreen = MAIN_MENU;
+        currentScreen = GAMEPLAY;
+
+        currentTime = System.currentTimeMillis();
+        previousTime = currentTime;
+
+        screens[currentScreen].reset(currentTime);
+        //These do not need to be called now
+        /*currentTime = previousTime;
+        for(int i = 0; i < screens.length; i++)
+            screens[i].reset(currentTime);*/
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas){
+        // set background color
+        canvas.drawColor(Color.WHITE);
+
+        currentTime = System.currentTimeMillis();
+        screens[currentScreen].update(currentTime, previousTime);
+        screens[currentScreen].onDraw(canvas);
+        // if you are using sprite class to represent
+        // objects use sprite.onDraw()
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event){
+        if (System.currentTimeMillis() - lastClick > 300){
+            lastClick = System.currentTimeMillis();
+            synchronized (getHolder()){
+                screens[currentScreen].onTouchEvent(event);
+            }
+        }
+        return true;
+    }
+
+    //THROWAWAY CODE BELOW
+    /*
+    for(Rectangle rect : rectangles)
+    {
+        rect.onDraw(canvas, gameSpeed);
+    }
+
+    // increase game speed every 7 seconds
+    if(System.currentTimeMillis() - gameTime > 7000)
+    {
+
+        gameSpeed += 5;
         gameTime = System.currentTimeMillis();
     }
 
+    for (int i = rectangles.size() - 1; i >= 0; i--)
+    {
+        Rectangle rect = rectangles.get(i);
+        // check if touch event pos is on
+        // rectangle
+        if (rect.isClickedOn(event.getX(), event.getY()))
+        {
+            rectangles.remove(rect);
+            break;
+        }
+    }
+    */
 
+    /*
     private void createRectangles()
     {
         // generate random number between 0-2
@@ -108,7 +192,7 @@ public class GameView extends SurfaceView
 
     }
 
-    /*
+
      Example code to load images
     private void createSprites() {
         sprites.add(createSprite(R.drawable.bad1));
@@ -130,53 +214,4 @@ public class GameView extends SurfaceView
     }
 
     */
-
-    @Override
-    protected void onDraw(Canvas canvas)
-    {
-        // set background color
-        canvas.drawColor(Color.WHITE);
-
-        // if you are using sprite class to represent
-        // objects use sprite.onDraw()
-        for(Rectangle rect : rectangles)
-        {
-            rect.onDraw(canvas, gameSpeed);
-        }
-
-        // increase game speed every 7 seconds
-        if(System.currentTimeMillis() - gameTime > 7000)
-        {
-
-            gameSpeed += 5;
-            gameTime = System.currentTimeMillis();
-        }
-
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event)
-    {
-        if (System.currentTimeMillis() - lastClick > 500)
-        {
-            lastClick = System.currentTimeMillis();
-
-            synchronized (getHolder())
-            {
-                for (int i = rectangles.size() - 1; i >= 0; i--)
-                {
-                    Rectangle rect = rectangles.get(i);
-                    // check if touch event pos is on
-                    // rectangle
-                    if (rect.isClickedOn(event.getX(), event.getY()))
-                    {
-                        rectangles.remove(rect);
-                        break;
-                    }
-                }
-            }
-        }
-        return true;
-    }
-
 }
