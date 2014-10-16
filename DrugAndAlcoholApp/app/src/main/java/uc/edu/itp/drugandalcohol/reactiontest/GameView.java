@@ -27,7 +27,7 @@ public class GameView extends SurfaceView
     private final int MAIN_MENU = 0;
     private final int GAMEPLAY = 1;
 
-    private Bitmap bmp;
+    private Bitmap bmps[];
     private SurfaceHolder holder;
     private GameLoopThread gameLoopThread;
     private long lastClick;
@@ -90,11 +90,14 @@ public class GameView extends SurfaceView
     }
 
     private void init(){
-        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.alcohol_sprites);
+        bmps = new Bitmap[3];
+        bmps[0] = BitmapFactory.decodeResource(getResources(), R.drawable.title);
+        bmps[1] = BitmapFactory.decodeResource(getResources(), R.drawable.menu_buttons);
+        bmps[2] = BitmapFactory.decodeResource(getResources(), R.drawable.alcohol_sprites);
 
         screens = new GameComponent[]{
                 new MainMenu(),
-                new GameplayFunction(this, bmp)
+                new GameplayFunction(this, bmps[3])
         };
 
         //currentScreen = MAIN_MENU;
