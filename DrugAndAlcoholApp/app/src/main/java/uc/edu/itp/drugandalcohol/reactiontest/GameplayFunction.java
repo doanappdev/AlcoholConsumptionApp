@@ -97,13 +97,19 @@ public class GameplayFunction extends GameComponent {
         spirits = new LinkedList<AlcoholClass>();
         inactives = new LinkedList<AlcoholClass>();
 
-        TNT = new AlcoholClass(view, 4, bmp);
+        TNT = new AlcoholClass(view, 4, bmp, 5, 2);
 
         buttons = new ButtonClass[buttonCount];
         for(i = 0; i < buttonCount; i++) {
-            buttons[i] = new ButtonClass(view, i, bmp);
+            buttons[i] = new ButtonClass(view, i, bmp, 5, 2, 0);
             buttons[i].silouhette = true;
         }
+    }
+
+    @Override
+    public boolean condition()
+    {
+        return (misses >= 10 || HitTNT);
     }
 
     @Override
@@ -111,6 +117,7 @@ public class GameplayFunction extends GameComponent {
         score = 0;
         hits = 0;
         misses = 0;
+        HitTNT = false;
 
         timeCount = 0;
         gameSpeed = 1;
@@ -134,6 +141,28 @@ public class GameplayFunction extends GameComponent {
         TNTTimerCount = currentTime;
     }
 
+    public void clean()
+    {
+        for(i = 0; i < buttonCount; i++) buttons[i].silouhette = true;
+        for(i = 0; i < beerCount; i++){
+            currentAlcohol = beers.remove();
+            Push(currentAlcohol);
+        }
+        for(i = 0; i < kegCount; i++){
+            currentAlcohol = kegs.remove();
+            Push(currentAlcohol);
+        }
+        for(i = 0; i < wineCount; i++){
+            currentAlcohol = wines.remove();
+            Push(currentAlcohol);
+        }
+        for(i = 0; i < spiritCount; i++){
+            currentAlcohol = spirits.remove();
+            Push(currentAlcohol);
+        }
+        TNT.destroyTNT();
+    }
+
     @Override
     public void update(long currentTime, long previousTime){
         updateTime(currentTime, previousTime);
@@ -142,24 +171,29 @@ public class GameplayFunction extends GameComponent {
 
     @Override
     public void onDraw(Canvas canvas){
-        /*paint.setColor(Color.WHITE);
-        paint.setStyle(Paint.Style.FILL);
-        canvas.drawPaint(paint);*/
-
         updateSprites(canvas);
         updateText(canvas);
     }
 
     @Override
-    public void onTouchEvent(MotionEvent event){
+    public boolean onTouchEvent(MotionEvent event){
         for (i = buttons.length - 1; i >= 0; i--) {
             button = buttons[i];
             if (!button.silouhette && button.isCollision(event.getX(), event.getY())) {
-                checkButtonCondition(i);
+                checkButtonCondition(button.id);
                 break;
             }
         }
+        if(misses >= 10 || HitTNT){
+            clean();
+            view.currentScreen = view.GAME_OVER;
+        }
+        return condition();
     }
+
+    public int getScore(){ return score; }
+    public int getHits(){ return hits; }
+    public int getMisses(){ return misses; }
 
     private void updateTime(long currentTime, long previousTime){
         timeCount = currentTime - resetTime;
@@ -182,8 +216,8 @@ public class GameplayFunction extends GameComponent {
         timeText += Integer.toString(seconds);
     }
 
-    private void checkButtonCondition(int i){
-        switch(i){
+    private void checkButtonCondition(int id){
+        switch(id){
             case 0:
                 if(kegs.size() > 0) kegCount = quickTap(kegCount,kegs);
                 break;
@@ -273,7 +307,7 @@ public class GameplayFunction extends GameComponent {
 
     private AlcoholClass Pop(int id){
         if(inactives.size() > 0) return inactives.remove();
-        else return new AlcoholClass(view, id, bmp);
+        else return new AlcoholClass(view, id, bmp, 5, 2);
     }
 
     private void Push(AlcoholClass inactive)

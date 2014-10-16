@@ -18,8 +18,8 @@ public class AlcoholClass extends Sprite {
     public int midY;
     public boolean active;
 
-    public AlcoholClass(GameView gameView, int id, Bitmap bmp) {
-        super(gameView, id, bmp);
+    public AlcoholClass(GameView gameView, int id, Bitmap bmp, final int columns, final int rows) {
+        super(gameView, id, bmp, columns, rows);
 
         x = 100 * id;
         y = 600;
@@ -29,7 +29,7 @@ public class AlcoholClass extends Sprite {
         midY = y + height/2;
         active = false;
 
-        srcX = id%5 * width;
+        srcX = id%BMP_COLUMNS * width;
         srcY = 0;
         src = new Rect(srcX, srcY, srcX + width, srcY + height);
         endY = -100;
@@ -44,7 +44,7 @@ public class AlcoholClass extends Sprite {
     public void reset(int xSpeed, int ySpeed, int id){
         if(this.id != id){
             this.id = id;
-            srcX = id%5 * width;
+            srcX = id%BMP_COLUMNS * width;
             src = new Rect(srcX, srcY, srcX + width, srcY + height);
         }
 

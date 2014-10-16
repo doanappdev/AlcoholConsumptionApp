@@ -9,8 +9,8 @@ import android.graphics.Rect;
 
 abstract class Sprite {
 
-    protected static final int BMP_ROWS = 2;
-    protected static final int BMP_COLUMNS = 5;
+    protected int BMP_ROWS;
+    protected int BMP_COLUMNS;
 
     protected int x;
     protected int y;
@@ -27,10 +27,14 @@ abstract class Sprite {
     protected Rect src;
     protected Rect dst;
 
-    public Sprite(GameView gameView, int id, Bitmap bmp) {
+    public Sprite(GameView gameView, int id, Bitmap bmp, final int columns, final int rows) {
         this.gameView = gameView;
         this.id = id;
         this.bmp = bmp;
+
+        BMP_COLUMNS = columns;
+        BMP_ROWS = rows;
+
         this.width = bmp.getWidth() / BMP_COLUMNS;
         this.height = bmp.getHeight() / BMP_ROWS;
     }

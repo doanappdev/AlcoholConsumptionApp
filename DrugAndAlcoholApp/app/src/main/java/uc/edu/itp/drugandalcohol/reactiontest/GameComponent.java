@@ -12,8 +12,9 @@ abstract class GameComponent {
         //Do stuff
     }
 
+    abstract boolean condition();
     abstract void reset(long currentTime);
     abstract void update(long currentTime, long previousTime);
     abstract void onDraw(Canvas canvas);
-    abstract void onTouchEvent(MotionEvent event);
+    abstract boolean onTouchEvent(MotionEvent event);
 }

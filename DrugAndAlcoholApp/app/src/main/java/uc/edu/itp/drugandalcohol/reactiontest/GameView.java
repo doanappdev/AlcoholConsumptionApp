@@ -24,8 +24,13 @@ import uc.edu.itp.drugandalcohol.R;
  */
 public class GameView extends SurfaceView
 {
-    private final int MAIN_MENU = 0;
-    private final int GAMEPLAY = 1;
+    public final int MAIN_MENU = 0;
+    public final int INSTRUCTIONS = 1;
+    public final int GAMEPLAY = 2;
+    public final int GAME_OVER = 3;
+    public int currentScreen;
+
+    public boolean isClosed;
 
     private Bitmap bmps[];
     private SurfaceHolder holder;
@@ -35,7 +40,8 @@ public class GameView extends SurfaceView
     private long previousTime;
 
     private GameComponent screens[];
-    private int currentScreen;
+    private GameplayFunction scoreKeeper;
+    private boolean condition;
 
     //THROWAWAY VARIABLES
     /*
@@ -85,31 +91,34 @@ public class GameView extends SurfaceView
                 //Do something
             }
         });
-
-        //init();
     }
 
     private void init(){
+        isClosed = false;
+
         bmps = new Bitmap[3];
         bmps[0] = BitmapFactory.decodeResource(getResources(), R.drawable.title);
         bmps[1] = BitmapFactory.decodeResource(getResources(), R.drawable.menu_buttons);
         bmps[2] = BitmapFactory.decodeResource(getResources(), R.drawable.alcohol_sprites);
 
+        scoreKeeper = new GameplayFunction(this, bmps[2]);
+
         screens = new GameComponent[]{
-                new MainMenu(),
-                new GameplayFunction(this, bmps[3])
+                new MainMenu(this, bmps[0], bmps[1]),
+                new InstructionsMenu(),
+                scoreKeeper,
+                new GameOverMenu(this, bmps[1], scoreKeeper)
         };
 
-        //currentScreen = MAIN_MENU;
-        currentScreen = GAMEPLAY;
+        currentScreen = MAIN_MENU;
+        //currentScreen = GAMEPLAY;
 
         currentTime = System.currentTimeMillis();
         previousTime = currentTime;
 
         screens[currentScreen].reset(currentTime);
         //These do not need to be called now
-        /*currentTime = previousTime;
-        for(int i = 0; i < screens.length; i++)
+        /*for(int i = 0; i < screens.length; i++)
             screens[i].reset(currentTime);*/
     }
 
@@ -119,8 +128,20 @@ public class GameView extends SurfaceView
         canvas.drawColor(Color.WHITE);
 
         currentTime = System.currentTimeMillis();
+
         screens[currentScreen].update(currentTime, previousTime);
         screens[currentScreen].onDraw(canvas);
+
+        condition = screens[currentScreen].condition();
+        if(condition){
+            //switchMenus();
+            if(currentScreen == GAMEPLAY){
+                scoreKeeper.clean();
+                currentScreen = GAME_OVER;
+            }
+            previousTime = currentTime;
+            screens[currentScreen].reset(currentTime);
+        }
         // if you are using sprite class to represent
         // objects use sprite.onDraw()
     }
@@ -130,11 +151,30 @@ public class GameView extends SurfaceView
         if (System.currentTimeMillis() - lastClick > 300){
             lastClick = System.currentTimeMillis();
             synchronized (getHolder()){
-                screens[currentScreen].onTouchEvent(event);
+                condition = screens[currentScreen].onTouchEvent(event);
+                if(condition){
+                    previousTime = currentTime;
+                    screens[currentScreen].reset(currentTime);
+                }
             }
         }
         return true;
     }
+
+     /*private void switchMenus(){
+        switch(currentScreen){
+            case MAIN_MENU:
+                break;
+            case INSTRUCTIONS:
+                break;
+            case GAMEPLAY:
+                break;
+            case GAME_OVER:
+                break;
+            default:
+                break;
+        }
+    }*/
 
     //THROWAWAY CODE BELOW
     /*

@@ -13,11 +13,30 @@ public class ButtonClass extends Sprite {
 
     public boolean silouhette;
 
-    public ButtonClass(GameView gameView, int id, Bitmap bmp) {
-        super(gameView, id, bmp);
+    public ButtonClass(GameView gameView, int id, Bitmap bmp, final int columns,
+                       final int rows, int condition) {
+        super(gameView, id, bmp, columns, rows);
 
-        x = 100 * id;
-        y = 20;
+        if(condition > 0){
+
+        }else{
+
+        }
+        switch(condition)
+        {
+            case 1:
+                x = 150;
+                y = 170 + 50 * id;
+                break;
+            case 2:
+                x = 150;
+                y = 220 - 50 * (id - 6);
+                break;
+            default:
+                x = 100 * id;
+                y = 20;
+                break;
+        }
     }
 
     @Override
@@ -29,8 +48,8 @@ public class ButtonClass extends Sprite {
     @Override
     public void onDraw(Canvas canvas) {
         update();
-        srcX = currentFrame%5 * width;
-        srcY = (int)(currentFrame/5) * height;
+        srcX = currentFrame%BMP_COLUMNS * width;
+        srcY = (int)(currentFrame/BMP_COLUMNS) * height;
         src = new Rect(srcX, srcY, srcX + width, srcY + height);
         dst = new Rect(x, y, x + width * 2, y + height * 2);
         canvas.drawBitmap(bmp, src, dst, null);
