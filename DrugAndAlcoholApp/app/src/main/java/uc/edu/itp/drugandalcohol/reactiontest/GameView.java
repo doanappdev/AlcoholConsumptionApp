@@ -3,6 +3,7 @@ package uc.edu.itp.drugandalcohol.reactiontest;
 /**
  * Created by AppDev on 14/10/2014.
  */
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -142,8 +143,17 @@ public class GameView extends SurfaceView
             previousTime = currentTime;
             screens[currentScreen].reset(currentTime);
         }
+        if(isClosed)
+            doLose();
         // if you are using sprite class to represent
         // objects use sprite.onDraw()
+    }
+
+    public void doLose() {
+        synchronized (holder) {
+            //quit to mainmenu
+            ((Activity) super.getContext()).finish();
+        }
     }
 
     @Override

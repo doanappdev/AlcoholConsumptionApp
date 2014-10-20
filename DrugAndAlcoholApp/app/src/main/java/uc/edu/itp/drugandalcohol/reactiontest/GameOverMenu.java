@@ -26,6 +26,13 @@ public class GameOverMenu extends GameComponent {
     private int score;
     private int hits;
     private int misses;
+    private boolean HitTNT;
+    private long spentTime;
+
+    private int minutes;
+    private int seconds;
+
+    private String timeText;
 
     public GameOverMenu(GameView view, Bitmap buttonSprites, GameplayFunction scoreKeeper){
         super();
@@ -38,6 +45,10 @@ public class GameOverMenu extends GameComponent {
         score = 0;
         hits = 0;
         misses = 0;
+        minutes = 0;
+        seconds = 0;
+        spentTime = 0L;
+        HitTNT = false;
 
         buttons = new ButtonClass[]{
                 new ButtonClass(view, 6, buttonSprites, 2, 4, 2),
@@ -61,6 +72,14 @@ public class GameOverMenu extends GameComponent {
         score = scoreKeeper.getScore();
         hits = scoreKeeper.getHits();
         misses = scoreKeeper.getMisses();
+        HitTNT = scoreKeeper.getHitTNT();
+        spentTime = scoreKeeper.getSpentTime();
+        seconds = (int)(spentTime/1000);
+        minutes = seconds/60;
+        seconds = seconds % 60;
+        timeText = "Spent Time - " + Integer.toString(minutes) + ":";
+        if(seconds < 10) timeText += "0";
+        timeText += Integer.toString(seconds);
     }
 
     @Override
@@ -108,5 +127,7 @@ public class GameOverMenu extends GameComponent {
         canvas.drawText("Score - " + Integer.toString(score), 120, 20, paint);
         canvas.drawText("Hits - " + Integer.toString(hits), 130, 45, paint);
         canvas.drawText("Misses - " + Integer.toString(misses), 130, 70, paint);
+        canvas.drawText("TNT Hit - " + Boolean.toString(HitTNT), 130, 95, paint);
+        canvas.drawText(timeText, 130, 120, paint);
     }
 }

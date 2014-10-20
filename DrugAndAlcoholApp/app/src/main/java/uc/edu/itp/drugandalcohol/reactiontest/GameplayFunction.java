@@ -25,6 +25,7 @@ public class GameplayFunction extends GameComponent {
     //Time Formatting Used
     private String timeText;
     private long resetTime;
+    private long spentTime;
     private int seconds;
     private int minutes;
 
@@ -194,6 +195,8 @@ public class GameplayFunction extends GameComponent {
     public int getScore(){ return score; }
     public int getHits(){ return hits; }
     public int getMisses(){ return misses; }
+    public long getSpentTime(){ return spentTime; }
+    public boolean getHitTNT(){ return HitTNT; }
 
     private void updateTime(long currentTime, long previousTime){
         timeCount = currentTime - resetTime;
@@ -207,8 +210,8 @@ public class GameplayFunction extends GameComponent {
             gameSpeed++;
         }
 
-        timeCount = currentTime - previousTime;
-        seconds = (int)(timeCount/1000);
+        spentTime = currentTime - previousTime;
+        seconds = (int)(spentTime/1000);
         minutes = seconds / 60;
         seconds = seconds % 60;
         timeText = "Time - " + Integer.toString(minutes) + ":";
