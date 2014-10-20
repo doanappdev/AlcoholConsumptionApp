@@ -89,6 +89,8 @@ public class GameView extends SurfaceView
             public void surfaceChanged(SurfaceHolder holder, int format,
                                        int width, int height) {
                 //Do something
+
+
             }
         });
     }
