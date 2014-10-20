@@ -49,7 +49,7 @@ public class AlcoholClass extends Sprite {
         }
 
         x = 100 * id;
-        y = 600;
+        y = gameView.getHeight() + 100;
         midX = x + width/2;
         midY = y + height/2;
 
@@ -61,7 +61,7 @@ public class AlcoholClass extends Sprite {
     }
 
     public void ResetTNT(){
-        y = 600;
+        y = gameView.getHeight() + 100;
         active = true;
     }
 
