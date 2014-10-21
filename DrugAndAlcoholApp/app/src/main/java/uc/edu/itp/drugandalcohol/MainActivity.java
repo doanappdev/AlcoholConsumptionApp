@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 
 import uc.edu.itp.drugandalcohol.view.CalculateBACActivity;
 import uc.edu.itp.drugandalcohol.view.EmergencyActivity;
+import uc.edu.itp.drugandalcohol.view.GameMenuActivity;
 import uc.edu.itp.drugandalcohol.view.ReactionTestActivity;
 import uc.edu.itp.drugandalcohol.view.UserDetailsActivity;
 
@@ -17,7 +18,7 @@ import uc.edu.itp.drugandalcohol.view.UserDetailsActivity;
 public class MainActivity extends Activity
 {
     ImageButton detailsImgBtn, calculateImgBtn, emergencyImgBtn,
-            reactionTestImgBtn, exitImgBtn;
+            gameMenuImgBtn, exitImgBtn;
 
 
     @Override
@@ -29,7 +30,7 @@ public class MainActivity extends Activity
         detailsImgBtn = (ImageButton)findViewById(R.id.imgBtnEnterDetails);
         calculateImgBtn = (ImageButton)findViewById(R.id.imgBtnCalculateBAC);
         emergencyImgBtn = (ImageButton)findViewById(R.id.imgBtnEmergencySMS);
-        reactionTestImgBtn = (ImageButton)findViewById(R.id.imgBtnReactionTest);
+        gameMenuImgBtn = (ImageButton)findViewById(R.id.imgBtnReactionTest);
 
         detailsImgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,11 +59,11 @@ public class MainActivity extends Activity
             }
         });
 
-        reactionTestImgBtn.setOnClickListener(new View.OnClickListener() {
+        gameMenuImgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent reactionTestIntent = new Intent(getApplicationContext(), ReactionTestActivity.class);
-                startActivity(reactionTestIntent);
+                Intent gameMenuIntent = new Intent(getApplicationContext(), GameMenuActivity.class);
+                startActivity(gameMenuIntent);
             }
         });
 
