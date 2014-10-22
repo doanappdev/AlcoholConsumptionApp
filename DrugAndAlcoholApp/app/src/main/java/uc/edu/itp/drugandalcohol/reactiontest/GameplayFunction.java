@@ -16,6 +16,8 @@ import java.util.Queue;
 public class GameplayFunction {
 
     //Fixed times and speed
+    private final int MAX_MISSES = 5;
+
     private final int secondsToMills = 1000;
     private final int beerSpeed = 2;
     private final int wineSpeed = 1;
@@ -109,7 +111,7 @@ public class GameplayFunction {
     //@Override
     public boolean condition()
     {
-        return (misses >= 10 || HitTNT);
+        return (misses >= MAX_MISSES || HitTNT);
     }
 
     //@Override
@@ -189,10 +191,10 @@ public class GameplayFunction {
                 break;
             }
         }
-        if(misses >= 10 || HitTNT){
+        /*if(misses >= MAX_MISSES || HitTNT){
             clean();
             //view.currentScreen = view.GAME_OVER;
-        }
+        }*/
         return condition();
     }
 
