@@ -24,6 +24,10 @@ public class GameplayFunction {
     private final int kegSpeed = 2;
     private final int spiritSpeed = 1;
 
+    private int g_width;
+    private int g_height;
+    private float aspect;
+
     //Time Formatting Used
     private String timeText;
     private long resetTime;
@@ -101,10 +105,27 @@ public class GameplayFunction {
 
         TNT = new AlcoholClass(view, 4, bmp, 5, 2);
 
+        float xResult, yResult;
+        int width = bmp.getWidth();
+        g_width = view.getWidth();
+        g_height = view.getHeight();
+
         buttons = new ButtonClass[buttonCount];
         for(i = 0; i < buttonCount; i++) {
             buttons[i] = new ButtonClass(view, i, bmp, 5, 2);
             buttons[i].silouhette = true;
+
+            //x = 0.8 of game width * id * 1/(number of buttons-1)
+
+            //The formula of x is calculated by having 80% of game
+            //width times the id number of a button divided by 1 less
+            //the number of buttons in total, plus 10% of game width,
+            //minus the scaled width of the button divided by 2.
+            xResult = (g_width*i/5) + (g_width/10) - width;
+            yResult = g_height - (g_height*0.15f);
+
+            buttons[i].setPosX(xResult);
+            buttons[i].setPosY(yResult);
         }
     }
 
@@ -357,7 +378,7 @@ public class GameplayFunction {
     private void updateText(Canvas canvas){
         paint.setColor(Color.BLACK);
         paint.setStyle(Paint.Style.FILL);
-        paint.setTextSize(20);
+        paint.setTextSize(20*g_width/g_height);
 
         canvas.drawText("Score - " + Integer.toString(score), 0, 20, paint);
         canvas.drawText("Misses - " + Integer.toString(misses), 130, 20, paint);

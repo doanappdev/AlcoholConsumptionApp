@@ -18,19 +18,6 @@ public class ButtonClass extends Sprite {
     public ButtonClass(GameView gameView, int id, Bitmap bmp,
                        final int columns, final int rows){
         super(gameView, id, bmp, columns, rows);
-
-        int g_width = gameView.getWidth();
-
-        //x = 0.8 of game width * id * 1/(number of buttons-1)
-
-        //The formula of x is calculated by having 80% of game
-        //width times the id number of a button divided by 1 less
-        //the number of buttons in total, plus 10% of game width,
-        //minus the scaled width of the button divided by 2.
-        x = g_width*id/5 + g_width/10 - width;
-
-        Log.d("ButtonClass: X - ", String.valueOf(x));
-        y = gameView.getHeight() - 90;
     }
 
     //1024 * 0.2 = 204.8
