@@ -90,31 +90,31 @@ public class GameView extends SurfaceView
     protected void onDraw(Canvas canvas){
         // set background color
         canvas.drawColor(Color.WHITE);
-
-        currentTime = System.currentTimeMillis();
-
-        gameplay.update(currentTime, previousTime);
-        gameplay.onDraw(canvas);
-
-        isClosed = gameplay.condition();
         if(isClosed) {
             previousTime = currentTime;
             gameplay.clean();
             doLose();
+        }else{
+            currentTime = System.currentTimeMillis();
+
+            gameplay.update(currentTime, previousTime);
+            gameplay.onDraw(canvas);
+
+            isClosed = gameplay.condition();
         }
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event){
-        if (System.currentTimeMillis() - lastClick > 300){
+    public boolean onTouchEvent(MotionEvent event){ //300
+        if (System.currentTimeMillis() - lastClick > 100){
             lastClick = System.currentTimeMillis();
             synchronized (getHolder()){
                 isClosed = gameplay.onTouchEvent(event);
-                if(isClosed){
+                /*if(isClosed){
                     previousTime = currentTime;
                     gameplay.clean();
                     doLose();
-                }
+                }*/
             }
         }
         return true;

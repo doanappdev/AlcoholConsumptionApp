@@ -6,6 +6,7 @@ package uc.edu.itp.drugandalcohol.reactiontest;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.graphics.RectF;
 
 public class AlcoholClass extends Sprite {
 
@@ -14,14 +15,13 @@ public class AlcoholClass extends Sprite {
     private int endY;
     private int points;
 
-    public int midX;
-    public int midY;
     public boolean active;
 
     public AlcoholClass(GameView gameView, int id, Bitmap bmp, final int columns, final int rows) {
         super(gameView, id, bmp, columns, rows);
 
-        x = (gameView.getWidth()/5) * id;
+        int g_width = gameView.getWidth();
+        x = g_width*id/5 + g_width/10 - width;
         y = -100;
         xSpeed = 0;
         ySpeed = 3;
@@ -48,7 +48,9 @@ public class AlcoholClass extends Sprite {
             src = new Rect(srcX, srcY, srcX + width, srcY + height);
         }
 
-        x = (gameView.getWidth()/5) * id;
+        int g_width = gameView.getWidth();
+        x = g_width*id/5 + g_width/10 - width;
+
         y = -100;
         midX = x + width;//width/2;
         midY = y + height;//height/2;
@@ -85,7 +87,7 @@ public class AlcoholClass extends Sprite {
     @Override
     public void onDraw(Canvas canvas) {
         if(id < 4)update();
-        dst = new Rect(x, y, x + width * 2, y + height * 2);
+        dst = new RectF(x, y, x + width * 2, y + height * 2);
         canvas.drawBitmap(bmp, src, dst, null);
     }
 
@@ -109,7 +111,7 @@ public class AlcoholClass extends Sprite {
         }
     }
 
-    public Rect getRect(){
+    public RectF getRect(){
         return dst;
     }
 }

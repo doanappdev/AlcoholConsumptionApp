@@ -81,7 +81,6 @@ public class GameplayFunction {
     //Temporary variables for faster performance
     private int i;
     private int tempInt;
-    private ButtonClass button;
     private AlcoholClass currentAlcohol;
 
     public GameplayFunction(GameView view, Bitmap bmp){
@@ -161,6 +160,12 @@ public class GameplayFunction {
             currentAlcohol = spirits.remove();
             Push(currentAlcohol);
         }
+
+        beerCount = 0;
+        wineCount = 0;
+        kegCount = 0;
+        spiritCount = 0;
+
         TNT.destroyTNT();
     }
 
@@ -179,9 +184,8 @@ public class GameplayFunction {
     //@Override
     public boolean onTouchEvent(MotionEvent event){
         for (i = buttons.length - 1; i >= 0; i--) {
-            button = buttons[i];
-            if (!button.silouhette && button.isCollision(event.getX(), event.getY())) {
-                checkButtonCondition(button.id);
+            if (!buttons[i].silouhette && buttons[i].isCollision(event.getX(), event.getY())) {
+                checkButtonCondition(buttons[i].id);
                 break;
             }
         }
@@ -222,21 +226,21 @@ public class GameplayFunction {
     private void checkButtonCondition(int id){
         switch(id){
             case 0:
-                if(kegs.size() > 0) kegCount = quickTap(kegCount,kegs);
+                if(kegs.size() > 0) kegCount = quickTap(kegCount, id, kegs);
                 break;
             case 1:
-                if(wines.size() > 0) wineCount = timedTap(wineCount, wines);
+                if(wines.size() > 0) wineCount = timedTap(wineCount, id, wines);
                 break;
             case 2:
-                if(beers.size() > 0) beerCount = quickTap(beerCount, beers);
+                if(beers.size() > 0) beerCount = quickTap(beerCount, id, beers);
                 break;
             case 3:
-                if(spirits.size() > 0) spiritCount = timedTap(spiritCount, spirits);
+                if(spirits.size() > 0) spiritCount = timedTap(spiritCount, id, spirits);
                 break;
             case 4:
                 score += TNT.getPoints();
                 TNT.destroyTNT();
-                button.silouhette = true;
+                buttons[id].silouhette = true;
                 HitTNT = true;
                 break;
             default:
@@ -245,25 +249,25 @@ public class GameplayFunction {
         if(score < 0) score = 0;
     }
 
-    private int quickTap(int count, Queue<AlcoholClass> queue){
+    private int quickTap(int count, int id, Queue<AlcoholClass> queue){
         currentAlcohol = queue.remove();
-        if(currentAlcohol.midY < button.getYLimit()){
+        if(currentAlcohol.midY < buttons[id].getYLimit()){
             score += currentAlcohol.getPoints();
             hits++;
         } else misses++;
         inactives.add(currentAlcohol);
-        if(--count < 1) button.silouhette = true;
+        if(--count < 1) buttons[id].silouhette = true;
         return count;
     }
 
-    private int timedTap(int count, Queue<AlcoholClass> queue){
+    private int timedTap(int count, int id, Queue<AlcoholClass> queue){
         currentAlcohol = queue.remove();
-        if(button.isIntersecting(currentAlcohol.getRect())){
+        if(buttons[id].isIntersecting(currentAlcohol.getRect())){
             score += currentAlcohol.getPoints();
             hits++;
         } else misses++;
         inactives.add(currentAlcohol);
-        if(--count < 1) button.silouhette = true;
+        if(--count < 1) buttons[id].silouhette = true;
         return count;
     }
 
@@ -319,10 +323,8 @@ public class GameplayFunction {
     }
 
     private void updateSprites(Canvas canvas){
-        for(i = 0; i < buttonCount; i++) {
-            button = buttons[i];
-            button.onDraw(canvas);
-        }
+        for(i = 0; i < buttonCount; i++)
+            buttons[i].onDraw(canvas);
 
         kegCount = updateSprite(canvas, kegCount, 0, kegs);
         wineCount = updateSprite(canvas, wineCount, 1, wines);

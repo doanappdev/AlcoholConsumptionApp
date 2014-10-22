@@ -35,5 +35,23 @@
         android:layout_below="@+id/btnStartGame"
         android:layout_centerHorizontal="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Main Menu"
+        android:id="@+id/btnMainMenu"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/btnInstructions"
+        android:layout_alignStart="@+id/btnInstructions" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Instructions"
+        android:id="@+id/btnInstructions"
+        android:layout_above="@+id/btnMainMenu"
+        android:layout_alignRight="@+id/btnHighScore"
+        android:layout_alignEnd="@+id/btnHighScore" />
+
 
 </RelativeLayout>
