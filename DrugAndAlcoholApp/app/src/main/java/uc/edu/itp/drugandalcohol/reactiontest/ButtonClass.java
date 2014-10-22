@@ -13,30 +13,13 @@ public class ButtonClass extends Sprite {
 
     public boolean silouhette;
 
-    public ButtonClass(GameView gameView, int id, Bitmap bmp, final int columns,
-                       final int rows, int condition) {
+    public ButtonClass(GameView gameView, int id, Bitmap bmp,
+                       final int columns, final int rows){
         super(gameView, id, bmp, columns, rows);
 
-        if(condition > 0){
-
-        }else{
-
-        }
-        switch(condition)
-        {
-            case 1:
-                x = 150;
-                y = 170 + 50 * id;
-                break;
-            case 2:
-                x = 150;
-                y = 220 - 50 * (id - 6);
-                break;
-            default:
-                x = 100 * id;
-                y = 20;
-                break;
-        }
+        x = (gameView.getWidth()/5) * id;
+        y = gameView.getHeight() - 90;
+        //dst = new Rect(x, y, x + width * 2, y + height * 2);
     }
 
     @Override
@@ -55,9 +38,7 @@ public class ButtonClass extends Sprite {
         canvas.drawBitmap(bmp, src, dst, null);
     }
 
-    public int getYLimit(){
-        return y + height;
-    }
+    public int getYLimit(){ return y; } //y + height
 
     public boolean isCollision(float x2, float y2) {
         return x2 > x && x2 < x + width * 2 && y2 > y && y2 < y + height * 2;

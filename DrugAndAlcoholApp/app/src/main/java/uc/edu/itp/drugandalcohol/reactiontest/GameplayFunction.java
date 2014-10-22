@@ -13,14 +13,14 @@ import java.util.Queue;
 /**
  * Created by wh0-r-u on 15/10/2014.
  */
-public class GameplayFunction extends GameComponent {
+public class GameplayFunction {
 
     //Fixed times and speed
     private final int secondsToMills = 1000;
     private final int beerSpeed = 2;
     private final int wineSpeed = 1;
     private final int kegSpeed = 2;
-    private final int spiritSpeed = 0;
+    private final int spiritSpeed = 1;
 
     //Time Formatting Used
     private String timeText;
@@ -85,7 +85,7 @@ public class GameplayFunction extends GameComponent {
     private AlcoholClass currentAlcohol;
 
     public GameplayFunction(GameView view, Bitmap bmp){
-        super();
+        //super();
 
         this.bmp = bmp;
         this.view = view;
@@ -102,18 +102,18 @@ public class GameplayFunction extends GameComponent {
 
         buttons = new ButtonClass[buttonCount];
         for(i = 0; i < buttonCount; i++) {
-            buttons[i] = new ButtonClass(view, i, bmp, 5, 2, 0);
+            buttons[i] = new ButtonClass(view, i, bmp, 5, 2);
             buttons[i].silouhette = true;
         }
     }
 
-    @Override
+    //@Override
     public boolean condition()
     {
         return (misses >= 10 || HitTNT);
     }
 
-    @Override
+    //@Override
     public void reset(long currentTime){
         score = 0;
         hits = 0;
@@ -132,7 +132,7 @@ public class GameplayFunction extends GameComponent {
         wineTimer = 8L;
         kegTimer = 6L;
         spiritTimer = 10L;
-        TNTTimer = 20L;
+        TNTTimer = 13L;
 
         resetTime = currentTime;
         beerTimerCount = currentTime;
@@ -164,19 +164,19 @@ public class GameplayFunction extends GameComponent {
         TNT.destroyTNT();
     }
 
-    @Override
+    //@Override
     public void update(long currentTime, long previousTime){
         updateTime(currentTime, previousTime);
         spawnSprites(currentTime);
     }
 
-    @Override
+    //@Override
     public void onDraw(Canvas canvas){
         updateSprites(canvas);
         updateText(canvas);
     }
 
-    @Override
+    //@Override
     public boolean onTouchEvent(MotionEvent event){
         for (i = buttons.length - 1; i >= 0; i--) {
             button = buttons[i];
@@ -187,7 +187,7 @@ public class GameplayFunction extends GameComponent {
         }
         if(misses >= 10 || HitTNT){
             clean();
-            view.currentScreen = view.GAME_OVER;
+            //view.currentScreen = view.GAME_OVER;
         }
         return condition();
     }
@@ -247,7 +247,7 @@ public class GameplayFunction extends GameComponent {
 
     private int quickTap(int count, Queue<AlcoholClass> queue){
         currentAlcohol = queue.remove();
-        if(currentAlcohol.midY > button.getYLimit()){
+        if(currentAlcohol.midY < button.getYLimit()){
             score += currentAlcohol.getPoints();
             hits++;
         } else misses++;
