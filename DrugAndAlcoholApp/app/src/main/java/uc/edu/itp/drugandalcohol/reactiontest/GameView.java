@@ -34,9 +34,12 @@ public class GameView extends SurfaceView
     private long previousTime;
 
     private boolean isClosed;
+    private boolean speedByTimer;
 
-    public GameView(Context context){
+    public GameView(Context context, boolean speedByTimer){
         super(context);
+
+        this.speedByTimer = speedByTimer;
 
         gameLoopThread = new GameLoopThread(this);
         holder = getHolder();
@@ -67,7 +70,7 @@ public class GameView extends SurfaceView
             public void surfaceChanged(SurfaceHolder holder, int format,
                                        int width, int height) {
                 //Do something
-
+                //gameplay.changeSurface(width, height);
 
             }
         });
@@ -78,7 +81,7 @@ public class GameView extends SurfaceView
 
         bmp = BitmapFactory.decodeResource(getResources(), R.drawable.alcohol_sprites);
 
-        gameplay = new GameplayFunction(this, bmp);
+        gameplay = new GameplayFunction(this, bmp, speedByTimer);
 
         currentTime = System.currentTimeMillis();
         previousTime = currentTime;
@@ -89,12 +92,12 @@ public class GameView extends SurfaceView
     @Override
     protected void onDraw(Canvas canvas){
         // set background color
-        canvas.drawColor(Color.WHITE);
         if(isClosed) {
             previousTime = currentTime;
             gameplay.clean();
             doLose();
         }else{
+            canvas.drawColor(Color.WHITE);
             currentTime = System.currentTimeMillis();
 
             gameplay.update(currentTime, previousTime);

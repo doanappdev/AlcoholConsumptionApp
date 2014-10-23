@@ -20,25 +20,11 @@ public class AlcoholClass extends Sprite {
     public AlcoholClass(GameView gameView, int id, Bitmap bmp, final int columns, final int rows) {
         super(gameView, id, bmp, columns, rows);
 
-        int g_width = gameView.getWidth();
-        x = g_width*id/5 + g_width/10 - width;
-        y = -100;
-        xSpeed = 0;
-        ySpeed = 3;
-        midX = x + width;//width/2;
-        midY = y + height;//height/2;
         active = false;
-
         srcX = id%BMP_COLUMNS * width;
         srcY = 0;
         src = new Rect(srcX, srcY, srcX + width, srcY + height);
-        endY = gameView.getHeight() + 100;
-        setPoints();
-
-        if(id > 3){
-            points = -2000;
-            y = -100;
-        }
+        endY = gameView.getHeight() + height;
     }
 
     public void reset(int xSpeed, int ySpeed, int id){
@@ -50,20 +36,22 @@ public class AlcoholClass extends Sprite {
 
         int g_width = gameView.getWidth();
         x = g_width*id/5 + g_width/10 - width;
+        y = 0;
+        //y = gameView.getHeight()/20;
 
-        y = -100;
         midX = x + width;//width/2;
         midY = y + height;//height/2;
 
         this.xSpeed = xSpeed;
         this.ySpeed = ySpeed;
-        active = true;
+        if(id < 4) active = true;
 
         setPoints();
     }
 
     public void ResetTNT(){
-        y = -100;
+        y = 0;
+        //y = gameView.getHeight()/20;
         active = true;
     }
 

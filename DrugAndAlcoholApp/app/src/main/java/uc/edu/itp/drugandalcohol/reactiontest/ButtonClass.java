@@ -5,6 +5,10 @@ package uc.edu.itp.drugandalcohol.reactiontest;
  */
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.LightingColorFilter;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.Log;
@@ -18,15 +22,10 @@ public class ButtonClass extends Sprite {
     public ButtonClass(GameView gameView, int id, Bitmap bmp,
                        final int columns, final int rows){
         super(gameView, id, bmp, columns, rows);
+        paint = new Paint();
+        paint.setARGB(255, 255, 0, 0);
+        paint.setStyle(Paint.Style.FILL);
     }
-
-    //1024 * 0.2 = 204.8
-
-    //1024 * 0.2 = 204.8 * 4 = 819.2 * 0.2 = 256;
-    //1024 * 0.25 = 256;
-
-    //id-0 = 50
-    //id-5 = 1024 - 50 = 974
 
     @Override
     public void update() {
@@ -41,7 +40,11 @@ public class ButtonClass extends Sprite {
         srcY = (int)(currentFrame/BMP_COLUMNS) * height;
         src = new Rect(srcX, srcY, srcX + width, srcY + height);
         dst = new RectF(x, y, x + width * 2, y + height * 2);
-        canvas.drawBitmap(bmp, src, dst, null);
+
+        //filter = new LightingColorFilter(paint.getColor(), 0);
+        //paint.setColorFilter(filter);
+
+        canvas.drawBitmap(bmp, src, dst, paint);
     }
 
     public float getYLimit(){ return y; } //y + height

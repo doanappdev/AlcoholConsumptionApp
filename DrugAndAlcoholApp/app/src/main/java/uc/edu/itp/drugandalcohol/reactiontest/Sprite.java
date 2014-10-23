@@ -5,6 +5,8 @@ package uc.edu.itp.drugandalcohol.reactiontest;
  */
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
@@ -30,6 +32,9 @@ abstract class Sprite {
     protected int srcY;
     protected Rect src;
     protected RectF dst;
+
+    protected Paint paint;
+    protected ColorFilter filter;
 
     public Sprite(GameView gameView, int id, Bitmap bmp, final int columns, final int rows) {
         this.gameView = gameView;
