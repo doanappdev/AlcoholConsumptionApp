@@ -7,12 +7,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 
 import uc.edu.itp.drugandalcohol.MainActivity;
 import uc.edu.itp.drugandalcohol.R;
 
 public class GameMenuActivity extends Activity {
 
+    boolean speedByTimer;
+
+    Switch speedIncrementSwi;
     Button gameViewBtn;
     Button instructionsBtn;
     Button highScoreBtn;
@@ -23,6 +27,7 @@ public class GameMenuActivity extends Activity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_menu);
+        speedByTimer = false;
 
         gameViewBtn = (Button)findViewById(R.id.btnStartGame);
 
@@ -30,6 +35,7 @@ public class GameMenuActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent reactionTestIntent = new Intent(getApplicationContext(), ReactionTestActivity.class);
+                reactionTestIntent.putExtra("speedByTimer", speedByTimer);
                 startActivity(reactionTestIntent);
             }
         });
@@ -39,8 +45,8 @@ public class GameMenuActivity extends Activity {
         instructionsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent reactionTestIntent = new Intent(getApplicationContext(), ReactionTestActivity.class);
-                startActivity(reactionTestIntent);
+                Intent instructionsIntent = new Intent(getApplicationContext(), ReactionTestActivity.class);
+                startActivity(instructionsIntent);
             }
         });
 
@@ -49,8 +55,8 @@ public class GameMenuActivity extends Activity {
         highScoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent reactionTestIntent = new Intent(getApplicationContext(), ReactionTestActivity.class);
-                startActivity(reactionTestIntent);
+                Intent highScoreIntent = new Intent(getApplicationContext(), ReactionTestActivity.class);
+                startActivity(highScoreIntent);
             }
         });
 
@@ -59,9 +65,19 @@ public class GameMenuActivity extends Activity {
         mainMenuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent reactionTestIntent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(reactionTestIntent);
+                finish();
+                /*synchronized (holder) {
+                    //quit to mainmenu
+                    ((Activity) super.getContext()).finish();
+                }*/
             }
+        });
+
+        speedIncrementSwi = (Switch)findViewById(R.id.swiSpeedIncrement);
+
+        speedIncrementSwi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { speedByTimer = !speedByTimer; }
         });
     }
 
