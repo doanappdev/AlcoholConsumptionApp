@@ -239,7 +239,6 @@ public class GameplayFunction {
     public long getSpentTime(){ return spentTime; }
     public boolean getHitTNT(){ return HitTNT; }
 
-<<<<<<< HEAD
     private void updateTime(long currentTime, long previousTime)
     {
         timeCount = currentTime - resetTime;
@@ -252,7 +251,7 @@ public class GameplayFunction {
             if(spiritTimer > 1)spiritTimer--;
             if(TNTTimer > 1)TNTTimer--;
             gameSpeed++;
-=======
+
     public void changeSurface(int width, int height)
     {
         g_width = width;
@@ -274,7 +273,7 @@ public class GameplayFunction {
                 scoreThreshold += 200;
                 increaseGameSpeed(currentTime);
             }
->>>>>>> e6076a39a3bfb4b13a3532142819ad316803ff39
+
         }
 
         spentTime = currentTime - previousTime;
