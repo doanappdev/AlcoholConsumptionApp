@@ -91,11 +91,8 @@ public class AlcoholClass extends Sprite {
 
     private void setPoints(){
         switch(id){
-            case 0: points = 50 * (ySpeed - 2); break;
-            case 1: points = 100 * (ySpeed - 1); break;
-            case 2: points = 50 * (ySpeed - 2); break;
-            case 3: points = 100 * ySpeed; break;
-            default: points = -2000; break;
+            case 4: points = -2000; break;
+            default: points = 50 * (ySpeed - 1); break;
         }
     }
 

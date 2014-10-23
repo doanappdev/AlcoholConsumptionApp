@@ -37,7 +37,7 @@ public class ButtonClass extends Sprite {
     public void onDraw(Canvas canvas) {
         update();
         srcX = currentFrame%BMP_COLUMNS * width;
-        srcY = (int)(currentFrame/BMP_COLUMNS) * height;
+        srcY = currentFrame/BMP_COLUMNS * height;
         src = new Rect(srcX, srcY, srcX + width, srcY + height);
         dst = new RectF(x, y, x + width * 2, y + height * 2);
 
