@@ -227,9 +227,11 @@ public class GameplayFunction {
     public long getSpentTime(){ return spentTime; }
     public boolean getHitTNT(){ return HitTNT; }
 
-    private void updateTime(long currentTime, long previousTime){
+    private void updateTime(long currentTime, long previousTime)
+    {
         timeCount = currentTime - resetTime;
-        if(timeCount >= (15 * secondsToMills)){
+        if(timeCount >= (15 * secondsToMills))
+        {
             resetTime = currentTime;
             if(beerTimer > 1)beerTimer--;
             if(wineTimer > 1)wineTimer--;
