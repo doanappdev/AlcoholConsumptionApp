@@ -247,9 +247,6 @@ public class GameplayFunction {
         g_lowest = (g_width > g_height) ? g_height : g_width;
     }
 
-
-    //not sure why you have 2 updateTime() with same signature
-    /*
     private void updateTime(long currentTime, long previousTime)
     {
         timeCount = currentTime - resetTime;
@@ -276,7 +273,7 @@ public class GameplayFunction {
         if(seconds < 10) timeText += "0";
         timeText += Integer.toString(seconds);
     }
-    */
+
 
     private void increaseGameSpeed(long currentTime){
         if(beerTimer > 500L) beerTimer -= 100L;
