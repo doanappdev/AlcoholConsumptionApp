@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import java.util.LinkedList;
@@ -106,7 +107,7 @@ public class GameplayFunction {
         TNT = new AlcoholClass(view, 4, bmp, 5, 2);
 
         float xResult, yResult;
-        int width = bmp.getWidth();
+        int width = (bmp.getWidth()/5);
         g_width = view.getWidth();
         g_height = view.getHeight();
 
@@ -122,6 +123,7 @@ public class GameplayFunction {
             //the number of buttons in total, plus 10% of game width,
             //minus the scaled width of the button divided by 2.
             xResult = (g_width*i/5) + (g_width/10) - width;
+            Log.d("Gameplay Function: X - ", String.valueOf(xResult));
             yResult = g_height - (g_height*0.15f);
 
             buttons[i].setPosX(xResult);
@@ -376,12 +378,15 @@ public class GameplayFunction {
     }
 
     private void updateText(Canvas canvas){
-        paint.setColor(Color.BLACK);
         paint.setStyle(Paint.Style.FILL);
-        paint.setTextSize(20*g_width/g_height);
+        paint.setColor(Color.rgb(255, 128, 0));
+        canvas.drawRect(0, 0, g_width, g_height/5, paint);
 
-        canvas.drawText("Score - " + Integer.toString(score), 0, 20, paint);
-        canvas.drawText("Misses - " + Integer.toString(misses), 130, 20, paint);
-        canvas.drawText(timeText, 300, 20, paint);
+        paint.setColor(Color.BLUE);
+        paint.setTextSize(20*g_width/320);
+
+        canvas.drawText("Score - " + Integer.toString(score), 0, g_height/20, paint);
+        canvas.drawText("Misses - " + Integer.toString(misses), g_width*9/20, g_height/20, paint);
+        canvas.drawText(timeText, 0, g_height*3/20, paint);
     }
 }
