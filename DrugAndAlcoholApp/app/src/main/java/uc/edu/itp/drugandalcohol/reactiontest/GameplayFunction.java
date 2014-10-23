@@ -85,7 +85,9 @@ public class GameplayFunction {
     private Paint paint;
 
     //Scoring system used
-    private int score;
+    private int currentScore;
+    private int prevScore;
+    private int scoreThreshold;
     private int hits;
     private int misses;
     private boolean HitTNT;
@@ -147,7 +149,9 @@ public class GameplayFunction {
 
     //@Override
     public void reset(long currentTime){
-        score = 0;
+        currentScore = 0;
+        prevScore = 0;
+        scoreThreshold = 1000;
         hits = 0;
         misses = 0;
         HitTNT = false;
@@ -229,7 +233,7 @@ public class GameplayFunction {
         return condition();
     }
 
-    public int getScore(){ return score; }
+    public int getScore(){ return currentScore; }
     public int getHits(){ return hits; }
     public int getMisses(){ return misses; }
     public long getSpentTime(){ return spentTime; }
@@ -244,14 +248,18 @@ public class GameplayFunction {
 
     private void updateTime(long currentTime, long previousTime){
         timeCount = currentTime - resetTime;
-        if(timeCount >= (30 * secondsToMills)){
-            resetTime = currentTime;
-            if(beerTimer > 500L) beerTimer -= 100L;
-            if(wineTimer > 500L) wineTimer -= 100L;
-            if(kegTimer > 500L) kegTimer -= 100L;
-            if(spiritTimer > 500L) spiritTimer -= 100L;
-            if(TNTTimer > 500L) TNTTimer -= 500L;
-            gameSpeed++;
+        if(speedByTimer) {
+            if(timeCount >= 30 * secondsToMills) {
+                resetTime = currentTime;
+                increaseGameSpeed(currentTime);
+            }
+        }else{
+            if((currentScore - prevScore) > scoreThreshold)
+            {
+                prevScore = currentScore;
+                scoreThreshold += 200;
+                increaseGameSpeed(currentTime);
+            }
         }
 
         spentTime = currentTime - previousTime;
@@ -261,6 +269,15 @@ public class GameplayFunction {
         timeText = "Time - " + Integer.toString(minutes) + ":";
         if(seconds < 10) timeText += "0";
         timeText += Integer.toString(seconds);
+    }
+
+    private void increaseGameSpeed(long currentTime){
+        if(beerTimer > 500L) beerTimer -= 100L;
+        if(wineTimer > 500L) wineTimer -= 100L;
+        if(kegTimer > 500L) kegTimer -= 100L;
+        if(spiritTimer > 500L) spiritTimer -= 100L;
+        if(TNTTimer > 500L) TNTTimer -= 500L;
+        gameSpeed++;
     }
 
     private void checkButtonCondition(int id){
@@ -284,7 +301,7 @@ public class GameplayFunction {
                     spiritCount = timedTap(spiritCount, id, spirits);
                 break;
             case 4:
-                score += TNT.getPoints();
+                currentScore += TNT.getPoints();
                 TNT.destroyTNT();
                 buttons[id].silouhette = true;
                 HitTNT = true;
@@ -292,7 +309,7 @@ public class GameplayFunction {
             default:
                 break;
         }
-        if(score < 0) score = 0;
+        if(currentScore < 0) currentScore = 0;
     }
 
     //This method is for an extra mechanic you could
@@ -300,7 +317,7 @@ public class GameplayFunction {
     private int quickTap(int count, int id, Queue<AlcoholClass> queue){
         currentAlcohol = queue.remove();
         if(currentAlcohol.midY < buttons[id].getYLimit()){
-            score += currentAlcohol.getPoints();
+            currentScore += currentAlcohol.getPoints();
             hits++;
         } else misses++;
         inactives.add(currentAlcohol);
@@ -312,7 +329,7 @@ public class GameplayFunction {
     private int timedTap(int count, int id, Queue<AlcoholClass> queue){
         currentAlcohol = queue.remove();
         if(buttons[id].isIntersecting(currentAlcohol.getRect())){
-            score += currentAlcohol.getPoints();
+            currentScore += currentAlcohol.getPoints();
             hits++;
         } else misses++;
         inactives.add(currentAlcohol);
@@ -409,7 +426,7 @@ public class GameplayFunction {
         paint.setColor(Color.BLUE);
         paint.setTextSize(20*g_lowest/320);
 
-        canvas.drawText("Score - " + Integer.toString(score), 0, g_height/20, paint);
+        canvas.drawText("currentScore - " + Integer.toString(currentScore), 0, g_height/20, paint);
         canvas.drawText("Misses - " + Integer.toString(misses), g_width*9/20, g_height/20, paint);
         canvas.drawText(timeText, 0, g_height*3/20, paint);
     }
