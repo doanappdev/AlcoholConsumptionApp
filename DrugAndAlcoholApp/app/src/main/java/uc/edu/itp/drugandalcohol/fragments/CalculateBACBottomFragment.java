@@ -7,12 +7,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
-import java.text.DecimalFormat;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import uc.edu.itp.drugandalcohol.R;
 
@@ -23,11 +24,13 @@ import uc.edu.itp.drugandalcohol.R;
 public class CalculateBACBottomFragment extends Fragment
     implements View.OnClickListener
 {
-    //TextView displayBACtxtView;
+    private static final String TAG = "CalculateBACBottomFragment";
+    EditText userWeightEditTxt;
     //Button calculateBACBtn;
     Button calculateBAC2Btn;
 
     SharedPreferences drinkSharedPrefs, userSharedPrefs;
+    SharedPreferences.Editor editor;
 
     //private static final String USER_WEIGHT = "userWeightKey";
 
@@ -46,12 +49,20 @@ public class CalculateBACBottomFragment extends Fragment
         //calculateBACBtn = (Button)v.findViewById(R.id.btnCalculateBAC);
         //calculateBACBtn.setOnClickListener(this);
 
+        userWeightEditTxt = (EditText)v.findViewById(R.id.editTxtUserWeight);
+
         calculateBAC2Btn = (Button)v.findViewById(R.id.btnCalculateBAC2);
         calculateBAC2Btn.setOnClickListener(this);
 
         drinkSharedPrefs = getActivity().getSharedPreferences("DrinkPrefs", Context.MODE_PRIVATE);
         userSharedPrefs = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
 
+        // dsiplay user weight, value was saved to shared preferences if they entered their
+        // details in user details screen, if no value was entered a default value of 0.00 is
+        // displayed
+        int noWeightEntered = 0;
+        int userWeight = userSharedPrefs.getInt(getString(R.string.user_weight_key), noWeightEntered);
+        userWeightEditTxt.setText(Integer.toString(userWeight));
 
         return v;
     }
@@ -66,6 +77,7 @@ public class CalculateBACBottomFragment extends Fragment
                 //break;
 
             case R.id.btnCalculateBAC2:
+                calculateBAC();
                 showBACDialog();
                 break;
 
@@ -84,7 +96,9 @@ public class CalculateBACBottomFragment extends Fragment
 
     private void calculateBAC()
     {
-        double totalStandardDrinks, bacValue;
+        float totalStandardDrinks;
+        float bacValue;
+
         int numOfSmBeers = drinkSharedPrefs.getInt(getString(R.string.sm_beer_key), 0);
         int numOfLgBeers = drinkSharedPrefs.getInt(getString(R.string.lg_beer_key), 0);
         int numOfBeerBottles = drinkSharedPrefs.getInt(getString(R.string.beer_bottle_key), 0);
@@ -97,15 +111,15 @@ public class CalculateBACBottomFragment extends Fragment
         // apply standard drinks value to number of drinks
         // e.g 1 small beer = 1.1 standard drinks
         //       large beer = 1.6 standard drinks
-        double smBeerStandardDrinks = 1.1 * numOfSmBeers;
-        double lgBeerStandardDrinks = 1.6 * numOfLgBeers;
-        double bottleBeerStandardDrinks = 1.4 * numOfBeerBottles;
-        double canBeerStandDrinks = 1.4 * numOfBeerCans;
+        float smBeerStandardDrinks = 1.1f * numOfSmBeers;
+        float lgBeerStandardDrinks = 1.6f * numOfLgBeers;
+        float bottleBeerStandardDrinks = 1.4f * numOfBeerBottles;
+        float canBeerStandDrinks = 1.4f * numOfBeerCans;
 
-        double sparklingWineStandardDrinks = 1.4 * numOfSparklingWine;
-        double redWineStandardDrinks = 1.6 * numOfRedWine;
-        double whiteWineStandardDrinks = 1.4 * numOfWhiteWine;
-        double bottleWineStandardDrinks = 8.0 * numOfBottleWine;
+        float sparklingWineStandardDrinks = 1.4f * numOfSparklingWine;
+        float redWineStandardDrinks = 1.6f * numOfRedWine;
+        float whiteWineStandardDrinks = 1.4f * numOfWhiteWine;
+        float bottleWineStandardDrinks = 8.0f * numOfBottleWine;
 
         totalStandardDrinks = smBeerStandardDrinks + lgBeerStandardDrinks + bottleBeerStandardDrinks + canBeerStandDrinks
                 + sparklingWineStandardDrinks + redWineStandardDrinks + whiteWineStandardDrinks + bottleWineStandardDrinks;
@@ -113,9 +127,13 @@ public class CalculateBACBottomFragment extends Fragment
         // call method to calculate bac using formula
         bacValue = bacFormula(totalStandardDrinks);
 
-        DecimalFormat decimalFormat = new DecimalFormat("0.00");
-        //displayBACtxtView.setText(decimalFormat.format(bacValue));
+        // save BAC value to shared preferences
+        editor = userSharedPrefs.edit();
+        editor.putFloat(getString(R.string.user_current_bac_key), bacValue);
+        editor.commit();
 
+        //DecimalFormat decimalFormat = new DecimalFormat("0.00");
+        //displayBACtxtView.setText(decimalFormat.format(bacValue));
 
     }
 
@@ -130,13 +148,14 @@ public class CalculateBACBottomFragment extends Fragment
      *       H = hours since started drinking
      *       M = weight in kg
      */
-    private double bacFormula(double numOfDrinks)
+    private float bacFormula(float numOfDrinks)
     {
-        double N, H, M, bac;
+        float N, H, M;
+        float bac;
         boolean gender;
 
         N = numOfDrinks;
-        H = 1;
+        H = 1;          // for testing hours since drinking is set to 1hr
         M = userSharedPrefs.getInt(getString(R.string.user_weight_key), 0);
 
         // get gender value from shared prefs, if no value is stored we return a default
@@ -148,15 +167,15 @@ public class CalculateBACBottomFragment extends Fragment
         if(gender)
         {
             // calculate BAC for a male
-            bac = ((10 * N) - (7.5 * H)) / (6.8 * M);
+            bac = ((10 * N) - (7.5f * H)) / (6.8f * M);
         }
         else
         {
             // calculate BAC for female
-            bac = ((10 * N) - (7.5 * H)) / (5.5 * M);
+            bac = ((10 * N) - (7.5f * H)) / (5.5f * M);
         }
 
-
+        Log.d(TAG, Float.toString(bac));
 
         return bac;
 

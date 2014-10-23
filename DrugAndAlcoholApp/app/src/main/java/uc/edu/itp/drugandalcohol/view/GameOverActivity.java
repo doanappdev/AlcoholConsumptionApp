@@ -1,37 +1,24 @@
 package uc.edu.itp.drugandalcohol.view;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
-
 import uc.edu.itp.drugandalcohol.R;
-import uc.edu.itp.drugandalcohol.reactiontest.GameView;
 
-public class ReactionTestActivity extends Activity {
-
-    boolean speedByTimer;
+public class GameOverActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Intent intent = getIntent();
-        speedByTimer = intent.getBooleanExtra("speedByTimer", false);
-
-        // hide action bar
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        setContentView(new GameView(this, speedByTimer));
+        setContentView(R.layout.activity_game_over);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.reaction_test, menu);
+        getMenuInflater().inflate(R.menu.game_over, menu);
         return true;
     }
 

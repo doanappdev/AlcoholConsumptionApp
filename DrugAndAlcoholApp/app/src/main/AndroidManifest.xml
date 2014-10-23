@@ -52,6 +52,14 @@
             android:name=".view.ReactionTestActivity"
             android:label="@string/title_activity_reaction_test" >
         </activity>
+        <activity
+            android:name=".view.GameMenuActivity"
+            android:label="@string/title_activity_game_menu" >
+        </activity>
+        <activity
+            android:name=".view.GameOverActivity"
+            android:label="@string/title_activity_game_over" >
+        </activity>
     </application>
 
 </manifest>

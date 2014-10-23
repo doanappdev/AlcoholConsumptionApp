@@ -63,8 +63,8 @@ public class NumberPadFragment extends DialogFragment
     public Dialog onCreateDialog(Bundle savedInstanceState)
     {
 
-            // This code is used to
-            // display content from xml file
+        // This code is used to
+        // display content from xml file
         final RelativeLayout rLayout = new RelativeLayout(getActivity());
         rLayout.setLayoutParams(
                 new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,

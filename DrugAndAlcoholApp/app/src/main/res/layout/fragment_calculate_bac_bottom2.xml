@@ -57,7 +57,7 @@
             android:layout_below="@+id/lLayoutBottomBACRow0">
 
             <TextView
-                android:id="@+id/txtViewBACWeight"
+                android:id="@+id/txtViewUserWeight"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -65,7 +65,7 @@
                 android:text="Your weight: "/>
 
             <EditText
-                android:id="@+id/editTxtBACWeight"
+                android:id="@+id/editTxtUserWeight"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
