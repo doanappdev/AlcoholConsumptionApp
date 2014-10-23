@@ -3,26 +3,26 @@ package uc.edu.itp.drugandalcohol.reactiontest;
 /**
  * Created by wh0-r-u on 15/10/2014.
  */
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Rect;
+        import android.graphics.Bitmap;
+        import android.graphics.Canvas;
+        import android.graphics.Rect;
 
-public class ButtonClass extends Sprite {
+        public class ButtonClass extends Sprite {
 
-    private int currentFrame;
+            private int currentFrame;
 
-    public boolean silouhette;
+            public boolean silouhette;
 
-    public ButtonClass(GameView gameView, int id, Bitmap bmp, final int columns,
-                       final int rows, int condition) {
-        super(gameView, id, bmp, columns, rows);
+            public ButtonClass(GameView gameView, int id, Bitmap bmp, final int columns,
+                               final int rows, int condition) {
+                super(gameView, id, bmp, columns, rows);
 
-        if(condition > 0){
+                if(condition > 0){
 
-        }else{
+                }else{
 
-        }
-        switch(condition)
+                }
+                switch(condition)
         {
             case 1:
                 x = 150;
