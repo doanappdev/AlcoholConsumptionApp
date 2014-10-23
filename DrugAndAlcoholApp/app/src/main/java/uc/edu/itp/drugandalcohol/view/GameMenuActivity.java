@@ -8,11 +8,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import uc.edu.itp.drugandalcohol.MainActivity;
 import uc.edu.itp.drugandalcohol.R;
 
 public class GameMenuActivity extends Activity {
 
     Button gameViewBtn;
+    Button instructionsBtn;
+    Button highScoreBtn;
+    Button mainMenuBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -26,6 +30,36 @@ public class GameMenuActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent reactionTestIntent = new Intent(getApplicationContext(), ReactionTestActivity.class);
+                startActivity(reactionTestIntent);
+            }
+        });
+
+        instructionsBtn = (Button)findViewById(R.id.btnInstructions);
+
+        instructionsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent reactionTestIntent = new Intent(getApplicationContext(), ReactionTestActivity.class);
+                startActivity(reactionTestIntent);
+            }
+        });
+
+        highScoreBtn = (Button)findViewById(R.id.btnHighScore);
+
+        highScoreBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent reactionTestIntent = new Intent(getApplicationContext(), ReactionTestActivity.class);
+                startActivity(reactionTestIntent);
+            }
+        });
+
+        mainMenuBtn = (Button)findViewById(R.id.btnMainMenu);
+
+        mainMenuBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent reactionTestIntent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(reactionTestIntent);
             }
         });

@@ -25,38 +25,15 @@ import uc.edu.itp.drugandalcohol.R;
  */
 public class GameView extends SurfaceView
 {
-    public final int MAIN_MENU = 0;
-    public final int INSTRUCTIONS = 1;
-    public final int GAMEPLAY = 2;
-    public final int GAME_OVER = 3;
-    public int currentScreen;
-
-    public boolean isClosed;
-
-    private Bitmap bmps[];
+    private Bitmap bmp;
     private SurfaceHolder holder;
     private GameLoopThread gameLoopThread;
+    private GameplayFunction gameplay;
     private long lastClick;
     private long currentTime;
     private long previousTime;
 
-    private GameComponent screens[];
-    private GameplayFunction scoreKeeper;
-    private boolean condition;
-
-    //THROWAWAY VARIABLES
-    /*
-    private int gameSpeed; //This one is used in a different class
-    private String TAG = "GameView";
-    private int blockWidth;
-    private int blockHeight;
-    private static int ROWS = 3;
-    private static int COLS = 5;
-    private Rectangle rectangle, rectangle2, rectangle3;
-    private List<Rectangle> rectangles = new ArrayList<Rectangle>();
-    private List<TestSprite> sprites = new ArrayList<TestSprite>();
-    private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    */
+    private boolean isClosed;
 
     public GameView(Context context){
         super(context);
@@ -99,56 +76,48 @@ public class GameView extends SurfaceView
     private void init(){
         isClosed = false;
 
-        bmps = new Bitmap[3];
-        bmps[0] = BitmapFactory.decodeResource(getResources(), R.drawable.title);
-        bmps[1] = BitmapFactory.decodeResource(getResources(), R.drawable.menu_buttons);
-        bmps[2] = BitmapFactory.decodeResource(getResources(), R.drawable.alcohol_sprites);
+        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.alcohol_sprites);
 
-        scoreKeeper = new GameplayFunction(this, bmps[2]);
-
-        screens = new GameComponent[]{
-                new MainMenu(this, bmps[0], bmps[1]),
-                new InstructionsMenu(),
-                scoreKeeper,
-                new GameOverMenu(this, bmps[1], scoreKeeper)
-        };
-
-        currentScreen = MAIN_MENU;
-        //currentScreen = GAMEPLAY;
+        gameplay = new GameplayFunction(this, bmp);
 
         currentTime = System.currentTimeMillis();
         previousTime = currentTime;
 
-        screens[currentScreen].reset(currentTime);
-        //These do not need to be called now
-        /*for(int i = 0; i < screens.length; i++)
-            screens[i].reset(currentTime);*/
+        gameplay.reset(currentTime);
     }
 
     @Override
     protected void onDraw(Canvas canvas){
         // set background color
         canvas.drawColor(Color.WHITE);
-
-        currentTime = System.currentTimeMillis();
-
-        screens[currentScreen].update(currentTime, previousTime);
-        screens[currentScreen].onDraw(canvas);
-
-        condition = screens[currentScreen].condition();
-        if(condition){
-            //switchMenus();
-            if(currentScreen == GAMEPLAY){
-                scoreKeeper.clean();
-                currentScreen = GAME_OVER;
-            }
+        if(isClosed) {
             previousTime = currentTime;
-            screens[currentScreen].reset(currentTime);
-        }
-        if(isClosed)
+            gameplay.clean();
             doLose();
-        // if you are using sprite class to represent
-        // objects use sprite.onDraw()
+        }else{
+            currentTime = System.currentTimeMillis();
+
+            gameplay.update(currentTime, previousTime);
+            gameplay.onDraw(canvas);
+
+            isClosed = gameplay.condition();
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event){ //300
+        if (System.currentTimeMillis() - lastClick > 100){
+            lastClick = System.currentTimeMillis();
+            synchronized (getHolder()){
+                isClosed = gameplay.onTouchEvent(event);
+                /*if(isClosed){
+                    previousTime = currentTime;
+                    gameplay.clean();
+                    doLose();
+                }*/
+            }
+        }
+        return true;
     }
 
     public void doLose() {
@@ -158,21 +127,80 @@ public class GameView extends SurfaceView
         }
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event){
-        if (System.currentTimeMillis() - lastClick > 300){
-            lastClick = System.currentTimeMillis();
-            synchronized (getHolder()){
-                condition = screens[currentScreen].onTouchEvent(event);
-                if(condition){
-                    previousTime = currentTime;
-                    screens[currentScreen].reset(currentTime);
-                }
-            }
-        }
-        return true;
-    }
+    //THROWAWAY VARIABLES
+    /*
+    public final int MAIN_MENU = 0;
+    public final int INSTRUCTIONS = 1;
+    public final int GAMEPLAY = 2;
+    public final int GAME_OVER = 3;
+    public int currentScreen;
+    public bool isClosed;
+    private bool condition;
 
+    //private Bitmap bmps[];
+
+    ///private GameComponent screens[];
+    //private GameplayFunction scoreKeeper;
+
+    private int gameSpeed; //This one is used in a different class
+    private String TAG = "GameView";
+    private int blockWidth;
+    private int blockHeight;
+    private static int ROWS = 3;
+    private static int COLS = 5;
+    private Rectangle rectangle, rectangle2, rectangle3;
+    private List<Rectangle> rectangles = new ArrayList<Rectangle>();
+    private List<TestSprite> sprites = new ArrayList<TestSprite>();
+    private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    */
+
+    //Throwaway Init() code
+    /*bmps = new Bitmap[3];
+    bmps[0] = BitmapFactory.decodeResource(getResources(), R.drawable.title);
+    bmps[1] = BitmapFactory.decodeResource(getResources(), R.drawable.menu_buttons);
+    bmps[2] = BitmapFactory.decodeResource(getResources(), R.drawable.alcohol_sprites);*/
+
+    //scoreKeeper = new GameplayFunction(this, bmps[2]);
+
+    /*screens = new GameComponent[]{
+            new MainMenu(this, bmps[0], bmps[1]),
+            new InstructionsMenu(),
+            scoreKeeper,
+            new GameOverMenu(this, bmps[1], scoreKeeper)
+    };*/
+
+    //currentScreen = MAIN_MENU;
+    //currentScreen = GAMEPLAY;
+    //screens[currentScreen].reset(currentTime);
+
+    //throwaway onDraw() code
+    /*screens[currentScreen].update(currentTime, previousTime);
+    screens[currentScreen].onDraw(canvas);
+
+    condition = screens[currentScreen].condition();
+    if(condition){
+        //switchMenus();
+        if(currentScreen == GAMEPLAY){
+            scoreKeeper.clean();
+            currentScreen = GAME_OVER;
+        }
+        previousTime = currentTime;
+        screens[currentScreen].reset(currentTime);
+    }
+    if(isClosed)
+        doLose();
+    */
+
+    //Throwaway onTouchEvent() code
+    /*
+    condition = screens[currentScreen].onTouchEvent(event);
+    if(condition){
+        previousTime = currentTime;
+        screens[currentScreen].reset(currentTime);
+    }
+    */
+
+    //THROWAWAY CODE BELOW
      /*private void switchMenus(){
         switch(currentScreen){
             case MAIN_MENU:
@@ -188,7 +216,6 @@ public class GameView extends SurfaceView
         }
     }*/
 
-    //THROWAWAY CODE BELOW
     /*
     for(Rectangle rect : rectangles)
     {

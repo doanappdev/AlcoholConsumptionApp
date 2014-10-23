@@ -51,8 +51,8 @@ public class GameOverMenu extends GameComponent {
         HitTNT = false;
 
         buttons = new ButtonClass[]{
-                new ButtonClass(view, 6, buttonSprites, 2, 4, 2),
-                new ButtonClass(view, 5, buttonSprites, 2, 4, 2)
+                new ButtonClass(view, 6, buttonSprites, 2, 4),
+                new ButtonClass(view, 5, buttonSprites, 2, 4)
         };
 
         buttonCount = 2;
@@ -113,8 +113,8 @@ public class GameOverMenu extends GameComponent {
     private void checkButtonCondition(int id){
         condition = true;
         switch(id){
-            case 5: view.currentScreen = view.MAIN_MENU; break;
-            case 6: view.isClosed = true; break;
+            //case 5: view.currentScreen = view.MAIN_MENU; break;
+            //case 6: view.isClosed = true; break;
             default: break;
         }
     }

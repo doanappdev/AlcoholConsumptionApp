@@ -6,6 +6,7 @@ package uc.edu.itp.drugandalcohol.reactiontest;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.graphics.RectF;
 
 public class AlcoholClass extends Sprite {
 
@@ -14,25 +15,24 @@ public class AlcoholClass extends Sprite {
     private int endY;
     private int points;
 
-    public int midX;
-    public int midY;
     public boolean active;
 
     public AlcoholClass(GameView gameView, int id, Bitmap bmp, final int columns, final int rows) {
         super(gameView, id, bmp, columns, rows);
 
-        x = 100 * id;
-        y = 600;
+        int g_width = gameView.getWidth();
+        x = g_width*id/5 + g_width/10 - width;
+        y = -100;
         xSpeed = 0;
         ySpeed = 3;
-        midX = x + width/2;
-        midY = y + height/2;
+        midX = x + width;//width/2;
+        midY = y + height;//height/2;
         active = false;
 
         srcX = id%BMP_COLUMNS * width;
         srcY = 0;
         src = new Rect(srcX, srcY, srcX + width, srcY + height);
-        endY = -100;
+        endY = gameView.getHeight() + 100;
         setPoints();
 
         if(id > 3){
@@ -48,10 +48,12 @@ public class AlcoholClass extends Sprite {
             src = new Rect(srcX, srcY, srcX + width, srcY + height);
         }
 
-        x = 100 * id;
-        y = gameView.getHeight() + 100;
-        midX = x + width/2;
-        midY = y + height/2;
+        int g_width = gameView.getWidth();
+        x = g_width*id/5 + g_width/10 - width;
+
+        y = -100;
+        midX = x + width;//width/2;
+        midY = y + height;//height/2;
 
         this.xSpeed = xSpeed;
         this.ySpeed = ySpeed;
@@ -61,22 +63,22 @@ public class AlcoholClass extends Sprite {
     }
 
     public void ResetTNT(){
-        y = gameView.getHeight() + 100;
+        y = -100;
         active = true;
     }
 
     @Override
     protected void update() {
-        y -= ySpeed;
-        midY -= ySpeed;
-        if (y < endY) active = false;
+        y += ySpeed;
+        midY += ySpeed;
+        if (y > endY) active = false;
     }
 
     public void TNTUpdate() {
         if(active){
-            y -= ySpeed;
-            if (y <= endY) {
-                y = -100;
+            y += ySpeed;
+            if (y >= endY) {
+                y = endY;
                 active = false;
             }
         }
@@ -85,12 +87,12 @@ public class AlcoholClass extends Sprite {
     @Override
     public void onDraw(Canvas canvas) {
         if(id < 4)update();
-        dst = new Rect(x, y, x + width * 2, y + height * 2);
+        dst = new RectF(x, y, x + width * 2, y + height * 2);
         canvas.drawBitmap(bmp, src, dst, null);
     }
 
     public void destroyTNT(){
-        y = -100;
+        y = endY;
         active = false;
     }
 
@@ -109,7 +111,7 @@ public class AlcoholClass extends Sprite {
         }
     }
 
-    public Rect getRect(){
+    public RectF getRect(){
         return dst;
     }
 }

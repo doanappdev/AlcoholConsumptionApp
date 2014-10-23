@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import java.util.LinkedList;
@@ -13,14 +14,20 @@ import java.util.Queue;
 /**
  * Created by wh0-r-u on 15/10/2014.
  */
-public class GameplayFunction extends GameComponent {
+public class GameplayFunction {
 
     //Fixed times and speed
+    private final int MAX_MISSES = 5;
+
     private final int secondsToMills = 1000;
     private final int beerSpeed = 2;
     private final int wineSpeed = 1;
     private final int kegSpeed = 2;
-    private final int spiritSpeed = 0;
+    private final int spiritSpeed = 1;
+
+    private int g_width;
+    private int g_height;
+    private float aspect;
 
     //Time Formatting Used
     private String timeText;
@@ -81,11 +88,10 @@ public class GameplayFunction extends GameComponent {
     //Temporary variables for faster performance
     private int i;
     private int tempInt;
-    private ButtonClass button;
     private AlcoholClass currentAlcohol;
 
     public GameplayFunction(GameView view, Bitmap bmp){
-        super();
+        //super();
 
         this.bmp = bmp;
         this.view = view;
@@ -100,20 +106,38 @@ public class GameplayFunction extends GameComponent {
 
         TNT = new AlcoholClass(view, 4, bmp, 5, 2);
 
+        float xResult, yResult;
+        int width = (bmp.getWidth()/5);
+        g_width = view.getWidth();
+        g_height = view.getHeight();
+
         buttons = new ButtonClass[buttonCount];
         for(i = 0; i < buttonCount; i++) {
-            buttons[i] = new ButtonClass(view, i, bmp, 5, 2, 0);
+            buttons[i] = new ButtonClass(view, i, bmp, 5, 2);
             buttons[i].silouhette = true;
+
+            //x = 0.8 of game width * id * 1/(number of buttons-1)
+
+            //The formula of x is calculated by having 80% of game
+            //width times the id number of a button divided by 1 less
+            //the number of buttons in total, plus 10% of game width,
+            //minus the scaled width of the button divided by 2.
+            xResult = (g_width*i/5) + (g_width/10) - width;
+            Log.d("Gameplay Function: X - ", String.valueOf(xResult));
+            yResult = g_height - (g_height*0.15f);
+
+            buttons[i].setPosX(xResult);
+            buttons[i].setPosY(yResult);
         }
     }
 
-    @Override
+    //@Override
     public boolean condition()
     {
-        return (misses >= 10 || HitTNT);
+        return (misses >= MAX_MISSES || HitTNT);
     }
 
-    @Override
+    //@Override
     public void reset(long currentTime){
         score = 0;
         hits = 0;
@@ -132,7 +156,7 @@ public class GameplayFunction extends GameComponent {
         wineTimer = 8L;
         kegTimer = 6L;
         spiritTimer = 10L;
-        TNTTimer = 20L;
+        TNTTimer = 13L;
 
         resetTime = currentTime;
         beerTimerCount = currentTime;
@@ -161,34 +185,39 @@ public class GameplayFunction extends GameComponent {
             currentAlcohol = spirits.remove();
             Push(currentAlcohol);
         }
+
+        beerCount = 0;
+        wineCount = 0;
+        kegCount = 0;
+        spiritCount = 0;
+
         TNT.destroyTNT();
     }
 
-    @Override
+    //@Override
     public void update(long currentTime, long previousTime){
         updateTime(currentTime, previousTime);
         spawnSprites(currentTime);
     }
 
-    @Override
+    //@Override
     public void onDraw(Canvas canvas){
         updateSprites(canvas);
         updateText(canvas);
     }
 
-    @Override
+    //@Override
     public boolean onTouchEvent(MotionEvent event){
         for (i = buttons.length - 1; i >= 0; i--) {
-            button = buttons[i];
-            if (!button.silouhette && button.isCollision(event.getX(), event.getY())) {
-                checkButtonCondition(button.id);
+            if (!buttons[i].silouhette && buttons[i].isCollision(event.getX(), event.getY())) {
+                checkButtonCondition(buttons[i].id);
                 break;
             }
         }
-        if(misses >= 10 || HitTNT){
+        /*if(misses >= MAX_MISSES || HitTNT){
             clean();
-            view.currentScreen = view.GAME_OVER;
-        }
+            //view.currentScreen = view.GAME_OVER;
+        }*/
         return condition();
     }
 
@@ -222,21 +251,21 @@ public class GameplayFunction extends GameComponent {
     private void checkButtonCondition(int id){
         switch(id){
             case 0:
-                if(kegs.size() > 0) kegCount = quickTap(kegCount,kegs);
+                if(kegs.size() > 0) kegCount = quickTap(kegCount, id, kegs);
                 break;
             case 1:
-                if(wines.size() > 0) wineCount = timedTap(wineCount, wines);
+                if(wines.size() > 0) wineCount = timedTap(wineCount, id, wines);
                 break;
             case 2:
-                if(beers.size() > 0) beerCount = quickTap(beerCount, beers);
+                if(beers.size() > 0) beerCount = quickTap(beerCount, id, beers);
                 break;
             case 3:
-                if(spirits.size() > 0) spiritCount = timedTap(spiritCount, spirits);
+                if(spirits.size() > 0) spiritCount = timedTap(spiritCount, id, spirits);
                 break;
             case 4:
                 score += TNT.getPoints();
                 TNT.destroyTNT();
-                button.silouhette = true;
+                buttons[id].silouhette = true;
                 HitTNT = true;
                 break;
             default:
@@ -245,25 +274,25 @@ public class GameplayFunction extends GameComponent {
         if(score < 0) score = 0;
     }
 
-    private int quickTap(int count, Queue<AlcoholClass> queue){
+    private int quickTap(int count, int id, Queue<AlcoholClass> queue){
         currentAlcohol = queue.remove();
-        if(currentAlcohol.midY > button.getYLimit()){
+        if(currentAlcohol.midY < buttons[id].getYLimit()){
             score += currentAlcohol.getPoints();
             hits++;
         } else misses++;
         inactives.add(currentAlcohol);
-        if(--count < 1) button.silouhette = true;
+        if(--count < 1) buttons[id].silouhette = true;
         return count;
     }
 
-    private int timedTap(int count, Queue<AlcoholClass> queue){
+    private int timedTap(int count, int id, Queue<AlcoholClass> queue){
         currentAlcohol = queue.remove();
-        if(button.isIntersecting(currentAlcohol.getRect())){
+        if(buttons[id].isIntersecting(currentAlcohol.getRect())){
             score += currentAlcohol.getPoints();
             hits++;
         } else misses++;
         inactives.add(currentAlcohol);
-        if(--count < 1) button.silouhette = true;
+        if(--count < 1) buttons[id].silouhette = true;
         return count;
     }
 
@@ -319,10 +348,8 @@ public class GameplayFunction extends GameComponent {
     }
 
     private void updateSprites(Canvas canvas){
-        for(i = 0; i < buttonCount; i++) {
-            button = buttons[i];
-            button.onDraw(canvas);
-        }
+        for(i = 0; i < buttonCount; i++)
+            buttons[i].onDraw(canvas);
 
         kegCount = updateSprite(canvas, kegCount, 0, kegs);
         wineCount = updateSprite(canvas, wineCount, 1, wines);
@@ -351,12 +378,15 @@ public class GameplayFunction extends GameComponent {
     }
 
     private void updateText(Canvas canvas){
-        paint.setColor(Color.BLACK);
         paint.setStyle(Paint.Style.FILL);
-        paint.setTextSize(20);
+        paint.setColor(Color.rgb(255, 128, 0));
+        canvas.drawRect(0, 0, g_width, g_height/5, paint);
 
-        canvas.drawText("Score - " + Integer.toString(score), 0, 20, paint);
-        canvas.drawText("Misses - " + Integer.toString(misses), 130, 20, paint);
-        canvas.drawText(timeText, 300, 20, paint);
+        paint.setColor(Color.BLUE);
+        paint.setTextSize(20*g_width/320);
+
+        canvas.drawText("Score - " + Integer.toString(score), 0, g_height/20, paint);
+        canvas.drawText("Misses - " + Integer.toString(misses), g_width*9/20, g_height/20, paint);
+        canvas.drawText(timeText, 0, g_height*3/20, paint);
     }
 }

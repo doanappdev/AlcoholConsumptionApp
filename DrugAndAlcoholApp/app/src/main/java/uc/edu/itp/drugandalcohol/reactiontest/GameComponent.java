@@ -4,11 +4,10 @@ import android.graphics.Canvas;
 import android.view.MotionEvent;
 
 /**
- * Created by wh0-r-u on 15/10/2014.
+ - * Created by wh0-r-u on 15/10/2014.
  */
 abstract class GameComponent {
-
-    public GameComponent(){
+    public GameComponent() {
         //Do stuff
     }
 
@@ -17,4 +16,5 @@ abstract class GameComponent {
     abstract void update(long currentTime, long previousTime);
     abstract void onDraw(Canvas canvas);
     abstract boolean onTouchEvent(MotionEvent event);
+
 }

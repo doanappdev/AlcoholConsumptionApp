@@ -22,16 +22,39 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Start"
+        android:layout_marginTop="40dp"
         android:layout_below="@+id/txtViewGameHeading"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="65dp" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/btnHighScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="High Scores"
+        android:layout_toStartOf="@+id/btnStartGame"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/btnInstructions"
+        android:layout_alignStart="@+id/btnInstructions"
+        android:layout_alignRight="@+id/btnInstructions"
+        android:layout_alignEnd="@+id/btnInstructions" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Main Menu"
+        android:id="@+id/btnMainMenu"
+        android:layout_toEndOf="@+id/btnStartGame"
+        android:layout_marginTop="31dp"
+        android:layout_below="@+id/btnHighScore"
+        android:layout_alignLeft="@+id/btnHighScore"
+        android:layout_alignStart="@+id/btnHighScore" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Instructions"
+        android:id="@+id/btnInstructions"
+        android:layout_marginTop="31dp"
         android:layout_below="@+id/btnStartGame"
         android:layout_centerHorizontal="true" />
 
