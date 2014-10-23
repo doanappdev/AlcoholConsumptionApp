@@ -91,7 +91,7 @@ public class GameView extends SurfaceView
 
     @Override
     protected void onDraw(Canvas canvas){
-        // set background color
+
         if(isClosed) {
             previousTime = currentTime;
             gameplay.clean();
