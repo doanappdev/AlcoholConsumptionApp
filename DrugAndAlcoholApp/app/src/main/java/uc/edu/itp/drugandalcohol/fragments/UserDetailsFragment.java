@@ -167,8 +167,4 @@ public class UserDetailsFragment extends Fragment
         return "This is the test string";
     }
 
-
-
-
-
 }

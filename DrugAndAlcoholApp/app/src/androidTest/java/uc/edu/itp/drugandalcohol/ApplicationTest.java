@@ -13,8 +13,7 @@ import uc.edu.itp.drugandalcohol.view.UserDetailsActivity;
  * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
  */
 //public class ApplicationTest extends ApplicationTestCase<Application>
-//public class ApplicationTest extends ActivityInstrumentationTestCase2<UserDetailsActivity>
-public class ApplicationTest extends Fr
+public class ApplicationTest extends ActivityInstrumentationTestCase2<UserDetailsActivity>
 {
     public ApplicationTest()
     {
