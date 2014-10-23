@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/lLayout0"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" >
 
         <TextView
             android:id="@+id/txtViewAge"
@@ -52,6 +52,7 @@
         <View
             android:layout_width="0.5dp"
             android:layout_height="fill_parent"
+            android:layout_marginLeft="@dimen/border_width"
             android:background="@android:color/darker_gray"
             />
 
@@ -74,7 +75,8 @@
         android:layout_width="fill_parent"
         android:layout_height="0.5dp"
         android:layout_below="@+id/lLayout1"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="@dimen/border_width"
+        android:layout_marginTop="@dimen/border_width"
         android:background="@android:color/darker_gray"
 
         />
@@ -112,12 +114,14 @@
 
     </LinearLayout>
 
+    <!-- layout for pregnant -->
     <LinearLayout
-        android:id="@+id/lLayout3"
+        android:id="@+id/lLayoutPregnant"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lLayout2"
         android:orientation="horizontal"
+        android:visibility="invisible"
         >
 
         <TextView
@@ -149,7 +153,7 @@
         android:id="@+id/divider2"
         android:layout_width="fill_parent"
         android:layout_height="0.5dp"
-        android:layout_below="@+id/lLayout3"
+        android:layout_below="@+id/lLayoutPregnant"
         android:layout_marginLeft="16dp"
         android:background="@android:color/darker_gray"/>
 

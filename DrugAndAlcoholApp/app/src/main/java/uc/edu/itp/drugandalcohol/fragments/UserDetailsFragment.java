@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -25,6 +25,7 @@ import uc.edu.itp.drugandalcohol.R;
 public class UserDetailsFragment extends Fragment
         implements View.OnClickListener, CompoundButton.OnCheckedChangeListener
 {
+    LinearLayout pregnantLayout;
     SharedPreferences userSharedPrefs;
 
     Button acceptBtn, cancelBtn, editBtn;
@@ -32,7 +33,7 @@ public class UserDetailsFragment extends Fragment
     EditText userAgeEditTxt, userWeightEditTxt, buddyNameEditTxt, buddyNumberEditTxt;
     Switch genderSwitch;
 
-    private boolean gender, pregnant;
+    private boolean male, pregnant;
 
 
 
@@ -87,13 +88,22 @@ public class UserDetailsFragment extends Fragment
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
     {
+        pregnantLayout = (LinearLayout)getActivity().findViewById(R.id.lLayoutPregnant);
+
         if(genderSwitch.isChecked())
         {
-            gender = true;      // male
+            male = true;      //  user is male
+
+            // hide pregnant switch
+            pregnantLayout.setVisibility(LinearLayout.INVISIBLE);
         }
         else
         {
-            gender = false;     // female
+            male = false;     //  user is female
+
+            // display pregnant switch
+            pregnantLayout.setVisibility(LinearLayout.VISIBLE);
+
         }
     }
 
@@ -142,14 +152,22 @@ public class UserDetailsFragment extends Fragment
         editor.putInt(getString(R.string.user_weight_key), userWeight);
         editor.putInt(getString(R.string.buddy_number_key), buddyNumInt);
         editor.putString(getString(R.string.buddy_name_key), buddyName);
-        editor.putBoolean(getString(R.string.user_gender_key), gender);
+        editor.putBoolean(getString(R.string.user_gender_key), male);
+
         editor.commit();
 
         // display toast to confirm details saved
-        Toast.makeText(getActivity(),  "User Details:" + userAge + " " + userWeight + " " + gender, Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(),  "User Details:" + userAge + " " + userWeight + " " + male, Toast.LENGTH_LONG).show();
 
 
     }
+
+    public String testMethod()
+    {
+        return "This is the test string";
+    }
+
+
 
 
 
