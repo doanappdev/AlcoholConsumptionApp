@@ -240,19 +240,6 @@ public class GameplayFunction {
     public long getSpentTime(){ return spentTime; }
     public boolean getHitTNT(){ return HitTNT; }
 
-    private void updateTime(long currentTime, long previousTime)
-    {
-        timeCount = currentTime - resetTime;
-        if(timeCount >= (15 * secondsToMills))
-        {
-            resetTime = currentTime;
-            if(beerTimer > 1)beerTimer--;
-            if(wineTimer > 1)wineTimer--;
-            if(kegTimer > 1)kegTimer--;
-            if(spiritTimer > 1)spiritTimer--;
-            if(TNTTimer > 1)TNTTimer--;
-            gameSpeed++;
-
     public void changeSurface(int width, int height)
     {
         g_width = width;
