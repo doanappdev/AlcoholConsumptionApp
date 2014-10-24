@@ -114,7 +114,6 @@ public class GameplayFunction {
         inactives = new LinkedList<AlcoholClass>();
 
         TNT = new AlcoholClass(view, 4, bmp, 3, 2);
-        TNT.reset(0, gameSpeed, 4);
 
         float xResult, yResult;
         int width = (bmp.getWidth()/3);
@@ -161,6 +160,8 @@ public class GameplayFunction {
         timeCount = 0;
         gameSpeed = 2;
         randomSpeed = 0;
+
+        TNT.reset(0, gameSpeed, 4);
 
         beerCount = 0;
         wineCount = 0;
