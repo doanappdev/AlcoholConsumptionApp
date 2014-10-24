@@ -42,7 +42,7 @@ public class GameMenuActivity extends Activity {
 
                 //settings.setSpeedByTimer(speedByTimer);
                 reactionTestIntent.putExtra("speedByTimer", speedByTimer);
-                reactionTestIntent.putExtra("randomiseSpeed", false);
+                reactionTestIntent.putExtra("randomiseSpeed", randomiseSpeed);
 
                 startActivity(reactionTestIntent);
             }

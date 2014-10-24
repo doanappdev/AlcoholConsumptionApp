@@ -33,15 +33,17 @@ public class GameView extends SurfaceView
     private long currentTime;
     private long previousTime;
 
+    private int eventAction;
     private boolean isClosed;
+    private boolean pressed;
 
     private GameSettings settings;
-    private boolean speedByTimer;
 
     public GameView(Context context, GameSettings settings){
         super(context);
 
         this.settings = settings;
+        pressed = false;
 
         gameLoopThread = new GameLoopThread(this);
         holder = getHolder();
@@ -81,7 +83,8 @@ public class GameView extends SurfaceView
     private void init(){
         isClosed = false;
 
-        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.alcohol_sprites);
+        //bmp = BitmapFactory.decodeResource(getResources(), R.drawable.alcohol_sprites);
+        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.alcohol_sprites_v2);
 
         gameplay = new GameplayFunction(this, bmp, settings);
 
@@ -111,16 +114,20 @@ public class GameView extends SurfaceView
 
     @Override
     public boolean onTouchEvent(MotionEvent event){ //300
-        if (System.currentTimeMillis() - lastClick > 100){
-            lastClick = System.currentTimeMillis();
-            synchronized (getHolder()){
-                isClosed = gameplay.onTouchEvent(event);
-                /*if(isClosed){
-                    previousTime = currentTime;
-                    gameplay.clean();
-                    doLose();
-                }*/
-            }
+        eventAction = event.getAction();
+        switch (eventAction) {
+            case MotionEvent.ACTION_DOWN:
+                if (!pressed && System.currentTimeMillis() - lastClick > 100){
+                    pressed = true;
+                    lastClick = System.currentTimeMillis();
+                    synchronized (getHolder()){
+                        isClosed = gameplay.onTouchEvent(event);
+                    }
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                pressed = false;
+                break;
         }
         return true;
     }

@@ -113,19 +113,18 @@ public class GameplayFunction {
         spirits = new LinkedList<AlcoholClass>();
         inactives = new LinkedList<AlcoholClass>();
 
-        TNT = new AlcoholClass(view, 4, bmp, 5, 2);
-        TNT.reset(0, 2, 4);
+        TNT = new AlcoholClass(view, 4, bmp, 3, 2);
+        TNT.reset(0, gameSpeed, 4);
 
         float xResult, yResult;
-        int width = (bmp.getWidth()/5);
+        int width = (bmp.getWidth()/3);
         g_width = view.getWidth();
         g_height = view.getHeight();
         g_lowest = (g_width > g_height) ? g_height : g_width;
 
         buttons = new ButtonClass[buttonCount];
         for(i = 0; i < buttonCount; i++) {
-            buttons[i] = new ButtonClass(view, i, bmp, 5, 2);
-            buttons[i].silouhette = true;
+            buttons[i] = new ButtonClass(view, i, bmp, 3, 2);
 
             //x = 0.8 of game width * id * 1/(number of buttons-1)
 
@@ -289,18 +288,18 @@ public class GameplayFunction {
     private void checkButtonCondition(int id){
         switch(id){
             case 0:
-                if(kegs.size() > 0)
-                    //kegCount = quickTap(kegCount, id, kegs);
-                    kegCount = timedTap(kegCount, id, kegs);
+                if(beers.size() > 0)
+                    //beerCount = quickTap(beerCount, id, beers);
+                    beerCount = timedTap(beerCount, id, beers);
                 break;
             case 1:
                 if(wines.size() > 0)
                     wineCount = timedTap(wineCount, id, wines);
                 break;
             case 2:
-                if(beers.size() > 0)
-                    //beerCount = quickTap(beerCount, id, beers);
-                    beerCount = timedTap(beerCount, id, beers);
+                if(kegs.size() > 0)
+                    //kegCount = quickTap(kegCount, id, kegs);
+                    kegCount = timedTap(kegCount, id, kegs);
                 break;
             case 3:
                 if(spirits.size() > 0)
@@ -345,14 +344,14 @@ public class GameplayFunction {
     }
 
     private void spawnSprites(long currentTime){
-        kegCount += spawnSprite(currentTime, kegTimerCount, kegTimer, gameSpeed, 0, kegs);
-        kegTimerCount = timeCount;
+        beerCount += spawnSprite(currentTime, beerTimerCount, beerTimer, gameSpeed, 0, beers);
+        beerTimerCount = timeCount;
 
         wineCount += spawnSprite(currentTime, wineTimerCount, wineTimer, gameSpeed, 1, wines);
         wineTimerCount = timeCount;
 
-        beerCount += spawnSprite(currentTime, beerTimerCount, beerTimer, gameSpeed, 2, beers);
-        beerTimerCount = timeCount;
+        kegCount += spawnSprite(currentTime, kegTimerCount, kegTimer, gameSpeed, 2, kegs);
+        kegTimerCount = timeCount;
 
         spiritCount += spawnSprite(currentTime, spiritTimerCount, spiritTimer,
                 gameSpeed, 3, spirits);
@@ -382,6 +381,60 @@ public class GameplayFunction {
             timeCount = count;
             return 0;
         }
+    }
+
+    private AlcoholClass Pop(int id){
+        return (inactives.size() > 0) ?
+                inactives.remove() :
+                new AlcoholClass(view,id,bmp,3,2);
+    }
+
+    private void Push(AlcoholClass inactive){
+        inactives.add(inactive);
+    }
+
+    private void updateSprites(Canvas canvas){
+        for(i = 0; i < buttonCount; i++)
+            buttons[i].onDraw(canvas);
+
+        beerCount = updateSprite(canvas, beerCount, 0, beers);
+        wineCount = updateSprite(canvas, wineCount, 1, wines);
+        kegCount = updateSprite(canvas, kegCount, 2, kegs);
+        spiritCount = updateSprite(canvas, spiritCount, 3, spirits);
+
+        TNT.onDraw(canvas);
+        if(!TNT.active && !buttons[4].silouhette) buttons[4].silouhette = true;
+    }
+
+    private int updateSprite(Canvas canvas, int count, int id, Queue<AlcoholClass> queue){
+        tempInt = count;
+        for(i = 0; i < count; i++) {
+            currentAlcohol = queue.remove();
+            currentAlcohol.onDraw(canvas);
+            if(currentAlcohol.active) queue.add(currentAlcohol);
+            else{
+                Push(currentAlcohol);
+                tempInt--;
+                misses++;
+                if(tempInt < 1 && !buttons[id].silouhette) buttons[id].silouhette = true;
+            }
+        }
+        return tempInt;
+    }
+
+    private void updateText(Canvas canvas){
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(Color.rgb(255, 128, 0));
+        canvas.drawRect(0, 0, g_width, g_height/5, paint);
+
+        paint.setColor(Color.BLUE);
+        paint.setTextSize(20*g_lowest/320);
+
+        //currentScore is too long of a text compared to Score
+        //At 600 pixels wide
+        canvas.drawText("Score - " + Integer.toString(currentScore), 0, g_height/20, paint);
+        canvas.drawText("Misses - " + Integer.toString(misses), g_width*9/20, g_height/20, paint);
+        canvas.drawText(timeText, 0, g_height*3/20, paint);
     }
 
     private void genRandomSpeed(){
@@ -423,60 +476,5 @@ public class GameplayFunction {
                 break;
         }
         Log.d("RNG - ", String.valueOf(rngResults));
-    }
-
-    private AlcoholClass Pop(int id){
-        return (inactives.size() > 0) ?
-                inactives.remove() :
-                new AlcoholClass(view,id,bmp,5,2);
-    }
-
-    private void Push(AlcoholClass inactive){
-        inactives.add(inactive);
-    }
-
-    private void updateSprites(Canvas canvas){
-        for(i = 0; i < buttonCount; i++)
-            buttons[i].onDraw(canvas);
-
-        kegCount = updateSprite(canvas, kegCount, 0, kegs);
-        wineCount = updateSprite(canvas, wineCount, 1, wines);
-        beerCount = updateSprite(canvas, beerCount, 2, beers);
-        spiritCount = updateSprite(canvas, spiritCount, 3, spirits);
-
-        TNT.TNTUpdate();
-        TNT.onDraw(canvas);
-        if(!TNT.active && !buttons[4].silouhette) buttons[4].silouhette = true;
-    }
-
-    private int updateSprite(Canvas canvas, int count, int id, Queue<AlcoholClass> queue){
-        tempInt = count;
-        for(i = 0; i < count; i++) {
-            currentAlcohol = queue.remove();
-            currentAlcohol.onDraw(canvas);
-            if(currentAlcohol.active) queue.add(currentAlcohol);
-            else{
-                Push(currentAlcohol);
-                tempInt--;
-                misses++;
-                if(tempInt < 1 && !buttons[id].silouhette) buttons[id].silouhette = true;
-            }
-        }
-        return tempInt;
-    }
-
-    private void updateText(Canvas canvas){
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(Color.rgb(255, 128, 0));
-        canvas.drawRect(0, 0, g_width, g_height/5, paint);
-
-        paint.setColor(Color.BLUE);
-        paint.setTextSize(20*g_lowest/320);
-
-        //currentScore is too long of a text compared to Score
-        //At 600 pixels wide
-        canvas.drawText("Score - " + Integer.toString(currentScore), 0, g_height/20, paint);
-        canvas.drawText("Misses - " + Integer.toString(misses), g_width*9/20, g_height/20, paint);
-        canvas.drawText(timeText, 0, g_height*3/20, paint);
     }
 }

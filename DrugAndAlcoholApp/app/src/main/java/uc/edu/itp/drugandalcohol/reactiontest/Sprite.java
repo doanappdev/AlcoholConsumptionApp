@@ -6,6 +6,7 @@ package uc.edu.itp.drugandalcohol.reactiontest;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.LightingColorFilter;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
@@ -46,11 +47,26 @@ abstract class Sprite {
 
         this.width = bmp.getWidth() / BMP_COLUMNS;
         this.height = bmp.getHeight() / BMP_ROWS;
+
+        paint = new Paint();
+        paint.setStyle(Paint.Style.FILL);
+
+        srcX = id%columns * width;
+        srcY = id/columns * height;
+        src = new Rect(srcX, srcY, srcX + width, srcY + height);
+        dst = new RectF(x, y, x + width * 2, y + height * 2);
     }
 
     abstract void onDraw(Canvas canvas);
-    abstract void update();
+
+    //abstract void update();
 
     public void setPosX(float x){this.x = x;}
     public void setPosY(float y){this.y = y;}
+
+    public void setColor(int a, int r, int g, int b){
+        paint.setARGB(a, r, g, b);
+        filter = new LightingColorFilter(paint.getColor(), 0);
+        paint.setColorFilter(filter);
+    }
 }

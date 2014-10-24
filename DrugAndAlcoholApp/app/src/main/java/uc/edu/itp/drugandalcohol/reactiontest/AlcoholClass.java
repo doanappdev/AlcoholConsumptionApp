@@ -21,9 +21,6 @@ public class AlcoholClass extends Sprite {
         super(gameView, id, bmp, columns, rows);
 
         active = false;
-        srcX = id%BMP_COLUMNS * width;
-        srcY = 0;
-        src = new Rect(srcX, srcY, srcX + width, srcY + height);
         endY = gameView.getHeight() + height;
     }
 
@@ -31,7 +28,16 @@ public class AlcoholClass extends Sprite {
         if(this.id != id){
             this.id = id;
             srcX = id%BMP_COLUMNS * width;
-            src = new Rect(srcX, srcY, srcX + width, srcY + height);
+            srcY = id/BMP_COLUMNS * height;
+            src.set(srcX , srcY, srcX + width, srcY + height);
+        }
+
+        switch(this.id){
+            case 0:setColor(255,200,200,0);break;
+            case 1:setColor(255,255,0,0);break;
+            case 2:setColor(255,0,255,0);break;
+            case 3:setColor(255,64,64,255);break;
+            default:setColor(255,255,255,255);break;
         }
 
         int g_width = gameView.getWidth();
@@ -55,14 +61,14 @@ public class AlcoholClass extends Sprite {
         active = true;
     }
 
-    @Override
+    //@Override
     protected void update() {
         y += ySpeed;
         midY += ySpeed;
         if (y > endY) active = false;
     }
 
-    public void TNTUpdate() {
+    private void TNTUpdate() {
         if(active){
             y += ySpeed;
             if (y >= endY) {
@@ -74,9 +80,15 @@ public class AlcoholClass extends Sprite {
 
     @Override
     public void onDraw(Canvas canvas) {
-        if(id < 4)update();
-        dst = new RectF(x, y, x + width * 2, y + height * 2);
-        canvas.drawBitmap(bmp, src, dst, null);
+        if(id < 4)
+            update();
+        else
+            TNTUpdate();
+        dst.set(x, y, x + width * 2, y + height * 2);
+        if(id > 3)
+            canvas.drawBitmap(bmp, src, dst, null);
+        else
+            canvas.drawBitmap(bmp, src, dst, paint);
     }
 
     public void destroyTNT(){

@@ -23,10 +23,10 @@ public class Logo extends Sprite {
         dst = new RectF(x, y, x + width * 2, y + height * 2);
     }
 
-    @Override
-    public void update() {
+    //@Override
+    //public void update() {
         //Should not be implemented
-    }
+    //}
 
     @Override
     public void onDraw(Canvas canvas) {
