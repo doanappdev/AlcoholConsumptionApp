@@ -23,6 +23,12 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:support-v4:20.0.0'
-    compile files('/C:/Users/AppDeveloper/Documents/SourceControl/BitBucket/DrugAndAlcoholApp/libs/gson-2.2.2.jar')
-    compile files('/C:/Users/AppDeveloper/Documents/SourceControl/BitBucket/DrugAndAlcoholApp/libs/mobileservices-1.1.5.jar')
+
+    //Eric's location
+    compile files('/Users/wh0-r-u/drugandalcoholapp/DrugAndAlcoholApp/libs/gson-2.2.2.jar')
+    compile files('/Users/wh0-r-u/drugandalcoholapp/DrugAndAlcoholApp/libs/mobileservices-1.1.5.jar')
+
+    //Luong's location
+    //compile files('/C:/Users/AppDeveloper/Documents/SourceControl/BitBucket/DrugAndAlcoholApp/libs/gson-2.2.2.jar')
+    //compile files('/C:/Users/AppDeveloper/Documents/SourceControl/BitBucket/DrugAndAlcoholApp/libs/mobileservices-1.1.5.jar')
 }
