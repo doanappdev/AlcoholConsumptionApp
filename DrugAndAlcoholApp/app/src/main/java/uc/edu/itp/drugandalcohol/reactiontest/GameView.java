@@ -34,12 +34,14 @@ public class GameView extends SurfaceView
     private long previousTime;
 
     private boolean isClosed;
+
+    private GameSettings settings;
     private boolean speedByTimer;
 
-    public GameView(Context context, boolean speedByTimer){
+    public GameView(Context context, GameSettings settings){
         super(context);
 
-        this.speedByTimer = speedByTimer;
+        this.settings = settings;
 
         gameLoopThread = new GameLoopThread(this);
         holder = getHolder();
@@ -81,7 +83,7 @@ public class GameView extends SurfaceView
 
         bmp = BitmapFactory.decodeResource(getResources(), R.drawable.alcohol_sprites);
 
-        gameplay = new GameplayFunction(this, bmp, speedByTimer);
+        gameplay = new GameplayFunction(this, bmp, settings);
 
         currentTime = System.currentTimeMillis();
         previousTime = currentTime;

@@ -11,12 +11,15 @@ import android.widget.Switch;
 
 import uc.edu.itp.drugandalcohol.MainActivity;
 import uc.edu.itp.drugandalcohol.R;
+import uc.edu.itp.drugandalcohol.reactiontest.GameSettings;
 
 public class GameMenuActivity extends Activity {
 
     boolean speedByTimer;
+    boolean randomiseSpeed;
 
     Switch speedIncrementSwi;
+    Switch randomiseSpeedSwi;
     Button gameViewBtn;
     Button instructionsBtn;
     Button highScoreBtn;
@@ -28,6 +31,7 @@ public class GameMenuActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_menu);
         speedByTimer = false;
+        randomiseSpeed = true;
 
         gameViewBtn = (Button)findViewById(R.id.btnStartGame);
 
@@ -35,7 +39,11 @@ public class GameMenuActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent reactionTestIntent = new Intent(getApplicationContext(), ReactionTestActivity.class);
+
+                //settings.setSpeedByTimer(speedByTimer);
                 reactionTestIntent.putExtra("speedByTimer", speedByTimer);
+                reactionTestIntent.putExtra("randomiseSpeed", false);
+
                 startActivity(reactionTestIntent);
             }
         });
@@ -74,11 +82,17 @@ public class GameMenuActivity extends Activity {
         });
 
         speedIncrementSwi = (Switch)findViewById(R.id.swiSpeedIncrement);
-
         speedIncrementSwi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { speedByTimer = !speedByTimer; }
         });
+
+        randomiseSpeedSwi = (Switch)findViewById(R.id.swiRandomiseSpeed);
+        randomiseSpeedSwi.setChecked(true);
+        randomiseSpeedSwi.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) { randomiseSpeed = !randomiseSpeed; }
+    });
     }
 
 

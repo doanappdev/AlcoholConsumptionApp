@@ -24,32 +24,6 @@ public class ButtonClass extends Sprite
 
     public boolean silouhette;
 
-    public ButtonClass(GameView gameView, int id, Bitmap bmp, final int columns,
-                               final int rows, int condition) {
-        super(gameView, id, bmp, columns, rows);
-
-        if (condition > 0) {
-
-        } else {
-
-        }
-
-        switch (condition) {
-            case 1:
-                x = 150;
-                y = 170 + 50 * id;
-                break;
-            case 2:
-                x = 150;
-                y = 220 - 50 * (id - 6);
-                break;
-            default:
-                x = 100 * id;
-                y = 20;
-                break;
-        }
-    }
-
     public ButtonClass(GameView gameView, int id, Bitmap bmp, final int columns, final int rows)
     {
         super(gameView, id, bmp, columns, rows);

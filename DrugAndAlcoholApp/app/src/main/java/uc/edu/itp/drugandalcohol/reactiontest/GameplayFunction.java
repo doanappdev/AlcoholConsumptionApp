@@ -28,10 +28,6 @@ public class GameplayFunction {
     private int g_lowest;
     private float aspect;
 
-    //Gameplay settings
-    private boolean speedByTimer;
-    private boolean randomiseSpeed;
-
     //Time Formatting Used
     private String timeText;
     private long resetTime;
@@ -80,6 +76,7 @@ public class GameplayFunction {
     //Storage for bitmap and View
     private Bitmap bmp;
     private GameView view;
+    private GameSettings settings;
 
     //Storage for buttons
     private ButtonClass buttons[];
@@ -100,14 +97,12 @@ public class GameplayFunction {
     private int tempInt;
     private AlcoholClass currentAlcohol;
 
-    public GameplayFunction(GameView view, Bitmap bmp, boolean speedByTimer){
+    public GameplayFunction(GameView view, Bitmap bmp, GameSettings settings){
         //super();
 
         this.bmp = bmp;
         this.view = view;
-        this.speedByTimer = speedByTimer;
-        randomiseSpeed = true;
-        //randomiseSpeed = false;
+        this.settings = settings;
 
         buttonCount = 5;
 
@@ -157,13 +152,16 @@ public class GameplayFunction {
     public void reset(long currentTime){
         currentScore = 0;
         prevScore = 0;
-        scoreThreshold = 1000;
+        //scoreThreshold = 500;
+        scoreThreshold = 750;
+        //scoreThreshold = 1000;
         hits = 0;
         misses = 0;
         HitTNT = false;
 
         timeCount = 0;
         gameSpeed = 2;
+        randomSpeed = 0;
 
         beerCount = 0;
         wineCount = 0;
@@ -254,7 +252,7 @@ public class GameplayFunction {
 
     private void updateTime(long currentTime, long previousTime){
         timeCount = currentTime - resetTime;
-        if(speedByTimer) {
+        if(settings.getSpeedByTimer()) {
             if(timeCount >= 20 * secondsToMills) {
                 resetTime = currentTime;
                 increaseGameSpeed(currentTime);
@@ -263,7 +261,9 @@ public class GameplayFunction {
             if((currentScore - prevScore) >= scoreThreshold)
             {
                 prevScore = currentScore;
-                scoreThreshold += 200;
+                //scoreThreshold += 100;
+                scoreThreshold += 150;
+                //scoreThreshold += 200;
                 increaseGameSpeed(currentTime);
             }
         }
@@ -371,7 +371,7 @@ public class GameplayFunction {
         timeCount = currentTime - count;
         if (timeCount >= timer){
             timeCount = currentTime;
-            if(randomiseSpeed)
+            if(settings.getRandomiseSpeed())
                 genRandomSpeed();
             currentAlcohol = Pop(id);
             currentAlcohol.reset(0, speed+randomSpeed, id);
@@ -391,26 +391,32 @@ public class GameplayFunction {
             case 2:
                 randomSpeed = 1;
                 //if(scoreThreshold >= 700) randomSpeed++;
-                if(scoreThreshold >= 1400) randomSpeed++;
+                if(scoreThreshold >= 1050) randomSpeed++;
+                //if(scoreThreshold >= 1400) randomSpeed++;
                 break;
             case 3:
                 randomSpeed = 2;
                 //if(scoreThreshold >= 700) randomSpeed++;
-                if(scoreThreshold >= 1400) randomSpeed++;
+                if(scoreThreshold >= 1050) randomSpeed++;
+                //if(scoreThreshold >= 1400) randomSpeed++;
                 break;
             case 4:
                 randomSpeed = 2;
                 //if(scoreThreshold >= 700) randomSpeed++;
-                if(scoreThreshold >= 1400) randomSpeed++;
+                if(scoreThreshold >= 1050) randomSpeed++;
+                //if(scoreThreshold >= 1400) randomSpeed++;
                 //if(scoreThreshold >= 1100) randomSpeed++;
-                if(scoreThreshold >= 2200) randomSpeed++;
+                if(scoreThreshold >= 1650) randomSpeed++;
+                //if(scoreThreshold >= 2200) randomSpeed++;
                 break;
             case 5:
                 randomSpeed = 3;
                 //if(scoreThreshold >= 700) randomSpeed++;
-                if(scoreThreshold >= 1400) randomSpeed++;
+                if(scoreThreshold >= 1050) randomSpeed++;
+                //if(scoreThreshold >= 1400) randomSpeed++;
                 //if(scoreThreshold >= 1100) randomSpeed++;
-                if(scoreThreshold >= 2200) randomSpeed++;
+                if(scoreThreshold >= 1650) randomSpeed++;
+                //if(scoreThreshold >= 2200) randomSpeed++;
                 break;
             default:
                 randomSpeed = 0;
@@ -420,12 +426,12 @@ public class GameplayFunction {
     }
 
     private AlcoholClass Pop(int id){
-        if(inactives.size() > 0) return inactives.remove();
-        else return new AlcoholClass(view, id, bmp, 5, 2);
+        return (inactives.size() > 0) ?
+                inactives.remove() :
+                new AlcoholClass(view,id,bmp,5,2);
     }
 
-    private void Push(AlcoholClass inactive)
-    {
+    private void Push(AlcoholClass inactive){
         inactives.add(inactive);
     }
 

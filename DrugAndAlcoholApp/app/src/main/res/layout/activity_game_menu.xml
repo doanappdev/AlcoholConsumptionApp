@@ -22,27 +22,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Start"
-        android:layout_toStartOf="@+id/swiSpeedIncrement"
+        android:layout_toStartOf="@+id/txtViewGameHeading"
         android:layout_below="@+id/txtViewGameHeading"
-        android:layout_toLeftOf="@+id/swiSpeedIncrement" />
+        android:layout_toLeftOf="@+id/txtViewGameHeading" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Instructions"
         android:id="@+id/btnInstructions"
-        android:layout_marginTop="@dimen/border_width"
-        android:layout_below="@+id/btnStartGame"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/swiSpeedIncrement"
+        android:layout_alignLeft="@+id/btnStartGame"
+        android:layout_alignStart="@+id/btnStartGame" />
 
     <Button
         android:id="@+id/btnHighScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="High Scores"
-        android:layout_marginTop="@dimen/border_width"
         android:layout_below="@+id/btnInstructions"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignLeft="@+id/btnInstructions"
+        android:layout_alignStart="@+id/btnInstructions" />
 
 
 
@@ -51,10 +51,9 @@
         android:layout_height="wrap_content"
         android:text="Main Menu"
         android:id="@+id/btnMainMenu"
-        android:layout_marginTop="@dimen/border_width"
         android:layout_below="@+id/btnHighScore"
-        android:layout_centerHorizontal="true"
-        />
+        android:layout_alignRight="@+id/btnInstructions"
+        android:layout_alignEnd="@+id/btnInstructions" />
 
     <Switch
         android:layout_width="wrap_content"
@@ -62,11 +61,19 @@
         android:id="@+id/swiSpeedIncrement"
         android:textOn="Timer"
         android:textOff="Score"
-        android:layout_toEndOf="@+id/btnStartGame"
         android:layout_alignBottom="@+id/btnStartGame"
-        android:layout_alignLeft="@+id/btnMainMenu"
-        android:layout_alignStart="@+id/btnMainMenu"
-        android:layout_marginLeft="48dp" />
+        android:layout_toRightOf="@+id/btnHighScore"
+        android:layout_toEndOf="@+id/btnHighScore" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/swiRandomiseSpeed"
+        android:layout_alignBottom="@+id/btnInstructions"
+        android:layout_toRightOf="@+id/btnHighScore"
+        android:layout_toEndOf="@+id/btnHighScore"
+        android:textOff="Fixed"
+        android:textOn="Random" />
 
 
 </RelativeLayout>

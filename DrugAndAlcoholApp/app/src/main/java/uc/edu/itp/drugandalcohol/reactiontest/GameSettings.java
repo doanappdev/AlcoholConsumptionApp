@@ -5,5 +5,24 @@ package uc.edu.itp.drugandalcohol.reactiontest;
  */
 public class GameSettings {
     private boolean speedByTimer;
-    private boolean randomSpeed;
+    private boolean randomiseSpeed;
+
+    public GameSettings(boolean speedByTimer, boolean randomiseSpeed){
+        this.speedByTimer = speedByTimer;
+        this.randomiseSpeed = randomiseSpeed;
+    }
+
+    public boolean getSpeedByTimer(){
+        return speedByTimer;
+    }
+    public void setSpeedByTimer(boolean value){
+        speedByTimer = value;
+    }
+
+    public boolean getRandomiseSpeed(){
+        return randomiseSpeed;
+    }
+    public void setRandomiseSpeed(boolean value){
+        randomiseSpeed = value;
+    }
 }

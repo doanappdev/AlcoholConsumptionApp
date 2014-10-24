@@ -8,11 +8,14 @@ import android.view.MenuItem;
 import android.view.Window;
 
 import uc.edu.itp.drugandalcohol.R;
+import uc.edu.itp.drugandalcohol.reactiontest.GameSettings;
 import uc.edu.itp.drugandalcohol.reactiontest.GameView;
 
 public class ReactionTestActivity extends Activity {
 
     boolean speedByTimer;
+    boolean randomiseSpeed;
+    GameSettings settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,11 +23,14 @@ public class ReactionTestActivity extends Activity {
 
         Intent intent = getIntent();
         speedByTimer = intent.getBooleanExtra("speedByTimer", false);
+        randomiseSpeed = intent.getBooleanExtra("randomiseSpeed", true);
+
+        settings = new GameSettings(speedByTimer, randomiseSpeed);
 
         // hide action bar
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        setContentView(new GameView(this, speedByTimer));
+        setContentView(new GameView(this, settings));
     }
 
 
