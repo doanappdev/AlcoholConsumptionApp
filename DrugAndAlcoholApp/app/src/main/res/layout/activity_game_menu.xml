@@ -27,12 +27,20 @@
         android:layout_toLeftOf="@+id/txtViewGameHeading" />
 
     <Button
+        android:id="@+id/btnSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:layout_alignBottom="@+id/btnStartGame"
+        android:layout_toRightOf="@+id/btnStartGame"
+        android:layout_marginLeft="75dp"/>
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Instructions"
         android:id="@+id/btnInstructions"
-        android:layout_below="@+id/swiSpeedIncrement"
-        android:layout_alignLeft="@+id/btnStartGame"
+        android:layout_below="@+id/btnStartGame"
         android:layout_alignStart="@+id/btnStartGame" />
 
     <Button
@@ -41,7 +49,6 @@
         android:layout_height="wrap_content"
         android:text="High Scores"
         android:layout_below="@+id/btnInstructions"
-        android:layout_alignLeft="@+id/btnInstructions"
         android:layout_alignStart="@+id/btnInstructions" />
 
 
@@ -52,28 +59,7 @@
         android:text="Main Menu"
         android:id="@+id/btnMainMenu"
         android:layout_below="@+id/btnHighScore"
-        android:layout_alignRight="@+id/btnInstructions"
-        android:layout_alignEnd="@+id/btnInstructions" />
-
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/swiSpeedIncrement"
-        android:textOn="Timer"
-        android:textOff="Score"
-        android:layout_alignBottom="@+id/btnStartGame"
-        android:layout_toRightOf="@+id/btnHighScore"
-        android:layout_toEndOf="@+id/btnHighScore" />
-
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/swiRandomiseSpeed"
-        android:layout_alignBottom="@+id/btnInstructions"
-        android:layout_toRightOf="@+id/btnHighScore"
-        android:layout_toEndOf="@+id/btnHighScore"
-        android:textOff="Fixed"
-        android:textOn="Random" />
+        android:layout_alignStart="@+id/btnHighScore" />
 
 
 </RelativeLayout>

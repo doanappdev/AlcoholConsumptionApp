@@ -1,17 +1,76 @@
 package uc.edu.itp.drugandalcohol.view;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Switch;
+
 import uc.edu.itp.drugandalcohol.R;
 
 public class SettingsActivity extends Activity {
+
+    boolean speedByTimer;
+    boolean randomiseSpeed;
+
+    Switch speedByTimerSwi;
+    Switch randomiseSpeedSwi;
+    Button backBtn;
+
+    Intent settingsIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        settingsIntent = new Intent(getApplicationContext(),
+                GameMenuActivity.class);
+
+        settingsIntent = getIntent();
+        speedByTimer = settingsIntent.getBooleanExtra("speedByTimer", false);
+        randomiseSpeed = settingsIntent.getBooleanExtra("randomiseSpeed", true);
+
+        speedByTimerSwi = (Switch)findViewById(R.id.swiSpeedByTimer);
+        speedByTimerSwi.setChecked(speedByTimer);
+        speedByTimerSwi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { speedByTimer = !speedByTimer; }
+        });
+
+        randomiseSpeedSwi = (Switch)findViewById(R.id.swiRandomiseSpeed);
+        randomiseSpeedSwi.setChecked(randomiseSpeed);
+        randomiseSpeedSwi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { randomiseSpeed = !randomiseSpeed; }
+        });
+
+        backBtn = (Button)findViewById(R.id.btnBack);
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    /*settingsIntent = new Intent(getApplicationContext(),
+                    GameMenuActivity.class);*/
+                    settingsIntent.putExtra("speedByTimer", speedByTimer);
+                    settingsIntent.putExtra("randomiseSpeed", randomiseSpeed);
+                    setResult(RESULT_OK, settingsIntent);
+                    finish();
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        /*settingsIntent = new Intent(getApplicationContext(),
+                GameMenuActivity.class);*/
+        settingsIntent.putExtra("speedByTimer", speedByTimer);
+        settingsIntent.putExtra("randomiseSpeed", randomiseSpeed);
+        setResult(RESULT_OK, settingsIntent);
+        finish();
     }
 
 

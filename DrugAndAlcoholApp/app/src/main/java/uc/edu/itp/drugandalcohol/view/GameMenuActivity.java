@@ -15,21 +15,26 @@ import uc.edu.itp.drugandalcohol.reactiontest.GameSettings;
 
 public class GameMenuActivity extends Activity {
 
+    //settings variable
+    final int result = 1;
     boolean speedByTimer;
     boolean randomiseSpeed;
 
-    Switch speedIncrementSwi;
-    Switch randomiseSpeedSwi;
     Button gameViewBtn;
+    Button settingsBtn;
     Button instructionsBtn;
     Button highScoreBtn;
     Button mainMenuBtn;
+
+    public Intent settingsIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_menu);
+        settingsIntent = new Intent(getApplicationContext(), SettingsActivity.class);
+
         speedByTimer = false;
         randomiseSpeed = true;
 
@@ -45,6 +50,23 @@ public class GameMenuActivity extends Activity {
                 reactionTestIntent.putExtra("randomiseSpeed", randomiseSpeed);
 
                 startActivity(reactionTestIntent);
+            }
+        });
+
+        settingsBtn = (Button)findViewById(R.id.btnSettings);
+
+        settingsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //settingsIntent = new Intent(getApplicationContext(), SettingsActivity.class);
+
+                //settings.setSpeedByTimer(speedByTimer);
+                settingsIntent.putExtra("speedByTimer", speedByTimer);
+                settingsIntent.putExtra("randomiseSpeed", randomiseSpeed);
+
+                //Must have this function called so that the child
+                //Activity can send back results
+                startActivityForResult(settingsIntent, result);
             }
         });
 
@@ -80,21 +102,17 @@ public class GameMenuActivity extends Activity {
                 }*/
             }
         });
-
-        speedIncrementSwi = (Switch)findViewById(R.id.swiSpeedIncrement);
-        speedIncrementSwi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { speedByTimer = !speedByTimer; }
-        });
-
-        randomiseSpeedSwi = (Switch)findViewById(R.id.swiRandomiseSpeed);
-        randomiseSpeedSwi.setChecked(true);
-        randomiseSpeedSwi.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) { randomiseSpeed = !randomiseSpeed; }
-    });
     }
 
+    //This is used to receive message from child activity
+    @Override
+    public void onActivityResult(int requestCode,int resultCode,Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        settingsIntent = data;
+        speedByTimer = settingsIntent.getBooleanExtra("speedByTimer", false);
+        randomiseSpeed = settingsIntent.getBooleanExtra("randomiseSpeed", true);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -9,8 +9,46 @@
     tools:context="uc.edu.itp.drugandalcohol.view.SettingsActivity">
 
     <TextView
-        android:text="@string/hello_world"
+        android:text="Game Settings"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="26dp" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/swiSpeedByTimer"
+        android:textOn="Timer"
+        android:textOff="Score"
+        android:layout_toEndOf="@+id/btnHighScore"
+        android:layout_marginTop="24dp"
+        android:text="Speed game up by"
+        android:layout_below="@+id/textView"
+        android:layout_alignRight="@+id/swiRandomiseSpeed"
+        android:layout_alignEnd="@+id/swiRandomiseSpeed" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/swiRandomiseSpeed"
+        android:layout_toEndOf="@+id/btnHighScore"
+        android:textOff="Fixed"
+        android:textOn="Random"
+        android:layout_marginTop="16dp"
+        android:text="game speed"
+        android:layout_below="@+id/swiSpeedByTimer"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:id="@+id/btnBack"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/swiRandomiseSpeed"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
