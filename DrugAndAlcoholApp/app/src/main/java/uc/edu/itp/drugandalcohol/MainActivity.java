@@ -30,9 +30,9 @@ public class MainActivity extends Activity
     ImageButton detailsImgBtn, calculateImgBtn, emergencyImgBtn,
             gameMenuImgBtn;
 
-    private MobileServiceClient mClient;
-    private MobileServiceTable<LocationData> mLocationTable;
-    private LocationDataAdapter mAdapter;
+    //private MobileServiceClient mClient;
+   //private MobileServiceTable<LocationData> mLocationTable;
+   // private LocationDataAdapter mAdapter;
 
 
     @Override

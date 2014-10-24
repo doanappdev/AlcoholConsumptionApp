@@ -24,9 +24,14 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:support-v4:20.0.0'
 
+    // this is how you add location so it runs on any computer, the
+    // jar files are located in the 'libs' folder
+    compile files('libs/gson-2.2.2.jar')
+    compile files('libs/mobileservices-1.1.5.jar')
+
     //Eric's location
-    compile files('/Users/wh0-r-u/drugandalcoholapp/DrugAndAlcoholApp/libs/gson-2.2.2.jar')
-    compile files('/Users/wh0-r-u/drugandalcoholapp/DrugAndAlcoholApp/libs/mobileservices-1.1.5.jar')
+    //compile files('/Users/wh0-r-u/drugandalcoholapp/DrugAndAlcoholApp/libs/gson-2.2.2.jar')
+    //compile files('/Users/wh0-r-u/drugandalcoholapp/DrugAndAlcoholApp/libs/mobileservices-1.1.5.jar')
 
     //Luong's location
     //compile files('/C:/Users/AppDeveloper/Documents/SourceControl/BitBucket/DrugAndAlcoholApp/libs/gson-2.2.2.jar')
