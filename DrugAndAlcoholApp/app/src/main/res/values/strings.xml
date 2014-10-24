@@ -73,5 +73,6 @@
     <string name="title_activity_reaction_test">ReactionTestActivity</string>
     <string name="title_activity_game_menu">GameMenuActivity</string>
     <string name="title_activity_game_over">GameOverActivity</string>
+    <string name="title_activity_proximity">ProximityActivity</string>
 
 </resources>

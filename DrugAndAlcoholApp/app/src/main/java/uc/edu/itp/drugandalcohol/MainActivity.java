@@ -8,6 +8,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.microsoft.windowsazure.mobileservices.*;
+
+import java.net.MalformedURLException;
+
+import uc.edu.itp.drugandalcohol.controller.LocationDataAdapter;
+import uc.edu.itp.drugandalcohol.model.LocationData;
 import uc.edu.itp.drugandalcohol.view.CalculateBACActivity;
 import uc.edu.itp.drugandalcohol.view.EmergencyActivity;
 import uc.edu.itp.drugandalcohol.view.GameMenuActivity;
@@ -17,8 +23,16 @@ import uc.edu.itp.drugandalcohol.view.UserDetailsActivity;
 
 public class MainActivity extends Activity
 {
+    // TAG is identifier when printing to the logcat for
+    // debugging, testing purposes
+    private final String TAG = "MainActivity";
+
     ImageButton detailsImgBtn, calculateImgBtn, emergencyImgBtn,
-            gameMenuImgBtn, exitImgBtn;
+            gameMenuImgBtn;
+
+    private MobileServiceClient mClient;
+    private MobileServiceTable<LocationData> mLocationTable;
+    private LocationDataAdapter mAdapter;
 
 
     @Override
@@ -26,6 +40,25 @@ public class MainActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        /*
+        try
+        {
+            mClient = new MobileServiceClient(
+                    "https://alcohol-consumption-app-data.azure-mobile.net/",
+                    "TJTOXgFJpedXaWKGLdMjHOngavMuZe52",
+                    this
+            );
+
+            // Get the Mobile Service Table instance to use
+            mLocationTable = mClient.getTable(LocationData.class);
+        }
+        catch (MalformedURLException e) {
+            //createAndShowDialog(new Exception("There was an error creating the Mobile Service. Verify the URL"), "Error");
+        }
+        */
+
+
 
         detailsImgBtn = (ImageButton)findViewById(R.id.imgBtnEnterDetails);
         calculateImgBtn = (ImageButton)findViewById(R.id.imgBtnCalculateBAC);

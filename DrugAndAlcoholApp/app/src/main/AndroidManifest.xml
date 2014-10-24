@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="uc.edu.itp.drugandalcohol" >
 
+    <!-- add permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
     <!--
         to apply icon or logo use on action bar ues
         android:icon="@drawable/icon_name"
@@ -59,6 +61,10 @@
         <activity
             android:name=".view.GameOverActivity"
             android:label="@string/title_activity_game_over" >
+        </activity>
+        <activity
+            android:name=".view.ProximityActivity"
+            android:label="@string/title_activity_proximity" >
         </activity>
     </application>
 
