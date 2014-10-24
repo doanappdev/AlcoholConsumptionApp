@@ -3,11 +3,10 @@ package uc.edu.itp.drugandalcohol.reactiontest;
 /**
  * Created by wh0-r-u on 15/10/2014.
  */
-<<<<<<< HEAD
-        import android.graphics.Bitmap;
-        import android.graphics.Canvas;
-        import android.graphics.Rect;
-=======
+
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -17,26 +16,25 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.Log;
->>>>>>> 18f01d7f2cca10aeb2b51d52c60b377fea684ee0
 
-        public class ButtonClass extends Sprite {
+public class ButtonClass extends Sprite
+{
 
-            private int currentFrame;
+    private int currentFrame;
 
-            public boolean silouhette;
+    public boolean silouhette;
 
-<<<<<<< HEAD
-            public ButtonClass(GameView gameView, int id, Bitmap bmp, final int columns,
+    public ButtonClass(GameView gameView, int id, Bitmap bmp, final int columns,
                                final int rows, int condition) {
-                super(gameView, id, bmp, columns, rows);
+        super(gameView, id, bmp, columns, rows);
 
-                if(condition > 0){
+        if (condition > 0) {
 
-                }else{
+        } else {
 
-                }
-                switch(condition)
-        {
+        }
+
+        switch (condition) {
             case 1:
                 x = 150;
                 y = 170 + 50 * id;
@@ -50,17 +48,18 @@ import android.util.Log;
                 y = 20;
                 break;
         }
-=======
-    public ButtonClass(GameView gameView, int id, Bitmap bmp,
-                       final int columns, final int rows){
+    }
+
+    public ButtonClass(GameView gameView, int id, Bitmap bmp, final int columns, final int rows)
+    {
         super(gameView, id, bmp, columns, rows);
         paint = new Paint();
         paint.setARGB(255, 255, 0, 0);
         paint.setStyle(Paint.Style.FILL);
->>>>>>> 18f01d7f2cca10aeb2b51d52c60b377fea684ee0
+
     }
 
-    @Override
+    //@Override
     public void update() {
         currentFrame = id;
         if(silouhette) currentFrame += 5;
