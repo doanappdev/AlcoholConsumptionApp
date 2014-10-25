@@ -29,11 +29,29 @@ dependencies {
     compile files('libs/gson-2.2.2.jar')
     compile files('libs/mobileservices-1.1.5.jar')
 
-    //Eric's location
-    //compile files('/Users/wh0-r-u/drugandalcoholapp/DrugAndAlcoholApp/libs/gson-2.2.2.jar')
-    //compile files('/Users/wh0-r-u/drugandalcoholapp/DrugAndAlcoholApp/libs/mobileservices-1.1.5.jar')
+    /*
+        the following compile statements are for google play services version number
+        if you are using the emulator you will need to download google play services from
+        SDK manager, if your emulator does not have google play services it will prompt you
+        to download, click ok to download, after it is installed you can get version number
 
-    //Luong's location
-    //compile files('/C:/Users/AppDeveloper/Documents/SourceControl/BitBucket/DrugAndAlcoholApp/libs/gson-2.2.2.jar')
-    //compile files('/C:/Users/AppDeveloper/Documents/SourceControl/BitBucket/DrugAndAlcoholApp/libs/mobileservices-1.1.5.jar')
+        if you are using your phone you have to get version number for google play services from
+        your phone
+     */
+
+    // for google play services version 4.4.52 (emulator)
+    // Current as of 15/10/14 - may need to update if Google release an
+    // update for Google Play Services
+    compile 'com.google.android.gms:play-services:4.4.52'
+
+    // for google play services version 5.0.89 (HTC One phone)
+    // not current anymore
+    //compile 'com.google.android.gms:play-services:5.0.89'
+
+    // for google play services version 6.1.11 (HTC One phone)
+    // update released on 10/10/14
+    //compile 'com.google.android.gms:play-services:6.1.11'
+
+
+
 }

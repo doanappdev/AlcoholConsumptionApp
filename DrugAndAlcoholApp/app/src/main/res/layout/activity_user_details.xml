@@ -10,17 +10,6 @@
     tools:context="uc.edu.itp.drugandalcohol.view.UserDetailsActivity">
 
 
-    <!-- this text view is only used for testing purposes
-         remove later
-
-          <TextView
-        android:id="@+id/txtViewUserDetailsH1"
-        android:text="Activity - User Details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    -->
-
     <fragment class="uc.edu.itp.drugandalcohol.fragments.UserDetailsFragment"
         android:id="@+id/fragmentUserDetails"
         android:layout_width="match_parent"

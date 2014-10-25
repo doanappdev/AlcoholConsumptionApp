@@ -63,6 +63,15 @@ public class SettingsActivity extends Activity {
         });
     }
 
+    /*
+        using standard Intent bundle to pass user settings between 2 activities.
+        Eric you did not create this technique, the putExtra() is part
+        of the API, you can't take credit for it as you said in your message in
+        Source Tree, what you have done is used their method to pass data.
+        When you said you created a way to to pass data I was expecting you to
+        have used your own class not the Intent object. You cant take credit for some one else's work!
+        (this is just so you know for next time)
+     */
     @Override
     public void onBackPressed() {
         /*settingsIntent = new Intent(getApplicationContext(),

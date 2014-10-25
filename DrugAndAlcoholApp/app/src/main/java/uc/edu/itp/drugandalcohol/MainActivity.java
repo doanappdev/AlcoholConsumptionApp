@@ -17,6 +17,7 @@ import uc.edu.itp.drugandalcohol.model.LocationData;
 import uc.edu.itp.drugandalcohol.view.CalculateBACActivity;
 import uc.edu.itp.drugandalcohol.view.EmergencyActivity;
 import uc.edu.itp.drugandalcohol.view.GameMenuActivity;
+import uc.edu.itp.drugandalcohol.view.ProximityActivity;
 import uc.edu.itp.drugandalcohol.view.ReactionTestActivity;
 import uc.edu.itp.drugandalcohol.view.UserDetailsActivity;
 
@@ -24,16 +25,11 @@ import uc.edu.itp.drugandalcohol.view.UserDetailsActivity;
 public class MainActivity extends Activity
 {
     // TAG is identifier when printing to the logcat for
-    // debugging, testing purposes
+    // debugging/testing purposes
     private final String TAG = "MainActivity";
 
     ImageButton detailsImgBtn, calculateImgBtn, emergencyImgBtn,
-            gameMenuImgBtn;
-
-    //private MobileServiceClient mClient;
-   //private MobileServiceTable<LocationData> mLocationTable;
-   // private LocationDataAdapter mAdapter;
-
+            gameMenuImgBtn, proximityImgBtn;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -41,29 +37,11 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        /*
-        try
-        {
-            mClient = new MobileServiceClient(
-                    "https://alcohol-consumption-app-data.azure-mobile.net/",
-                    "TJTOXgFJpedXaWKGLdMjHOngavMuZe52",
-                    this
-            );
-
-            // Get the Mobile Service Table instance to use
-            mLocationTable = mClient.getTable(LocationData.class);
-        }
-        catch (MalformedURLException e) {
-            //createAndShowDialog(new Exception("There was an error creating the Mobile Service. Verify the URL"), "Error");
-        }
-        */
-
-
-
         detailsImgBtn = (ImageButton)findViewById(R.id.imgBtnEnterDetails);
         calculateImgBtn = (ImageButton)findViewById(R.id.imgBtnCalculateBAC);
         emergencyImgBtn = (ImageButton)findViewById(R.id.imgBtnEmergencySMS);
         gameMenuImgBtn = (ImageButton)findViewById(R.id.imgBtnReactionTest);
+        proximityImgBtn = (ImageButton)findViewById(R.id.imgBtnProximity);
 
         detailsImgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +75,14 @@ public class MainActivity extends Activity
             public void onClick(View view) {
                 Intent gameMenuIntent = new Intent(getApplicationContext(), GameMenuActivity.class);
                 startActivity(gameMenuIntent);
+            }
+        });
+
+        proximityImgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent proximityIntent = new Intent(getApplicationContext(), ProximityActivity.class);
+                startActivity(proximityIntent);
             }
         });
 
