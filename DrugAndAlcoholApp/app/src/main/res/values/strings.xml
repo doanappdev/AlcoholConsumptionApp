@@ -75,5 +75,8 @@
     <string name="title_activity_game_over">GameOverActivity</string>
     <string name="title_activity_proximity">ProximityActivity</string>
     <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_proximity_alert">ProximityAlertActivity</string>
+    <string name="title_activity_notification_view">NotificationViewActivity</string>
 
 </resources>

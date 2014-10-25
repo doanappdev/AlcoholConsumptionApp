@@ -77,22 +77,35 @@
             android:label="@string/title_activity_game_over" >
         </activity>
         <activity
-            android:name=".view.ProximityActivity"
-            android:label="@string/title_activity_proximity" >
-        </activity>
-        <activity
             android:name=".view.SettingsActivity"
             android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
+            android:name=".view.MapActivity"
+            android:label="@string/title_activity_map" >
         </activity>
 
         <!-- info required for Google Maps v2 -->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyDsWFL_SdZCvB12Iw7ns0g9YAgObAj40mU" />
+            android:value="AIzaSyDsWFL_SdZCvB12Iw7ns0g9YAgObAj4OmU" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
+        <activity
+            android:name=".view.ProximityAlertActivity"
+            android:label="@string/title_activity_proximity_alert" >
+            <!-- need to add intent-filter to display map on MapActivity -->
+            <intent-filter>
+                <action android:name="uc.edu.itp.drugandalcohol.view.ProximityAlertActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".view.NotificationViewActivity"
+            android:label="@string/title_activity_notification_view" >
+        </activity>
     </application>
 
 </manifest>

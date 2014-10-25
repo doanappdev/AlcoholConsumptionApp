@@ -1,36 +1,35 @@
 package uc.edu.itp.drugandalcohol.view;
 
 import android.app.Activity;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import uc.edu.itp.drugandalcohol.R;
-import uc.edu.itp.drugandalcohol.fragments.ProximityFragment;
-import uc.edu.itp.drugandalcohol.fragments.UserDetailsFragment;
+import android.widget.TextView;
 
-public class ProximityActivity extends FragmentActivity
-{
-    ProximityFragment proximityFragment;
+import uc.edu.itp.drugandalcohol.R;
+
+/*
+ * This activity is used to display the text view in the
+ * proximity alert messages
+ */
+public class NotificationViewActivity extends Activity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_proximity);
+        setContentView(R.layout.activity_notification_view);
 
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        proximityFragment = new ProximityFragment();
-
-        fragmentTransaction.add(R.id.proximityFragmentContainer, proximityFragment);
+        TextView tv = (TextView)findViewById(R.id.txtViewNotification);
+        // use Bundle to pass string to proximity Alert Activity
+        Bundle data = getIntent().getExtras();
+        tv.setText(data.getString("content"));
     }
 
-
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.proximity, menu);
+        getMenuInflater().inflate(R.menu.notification_view, menu);
         return true;
     }
 
@@ -45,4 +44,5 @@ public class ProximityActivity extends FragmentActivity
         }
         return super.onOptionsItemSelected(item);
     }
+    */
 }

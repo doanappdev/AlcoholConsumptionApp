@@ -17,7 +17,7 @@ import uc.edu.itp.drugandalcohol.model.LocationData;
 import uc.edu.itp.drugandalcohol.view.CalculateBACActivity;
 import uc.edu.itp.drugandalcohol.view.EmergencyActivity;
 import uc.edu.itp.drugandalcohol.view.GameMenuActivity;
-import uc.edu.itp.drugandalcohol.view.ProximityActivity;
+import uc.edu.itp.drugandalcohol.view.MapActivity;
 import uc.edu.itp.drugandalcohol.view.ReactionTestActivity;
 import uc.edu.itp.drugandalcohol.view.UserDetailsActivity;
 
@@ -81,7 +81,7 @@ public class MainActivity extends Activity
         proximityImgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent proximityIntent = new Intent(getApplicationContext(), ProximityActivity.class);
+                Intent proximityIntent = new Intent(getApplicationContext(), MapActivity.class);
                 startActivity(proximityIntent);
             }
         });

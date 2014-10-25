@@ -37,18 +37,23 @@ dependencies {
 
         if you are using your phone you have to get version number for google play services from
         your phone
+
+        to run google maps on emulator must use google api in sdk manager
+
+        tested on emulator android version 4.4.2
      */
 
-    // for google play services version 4.4.52 (emulator)
     // Current as of 15/10/14 - may need to update if Google release an
     // update for Google Play Services
-    compile 'com.google.android.gms:play-services:4.4.52'
+    //compile 'com.google.android.gms:play-services:4.4.52' // old version
+    // current as of 25/10/14
+    compile 'com.google.android.gms:play-services:6.1.11'   // new version
 
-    // for google play services version 5.0.89 (HTC One phone)
+    // for google play services version 5.0.89 (HTC One X phone)
     // not current anymore
     //compile 'com.google.android.gms:play-services:5.0.89'
 
-    // for google play services version 6.1.11 (HTC One phone)
+    // for google play services version 6.1.11 (HTC One X phone)
     // update released on 10/10/14
     //compile 'com.google.android.gms:play-services:6.1.11'
 
