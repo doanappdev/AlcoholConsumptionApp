@@ -133,7 +133,7 @@ public class GameplayFunction {
             //minus the scaled width of the button divided by 2.
             xResult = (g_width*i/5) + (g_width/10) - width;
             Log.d("Gameplay Function: X - ", String.valueOf(xResult));
-            yResult = g_height - (g_height*0.15f);
+            yResult = g_height*0.85f;
 
             buttons[i].setPosX(xResult);
             buttons[i].setPosY(yResult);

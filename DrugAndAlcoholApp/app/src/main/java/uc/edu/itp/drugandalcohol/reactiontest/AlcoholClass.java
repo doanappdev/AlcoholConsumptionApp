@@ -10,9 +10,9 @@ import android.graphics.RectF;
 
 public class AlcoholClass extends Sprite {
 
+    private float endY;
     private int xSpeed;
     private int ySpeed;
-    private int endY;
     private int points;
 
     public boolean active;
@@ -21,7 +21,7 @@ public class AlcoholClass extends Sprite {
         super(gameView, id, bmp, columns, rows);
 
         active = false;
-        endY = gameView.getHeight() + height;
+        endY = gameView.getHeight()*0.85f;
     }
 
     public void reset(int xSpeed, int ySpeed, int id){
@@ -72,7 +72,7 @@ public class AlcoholClass extends Sprite {
         if(active){
             y += ySpeed;
             if (y >= endY) {
-                y = endY;
+                y = gameView.getHeight()+100;
                 active = false;
             }
         }
