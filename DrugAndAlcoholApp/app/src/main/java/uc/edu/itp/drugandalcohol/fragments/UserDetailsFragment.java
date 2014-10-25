@@ -31,7 +31,7 @@ public class UserDetailsFragment extends Fragment
     Button acceptBtn, cancelBtn, editBtn;
 
     EditText userAgeEditTxt, userWeightEditTxt, buddyNameEditTxt, buddyNumberEditTxt;
-    Switch genderSwitch;
+    Switch genderSwitch, pregnantSwitch;
 
     private boolean male, pregnant;
 
@@ -47,6 +47,19 @@ public class UserDetailsFragment extends Fragment
                              Bundle savedInstanceState)
     {
         View v = inflater.inflate(R.layout.fragment_user_details, container, false);
+
+
+
+
+        male = true;
+        pregnant = false;
+
+        // hide the pregnant switch
+        //if(male)
+        //{
+        //    pregnantLayout.setVisibility(View.GONE);
+        //    pregnantLayout.invalidate();
+        //}
 
         userSharedPrefs = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
 
@@ -96,6 +109,7 @@ public class UserDetailsFragment extends Fragment
 
             // hide pregnant switch
             pregnantLayout.setVisibility(LinearLayout.INVISIBLE);
+
         }
         else
         {
@@ -105,6 +119,8 @@ public class UserDetailsFragment extends Fragment
             pregnantLayout.setVisibility(LinearLayout.VISIBLE);
 
         }
+
+        //pregnantLayout.invalidate();
     }
 
 
@@ -119,6 +135,7 @@ public class UserDetailsFragment extends Fragment
         int userWeight = Integer.parseInt(userWeightEditTxt.getText().toString());
         String buddyNumString = buddyNumberEditTxt.getText().toString();
         String buddyName = buddyNameEditTxt.getText().toString();
+
 
 
         // check user has entered information
@@ -156,7 +173,7 @@ public class UserDetailsFragment extends Fragment
 
         editor.commit();
 
-        // display toast to confirm details saved
+        // display toast to confirm details saved (for testing)
         Toast.makeText(getActivity(),  "User Details:" + userAge + " " + userWeight + " " + male, Toast.LENGTH_LONG).show();
 
 

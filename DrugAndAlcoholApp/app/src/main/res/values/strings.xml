@@ -41,6 +41,16 @@
     <string name="buddy_number_key">BuddyNumberKey</string>
     <string name="emergency_prompt">Choose a friend</string>
 
+    <!-- button text values -->
+    <string name="button_accept">ACCEPT</string>
+    <string name="button_done">DONE</string>
+    <string name="button_ok">OK</string>
+    <string name="button_edit">EDIT</string>
+    <string name="button_cancel">CANCEL</string>
+    <string name="button_remove">REMOVE</string>
+    <string name="button_exit">EXIT</string>
+
+
     <string-array name="emergency_contacts">
         <item>Joe</item>
         <item>Jane</item>

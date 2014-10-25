@@ -1,6 +1,8 @@
 package uc.edu.itp.drugandalcohol;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -30,6 +32,8 @@ public class MainActivity extends Activity
 
     ImageButton detailsImgBtn, calculateImgBtn, emergencyImgBtn,
             gameMenuImgBtn, proximityImgBtn;
+
+    boolean EULA_ACCEPTED = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -98,35 +102,42 @@ public class MainActivity extends Activity
     {
         super.onStart();
 
+        // check if user has agreed to EULA
+        if(!EULA_ACCEPTED)
+        {
+            /**
+             * Display EULA when app first installed
+             */
+            final AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+            alertDialog.setPositiveButton("ACCEPT", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    // set boolean value equal to true when user
+                    // clicks OK on EULA dialog
+                    EULA_ACCEPTED = true;
+                    dialogInterface.dismiss();
+                }
+            })
+            .setNegativeButton("QUIT", new DialogInterface.OnClickListener() {
+                 @Override
+                 public void onClick(DialogInterface dialogInterface, int i) {
+                    //dialogInterface.cancel();
+                    onStop();
+                    }
+                 }
+            );
 
-        /**
-         * commenting out the EULA fragment while testing the app
+            View childView = getLayoutInflater().inflate(R.layout.fragment_eula, null);
+            alertDialog.setView(childView);
 
-        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
-        alertDialog.setPositiveButton("ACCEPT", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
-            }
-        })
-        .setNegativeButton("QUIT", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                //dialogInterface.cancel();
-                onStop();
-            }
-        });
-
-        View childView = getLayoutInflater().inflate(R.layout.fragment_eula, null);
-        alertDialog.setView(childView);
-
-        final AlertDialog dialog = alertDialog.create();
+            final AlertDialog dialog = alertDialog.create();
 
 
+            dialog.show();
 
-        dialog.show();
+        }
 
-         */
+
     }
 
     @Override
