@@ -16,12 +16,14 @@ public class ReactionTestActivity extends Activity {
     boolean speedByTimer;
     boolean randomiseSpeed;
     GameSettings settings;
+    GameView gView;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Intent intent = getIntent();
+        intent = getIntent();
         speedByTimer = intent.getBooleanExtra("speedByTimer", false);
         randomiseSpeed = intent.getBooleanExtra("randomiseSpeed", true);
 
@@ -29,8 +31,24 @@ public class ReactionTestActivity extends Activity {
 
         // hide action bar
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        gView = new GameView(this, settings);
+        setContentView(gView);
+    }
 
-        setContentView(new GameView(this, settings));
+    public void isFinished(int score, int hits, int misses, String hitTNT, String timeText){
+        intent.putExtra("score",score);
+        intent.putExtra("hits",hits);
+        intent.putExtra("misses",misses);
+        intent.putExtra("hitTNT",hitTNT);
+        intent.putExtra("textTime",timeText);
+        setResult(RESULT_OK, intent);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed(){
+        //super.onBackPressed()
+        gView.closeGame();
     }
 
 

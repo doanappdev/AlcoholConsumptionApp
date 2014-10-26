@@ -3,6 +3,7 @@ package uc.edu.itp.drugandalcohol.view;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,9 +17,15 @@ import uc.edu.itp.drugandalcohol.reactiontest.GameSettings;
 public class GameMenuActivity extends Activity {
 
     //settings variable
-    final int result = 1;
+    final int resultStart = 1;
+    final int resultSetting = 2;
     boolean speedByTimer;
     boolean randomiseSpeed;
+    int score;
+    int hits;
+    int misses;
+    String hitTNT;
+    String textTime;
 
     Button gameViewBtn;
     Button settingsBtn;
@@ -26,14 +33,13 @@ public class GameMenuActivity extends Activity {
     Button highScoreBtn;
     Button mainMenuBtn;
 
-    public Intent settingsIntent;
+    public Intent resultsIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_menu);
-        settingsIntent = new Intent(getApplicationContext(), SettingsActivity.class);
 
         speedByTimer = false;
         randomiseSpeed = true;
@@ -49,7 +55,7 @@ public class GameMenuActivity extends Activity {
                 reactionTestIntent.putExtra("speedByTimer", speedByTimer);
                 reactionTestIntent.putExtra("randomiseSpeed", randomiseSpeed);
 
-                startActivity(reactionTestIntent);
+                startActivityForResult(reactionTestIntent, resultStart);
             }
         });
 
@@ -61,12 +67,13 @@ public class GameMenuActivity extends Activity {
                 //settingsIntent = new Intent(getApplicationContext(), SettingsActivity.class);
 
                 //settings.setSpeedByTimer(speedByTimer);
+                Intent settingsIntent = new Intent(getApplicationContext(), SettingsActivity.class);
                 settingsIntent.putExtra("speedByTimer", speedByTimer);
                 settingsIntent.putExtra("randomiseSpeed", randomiseSpeed);
 
                 //Must have this function called so that the child
                 //Activity can send back results
-                startActivityForResult(settingsIntent, result);
+                startActivityForResult(settingsIntent, resultSetting);
             }
         });
 
@@ -75,8 +82,9 @@ public class GameMenuActivity extends Activity {
         instructionsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent instructionsIntent = new Intent(getApplicationContext(), ReactionTestActivity.class);
-                startActivity(instructionsIntent);
+                Log.d("Game Menu Activity - ", "No instructions menu yet!");
+                //Intent instructionsIntent = new Intent(getApplicationContext(), InstructionsActivity.class);
+                //startActivity(instructionsIntent);
             }
         });
 
@@ -85,8 +93,9 @@ public class GameMenuActivity extends Activity {
         highScoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent highScoreIntent = new Intent(getApplicationContext(), ReactionTestActivity.class);
-                startActivity(highScoreIntent);
+                Log.d("Game Menu Activity - ", "No high score menu yet!");
+                //Intent highScoreIntent = new Intent(getApplicationContext(), ReactionTestActivity.class);
+                //startActivity(highScoreIntent);
             }
         });
 
@@ -95,7 +104,8 @@ public class GameMenuActivity extends Activity {
         mainMenuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                onBackPressed();
+                //finish();
                 /*synchronized (holder) {
                     //quit to mainmenu
                     ((Activity) super.getContext()).finish();
@@ -104,14 +114,37 @@ public class GameMenuActivity extends Activity {
         });
     }
 
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+    }
+
     //This is used to receive message from child activity
     @Override
     public void onActivityResult(int requestCode,int resultCode,Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        settingsIntent = data;
-        speedByTimer = settingsIntent.getBooleanExtra("speedByTimer", false);
-        randomiseSpeed = settingsIntent.getBooleanExtra("randomiseSpeed", true);
+        resultsIntent = data;
+        speedByTimer = resultsIntent.getBooleanExtra("speedByTimer", false);
+        randomiseSpeed = resultsIntent.getBooleanExtra("randomiseSpeed", true);
+
+        score = resultsIntent.getIntExtra("score", -1);
+        hits = resultsIntent.getIntExtra("hits", -1);
+        misses = resultsIntent.getIntExtra("misses", -1);
+        textTime = resultsIntent.getStringExtra("textTime");
+        hitTNT = resultsIntent.getStringExtra("hitTNT");
+
+        if(score != -1){
+            resultsIntent = new Intent(getApplicationContext(), GameOverActivity.class);
+
+            resultsIntent.putExtra("score", score);
+            resultsIntent.putExtra("hits", hits);
+            resultsIntent.putExtra("misses", misses);
+            resultsIntent.putExtra("textTime", textTime);
+            resultsIntent.putExtra("hitTNT", hitTNT);
+
+            startActivity(resultsIntent);
+        }
     }
 
     @Override

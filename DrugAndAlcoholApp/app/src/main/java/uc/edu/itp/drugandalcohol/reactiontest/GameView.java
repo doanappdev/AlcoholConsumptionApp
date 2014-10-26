@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uc.edu.itp.drugandalcohol.R;
+import uc.edu.itp.drugandalcohol.view.ReactionTestActivity;
 
 
 /**
@@ -36,6 +37,12 @@ public class GameView extends SurfaceView
     private int eventAction;
     private boolean isClosed;
     private boolean pressed;
+
+    private int score;
+    private int hits;
+    private int misses;
+    private String timeText;
+    private String hitTNT;
 
     private GameSettings settings;
 
@@ -64,7 +71,7 @@ public class GameView extends SurfaceView
             }
 
             @Override
-            public void surfaceCreated(SurfaceHolder holder){
+            public void surfaceCreated(SurfaceHolder holder) {
                 init();
                 gameLoopThread.setRunning(true);
                 gameLoopThread.start();
@@ -98,8 +105,10 @@ public class GameView extends SurfaceView
     protected void onDraw(Canvas canvas){
 
         if(isClosed) {
-            previousTime = currentTime;
+            //previousTime = currentTime;
             gameplay.clean();
+            getResults();
+
             doLose();
         }else{
             canvas.drawColor(Color.WHITE);
@@ -132,11 +141,28 @@ public class GameView extends SurfaceView
         return true;
     }
 
+    public void closeGame(){
+        isClosed = true;
+    }
+
     public void doLose() {
         synchronized (holder) {
             //quit to mainmenu
-            ((Activity) super.getContext()).finish();
+            ((ReactionTestActivity)super.getContext()).isFinished
+                    (score, hits, misses, hitTNT, timeText);
+            //((Activity) super.getContext()).finish();
         }
+    }
+
+    private void getResults(){
+        score = gameplay.getScore();
+        hits = gameplay.getHits();
+        misses = gameplay.getMisses();
+        if(gameplay.getHitTNT())
+            hitTNT = "Hit TNT - YES";
+        else
+            hitTNT = "Hit TNT - NO";
+        timeText = gameplay.getSpentTimeText();
     }
 
     //THROWAWAY VARIABLES

@@ -241,6 +241,7 @@ public class GameplayFunction {
     public int getHits(){ return hits; }
     public int getMisses(){ return misses; }
     public long getSpentTime(){ return spentTime; }
+    public String getSpentTimeText(){ return timeText; }
     public boolean getHitTNT(){ return HitTNT; }
 
     public void changeSurface(int width, int height)
