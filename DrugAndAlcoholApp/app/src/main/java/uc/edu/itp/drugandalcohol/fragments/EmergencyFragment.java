@@ -30,8 +30,10 @@ import uc.edu.itp.drugandalcohol.MainActivity;
 import uc.edu.itp.drugandalcohol.R;
 
 /**
- * A simple {@link Fragment} subclass.
- *
+ * Emergency Fragment
+ * this fragment loads contact details from users phone into spinner
+ * and list objects. It also implements click listeners for various
+ * views. User can send emergency SMS from this UI
  */
 public class EmergencyFragment extends Fragment
         implements View.OnClickListener, AdapterView.OnItemSelectedListener
@@ -322,11 +324,14 @@ public class EmergencyFragment extends Fragment
             String number1 = "0451683962";
             smsManager.sendTextMessage(number1, null, msg, null, null);
 
+            /*
+            // testing values for message
             Toast.makeText(getActivity(),
                     "Your message has been sent to\nName: " + name +
                             "\nNumber: " + number1 +
                             "\nText: " + msg,
                     Toast.LENGTH_LONG).show();
+            */
         }
         catch(Exception ex)
         {
