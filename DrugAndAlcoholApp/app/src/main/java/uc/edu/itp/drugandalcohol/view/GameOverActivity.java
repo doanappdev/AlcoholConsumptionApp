@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import uc.edu.itp.drugandalcohol.R;
@@ -25,8 +26,8 @@ public class GameOverActivity extends Activity {
     TextView missesTxt;
     TextView hitTntTxt;
     TextView timeTxt;
-    Button backBtn;
-    Button highScoreBtn;
+    ImageButton backBtn;
+    ImageButton highScoreBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class GameOverActivity extends Activity {
 
         setResultsText();
 
-        highScoreBtn = (Button)findViewById(R.id.btnHighScore);
+        highScoreBtn = (ImageButton)findViewById(R.id.imgBtnHighScore);
         highScoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,7 +52,7 @@ public class GameOverActivity extends Activity {
             }
         });
 
-        backBtn = (Button)findViewById(R.id.btnBack);
+        backBtn = (ImageButton)findViewById(R.id.imgBtnBack);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

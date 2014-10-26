@@ -1,97 +1,169 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="uc.edu.itp.drugandalcohol.view.GameOverActivity">
+    tools:context="uc.edu.itp.drugandalcohol.view.GameOverActivity"
+    android:orientation="vertical">
 
-    <TextView
-        android:text="Game Over Menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="26dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/txtGameOverHeading" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Score - XXXXX"
-        android:id="@+id/txtScore"
-        android:layout_below="@+id/txtGameOverHeading"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/md_orange_600"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_weight="0.40"
+        android:weightSum="1">
+
+        <TextView
+            android:text="Game Over Menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="40dp"
+            android:textColor="#ff1c64ff"
+            android:gravity="center_horizontal"
+            android:id="@+id/txtGameOverHeading" />
+
+        <ImageView
+            android:id="@+id/imgViewBeer"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.31"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:src="@drawable/beer2_icon"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1">
+            <TextView
+                android:text="Score - XXXXX"
+                android:id="@+id/txtScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="26dp"
+                android:textColor="#8899F2"
+                android:gravity="center_horizontal"
+                android:layout_weight="0.5" />
+
+            <TextView
+                android:text="Time Spent - XX:XX"
+                android:id="@+id/txtTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="26dp"
+                android:textColor="#8899F2"
+                android:gravity="center_horizontal"
+                android:layout_weight="0.5" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1">
+
+            <TextView
+                android:text="Hits - XXX"
+                android:id="@+id/txtHits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:textColor="#0099CC"
+                android:gravity="center_horizontal"
+                android:layout_weight="0.3" />
+
+            <TextView
+                android:text="Misses - XXX"
+                android:id="@+id/txtMisses"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:textColor="#0099CC"
+                android:gravity="center_horizontal"
+                android:layout_weight="0.3"/>
+
+            <TextView
+                android:text="Hit TNT - YXN"
+                android:id="@+id/txtHitTNT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:textColor="#0099CC"
+                android:gravity="center_horizontal"
+                android:layout_weight="0.4"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="109dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
         android:layout_marginTop="16dp"
-        android:layout_marginLeft="26dp" />
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        android:background="#ff1c64ff">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Hit TNT - YXN"
-        android:id="@+id/txtHitTNT"
-        android:layout_below="@+id/txtScore"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="26dp" />
+        <!-- icon row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Hits - XXX"
-        android:id="@+id/txtHits"
-        android:layout_toStartOf="@+id/btnBack"
-        android:layout_below="@+id/txtGameOverHeading"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="60dp"/>
+            <ImageButton
+                android:id="@+id/imgBtnHighScore"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:src="@drawable/send_sms_48"
+                android:background="@drawable/btn_state_gold"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Time Spent - XX:XX"
-        android:id="@+id/txtTime"
-        android:layout_below="@+id/txtGameOverHeading"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="88dp" />
+            <ImageButton
+                android:id="@+id/imgBtnBack"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:src="@drawable/close_cross_48"
+                android:background="@drawable/btn_state_gold"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Misses - XXX"
-        android:id="@+id/txtMisses"
-        android:layout_toStartOf="@+id/btnBack"
-        android:layout_below="@+id/txtHits"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="12dp"
-        android:layout_marginRight="32dp"/>
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/btnHighScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="High Scores"
-        android:layout_below="@+id/txtGameOverHeading"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="128dp" />
+        <!-- text row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back"
-        android:id="@+id/btnBack"
-        android:layout_below="@+id/btnHighScore"
-        android:layout_centerHorizontal="true" />
+            <TextView
+                android:id="@+id/txtViewHighScore"
+                android:layout_width="48dp"
+                android:layout_height="24dp"
+                android:text="High Score"
+                android:textSize="20dp"
+                android:layout_weight="1"
 
-</RelativeLayout>
+                android:textColor="@color/white1"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/txtViewBack"
+                android:layout_width="48dp"
+                android:layout_height="24dp"
+                android:layout_weight="1"
+                android:text="Back"
+                android:textSize="20dp"
+                android:textColor="@color/white1"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
