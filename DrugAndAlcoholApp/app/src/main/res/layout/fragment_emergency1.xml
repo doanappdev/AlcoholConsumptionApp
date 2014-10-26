@@ -2,90 +2,140 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/border_width">
+  >
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_centerHorizontal="true"
-        android:weightSum="1">
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:id="@+id/editTxtEmTitle"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="false"
-                android:layout_alignParentEnd="false"
-                android:text="Emergency Message"
-                android:layout_weight="1" />
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imgBtnCancelMsg"
-                android:adjustViewBounds="false"
-                android:src="@android:drawable/ic_delete" />
-        </LinearLayout>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:id="@+id/txtViewPhoneNum"
-            android:text="To:"
-            android:autoText="false"
-            android:singleLine="false"
-            android:phoneNumber="true" />
+        android:id="@+id/lLayoutContactNames"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/border_width"
+        android:layout_marginRight="@dimen/border_width"
+        android:layout_height="48dp">
 
         <Spinner
+            android:id="@+id/spinnerContactNames"
             android:layout_width="match_parent"
-            android:layout_height="51dp"
-            android:id="@+id/spinnerCon"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerStyle="@android:style/Widget.Spinner.DropDown"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:text=" Enter Message"
-            android:id="@+id/txtViewEmergencyMsg"
-            android:editable="true"
-            android:maxLines="25"
-            android:textSize="18dp" />
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="129dp"
             android:layout_height="wrap_content"
-            android:text="Change Contact"
-            android:id="@+id/btnAddCon"
-            android:layout_gravity="right"
-            android:textColor="@color/md_blue_a400"
-            android:textStyle="bold"
-            android:layout_weight="0.13"
-            android:background="#fff"
-            android:textSize="16dp" />
-
-        <Button
-            style="@android:style/TextAppearance.DeviceDefault.Widget.TextView"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:text="Send"
-            android:id="@+id/btnSendEmSMS"
-            android:layout_gravity="right"
-            android:textColor="@color/md_blue_a400"
-            android:textStyle="bold"
-            android:background="#fff"
-            android:singleLine="false"
-            android:textSize="16dp" />
+            android:prompt="@string/emergency_contacts_prompt">
+        </Spinner>
 
     </LinearLayout>
+
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/lLayoutContactNames"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:id="@+id/lLayoutContactNumber"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="@dimen/border_width"
+        android:layout_marginRight="@dimen/border_width"
+        android:layout_below="@+id/divider1">
+
+        <TextView
+            android:id="@+id/txtViewContactNumber"
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:hint="Number"/>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+
+        android:layout_below="@+id/lLayoutContactNumber"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:id="@+id/lLayoutContactStandardMsg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/border_width"
+        android:layout_marginRight="@dimen/border_width"
+        android:layout_below="@+id/divider2"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtViewContactStandardMsg"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:hint="Standard Message"/>
+
+        <Spinner
+            android:id="@+id/spinnerStandardMsg"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+
+        android:layout_below="@+id/lLayoutContactStandardMsg"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:id="@+id/lLayoutContactCustomMsg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/border_width"
+        android:layout_marginRight="@dimen/border_width"
+        android:layout_below="@+id/divider3"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtViewContactCustomMsg"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:hint="Custom Message"/>
+
+        <EditText
+            android:id="@+id/editTxtContactCustomMsg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textShortMessage|textMultiLine"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/border_width"
+        android:text="@string/button_send"
+        android:textColor="@color/md_blue_500"
+        />
+
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="@dimen/border_width"
+        android:text="@string/button_add"
+        android:textColor="@color/md_blue_500"
+       />
+
 
 </RelativeLayout>

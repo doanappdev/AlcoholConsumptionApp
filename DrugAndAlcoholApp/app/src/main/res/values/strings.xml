@@ -49,8 +49,11 @@
     <string name="button_cancel">CANCEL</string>
     <string name="button_remove">REMOVE</string>
     <string name="button_exit">EXIT</string>
+    <string name="button_send">SEND</string>
+    <string name="button_add">ADD</string>
 
-
+    <!-- spinner contact values -->
+    <string name="emergency_contacts_prompt">Emergency Contacts</string>
     <string-array name="emergency_contacts">
         <item>Joe</item>
         <item>Jane</item>
@@ -58,8 +61,8 @@
         <item>Jenny</item>
     </string-array>
 
+    <!-- standard emergency messages -->
     <string name="standard_msg_prompt">Select Message</string>
-
     <string-array name="standard_msg">
         <item>I have hurt myself can you call me?</item>
         <item>I am lost can you track my position?</item>
@@ -67,8 +70,8 @@
         <item>Can you track my position, using app?</item>
     </string-array>
 
+    <!-- hours since drinking values -->
     <string name="hours_drinking_prompt">Select value</string>
-
     <string-array name="number_of_hours">
         <item>30 min</item>
         <item>1 hour</item>
@@ -80,6 +83,7 @@
         <item>4 hours</item>
     </string-array>
 
+    <!-- activity titles -->
     <string name="title_activity_reaction_test">ReactionTestActivity</string>
     <string name="title_activity_game_menu">GameMenuActivity</string>
     <string name="title_activity_game_over">GameOverActivity</string>
@@ -88,5 +92,6 @@
     <string name="title_activity_map">MapActivity</string>
     <string name="title_activity_proximity_alert">ProximityAlertActivity</string>
     <string name="title_activity_notification_view">NotificationViewActivity</string>
+    <string name="title_activity_high_score">HighScoreActivity</string>
 
 </resources>

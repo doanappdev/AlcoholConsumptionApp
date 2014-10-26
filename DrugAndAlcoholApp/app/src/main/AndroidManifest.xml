@@ -11,6 +11,8 @@
     <!-- access current location -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- access phone contacts -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <!-- Google Maps API needs OpenGL ES 2.0 -->
     <uses-feature
@@ -96,15 +98,21 @@
         <activity
             android:name=".view.ProximityAlertActivity"
             android:label="@string/title_activity_proximity_alert" >
+
             <!-- need to add intent-filter to display map on MapActivity -->
             <intent-filter>
                 <action android:name="uc.edu.itp.drugandalcohol.view.ProximityAlertActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".view.NotificationViewActivity"
             android:label="@string/title_activity_notification_view" >
+        </activity>
+        <activity
+            android:name=".view.HighScoreActivity"
+            android:label="@string/title_activity_high_score" >
         </activity>
     </application>
 
