@@ -93,9 +93,8 @@ public class GameMenuActivity extends Activity {
         highScoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("Game Menu Activity - ", "No high score menu yet!");
-                //Intent highScoreIntent = new Intent(getApplicationContext(), ReactionTestActivity.class);
-                //startActivity(highScoreIntent);
+                Intent highScoreIntent = new Intent(getApplicationContext(), HighScoreActivity.class);
+                startActivity(highScoreIntent);
             }
         });
 

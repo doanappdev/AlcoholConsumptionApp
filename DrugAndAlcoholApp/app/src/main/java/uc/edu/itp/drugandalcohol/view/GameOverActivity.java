@@ -46,8 +46,8 @@ public class GameOverActivity extends Activity {
         highScoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("Game Over Activity - ", "No high score menu yet!");
-                //finish();
+                Intent highScoreIntent = new Intent(getApplicationContext(), HighScoreActivity.class);
+                startActivity(highScoreIntent);
             }
         });
 

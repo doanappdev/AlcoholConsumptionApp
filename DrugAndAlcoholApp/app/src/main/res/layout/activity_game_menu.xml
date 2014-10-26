@@ -6,7 +6,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="uc.edu.itp.drugandalcohol.view.GameMenuActivity">
+    tools:context="uc.edu.itp.drugandalcohol.view.GameMenuActivity"
+    android:background="#ffff6e12">
 
     <TextView
         android:id="@+id/txtViewGameHeading"
@@ -15,51 +16,116 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:text="Reaction Test"
-        android:textSize="24dp"/>
+        android:textSize="24dp"
+        android:textColor="#ff1c64ff" />
 
-    <Button
-        android:id="@+id/btnStartGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start"
-        android:layout_toStartOf="@+id/txtViewGameHeading"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_below="@+id/txtViewGameHeading"
-        android:layout_toLeftOf="@+id/txtViewGameHeading" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="128dp"
+        android:id="@+id/gameMenuLayout"
+        android:background="#ff1c64ff">
 
-    <Button
-        android:id="@+id/btnSettings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Settings"
-        android:layout_alignBottom="@+id/btnStartGame"
-        android:layout_toRightOf="@+id/btnStartGame"
-        android:layout_marginLeft="75dp"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Instructions"
-        android:id="@+id/btnInstructions"
-        android:layout_below="@+id/btnStartGame"
-        android:layout_alignStart="@+id/btnStartGame" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start Game"
+                android:textSize="20dp"
+                android:id="@+id/txtViewStartGame"
+                android:textColor="#ffff6e12" />
 
-    <Button
-        android:id="@+id/btnHighScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="High Scores"
-        android:layout_below="@+id/btnInstructions"
-        android:layout_alignStart="@+id/btnInstructions" />
+            <Button
+                android:id="@+id/btnStartGame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":D"
+                android:background="#ffc8c352"
+                android:textColor="#FF0000" />
 
-
+            </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Game Settings"
+                android:textSize="20dp"
+                android:id="@+id/txtViewSettings"
+                android:textColor="#ffff6e12" />
+            <Button
+                android:id="@+id/btnSettings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":D"
+                android:background="#ffc8c352"
+                android:textColor="#FF0000" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Instructions"
+                android:textSize="20dp"
+                android:id="@+id/txtViewInstructions"
+                android:textColor="#ffff6e12" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":D"
+                android:id="@+id/btnInstructions"
+                android:background="#ffc8c352"
+                android:textColor="#FF0000" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="High Score"
+                android:textSize="20dp"
+                android:id="@+id/txtViewHighScore"
+                android:textColor="#ffff6e12" />
+            <Button
+                android:id="@+id/btnHighScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":D"
+                android:layout_below="@+id/btnInstructions"
+                android:layout_alignStart="@+id/btnInstructions"
+                android:background="#ffc8c352"
+                android:textColor="#FF0000" />
+        </LinearLayout>
+    </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Main Menu"
         android:id="@+id/btnMainMenu"
-        android:layout_below="@+id/btnHighScore"
-        android:layout_alignStart="@+id/btnHighScore" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="82dp"
+        android:background="#ffffc079" />
 
 
 </RelativeLayout>

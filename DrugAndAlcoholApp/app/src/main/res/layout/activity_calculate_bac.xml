@@ -10,14 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.6"
-        class="uc.edu.itp.drugandalcohol.fragments.CalculateBACTopFragment" />
+        class="uc.edu.itp.drugandalcohol.fragments.CalculateBACTopFragment"
+        tools:layout="@layout/fragment_calculate_bac_top" />
 
     <fragment
         android:id="@+id/bottomCalculateFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.4"
-        class="uc.edu.itp.drugandalcohol.fragments.CalculateBACBottomFragment" />
+        class="uc.edu.itp.drugandalcohol.fragments.CalculateBACBottomFragment"
+        tools:layout="@layout/fragment_calculate_bac_bottom2" />
 
 
 </LinearLayout>
