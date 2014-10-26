@@ -14,6 +14,7 @@ public class AlcoholClass extends Sprite {
     private int xSpeed;
     private int ySpeed;
     private int points;
+    private int rng;
 
     public boolean active;
 
@@ -32,12 +33,16 @@ public class AlcoholClass extends Sprite {
             src.set(srcX , srcY, srcX + width, srcY + height);
         }
 
+        //rng = (int)(Math.random()*8);
+
+        //These colours are different from their
+        //button counterparts. Is that what you want?
         switch(this.id){
-            case 0:setColor(255,200,200,0);break;
-            case 1:setColor(255,255,0,0);break;
-            case 2:setColor(255,0,255,0);break;
-            case 3:setColor(255,64,64,255);break;
-            default:setColor(255,255,255,255);break;
+            case 0:setColor(255,255,128,255);break;
+            case 1:setColor(255,255,128,0);break;
+            case 2:setColor(255,0,160,128);break;
+            case 3:setColor(255,100,100,0);break;
+            default:setColor(255,0,0,0);break;
         }
 
         int g_width = gameView.getWidth();
