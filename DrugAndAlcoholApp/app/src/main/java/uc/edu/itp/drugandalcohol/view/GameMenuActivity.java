@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Switch;
 
 import uc.edu.itp.drugandalcohol.MainActivity;
@@ -27,11 +28,11 @@ public class GameMenuActivity extends Activity {
     String hitTNT;
     String textTime;
 
-    Button gameViewBtn;
-    Button settingsBtn;
-    Button instructionsBtn;
-    Button highScoreBtn;
-    Button mainMenuBtn;
+    ImageButton gameViewBtn;
+    ImageButton settingsBtn;
+    ImageButton instructionsBtn;
+    ImageButton highScoreBtn;
+    ImageButton mainMenuBtn;
 
     public Intent resultsIntent;
 
@@ -44,7 +45,7 @@ public class GameMenuActivity extends Activity {
         speedByTimer = false;
         randomiseSpeed = true;
 
-        gameViewBtn = (Button)findViewById(R.id.btnStartGame);
+        gameViewBtn = (ImageButton)findViewById(R.id.imgBtnStartGame);
 
         gameViewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +60,7 @@ public class GameMenuActivity extends Activity {
             }
         });
 
-        settingsBtn = (Button)findViewById(R.id.btnSettings);
+        settingsBtn = (ImageButton)findViewById(R.id.imgBtnSettings);
 
         settingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +78,7 @@ public class GameMenuActivity extends Activity {
             }
         });
 
-        instructionsBtn = (Button)findViewById(R.id.btnInstructions);
+        instructionsBtn = (ImageButton)findViewById(R.id.imgBtnInstructions);
 
         instructionsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +89,7 @@ public class GameMenuActivity extends Activity {
             }
         });
 
-        highScoreBtn = (Button)findViewById(R.id.btnHighScore);
+        highScoreBtn = (ImageButton)findViewById(R.id.imgBtnHighScore);
 
         highScoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +99,7 @@ public class GameMenuActivity extends Activity {
             }
         });
 
-        mainMenuBtn = (Button)findViewById(R.id.btnMainMenu);
+        mainMenuBtn = (ImageButton)findViewById(R.id.imgBtnMainMenu);
 
         mainMenuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
