@@ -31,10 +31,11 @@
     <LinearLayout
         android:id="@+id/lLayoutContactNumber"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/border_width"
         android:layout_marginRight="@dimen/border_width"
-        android:layout_below="@+id/divider1">
+        android:layout_below="@+id/divider1"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/txtViewContactNumber"
@@ -44,13 +45,19 @@
             android:layout_marginBottom="16dp"
             android:hint="Number"/>
 
+        <EditText
+            android:id="@+id/editTxtContactNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:visibility="gone"/>
+
     </LinearLayout>
 
     <View
         android:id="@+id/divider2"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-
         android:layout_below="@+id/lLayoutContactNumber"
         android:background="@android:color/darker_gray" />
 
@@ -75,6 +82,7 @@
             android:id="@+id/spinnerStandardMsg"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:entries="@array/standard_msg"
             android:visibility="gone" />
 
     </LinearLayout>
@@ -126,14 +134,14 @@
         />
 
     <Button
-        android:id="@+id/btnAdd"
+        android:id="@+id/btnCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_margin="@dimen/border_width"
-        android:text="@string/button_add"
+        android:text="@string/button_cancel"
         android:textColor="@color/md_blue_500"
        />
 
