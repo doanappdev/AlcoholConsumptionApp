@@ -28,7 +28,7 @@
         <!-- Customize theme here. -->
         <item name="android:background">@color/md_orange_500</item>
         <item name="android:titleTextStyle">@style/ActionBar.TitleBarTextColor</item>
-        <item name="android:icon">@drawable/ic_navigation_cancel_white</item>
+        <item name="android:icon">@drawable/msg_read</item>
     </style>
 
     <!-- ************************************************************************* -->

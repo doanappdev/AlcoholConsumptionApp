@@ -61,7 +61,8 @@
         <activity
             android:name=".view.EmergencyActivity"
             android:label="@string/title_activity_emergency"
-            android:theme="@style/EmergencySMSTheme" >
+            android:theme="@style/EmergencySMSTheme"
+            android:parentActivityName=".MainActivity">
         </activity>
         <activity
             android:name=".view.ExpandableListActivity"

@@ -47,6 +47,8 @@ public class MainActivity extends Activity
         gameMenuImgBtn = (ImageButton)findViewById(R.id.imgBtnReactionTest);
         proximityImgBtn = (ImageButton)findViewById(R.id.imgBtnProximity);
 
+        startEULA();
+
         detailsImgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,17 +93,10 @@ public class MainActivity extends Activity
         });
 
 
-
-
-
-
     }
 
-    @Override
-    protected void onStart()
+    public void startEULA()
     {
-        super.onStart();
-
         // check if user has agreed to EULA
         if(!EULA_ACCEPTED)
         {
@@ -117,14 +112,14 @@ public class MainActivity extends Activity
                     dialogInterface.dismiss();
                 }
             })
-            .setNegativeButton("QUIT", new DialogInterface.OnClickListener() {
-                 @Override
-                 public void onClick(DialogInterface dialogInterface, int i) {
-                    //dialogInterface.cancel();
-                    onStop();
-                    }
-                 }
-            );
+                    .setNegativeButton("QUIT", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    //dialogInterface.cancel();
+                                    onStop();
+                                }
+                            }
+                    );
 
             View childView = getLayoutInflater().inflate(R.layout.fragment_eula, null);
             alertDialog.setView(childView);
@@ -135,6 +130,14 @@ public class MainActivity extends Activity
             dialog.show();
 
         }
+    }
+
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+
+
 
 
     }

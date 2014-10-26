@@ -1,5 +1,7 @@
 package uc.edu.itp.drugandalcohol.fragments;
 
+import android.app.ActionBar;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,6 +9,7 @@ import android.app.Fragment;
 import android.provider.ContactsContract;
 import android.telephony.SmsManager;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import uc.edu.itp.drugandalcohol.MainActivity;
 import uc.edu.itp.drugandalcohol.R;
 
 /**
@@ -85,6 +89,9 @@ public class EmergencyFragment extends Fragment
 
         addItemsToSpinner();
 
+        // enable home icon on action bar
+        ActionBar actionBar = getActivity().getActionBar();
+        actionBar.setHomeButtonEnabled(true);
 
         // Inflate the layout for this fragment
         return view;
@@ -281,12 +288,14 @@ public class EmergencyFragment extends Fragment
 
         sendEmergencySMS(buddyName, buddyNumber, message);
 
+        /*
         // testing
         Toast.makeText(getActivity(),
                 "SMS Details\nName: " + buddyName  +
                 "\nNumber: " + buddyNumber +
                 "\nStandard Msg: " + message  ,
                 Toast.LENGTH_LONG).show();
+        */
     }
 
     private void sendEmergencySMS(String name, String number, String msg)
@@ -326,6 +335,32 @@ public class EmergencyFragment extends Fragment
         }
     }
 
+    /*
+     * click listener for icons on action bar
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch(item.getItemId())
+        {
+            case R.id.action_send_sms:
+                // get message details and send sms
+                getMsgDetails();
+                break;
 
+            // id for home icon on action bar
+            case android.R.id.home:
+                // create intent to start main menu
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                break;
+
+            default:
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
 }
