@@ -43,7 +43,7 @@ dependencies {
         tested on emulator android version 4.4.2
      */
 
-    // Current as of 15/10/14 - may need to update if Google release an
+    // Current as of 15/10/14 - may need to update if Google releases an
     // update for Google Play Services
     //compile 'com.google.android.gms:play-services:4.4.52' // old version
     // current as of 25/10/14

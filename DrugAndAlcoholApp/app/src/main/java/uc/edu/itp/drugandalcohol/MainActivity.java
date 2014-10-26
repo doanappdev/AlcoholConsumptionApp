@@ -105,9 +105,8 @@ public class MainActivity extends Activity
         // check if user has agreed to EULA
         if(!EULA_ACCEPTED)
         {
-            /**
-             * Display EULA when app first installed
-             */
+
+            // Display EULA
             final AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
             alertDialog.setPositiveButton("ACCEPT", new DialogInterface.OnClickListener() {
                 @Override

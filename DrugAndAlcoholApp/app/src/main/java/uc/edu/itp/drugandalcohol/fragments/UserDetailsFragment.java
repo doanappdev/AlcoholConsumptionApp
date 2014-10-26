@@ -33,9 +33,8 @@ public class UserDetailsFragment extends Fragment
     EditText userAgeEditTxt, userWeightEditTxt, buddyNameEditTxt, buddyNumberEditTxt;
     Switch genderSwitch, pregnantSwitch;
 
-    private boolean male, pregnant;
-
-
+    private boolean MALE = true;
+    private boolean PREGNANT = false;
 
     public UserDetailsFragment() {
         // Required empty public constructor
@@ -48,18 +47,6 @@ public class UserDetailsFragment extends Fragment
     {
         View v = inflater.inflate(R.layout.fragment_user_details, container, false);
 
-
-
-
-        male = true;
-        pregnant = false;
-
-        // hide the pregnant switch
-        //if(male)
-        //{
-        //    pregnantLayout.setVisibility(View.GONE);
-        //    pregnantLayout.invalidate();
-        //}
 
         userSharedPrefs = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
 
@@ -105,15 +92,15 @@ public class UserDetailsFragment extends Fragment
 
         if(genderSwitch.isChecked())
         {
-            male = true;      //  user is male
+            MALE = true;      //  user is MALE
 
             // hide pregnant switch
-            pregnantLayout.setVisibility(LinearLayout.INVISIBLE);
+            pregnantLayout.setVisibility(LinearLayout.GONE);
 
         }
         else
         {
-            male = false;     //  user is female
+            MALE = false;     //  user is female
 
             // display pregnant switch
             pregnantLayout.setVisibility(LinearLayout.VISIBLE);
@@ -129,55 +116,111 @@ public class UserDetailsFragment extends Fragment
      */
     private void saveUserPrefs()
     {
-        int buddyNumInt = 0;
         // get values from UI
-        int userAge = Integer.parseInt(userAgeEditTxt.getText().toString());
-        int userWeight = Integer.parseInt(userWeightEditTxt.getText().toString());
-        String buddyNumString = buddyNumberEditTxt.getText().toString();
-        String buddyName = buddyNameEditTxt.getText().toString();
+        int buddyNumInt = checkInputNumber();
+        int userAge = checkInputAge();
+        int userWeight = checkInputWeight();
+        String buddyName = checkInputName();
 
-
-
-        // check user has entered information
-        if(userWeight == 0)
-        {
-            // display error message
-            // weight is needed to calculate BAC
-            Toast.makeText(getActivity(),  "Please enter a value for weight", Toast.LENGTH_LONG).show();
-        }
-
-        if(buddyName.equals(""))
-        {
-            // if buddy name equals " " assign no value to name
-            buddyName = "No name entered";
-        }
-
-        if(buddyNumString.equals(""))
-        {
-            buddyNumberEditTxt.setError("number not entered");
-        }
-        else
-        {
-            // if number has been entered convert to a int
-            buddyNumInt = Integer.parseInt(buddyNumString);
-        }
-
-
+        /*
         // save values to user shared preferences
         SharedPreferences.Editor editor = userSharedPrefs.edit();
         editor.putInt(getString(R.string.user_age_key), userAge);
         editor.putInt(getString(R.string.user_weight_key), userWeight);
         editor.putInt(getString(R.string.buddy_number_key), buddyNumInt);
         editor.putString(getString(R.string.buddy_name_key), buddyName);
-        editor.putBoolean(getString(R.string.user_gender_key), male);
-
+        editor.putBoolean(getString(R.string.user_gender_key), MALE);
         editor.commit();
-
+        */
         // display toast to confirm details saved (for testing)
-        Toast.makeText(getActivity(),  "User Details:" + userAge + " " + userWeight + " " + male, Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(),  "User Details Entered\nUser Age: " + userAge +
+                                       "\nUser Weight: " + userWeight +
+                                       "\nBuddy Name: " + buddyName +
+                                       "\nBuddy Number: " + buddyNumInt +
+                                       "\nMale: " + MALE,
+                                        Toast.LENGTH_LONG).show();
 
 
     }
+
+    /*
+     * check the value for age entered by the user
+     */
+    public int checkInputAge()
+    {
+        int userAge = 0;
+        // get value entered from edit text box
+        String strUserAge = userAgeEditTxt.getText().toString();
+
+        if(strUserAge.isEmpty())
+        {
+            // no value entered
+            userAgeEditTxt.setError("Please enter your age");
+        }
+        else
+        {
+            // age entered, convert to integer
+            userAge = Integer.parseInt(strUserAge);
+
+        }
+
+        return userAge;
+    }
+
+    // check value for weight entered by user
+    public int checkInputWeight()
+    {
+        int userWeight = 0;
+        // get value value from edit text box
+        String strUserWeight = userWeightEditTxt.getText().toString();
+
+        // check if string is empty
+        if(strUserWeight.isEmpty())
+        {
+            // no value entered, display error message
+            userWeightEditTxt.setError("Please enter your weight");
+        }
+        else
+        {
+            // weight is entered has been entered convert string to integer
+            userWeight = Integer.parseInt(strUserWeight);
+        }
+
+        return userWeight;
+    }
+
+    public String checkInputName()
+    {
+        // get value from edit text
+        String strBuddyName = buddyNameEditTxt.getText().toString();
+
+        if(strBuddyName.isEmpty())
+        {
+            // no value entered for buddy contact name
+            buddyNameEditTxt.setError("Enter name for emergency contact");
+        }
+
+        return strBuddyName;
+    }
+
+    public int checkInputNumber()
+    {
+        int intBuddyNumber = 0;
+        String strBuddyNumber = buddyNumberEditTxt.getText().toString();
+
+        if(strBuddyNumber.isEmpty())
+        {
+            buddyNumberEditTxt.setError("Enter number for emergency contact");
+        }
+        else
+        {
+            // if number has been entered convert to int
+            intBuddyNumber = Integer.parseInt(strBuddyNumber);
+        }
+
+        return intBuddyNumber;
+    }
+
 
     public String testMethod()
     {
