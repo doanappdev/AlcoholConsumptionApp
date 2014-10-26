@@ -43,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="26dp"
-                android:textColor="#8899F2"
+                android:textColor="#4F66C9"
                 android:gravity="center_horizontal"
                 android:layout_weight="0.5" />
 
@@ -53,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="26dp"
-                android:textColor="#8899F2"
+                android:textColor="#4F66C9"
                 android:gravity="center_horizontal"
                 android:layout_weight="0.5" />
         </LinearLayout>
