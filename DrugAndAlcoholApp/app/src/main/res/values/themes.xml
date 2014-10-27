@@ -45,7 +45,6 @@
         <item name="android:background">@color/md_purple_700</item>
         <item name="android:titleTextStyle">@style/ActionBar.TitleBarTextColor</item>
         <item name="android:icon">@drawable/ic_social_add_person_white</item>
-
     </style>
 
     <!-- ************************************************************************* -->
@@ -57,10 +56,18 @@
     <!-- define action bar theme for user details activity -->
     <style name="CalculateBACActivityTheme.ActionBar" parent="android:style/Widget.Holo.Light.ActionBar">
         <!-- Customize theme here. -->
-        <item name="android:background">@color/md_green_500</item>
+        <item name="android:background">@color/md_blue_500</item>
         <item name="android:titleTextStyle">@style/ActionBar.TitleBarTextColor</item>
         <item name="android:icon">@drawable/ic_navigation_back_white</item>
 
+    </style>
+
+
+    <!-- define action bar theme for game menu activity -->
+    <style name="GameMenuActivityTheme.ActionBar" parent="android:style/Widget.Holo.Light.ActionBar">
+        <!-- Customize theme here. -->
+        <item name="android:background">@color/md_blue_500</item>
+        <item name="android:titleTextStyle">@style/ActionBar.TitleBarTextColor</item>
     </style>
 
     <!-- ************************************************************************* -->

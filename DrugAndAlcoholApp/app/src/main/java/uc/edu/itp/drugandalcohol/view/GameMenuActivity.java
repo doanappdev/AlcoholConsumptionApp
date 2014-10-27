@@ -28,11 +28,11 @@ public class GameMenuActivity extends Activity {
     String hitTNT;
     String textTime;
 
-    ImageButton gameViewBtn;
-    ImageButton settingsBtn;
-    ImageButton instructionsBtn;
-    ImageButton highScoreBtn;
-    ImageButton mainMenuBtn;
+    Button gameViewBtn;
+    Button settingsBtn;
+    Button instructionsBtn;
+    Button highScoreBtn;
+    Button mainMenuBtn;
 
     public Intent resultsIntent;
 
@@ -45,7 +45,7 @@ public class GameMenuActivity extends Activity {
         speedByTimer = false;
         randomiseSpeed = true;
 
-        gameViewBtn = (ImageButton)findViewById(R.id.imgBtnStartGame);
+        gameViewBtn = (Button)findViewById(R.id.btnStartGame);
 
         gameViewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +60,7 @@ public class GameMenuActivity extends Activity {
             }
         });
 
-        settingsBtn = (ImageButton)findViewById(R.id.imgBtnSettings);
+        settingsBtn = (Button)findViewById(R.id.btnGameSettings);
 
         settingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +78,7 @@ public class GameMenuActivity extends Activity {
             }
         });
 
-        instructionsBtn = (ImageButton)findViewById(R.id.imgBtnInstructions);
+        instructionsBtn = (Button)findViewById(R.id.btnGameInstructions);
 
         instructionsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,7 +89,7 @@ public class GameMenuActivity extends Activity {
             }
         });
 
-        highScoreBtn = (ImageButton)findViewById(R.id.imgBtnHighScore);
+        highScoreBtn = (Button)findViewById(R.id.btnGameHighScore);
 
         highScoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,7 +99,7 @@ public class GameMenuActivity extends Activity {
             }
         });
 
-        mainMenuBtn = (ImageButton)findViewById(R.id.imgBtnMainMenu);
+        mainMenuBtn = (Button)findViewById(R.id.btnBackMainMenu);
 
         mainMenuBtn.setOnClickListener(new View.OnClickListener() {
             @Override

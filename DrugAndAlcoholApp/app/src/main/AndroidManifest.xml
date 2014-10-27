@@ -74,7 +74,8 @@
         </activity>
         <activity
             android:name=".view.GameMenuActivity"
-            android:label="@string/title_activity_game_menu" >
+            android:label="@string/title_activity_game_menu"
+            android:theme="@style/GameMenuActivityTheme.ActionBar">
         </activity>
         <activity
             android:name=".view.GameOverActivity"
