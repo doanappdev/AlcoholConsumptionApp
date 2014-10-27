@@ -3,12 +3,10 @@ package uc.edu.itp.drugandalcohol.view;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import uc.edu.itp.drugandalcohol.R;
@@ -52,7 +50,7 @@ public class GameOverActivity extends Activity {
             }
         });
 
-        backBtn = (Button)findViewById(R.id.btnBackMainMenu);
+        backBtn = (Button)findViewById(R.id.btnReturnGameMenu);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,7 +69,7 @@ public class GameOverActivity extends Activity {
         missesTxt = (TextView)findViewById(R.id.txtMisses);
         missesTxt.setText(Integer.toString(misses));
 
-        hitTntTxt = (TextView)findViewById(R.id.txtHitTNT);
+        hitTntTxt = (TextView)findViewById(R.id.txtAnyTntHit);
         hitTntTxt.setText(hitTNT);
 
         timeTxt = (TextView)findViewById(R.id.txtTime);
