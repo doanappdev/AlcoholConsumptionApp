@@ -63,13 +63,13 @@ public class GameOverActivity extends Activity {
 
     private void setResultsText(){
         scoreTxt = (TextView)findViewById(R.id.txtScore);
-        scoreTxt.setText(score);
+        scoreTxt.setText(Integer.toString(score));
 
         hitsTxt = (TextView)findViewById(R.id.txtHits);
-        hitsTxt.setText(hits);
+        hitsTxt.setText(Integer.toString(hits));
 
         missesTxt = (TextView)findViewById(R.id.txtMisses);
-        missesTxt.setText(misses);
+        missesTxt.setText(Integer.toString(misses));
 
         hitTntTxt = (TextView)findViewById(R.id.txtHitTNT);
         hitTntTxt.setText(hitTNT);
