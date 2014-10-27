@@ -97,7 +97,8 @@ public class MainActivity extends Activity
 
     public void startEULA()
     {
-        // check if user has agreed to EULA
+        // check if user has agreed to EULA, only want to display
+        // this dialog once
         if(!EULA_ACCEPTED)
         {
 
@@ -124,10 +125,7 @@ public class MainActivity extends Activity
             View childView = getLayoutInflater().inflate(R.layout.fragment_eula, null);
             alertDialog.setView(childView);
 
-            final AlertDialog dialog = alertDialog.create();
-
-
-            dialog.show();
+            alertDialog.show();
 
         }
     }
@@ -136,10 +134,6 @@ public class MainActivity extends Activity
     protected void onStart()
     {
         super.onStart();
-
-
-
-
     }
 
     @Override

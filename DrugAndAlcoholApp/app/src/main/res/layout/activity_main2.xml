@@ -200,20 +200,19 @@
 
             <TextView
                 android:id="@+id/txtViewEmergencySMS"
+                android:text="Emergency SMS"
                 android:layout_width="48dp"
                 android:layout_height="24dp"
-                android:text="Emergency SMS"
                 android:layout_weight="1"
-
                 android:textColor="@color/md_font_87_percent_black"
                 android:gravity="center_vertical" />
 
             <TextView
-                android:id="@+id/txtViewClose"
+                android:id="@+id/txtViewDelete"
+                android:text="Delete Data"
                 android:layout_width="48dp"
                 android:layout_height="24dp"
                 android:layout_weight="1"
-                android:text="Close"
                 android:textColor="@color/md_font_87_percent_black"
                 android:gravity="center"
                 />
