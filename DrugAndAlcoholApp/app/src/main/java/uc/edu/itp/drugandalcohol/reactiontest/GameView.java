@@ -159,9 +159,9 @@ public class GameView extends SurfaceView
         hits = gameplay.getHits();
         misses = gameplay.getMisses();
         if(gameplay.getHitTNT())
-            hitTNT = "Hit TNT - YES";
+            hitTNT = "YES";
         else
-            hitTNT = "Hit TNT - NO";
+            hitTNT = "NO";
         timeText = gameplay.getSpentTimeText();
     }
 

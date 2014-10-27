@@ -167,7 +167,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:text="TNT Hits"
+                android:text="Any TNT hit?"
                 android:id="@+id/txtTntTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -178,7 +178,7 @@
 
             <TextView
                 android:text=" "
-                android:id="@+id/txtTntHits"
+                android:id="@+id/txtAnyTntHit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
@@ -204,7 +204,7 @@
         />
 
     <Button
-        android:id="@+id/btnHighScore"
+        android:id="@+id/btnGameHighScore"
         android:text="High Score"
         android:textColor="@color/white1"
         android:layout_width="match_parent"
@@ -221,7 +221,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="@dimen/border_width"
         android:layout_marginBottom="8dp"
-        android:layout_below="@+id/btnHighScore"
+        android:layout_below="@+id/btnGameHighScore"
         android:background="@color/white1"
         />
 

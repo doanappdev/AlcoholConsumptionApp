@@ -241,7 +241,15 @@ public class GameplayFunction {
     public int getHits(){ return hits; }
     public int getMisses(){ return misses; }
     public long getSpentTime(){ return spentTime; }
-    public String getSpentTimeText(){ return timeText; }
+    public String getSpentTimeText(){
+        seconds = (int)(spentTime/1000);
+        minutes = seconds / 60;
+        seconds = seconds % 60;
+        timeText = Integer.toString(minutes) + ":";
+        if(seconds < 10) timeText += "0";
+        timeText += Integer.toString(seconds);
+        return timeText;
+    }
     public boolean getHitTNT(){ return HitTNT; }
 
     public void changeSurface(int width, int height)
