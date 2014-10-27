@@ -141,6 +141,9 @@ public class MainActivity extends Activity
     {
         super.onStop();
 
+        // close MainActivity and exit app
+        //finish();
+
         /*
             Todo: add code to save phone state and data
          */

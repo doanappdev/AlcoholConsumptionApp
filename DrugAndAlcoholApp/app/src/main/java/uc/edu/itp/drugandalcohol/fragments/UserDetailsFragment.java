@@ -17,6 +17,8 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import uc.edu.itp.drugandalcohol.R;
+import uc.edu.itp.drugandalcohol.model.BuddyContact;
+import uc.edu.itp.drugandalcohol.model.UserDetails;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,8 +35,10 @@ public class UserDetailsFragment extends Fragment
     EditText userAgeEditTxt, userWeightEditTxt, buddyNameEditTxt, buddyNumberEditTxt;
     Switch genderSwitch, pregnantSwitch;
 
-    private boolean MALE = true;
-    private boolean PREGNANT = false;
+    private boolean isMALE = true;
+    private boolean isPREGNANT = false;
+
+    BuddyContact buddyContact;
 
     public UserDetailsFragment() {
         // Required empty public constructor
@@ -47,6 +51,7 @@ public class UserDetailsFragment extends Fragment
     {
         View v = inflater.inflate(R.layout.fragment_user_details, container, false);
 
+        buddyContact = new BuddyContact();
 
         userSharedPrefs = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
 
@@ -90,24 +95,42 @@ public class UserDetailsFragment extends Fragment
     {
         pregnantLayout = (LinearLayout)getActivity().findViewById(R.id.lLayoutPregnant);
 
-        if(genderSwitch.isChecked())
+        switch(buttonView.getId())
         {
-            MALE = true;      //  user is MALE
+            // handle click event for gender switch
+            case R.id.switchGender:
 
-            // hide pregnant switch
-            pregnantLayout.setVisibility(LinearLayout.GONE);
+                if(genderSwitch.isChecked())
+                {
+                    isMALE = true;      //  user is male
+                    // hide pregnant switch
+                    pregnantLayout.setVisibility(LinearLayout.GONE);
+
+                }
+                else
+                {
+                    isMALE = false;     //  user is female
+                    // display pregnant switch
+                    pregnantLayout.setVisibility(LinearLayout.VISIBLE);
+                }
+
+                break;
+
+            // handle click event for pregnant switch
+            case R.id.switchPregnant:
+
+                if(pregnantSwitch.isChecked())
+                {
+                    isPREGNANT = true;      //  user is male
+                }
+                else
+                {
+                    isPREGNANT = false;     //  user is female
+                }
+
+                break;
 
         }
-        else
-        {
-            MALE = false;     //  user is female
-
-            // display pregnant switch
-            pregnantLayout.setVisibility(LinearLayout.VISIBLE);
-
-        }
-
-        //pregnantLayout.invalidate();
     }
 
 
@@ -117,10 +140,21 @@ public class UserDetailsFragment extends Fragment
     private void saveUserPrefs()
     {
         // get values from UI
-        int buddyNumInt = checkInputNumber();
-        int userAge = checkInputAge();
-        int userWeight = checkInputWeight();
-        String buddyName = checkInputName();
+        //int buddyNumInt = checkInputNumber();
+        //int userAge = checkInputAge();
+        //int userWeight = checkInputWeight();
+        //String buddyName = checkInputName();
+
+        // no need to instantiate UserDetails object because it
+        // is a singleton object
+        UserDetails.getInstance().setAge(checkInputAge());
+        UserDetails.getInstance().setWeight(checkInputWeight());
+        UserDetails.getInstance().setGender(isMALE);
+        UserDetails.getInstance().setPregnant(isPREGNANT);
+        UserDetails.getInstance().setStandardDrinks(0);
+
+        buddyContact.setName(checkInputName());
+        buddyContact.setNumber(checkInputNumber());
 
         /*
         // save values to user shared preferences
@@ -129,15 +163,17 @@ public class UserDetailsFragment extends Fragment
         editor.putInt(getString(R.string.user_weight_key), userWeight);
         editor.putInt(getString(R.string.buddy_number_key), buddyNumInt);
         editor.putString(getString(R.string.buddy_name_key), buddyName);
-        editor.putBoolean(getString(R.string.user_gender_key), MALE);
+        editor.putBoolean(getString(R.string.user_gender_key), isMALE);
         editor.commit();
         */
+
         // display toast to confirm details saved (for testing)
-        Toast.makeText(getActivity(),  "User Details Entered\nUser Age: " + userAge +
-                                       "\nUser Weight: " + userWeight +
-                                       "\nBuddy Name: " + buddyName +
-                                       "\nBuddy Number: " + buddyNumInt +
-                                       "\nMale: " + MALE,
+        Toast.makeText(getActivity(),  "User Details Entered\nUser Age: " + UserDetails.getInstance().getAge() +
+                                       "\nUser Weight: " + UserDetails.getInstance().getWeight() +
+                                       "\nMale: " + isMALE +
+                                       "\nPregnant: " + isPREGNANT +
+                                       "\nBuddy Name: " + buddyContact.getName() +
+                                       "\nBuddy Number: " + buddyContact.getNumber(),
                                         Toast.LENGTH_LONG).show();
 
 
@@ -189,6 +225,18 @@ public class UserDetailsFragment extends Fragment
         return userWeight;
     }
 
+    public boolean checkGenderValue()
+    {
+        // isMALE is set to false, when user clicks on gender switch
+        // value will change
+        return isMALE;
+    }
+
+    public boolean checkPregnantValue()
+    {
+        return isPREGNANT;
+    }
+
     public String checkInputName()
     {
         // get value from edit text
@@ -222,6 +270,11 @@ public class UserDetailsFragment extends Fragment
     }
 
 
+    /*
+     * test method is used to check if Junit is connecting to this method
+     * test cases are stored in following directory
+     * /src/androidTest/
+     */
     public String testMethod()
     {
         return "This is the test string";

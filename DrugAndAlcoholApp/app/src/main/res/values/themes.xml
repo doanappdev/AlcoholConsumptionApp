@@ -62,6 +62,10 @@
 
     </style>
 
+    <!-- ************************************************************************* -->
+    <style name="GameMenuActivityTheme" parent="android:Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/GameMenuActivityTheme.ActionBar</item>
+    </style>
 
     <!-- define action bar theme for game menu activity -->
     <style name="GameMenuActivityTheme.ActionBar" parent="android:style/Widget.Holo.Light.ActionBar">
