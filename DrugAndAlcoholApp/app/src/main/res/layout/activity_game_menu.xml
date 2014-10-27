@@ -5,9 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/md_blue_500"
-    tools:context="uc.edu.itp.drugandalcohol.view.GameMenuActivity"
-
-    >
+    tools:context="uc.edu.itp.drugandalcohol.view.GameMenuActivity" >
 
     <TextView
         android:id="@+id/txtViewGameMenuH1"
@@ -15,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/border_width"
         android:text="Reaction Test"
-        android:textSize="48dp"
+        android:textSize="48sp"
         android:textColor="@color/white1"
         android:gravity="center"
         android:layout_alignParentTop="true"
@@ -117,6 +115,4 @@
             />
 
     </LinearLayout>
-
-
 </RelativeLayout>

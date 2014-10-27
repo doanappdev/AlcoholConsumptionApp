@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_blue_500">
+
+    <TextView
+        android:id="@+id/txtGameOverH1"
+        android:text="Game Over"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_marginTop="@dimen/border_width"
+        android:layout_marginLeft="56dp"
+        android:gravity="center_vertical"
+        android:textSize="40dp"
+        android:textColor="@color/white1"
+         />
+
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="@dimen/border_width"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_below="@+id/txtGameOverH1"
+        android:background="@color/white1"
+        />
+
+    <LinearLayout
+        android:id="@+id/lLayoutGameResults"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider1"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/md_orange_500"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/lLayoutGameScore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:text="Score"
+                android:id="@+id/txtScoreTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="56dp"
+                android:textSize="24sp"
+                android:textColor="@color/white1"
+                android:layout_weight="1" />
+
+            <TextView
+                android:text=" "
+                android:id="@+id/txtScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textColor="@color/white1"
+                android:gravity="center_horizontal"
+                android:layout_weight="3" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lLayoutGameTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lLayoutGameScore"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:text="Time"
+                android:id="@+id/txtTimeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="56dp"
+                android:textSize="24sp"
+                android:textColor="@color/white1"
+                android:layout_weight="1" />
+
+            <TextView
+                android:text=" "
+                android:id="@+id/txtTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="26sp"
+                android:textColor="@color/white1"
+                android:gravity="center_horizontal"
+                android:layout_weight="3" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lLayoutGameHits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lLayoutGameTime"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:text="Hits"
+                android:id="@+id/txtHitsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textColor="@color/white1"
+                android:layout_marginLeft="56dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:text=" "
+                android:id="@+id/txtHits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="26sp"
+                android:textColor="@color/white1"
+                android:gravity="center_horizontal"
+                android:layout_weight="3" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lLayoutGameMisses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lLayoutGameHits"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:text="Misses"
+                android:id="@+id/txtMissesTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="56dp"
+                android:textSize="24sp"
+                android:textColor="@color/white1"
+                android:layout_weight="1" />
+
+            <TextView
+                android:text=" "
+                android:id="@+id/txtMisses"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="26sp"
+                android:textColor="@color/white1"
+                android:gravity="center_horizontal"
+                android:layout_weight="3" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lLayoutGameTNT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lLayoutGameMisses"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:text="TNT Hits"
+                android:id="@+id/txtTntTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="56dp"
+                android:textSize="24sp"
+                android:textColor="@color/white1"
+                android:layout_weight="1" />
+
+            <TextView
+                android:text=" "
+                android:id="@+id/txtTntHits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textColor="@color/white1"
+                android:gravity="center_horizontal"
+                android:layout_weight="3" />
+
+        </LinearLayout>
+
+        </LinearLayout>
+
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="@dimen/border_width"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_below="@+id/lLayoutGameResults"
+        android:background="@color/white1"
+        />
+
+    <Button
+        android:id="@+id/btnHighScore"
+        android:text="High Score"
+        android:textColor="@color/white1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnReturnGameMenu"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8dp"
+        android:background="@color/md_blue_a700"/>
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="@dimen/border_width"
+        android:layout_marginBottom="8dp"
+        android:layout_below="@+id/btnHighScore"
+        android:background="@color/white1"
+        />
+
+    <Button
+        android:id="@+id/btnReturnGameMenu"
+        android:text="Game Menu"
+        android:textColor="@color/white1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="@dimen/border_width"
+        android:background="@color/md_blue_a700"/>
+
+
+</RelativeLayout>

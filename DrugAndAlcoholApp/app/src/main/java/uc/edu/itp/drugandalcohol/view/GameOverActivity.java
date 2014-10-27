@@ -26,13 +26,13 @@ public class GameOverActivity extends Activity {
     TextView missesTxt;
     TextView hitTntTxt;
     TextView timeTxt;
-    ImageButton backBtn;
-    ImageButton highScoreBtn;
+    Button backBtn;
+    Button highScoreBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_over);
+        setContentView(R.layout.activity_game_over2);
 
         Intent intent = getIntent();
         score = intent.getIntExtra("score", -1);
@@ -43,7 +43,7 @@ public class GameOverActivity extends Activity {
 
         setResultsText();
 
-        highScoreBtn = (ImageButton)findViewById(R.id.imgBtnHighScore);
+        highScoreBtn = (Button)findViewById(R.id.btnGameHighScore);
         highScoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,7 +52,7 @@ public class GameOverActivity extends Activity {
             }
         });
 
-        backBtn = (ImageButton)findViewById(R.id.imgBtnBack);
+        backBtn = (Button)findViewById(R.id.btnBackMainMenu);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,13 +63,13 @@ public class GameOverActivity extends Activity {
 
     private void setResultsText(){
         scoreTxt = (TextView)findViewById(R.id.txtScore);
-        scoreTxt.setText("Score - " + String.valueOf(score));
+        scoreTxt.setText(score);
 
         hitsTxt = (TextView)findViewById(R.id.txtHits);
-        hitsTxt.setText("Hits - " + String.valueOf(hits));
+        hitsTxt.setText(hits);
 
         missesTxt = (TextView)findViewById(R.id.txtMisses);
-        missesTxt.setText("Misses - " + String.valueOf(misses));
+        missesTxt.setText(misses);
 
         hitTntTxt = (TextView)findViewById(R.id.txtHitTNT);
         hitTntTxt.setText(hitTNT);
