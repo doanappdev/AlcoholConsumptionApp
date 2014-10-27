@@ -122,7 +122,7 @@
         begin beer row 2
     -->
     <LinearLayout
-        android:id="@+id/linearLayoutRowSpirits2"
+        android:id="@+id/linearLayoutSpiritsRow2"
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="72dp"
@@ -194,7 +194,7 @@
         android:id="@+id/divider2"
         android:layout_width="fill_parent"
         android:layout_height="0.5dp"
-        android:layout_below="@+id/linearLayoutRowSpirits2"
+        android:layout_below="@+id/linearLayoutSpiritsRow2"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:background="@android:color/darker_gray"
@@ -205,7 +205,7 @@
         begin row 3
     -->
     <LinearLayout
-        android:id="@+id/linearLayoutRow3"
+        android:id="@+id/linearLayoutBeerRow3"
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="72dp"
@@ -278,7 +278,7 @@
         android:id="@+id/divider3"
         android:layout_width="fill_parent"
         android:layout_height="0.5dp"
-        android:layout_below="@+id/linearLayoutRow3"
+        android:layout_below="@+id/linearLayoutBeerRow3"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:background="@android:color/darker_gray"
@@ -289,7 +289,7 @@
         begin row 4
     -->
     <LinearLayout
-        android:id="@+id/linearLayoutRow4"
+        android:id="@+id/linearLayoutBeerRow4"
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="72dp"

@@ -37,8 +37,6 @@
 
         </LinearLayout>
 
-
-
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="match_parent"
@@ -71,7 +69,7 @@
                             begin beer row 1
                         -->
                         <LinearLayout
-                            android:id="@+id/linearLayoutRow1"
+                            android:id="@+id/linearLayoutBeerRow1"
                             android:orientation="horizontal"
                             android:layout_width="fill_parent"
                             android:layout_height="72dp"
@@ -143,7 +141,7 @@
                             android:id="@+id/divider1"
                             android:layout_width="fill_parent"
                             android:layout_height="0.5dp"
-                            android:layout_below="@+id/linearLayoutRow1"
+                            android:layout_below="@+id/linearLayoutBeerRow1"
                             android:layout_marginLeft="16dp"
                             android:layout_marginStart="16dp"
                             android:layout_marginRight="@dimen/border_width"
@@ -156,7 +154,7 @@
                             begin beer row 2
                         -->
                         <LinearLayout
-                            android:id="@+id/linearLayoutRow2"
+                            android:id="@+id/linearLayoutBeerRow2"
                             android:orientation="horizontal"
                             android:layout_width="fill_parent"
                             android:layout_height="72dp"
@@ -228,7 +226,7 @@
                             android:id="@+id/divider2"
                             android:layout_width="fill_parent"
                             android:layout_height="0.5dp"
-                            android:layout_below="@+id/linearLayoutRow2"
+                            android:layout_below="@+id/linearLayoutBeerRow2"
                             android:layout_marginLeft="16dp"
                             android:layout_marginStart="16dp"
                             android:layout_marginRight="@dimen/border_width"
@@ -241,7 +239,7 @@
                             begin beer row 3
                         -->
                         <LinearLayout
-                            android:id="@+id/linearLayoutRow3"
+                            android:id="@+id/linearLayoutBeerRow3"
                             android:orientation="horizontal"
                             android:layout_width="fill_parent"
                             android:layout_height="72dp"
@@ -314,7 +312,7 @@
                             android:id="@+id/divider3"
                             android:layout_width="fill_parent"
                             android:layout_height="0.5dp"
-                            android:layout_below="@+id/linearLayoutRow3"
+                            android:layout_below="@+id/linearLayoutBeerRow3"
                             android:layout_marginLeft="16dp"
                             android:layout_marginStart="16dp"
                             android:layout_marginRight="@dimen/border_width"
@@ -327,7 +325,7 @@
                             begin beer row 4
                         -->
                         <LinearLayout
-                            android:id="@+id/linearLayoutRow4"
+                            android:id="@+id/linearLayoutBeerRow4"
                             android:orientation="horizontal"
                             android:layout_width="fill_parent"
                             android:layout_height="72dp"
@@ -416,7 +414,7 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content">
 
                         <!--
                             begin wine row 0
@@ -455,11 +453,11 @@
                             begin wine row 1
                         -->
                         <LinearLayout
-                            android:id="@+id/linearLayoutRowWine1"
+                            android:id="@+id/linearLayoutWineRow1"
                             android:orientation="horizontal"
                             android:layout_width="fill_parent"
                             android:layout_height="72dp"
-                            android:layout_below="@+id/viewWine1">
+                            >
 
                             <FrameLayout
                                 android:layout_width="48dp"
@@ -527,7 +525,7 @@
                             android:id="@+id/dividerWine1"
                             android:layout_width="fill_parent"
                             android:layout_height="0.5dp"
-                            android:layout_below="@+id/linearLayoutRowWine1"
+                            android:layout_below="@+id/linearLayoutWineRow1"
                             android:layout_marginLeft="16dp"
                             android:layout_marginStart="16dp"
                             android:layout_marginRight="@dimen/border_width"
@@ -540,7 +538,7 @@
                             begin wine row 2
                         -->
                         <LinearLayout
-                            android:id="@+id/linearLayoutRowWine2"
+                            android:id="@+id/linearLayoutWineRow2"
                             android:orientation="horizontal"
                             android:layout_width="fill_parent"
                             android:layout_height="72dp"
@@ -612,7 +610,7 @@
                             android:id="@+id/dividerWine2"
                             android:layout_width="fill_parent"
                             android:layout_height="0.5dp"
-                            android:layout_below="@+id/linearLayoutRowWine2"
+                            android:layout_below="@+id/linearLayoutWineRow2"
                             android:layout_marginLeft="16dp"
                             android:layout_marginStart="16dp"
                             android:layout_marginRight="@dimen/border_width"
@@ -625,7 +623,7 @@
                             begin wine row 3
                         -->
                         <LinearLayout
-                            android:id="@+id/linearLayoutRowWine3"
+                            android:id="@+id/linearLayoutWineRow3"
                             android:orientation="horizontal"
                             android:layout_width="fill_parent"
                             android:layout_height="72dp"
@@ -697,7 +695,7 @@
                             android:id="@+id/dividerWine3"
                             android:layout_width="fill_parent"
                             android:layout_height="0.5dp"
-                            android:layout_below="@+id/linearLayoutRowWine3"
+                            android:layout_below="@+id/linearLayoutWineRow3"
                             android:layout_marginLeft="16dp"
                             android:layout_marginStart="16dp"
                             android:layout_marginRight="@dimen/border_width"
@@ -710,7 +708,7 @@
                             begin wine row 4
                         -->
                         <LinearLayout
-                            android:id="@+id/linearLayoutRowWine4"
+                            android:id="@+id/linearLayoutWineRow4"
                             android:orientation="horizontal"
                             android:layout_width="fill_parent"
                             android:layout_height="72dp"
@@ -800,7 +798,7 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content">
 
                         <!--
                             begin spirits heading row 0
@@ -840,11 +838,11 @@
                             begin spirits row 1
                         -->
                         <LinearLayout
-                            android:id="@+id/linearLayoutRowSpirits1"
+                            android:id="@+id/linearLayoutSpiritsRow1"
                             android:orientation="horizontal"
                             android:layout_width="fill_parent"
                             android:layout_height="72dp"
-                            android:layout_below="@+id/viewSpirits1">
+                            >
 
                             <FrameLayout
                                 android:layout_width="48dp"
@@ -912,7 +910,7 @@
                             android:id="@+id/dividerSpirits1"
                             android:layout_width="fill_parent"
                             android:layout_height="0.5dp"
-                            android:layout_below="@+id/linearLayoutRowSpirits1"
+                            android:layout_below="@+id/linearLayoutSpiritsRow1"
                             android:layout_marginLeft="16dp"
                             android:layout_marginStart="16dp"
                             android:layout_marginRight="@dimen/border_width"
@@ -925,7 +923,7 @@
                             begin spirits row 2
                         -->
                         <LinearLayout
-                            android:id="@+id/linearLayoutRowSpirits2"
+                            android:id="@+id/linearLayoutSpiritsRow2"
                             android:orientation="horizontal"
                             android:layout_width="fill_parent"
                             android:layout_height="72dp"
@@ -997,7 +995,7 @@
                             android:id="@+id/dividerSpirits2"
                             android:layout_width="fill_parent"
                             android:layout_height="0.5dp"
-                            android:layout_below="@+id/linearLayoutRowSpirits2"
+                            android:layout_below="@+id/linearLayoutSpiritsRow2"
                             android:layout_marginLeft="16dp"
                             android:layout_marginStart="16dp"
                             android:layout_marginRight="@dimen/border_width"
@@ -1010,7 +1008,7 @@
                             begin spirits row 3
                         -->
                         <LinearLayout
-                            android:id="@+id/linearLayoutRowSpirits3"
+                            android:id="@+id/linearLayoutSpiritsRow3"
                             android:orientation="horizontal"
                             android:layout_width="fill_parent"
                             android:layout_height="72dp"
@@ -1054,9 +1052,7 @@
 
                             </LinearLayout>
 
-                            <!--
-                                to support API lower than 15 use layoutMarginRight=""
-                            -->
+
                             <FrameLayout
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent"
@@ -1083,7 +1079,7 @@
                             android:id="@+id/dividerSpirits3"
                             android:layout_width="fill_parent"
                             android:layout_height="0.5dp"
-                            android:layout_below="@+id/linearLayoutRowSpirits3"
+                            android:layout_below="@+id/linearLayoutSpiritsRow3"
                             android:layout_marginLeft="16dp"
                             android:layout_marginStart="16dp"
                             android:layout_marginRight="@dimen/border_width"
@@ -1096,7 +1092,7 @@
                             begin spirits row 4
                         -->
                         <LinearLayout
-                            android:id="@+id/linearLayoutRowSpirits4"
+                            android:id="@+id/linearLayoutSpiritsRow4"
                             android:orientation="horizontal"
                             android:layout_width="fill_parent"
                             android:layout_height="72dp"
@@ -1141,9 +1137,7 @@
 
                             </LinearLayout>
 
-                            <!--
-                                to support API lower than 15 use layoutMarginRight=""
-                            -->
+
                             <FrameLayout
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent"

@@ -11,8 +11,11 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -27,7 +30,7 @@ import uc.edu.itp.drugandalcohol.model.AlcoholType;
  *
  */
 public class CalculateBACTopFragment extends Fragment
-        implements TabHost.OnTabChangeListener, View.OnClickListener
+        implements TabHost.OnTabChangeListener, View.OnTouchListener
 {
     // set text for tab heading
     private final TabDefinition[] tabDefinitions = new TabDefinition[] {
@@ -54,12 +57,24 @@ public class CalculateBACTopFragment extends Fragment
     private static final int RED_WINE_CLICKED = 5;
     private static final int WHITE_WINE_CLICKED = 6;
     private static final int BOTTLE_WINE_CLICKED = 7;
+    private static final int SPIRIT_ONE_CLICKED = 8;
+    private static final int SPIRIT_TWO_CLICKED = 9;
+    private static final int SPIRIT_THREE_CLICKED = 10;
+    private static final int SPIRIT_FOUR_CLICKED = 11;
+
 
     RelativeLayout relativeLayoutBeer;
-    View _viewRoot;
+    View v;
     TabHost _tabHost;
+
     TextView beer1InputTxtView, beer2InputTxtView, beer3InputTxtView, beer4InputTxtView;
     TextView wine1InputTxtView, wine2InputTxtView, wine3InputTxtView, wine4InputTxtView;
+    LinearLayout beerRow1, beerRow2, beerRow3, beerRow4;
+    LinearLayout wineRow1, wineRow2, wineRow3, wineRow4;
+    LinearLayout spiritsRow1, spiritsRow2, spiritsRow3, spiritsRow4;
+
+
+
     SharedPreferences sharedPrefs;
     AlcoholType alcoholType;
 
@@ -93,28 +108,31 @@ public class CalculateBACTopFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         // inflate fragment_calculate_bac_top as the fragment view
-        _viewRoot = inflater.inflate(R.layout.fragment_calculate_bac_top, null);
+        v = inflater.inflate(R.layout.fragment_calculate_bac_top, null);
 
         // initialise the tabhost
-        _tabHost = (TabHost)_viewRoot.findViewById(android.R.id.tabhost);
+        _tabHost = (TabHost) v.findViewById(android.R.id.tabhost);
         _tabHost.setup();
 
         for (TabDefinition tab : tabDefinitions) {
-            _tabHost.addTab(createTab(inflater, _tabHost, _viewRoot, tab));
+            _tabHost.addTab(createTab(inflater, _tabHost, v, tab));
         }
 
         alcoholType = new AlcoholType();
 
-        beer1InputTxtView = (TextView) _viewRoot.findViewById(R.id.txtViewBeerInput1);
-        beer2InputTxtView = (TextView) _viewRoot.findViewById(R.id.txtViewBeerInput2);
-        beer3InputTxtView = (TextView) _viewRoot.findViewById(R.id.txtViewBeerInput3);
-        beer4InputTxtView = (TextView) _viewRoot.findViewById(R.id.txtViewBeerInput4);
 
-        wine1InputTxtView = (TextView) _viewRoot.findViewById(R.id.txtViewWineInput1);
-        wine2InputTxtView = (TextView) _viewRoot.findViewById(R.id.txtViewWineInput2);
-        wine3InputTxtView = (TextView) _viewRoot.findViewById(R.id.txtViewWineInput3);
-        wine4InputTxtView = (TextView) _viewRoot.findViewById(R.id.txtViewWineInput4);
+        beer1InputTxtView = (TextView) v.findViewById(R.id.txtViewBeerInput1);
+        beer2InputTxtView = (TextView) v.findViewById(R.id.txtViewBeerInput2);
+        beer3InputTxtView = (TextView) v.findViewById(R.id.txtViewBeerInput3);
+        beer4InputTxtView = (TextView) v.findViewById(R.id.txtViewBeerInput4);
 
+        wine1InputTxtView = (TextView) v.findViewById(R.id.txtViewWineInput1);
+        wine2InputTxtView = (TextView) v.findViewById(R.id.txtViewWineInput2);
+        wine3InputTxtView = (TextView) v.findViewById(R.id.txtViewWineInput3);
+        wine4InputTxtView = (TextView) v.findViewById(R.id.txtViewWineInput4);
+
+
+         /*
         beer1InputTxtView.setOnClickListener(this);
         beer2InputTxtView.setOnClickListener(this);
         beer3InputTxtView.setOnClickListener(this);
@@ -124,6 +142,36 @@ public class CalculateBACTopFragment extends Fragment
         wine2InputTxtView.setOnClickListener(this);
         wine3InputTxtView.setOnClickListener(this);
         wine4InputTxtView.setOnClickListener(this);
+        */
+        beerRow1 = (LinearLayout)v.findViewById(R.id.linearLayoutBeerRow1);
+        beerRow2 = (LinearLayout)v.findViewById(R.id.linearLayoutBeerRow2);
+        beerRow3 = (LinearLayout)v.findViewById(R.id.linearLayoutBeerRow3);
+        beerRow4 = (LinearLayout)v.findViewById(R.id.linearLayoutBeerRow4);
+        wineRow1 = (LinearLayout)v.findViewById(R.id.linearLayoutWineRow1);
+        wineRow2 = (LinearLayout)v.findViewById(R.id.linearLayoutWineRow2);
+        wineRow3 = (LinearLayout)v.findViewById(R.id.linearLayoutWineRow3);
+        wineRow4 = (LinearLayout)v.findViewById(R.id.linearLayoutWineRow4);
+        spiritsRow1 = (LinearLayout)v.findViewById(R.id.linearLayoutSpiritsRow1);
+        spiritsRow2 = (LinearLayout)v.findViewById(R.id.linearLayoutSpiritsRow2);
+        spiritsRow3 = (LinearLayout)v.findViewById(R.id.linearLayoutSpiritsRow3);
+        spiritsRow4 = (LinearLayout)v.findViewById(R.id.linearLayoutSpiritsRow4);
+
+
+
+        // set touch listeners linear layouts
+        beerRow1.setOnTouchListener(this);
+        beerRow2.setOnTouchListener(this);
+        beerRow3.setOnTouchListener(this);
+        beerRow4.setOnTouchListener(this);
+        wineRow1.setOnTouchListener(this);
+        wineRow2.setOnTouchListener(this);
+        wineRow3.setOnTouchListener(this);
+        wineRow4.setOnTouchListener(this);
+        spiritsRow1.setOnTouchListener(this);
+        spiritsRow2.setOnTouchListener(this);
+        spiritsRow3.setOnTouchListener(this);
+        spiritsRow4.setOnTouchListener(this);
+
 
 
         // initialise shared preference object
@@ -137,7 +185,7 @@ public class CalculateBACTopFragment extends Fragment
             getDrinksConsumed();
         }
 
-        return _viewRoot;
+        return v;
     }
 
     @Override
@@ -194,6 +242,68 @@ public class CalculateBACTopFragment extends Fragment
         }
     }
 
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent)
+    {
+        // if user enters drink for the first time the DRINKS_ENTERED_ALREADY will be false
+        // we change the value after the number pad has been shown.
+        if(!DRINKS_ENTERED_ALREADY) { DRINKS_ENTERED_ALREADY = true; }
+
+        switch(view.getId())
+        {
+            case R.id.linearLayoutBeerRow1:
+                showNumberPad(SM_BEER_CLICKED);
+                break;
+
+            case R.id.linearLayoutBeerRow2:
+                showNumberPad(LG_BEER_CLICKED);
+                break;
+
+            case R.id.linearLayoutBeerRow3:
+                showNumberPad(BEER_BOTTLE_CLICKED);
+                break;
+
+            case R.id.linearLayoutBeerRow4:
+                showNumberPad(BEER_CAN_CLICKED);
+                break;
+
+            case R.id.linearLayoutWineRow1:
+                showNumberPad(SPARKLING_WINE_CLICKED);
+                break;
+
+            case R.id.linearLayoutWineRow2:
+                showNumberPad(RED_WINE_CLICKED);
+                break;
+
+            case R.id.linearLayoutWineRow3:
+                showNumberPad(WHITE_WINE_CLICKED);
+                break;
+
+            case R.id.linearLayoutWineRow4:
+                showNumberPad(BOTTLE_WINE_CLICKED);
+                break;
+
+            case R.id.linearLayoutSpiritsRow1:
+                showNumberPad(SPIRIT_ONE_CLICKED);
+                break;
+
+            case R.id.linearLayoutSpiritsRow2:
+                showNumberPad(SPIRIT_TWO_CLICKED);
+                break;
+
+            case R.id.linearLayoutSpiritsRow3:
+                showNumberPad(SPIRIT_THREE_CLICKED);
+                break;
+
+            case R.id.linearLayoutSpiritsRow4:
+                showNumberPad(SPIRIT_FOUR_CLICKED);
+                break;
+        }
+
+        return false;
+    }
+
+    /*
     public void onClick(View v)
     {
         // for debugging
@@ -258,11 +368,12 @@ public class CalculateBACTopFragment extends Fragment
 
                 showNumberPad();
                 break;
-            */
+
 
         }
 
     }
+    */
 
     void showNumberPad(int txtViewClicked)
     {
@@ -303,7 +414,9 @@ public class CalculateBACTopFragment extends Fragment
 
                 case SPARKLING_WINE_CLICKED:
                     wine1InputTxtView.setText(Integer.toString(standardDrinks));
+                    break;
 
+                // TODO: add rest of code to handle number of drinks selected
             }
         }
 
@@ -325,6 +438,7 @@ public class CalculateBACTopFragment extends Fragment
         editor.putInt(getString(R.string.beer_bottle_key), numOfBeerBottles);
         editor.putInt(getString(R.string.beer_can_key), numOfBeerCans);
         editor.putInt(getString(R.string.wine_sparkling_key), numOfSparkWine);
+        // TODO: add code to finish saving to shared preferences
         editor.commit();
 
 
@@ -355,6 +469,7 @@ public class CalculateBACTopFragment extends Fragment
             beer4InputTxtView.setText(Integer.toString(sharedPrefs.getInt(getActivity().getString(R.string.beer_can_key), 0)));
         }
 
+        // TODO: add code to load drinks consumed if user returns to BAC screen
     }
 
 }

@@ -9,13 +9,16 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import uc.edu.itp.drugandalcohol.R;
+import uc.edu.itp.drugandalcohol.model.UserDetails;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,12 +28,15 @@ public class CalculateBACBottomFragment extends Fragment
     implements View.OnClickListener
 {
     private static final String TAG = "CalculateBACBottomFragment";
+
     EditText userWeightEditTxt;
     //Button calculateBACBtn;
     Button calculateBAC2Btn;
 
     SharedPreferences drinkSharedPrefs, userSharedPrefs;
     SharedPreferences.Editor editor;
+
+
 
     //private static final String USER_WEIGHT = "userWeightKey";
 
@@ -49,6 +55,8 @@ public class CalculateBACBottomFragment extends Fragment
         //calculateBACBtn = (Button)v.findViewById(R.id.btnCalculateBAC);
         //calculateBACBtn.setOnClickListener(this);
 
+
+
         userWeightEditTxt = (EditText)v.findViewById(R.id.editTxtUserWeight);
 
         calculateBAC2Btn = (Button)v.findViewById(R.id.btnCalculateBAC2);
@@ -57,12 +65,17 @@ public class CalculateBACBottomFragment extends Fragment
         drinkSharedPrefs = getActivity().getSharedPreferences("DrinkPrefs", Context.MODE_PRIVATE);
         userSharedPrefs = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
 
+
+
         // dsiplay user weight, value was saved to shared preferences if they entered their
         // details in user details screen, if no value was entered a default value of 0.00 is
         // displayed
-        int noWeightEntered = 0;
-        int userWeight = userSharedPrefs.getInt(getString(R.string.user_weight_key), noWeightEntered);
-        userWeightEditTxt.setText(Integer.toString(userWeight));
+        //int noWeightEntered = 0;
+        //int userWeight = userSharedPrefs.getInt(getString(R.string.user_weight_key), noWeightEntered);
+        //userWeightEditTxt.setText(Integer.toString(userWeight));
+
+        // display user weight user UserDetails class
+        userWeightEditTxt.setText(Integer.toString(UserDetails.getInstance().getWeight()));
 
         return v;
     }
@@ -83,6 +96,8 @@ public class CalculateBACBottomFragment extends Fragment
 
         }
     }
+
+
 
     void showBACDialog()
     {
@@ -121,6 +136,7 @@ public class CalculateBACBottomFragment extends Fragment
         float whiteWineStandardDrinks = 1.4f * numOfWhiteWine;
         float bottleWineStandardDrinks = 8.0f * numOfBottleWine;
 
+        // calculate total standard drinks
         totalStandardDrinks = smBeerStandardDrinks + lgBeerStandardDrinks + bottleBeerStandardDrinks + canBeerStandDrinks
                 + sparklingWineStandardDrinks + redWineStandardDrinks + whiteWineStandardDrinks + bottleWineStandardDrinks;
 
@@ -156,11 +172,15 @@ public class CalculateBACBottomFragment extends Fragment
 
         N = numOfDrinks;
         H = 1;          // for testing hours since drinking is set to 1hr
-        M = userSharedPrefs.getInt(getString(R.string.user_weight_key), 0);
+        // TODO: add code to get hours since drinking from spinner
+
+        //M = userSharedPrefs.getInt(getString(R.string.user_weight_key), 0);
+        M = UserDetails.getInstance().getWeight();
 
         // get gender value from shared prefs, if no value is stored we return a default
         // value of true to represent a male.
-        gender = userSharedPrefs.getBoolean(getString(R.string.user_gender_key), true);
+        //gender = userSharedPrefs.getBoolean(getString(R.string.user_gender_key), true);
+        gender = UserDetails.getInstance().getGender();
 
         // true = male
         // false = female
