@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uc.edu.itp.drugandalcohol.R;
+import uc.edu.itp.drugandalcohol.model.GameScore;
 import uc.edu.itp.drugandalcohol.view.ReactionTestActivity;
 
 
@@ -163,6 +165,16 @@ public class GameView extends SurfaceView
         else
             hitTNT = "NO";
         timeText = gameplay.getSpentTimeText();
+
+        GameScore.getInstance().setScore(score);
+        GameScore.getInstance().setHits(hits);
+        GameScore.getInstance().setMisses(misses);
+        GameScore.getInstance().setAnyTntHit(gameplay.getHitTNT());
+        GameScore.getInstance().setTimeText(timeText);
+
+        //Testing if GameScore object captures data
+        //Log.d("GameView - Score: ", String.valueOf(GameScore.getInstance().getScore()));
+        //Log.d("GameView - Time: ", GameScore.getInstance().getTimeText());
     }
 
     //THROWAWAY VARIABLES
