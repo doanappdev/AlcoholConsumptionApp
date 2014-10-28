@@ -131,6 +131,7 @@ public class NumberPadFragment extends DialogFragment
 
         // setting onclick listener for buttons
         okBtn.setOnClickListener(this);
+        exitBtn.setOnClickListener(this);
         clearBtn.setOnClickListener(this);
         num0Btn.setOnClickListener(this);
         num1Btn.setOnClickListener(this);
@@ -206,19 +207,27 @@ public class NumberPadFragment extends DialogFragment
             case R.id.btnNum9:
                 displayTxtView.setText("9");
                 break;
+            case R.id.btnClear:
+                displayTxtView.setText(" ");
+                break;
             case R.id.btnOK:
                 returnNumber();
                 dismiss();
                 //numberPadListener.message("This string was passed back to fragment");
                 break;
             case R.id.btnExit:
+                //closeDialog();
                 dismiss();
                 break;
 
         }
     }
 
-    // use Bundle to pass data between dialog fragment and calculate BAC fragment
+    /*
+     * use this method when user clicks the ok button
+     * we return the number of drinks consumed entered
+     * into the text view by user
+     */
     public void returnNumber()
     {
         // declare intent and bundle
@@ -233,6 +242,22 @@ public class NumberPadFragment extends DialogFragment
         i.putExtras(extras);
         getTargetFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, i);
 
+    }
+
+    /*
+     * use this method if you want to pass a default value of zero
+     * back to the calling fragment this can be changed if we want
+     * to pass a different value
+     */
+    public void closeDialog()
+    {
+        Intent i = new Intent();
+        Bundle extras = new Bundle();
+
+        int defaultValue = 0;
+        extras.putInt("NumOfDrinks", defaultValue);
+        i.putExtras(extras);
+        getTargetFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_CANCELED, i);
     }
 
 

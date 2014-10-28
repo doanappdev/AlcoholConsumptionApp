@@ -61,6 +61,7 @@ public class CalculateBACBottomFragment extends Fragment
 
         spinnerHrsDrinking = (Spinner)v.findViewById(R.id.spinnerHrsDrinking);
         spinnerHrsDrinking.setOnItemSelectedListener(this);
+
         userWeightEditTxt = (EditText)v.findViewById(R.id.editTxtUserWeight);
 
         calculateBAC2Btn = (Button)v.findViewById(R.id.btnCalculateBAC2);
@@ -76,7 +77,7 @@ public class CalculateBACBottomFragment extends Fragment
         //int userWeight = drinkingSharedPrefs.getInt(getString(R.string.user_weight_key), noWeightEntered);
         //userWeightEditTxt.setText(Integer.toString(userWeight));
 
-        // display user weight user UserDetails class
+        // display user weight from UserDetails class
         userWeightEditTxt.setText(Integer.toString(UserDetails.getInstance().getWeight()));
 
         return v;
@@ -203,7 +204,10 @@ public class CalculateBACBottomFragment extends Fragment
         H = UserDetails.getInstance().getHrsSinceDrinking();
 
         //M = drinkingSharedPrefs.getInt(getString(R.string.user_weight_key), 0);
-        M = UserDetails.getInstance().getWeight();
+        M = (float)UserDetails.getInstance().getWeight();
+
+        // test if weight is equal to 0
+        if(M == 0f) { userWeightEditTxt.setError("Enter your weight"); }
 
         // get gender value from shared prefs, if no value is stored we return a default
         // value of true to represent a male.
