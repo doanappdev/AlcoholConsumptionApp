@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Random;
 
@@ -66,10 +67,10 @@ public class GameplayFunction {
     private int spiritCount;
 
     //Storages for alcohol sprites
-    private Queue<AlcoholClass> kegs;
-    private Queue<AlcoholClass> wines;
-    private Queue<AlcoholClass> beers;
-    private Queue<AlcoholClass> spirits;
+    private List<AlcoholClass> kegs;
+    private List<AlcoholClass> wines;
+    private List<AlcoholClass> beers;
+    private List<AlcoholClass> spirits;
     private Queue<AlcoholClass> inactives;
     private AlcoholClass TNT;
 
@@ -95,6 +96,7 @@ public class GameplayFunction {
     //Temporary variables for faster performance
     private int i;
     private int tempInt;
+    private int currentInt;
     private AlcoholClass currentAlcohol;
 
     public GameplayFunction(GameView view, Bitmap bmp, GameSettings settings){
@@ -185,22 +187,10 @@ public class GameplayFunction {
     public void clean()
     {
         for(i = 0; i < buttonCount; i++) buttons[i].silouhette = true;
-        for(i = 0; i < beerCount; i++){
-            currentAlcohol = beers.remove();
-            Push(currentAlcohol);
-        }
-        for(i = 0; i < kegCount; i++){
-            currentAlcohol = kegs.remove();
-            Push(currentAlcohol);
-        }
-        for(i = 0; i < wineCount; i++){
-            currentAlcohol = wines.remove();
-            Push(currentAlcohol);
-        }
-        for(i = 0; i < spiritCount; i++){
-            currentAlcohol = spirits.remove();
-            Push(currentAlcohol);
-        }
+        for(i = 0; i < beerCount; i++) beers.remove(i);
+        for(i = 0; i < kegCount; i++) kegs.remove(i);
+        for(i = 0; i < wineCount; i++) wines.remove(i);
+        for(i = 0; i < spiritCount; i++) spirits.remove(i);
 
         beerCount = 0;
         wineCount = 0;
@@ -329,28 +319,40 @@ public class GameplayFunction {
 
     //This method is for an extra mechanic you could
     //probably use in the future
-    private int quickTap(int count, int id, Queue<AlcoholClass> queue){
-        currentAlcohol = queue.remove();
+    private int quickTap(int count, int id, List<AlcoholClass> list){
+        getClosest(list);
         if(currentAlcohol.midY < buttons[id].getYLimit()){
             currentScore += currentAlcohol.getPoints();
+            inactives.add(currentAlcohol);
+            list.remove(currentInt);
             hits++;
+            if(--count < 1) buttons[id].silouhette = true;
         } else misses++;
-        inactives.add(currentAlcohol);
-        if(--count < 1) buttons[id].silouhette = true;
         return count;
     }
 
     //Default way of scoring
-    private int timedTap(int count, int id, Queue<AlcoholClass> queue){
-        currentAlcohol = queue.remove();
+    private int timedTap(int count, int id, List<AlcoholClass> list){
+        getClosest(list);
         if(buttons[id].isIntersecting(currentAlcohol.getRect())){
             currentScore += currentAlcohol.getPoints();
+            inactives.add(currentAlcohol);
+            list.remove(currentInt);
             hits++;
-        }else
-            misses++;
-        inactives.add(currentAlcohol);
-        if(--count < 1) buttons[id].silouhette = true;
+            if(--count < 1) buttons[id].silouhette = true;
+        }else misses++;
         return count;
+    }
+
+    private void getClosest(List<AlcoholClass> list)
+    {
+        currentAlcohol = list.get(0);
+        for(int j = 1; j < list.size(); j++){
+            if(list.get(j).midY > currentAlcohol.midY){
+                currentAlcohol = list.get(j);
+                currentInt = j;
+            }
+        }
     }
 
     private void spawnSprites(long currentTime){
@@ -376,7 +378,7 @@ public class GameplayFunction {
     }
 
     private int spawnSprite(long currentTime, long count, long timer, int speed,
-                            int id, Queue<AlcoholClass> queue){
+                            int id, List<AlcoholClass> list){
         timeCount = currentTime - count;
         if (timeCount >= timer){
             timeCount = currentTime;
@@ -384,7 +386,7 @@ public class GameplayFunction {
                 genRandomSpeed();
             currentAlcohol = Pop(id);
             currentAlcohol.reset(0, speed+randomSpeed, id);
-            queue.add(currentAlcohol);
+            list.add(currentAlcohol);
             if(buttons[id].silouhette) buttons[id].silouhette = false;
             return 1;
         }else{
@@ -416,14 +418,14 @@ public class GameplayFunction {
         if(!TNT.active && !buttons[4].silouhette) buttons[4].silouhette = true;
     }
 
-    private int updateSprite(Canvas canvas, int count, int id, Queue<AlcoholClass> queue){
+    private int updateSprite(Canvas canvas, int count, int id, List<AlcoholClass> list){
         tempInt = count;
         for(i = 0; i < count; i++) {
-            currentAlcohol = queue.remove();
-            currentAlcohol.onDraw(canvas);
-            if(currentAlcohol.active) queue.add(currentAlcohol);
-            else{
+            list.get(i).onDraw(canvas);
+            if(!list.get(i).active){
+                currentAlcohol = list.get(i);
                 Push(currentAlcohol);
+                list.remove(i);
                 tempInt--;
                 misses++;
                 if(tempInt < 1 && !buttons[id].silouhette) buttons[id].silouhette = true;
