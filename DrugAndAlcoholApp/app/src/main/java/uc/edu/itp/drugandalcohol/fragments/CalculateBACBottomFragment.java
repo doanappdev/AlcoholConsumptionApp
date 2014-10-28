@@ -207,7 +207,10 @@ public class CalculateBACBottomFragment extends Fragment
         M = (float)UserDetails.getInstance().getWeight();
 
         // test if weight is equal to 0
-        if(M == 0f) { userWeightEditTxt.setError("Enter your weight"); }
+        //if(M == 0f)
+        //{
+            //userWeightEditTxt.setError("Enter your weight");
+        //}
 
         // get gender value from shared prefs, if no value is stored we return a default
         // value of true to represent a male.
@@ -245,6 +248,25 @@ public class CalculateBACBottomFragment extends Fragment
         editor.putFloat(getString(R.string.drinking_hrs_drinking_key), hrsDrinking);
         editor.putFloat(getString(R.string.drinking_current_bac_key), bac);
         editor.commit();
+    }
+
+    // testing BAC formula for unit testing
+    public float testBACFormula(float numOfDrinks, float hrs, float weight, boolean gender)
+    {
+        float bac;
+
+        if(gender)
+        {
+            // calculate BAC for a male
+            bac = ((10 * numOfDrinks) - (7.5f * hrs)) / (6.8f * weight);
+        }
+        else
+        {
+            // calculate BAC for female
+            bac = ((10 * numOfDrinks) - (7.5f * hrs)) / (5.5f * weight);
+        }
+
+        return bac;
     }
 
 }

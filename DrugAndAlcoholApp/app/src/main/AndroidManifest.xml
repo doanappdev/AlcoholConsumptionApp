@@ -61,8 +61,8 @@
         <activity
             android:name=".view.EmergencyActivity"
             android:label="@string/title_activity_emergency"
-            android:theme="@style/EmergencySMSTheme"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/EmergencySMSTheme" >
         </activity>
         <activity
             android:name=".view.ExpandableListActivity"
@@ -75,7 +75,7 @@
         <activity
             android:name=".view.GameMenuActivity"
             android:label="@string/title_activity_game_menu"
-            android:theme="@style/GameMenuActivityTheme">
+            android:theme="@style/GameMenuActivityTheme" >
         </activity>
         <activity
             android:name=".view.GameOverActivity"
@@ -116,6 +116,15 @@
         <activity
             android:name=".view.HighScoreActivity"
             android:label="@string/title_activity_high_score" >
+        </activity>
+        <activity
+            android:name=".UnitTestActivity"
+            android:exported="false"
+            android:label="@string/title_activity_unit_test" >
+        </activity>
+        <activity
+            android:name=".DummyCalculateBACBottomFragmentActivity"
+            android:label="@string/title_activity_dummy_calculate_bacbottom_fragment" >
         </activity>
     </application>
 

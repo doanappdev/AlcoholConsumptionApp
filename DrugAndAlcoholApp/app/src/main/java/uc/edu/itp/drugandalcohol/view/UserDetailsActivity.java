@@ -18,14 +18,25 @@ public class UserDetailsActivity extends FragmentActivity
     public UserDetailsFragment userDetailsFragment;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_details);
 
+        /*
+         * The FragmentManger clas and the FragmentTransaction class allow you to add,
+         * remove and replace fragments in the layout of your activity.
+         * Fragments can be dynamically modify via transactions. To dynamically add
+         * fragments to an existing layout you typically define a container in the XML
+         * layout file in which you add a Fragment (in this case the activity_user_details.xm. file)
+         */
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         userDetailsFragment = new UserDetailsFragment();
 
+        /*
+         * add UserDetailsFragment
+         */
         fragmentTransaction.add(R.id.userDetailsFragmentContainer, userDetailsFragment);
 
     }
@@ -48,23 +59,24 @@ public class UserDetailsActivity extends FragmentActivity
             case R.id.action_settings:
                 return true;
 
-            case R.id.action_expandable_list:
-                loadExampleList();
-                return true;
+            //case R.id.action_expandable_list:
+                //loadExampleList();
+            //    return true;
 
             default:
                 return super.onOptionsItemSelected(item);
         }
 
-
     }
 
     /*
+     * TODO remove code if not needed
      * this is example code will remove later
-     */
+
     private void loadExampleList()
     {
         Intent expandableListIntent = new Intent(getApplicationContext(), ExpandableListActivity.class);
         startActivity(expandableListIntent);
     }
+    */
 }

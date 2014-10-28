@@ -175,8 +175,6 @@ public class UserDetailsFragment extends Fragment
                                        "\nBuddy Name: " + buddyContact.getName() +
                                        "\nBuddy Number: " + buddyContact.getNumber(),
                                         Toast.LENGTH_LONG).show();
-
-
     }
 
     /*

@@ -1,25 +1,19 @@
-package uc.edu.itp.drugandalcohol.view;
+package uc.edu.itp.drugandalcohol;
 
-import android.app.ActionBar;
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import uc.edu.itp.drugandalcohol.R;
-import uc.edu.itp.drugandalcohol.controller.TabListener;
+
 import uc.edu.itp.drugandalcohol.fragments.CalculateBACBottomFragment;
 import uc.edu.itp.drugandalcohol.fragments.CalculateBACTopFragment;
-import uc.edu.itp.drugandalcohol.fragments.TabBeerFragment;
-import uc.edu.itp.drugandalcohol.fragments.TabSpiritsFragment;
-import uc.edu.itp.drugandalcohol.fragments.TabWineFragment;
 
-public class CalculateBACActivity extends FragmentActivity
-{
-    CalculateBACTopFragment topFragment;
+
+public class DummyCalculateBACBottomFragmentActivity extends FragmentActivity {
+
     CalculateBACBottomFragment bottomFragment;
 
     @Override
@@ -28,17 +22,19 @@ public class CalculateBACActivity extends FragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculate_bac);
 
-        // instantiate fragments so they can be accessed for testing with Junit
-        topFragment = new CalculateBACTopFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
         bottomFragment = new CalculateBACBottomFragment();
 
+        fragmentTransaction.add(R.id.calculateBACFragmentContainer, bottomFragment);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.consumption, menu);
+        getMenuInflater().inflate(R.menu.dummy_calculate_bacbottom, menu);
         return true;
     }
 

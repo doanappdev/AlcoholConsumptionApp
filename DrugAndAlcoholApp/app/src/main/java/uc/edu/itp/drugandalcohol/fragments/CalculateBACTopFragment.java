@@ -569,4 +569,11 @@ public class CalculateBACTopFragment extends Fragment
         // TODO: add code to load drinks consumed if user returns to BAC screen
     }
 
+    public int testNumberOfDrinks()
+    {
+        int numOfDrinks = 10;
+
+        return numOfDrinks;
+    }
+
 }

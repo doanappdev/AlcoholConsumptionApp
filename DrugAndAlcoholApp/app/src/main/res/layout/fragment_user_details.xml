@@ -6,8 +6,6 @@
     android:layout_margin="16dp"
     tools:context="uc.edu.itp.drugandalcohol.fragments.UserDetailsFragment">
 
-
-
         <LinearLayout
             android:id="@+id/lLayoutUserDetails"
             android:layout_width="fill_parent"
@@ -306,6 +304,9 @@
 
         </LinearLayout> <!-- end of lLayoutBuddyNumber -->
 
+    <!--
+           TODO add code to handle different button states
+       -->
     <RelativeLayout
         android:id="@+id/rLayoutButtons"
         android:layout_width="fill_parent"
@@ -319,18 +320,21 @@
         <Button
             android:id="@+id/btnAccept"
             android:text="@string/button_accept"
+            android:textColor="@color/md_orange_500"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
             android:layout_margin="8dp"
             android:background="@drawable/btn_state_white"/>
 
         <Button
             android:id="@+id/btnCancel"
             android:text="@string/button_cancel"
+            android:textColor="@color/md_orange_500"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
             android:layout_toLeftOf="@+id/btnAccept"
             android:layout_toStartOf="@+id/btnAccept"
             android:layout_margin="8dp"
@@ -340,8 +344,10 @@
         <Button
             android:id="@+id/btnEdit"
             android:text="@string/button_edit"
+            android:textColor="@color/md_orange_500"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_margin="8dp"
             android:background="@drawable/btn_state_white"
             />
