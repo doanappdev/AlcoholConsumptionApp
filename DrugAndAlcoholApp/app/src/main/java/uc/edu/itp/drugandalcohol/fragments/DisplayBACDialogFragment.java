@@ -2,11 +2,9 @@ package uc.edu.itp.drugandalcohol.fragments;
 
 
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -21,8 +19,6 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.text.DecimalFormat;
-
 import uc.edu.itp.drugandalcohol.R;
 
 /**
@@ -32,7 +28,7 @@ import uc.edu.itp.drugandalcohol.R;
 public class DisplayBACDialogFragment extends DialogFragment
     implements View.OnClickListener
 {
-    SharedPreferences userSharedPrefs;
+    SharedPreferences drinkingSharedPrefs;
 
     TextView displayBACTxtView;
     Button btnOk;
@@ -109,9 +105,11 @@ public class DisplayBACDialogFragment extends DialogFragment
         btnOk = (Button)view.findViewById(R.id.btnDialogOK);
         btnOk.setOnClickListener(this);
 
-        userSharedPrefs = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
-        // get calculated BAC from shared preferences
-        bacValue = userSharedPrefs.getFloat(getString(R.string.user_current_bac_key), 0.00f);
+        // get value from shared preferences
+        drinkingSharedPrefs = getActivity().getSharedPreferences("DrinkPrefs", Context.MODE_PRIVATE);
+        // get calculated BAC from shared preferences, if no value stored assign default value
+        // of 0.00
+        bacValue = drinkingSharedPrefs.getFloat(getString(R.string.drinking_current_bac_key), 0.00f);
         String s = String.format("%.2f", bacValue);
 
         displayBACTxtView = (TextView)view.findViewById(R.id.txtViewDisplayBAC);

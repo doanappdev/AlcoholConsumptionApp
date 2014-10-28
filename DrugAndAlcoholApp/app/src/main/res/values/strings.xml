@@ -35,8 +35,10 @@
     <string name="user_weight_key">UserWeightKey</string>
     <string name="user_gender_key">UserGenderKey</string>
     <string name="user_pregnant_key">UserPregnantKey</string>
-    <string name="user_current_bac_key">UserBACKey</string>
-    <string name="user_old_bac_key">UserOldBACKey</string>
+    <string name="drinking_number_of_drinks_key">NumOfStandardDrinksKey</string>
+    <string name="drinking_hrs_drinking_key">HrsDrinkingKey</string>
+    <string name="drinking_current_bac_key">CurrentBACKey</string>
+    <string name="drinking_old_bac_key">OldBACKey</string>
     <string name="buddy_name_key">BuddyNameKey</string>
     <string name="buddy_number_key">BuddyNumberKey</string>
     <string name="emergency_prompt">Choose a friend</string>

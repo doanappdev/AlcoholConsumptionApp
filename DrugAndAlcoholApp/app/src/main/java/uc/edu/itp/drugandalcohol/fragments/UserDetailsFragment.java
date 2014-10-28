@@ -158,7 +158,7 @@ public class UserDetailsFragment extends Fragment
 
         /*
         // save values to user shared preferences
-        SharedPreferences.Editor editor = userSharedPrefs.edit();
+        SharedPreferences.Editor editor = drinkingSharedPrefs.edit();
         editor.putInt(getString(R.string.user_age_key), userAge);
         editor.putInt(getString(R.string.user_weight_key), userWeight);
         editor.putInt(getString(R.string.buddy_number_key), buddyNumInt);

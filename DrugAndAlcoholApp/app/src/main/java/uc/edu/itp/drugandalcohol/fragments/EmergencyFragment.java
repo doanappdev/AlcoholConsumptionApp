@@ -216,9 +216,8 @@ public class EmergencyFragment extends Fragment
                         contactNumberEditTxt.setVisibility(EditText.GONE);
                         showPhNumEditTxt = false;
                     }
-
-
                 }
+
                 return false;
             }
         });
@@ -321,7 +320,7 @@ public class EmergencyFragment extends Fragment
             //smsManager.sendTextMessage(number, null, msg, null, null);
 
             // supply known number
-            String number1 = "0451683962";
+            String number1 = "0451683962"; // Eric's mobile number
             smsManager.sendTextMessage(number1, null, msg, null, null);
 
             /*

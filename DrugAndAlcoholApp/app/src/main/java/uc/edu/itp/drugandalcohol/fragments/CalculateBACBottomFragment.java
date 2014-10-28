@@ -9,13 +9,13 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import uc.edu.itp.drugandalcohol.R;
 import uc.edu.itp.drugandalcohol.model.UserDetails;
@@ -25,9 +25,13 @@ import uc.edu.itp.drugandalcohol.model.UserDetails;
  *
  */
 public class CalculateBACBottomFragment extends Fragment
-    implements View.OnClickListener
+    implements View.OnClickListener, AdapterView.OnItemSelectedListener
 {
     private static final String TAG = "CalculateBACBottomFragment";
+
+    // array of hour values stored as floats which correspond to
+    // the string array which is used in the spinner for hours drinking
+    private static final float[] HOURS = {0.5f, 1.0f, 1.5f, 2.0f, 2.5f, 3.0f, 3.5f, 4.0f};
 
     EditText userWeightEditTxt;
     //Button calculateBACBtn;
@@ -36,7 +40,7 @@ public class CalculateBACBottomFragment extends Fragment
     SharedPreferences drinkSharedPrefs, userSharedPrefs;
     SharedPreferences.Editor editor;
 
-
+    Spinner spinnerHrsDrinking;
 
     //private static final String USER_WEIGHT = "userWeightKey";
 
@@ -55,8 +59,8 @@ public class CalculateBACBottomFragment extends Fragment
         //calculateBACBtn = (Button)v.findViewById(R.id.btnCalculateBAC);
         //calculateBACBtn.setOnClickListener(this);
 
-
-
+        spinnerHrsDrinking = (Spinner)v.findViewById(R.id.spinnerHrsDrinking);
+        spinnerHrsDrinking.setOnItemSelectedListener(this);
         userWeightEditTxt = (EditText)v.findViewById(R.id.editTxtUserWeight);
 
         calculateBAC2Btn = (Button)v.findViewById(R.id.btnCalculateBAC2);
@@ -65,13 +69,11 @@ public class CalculateBACBottomFragment extends Fragment
         drinkSharedPrefs = getActivity().getSharedPreferences("DrinkPrefs", Context.MODE_PRIVATE);
         userSharedPrefs = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
 
-
-
         // dsiplay user weight, value was saved to shared preferences if they entered their
         // details in user details screen, if no value was entered a default value of 0.00 is
         // displayed
         //int noWeightEntered = 0;
-        //int userWeight = userSharedPrefs.getInt(getString(R.string.user_weight_key), noWeightEntered);
+        //int userWeight = drinkingSharedPrefs.getInt(getString(R.string.user_weight_key), noWeightEntered);
         //userWeightEditTxt.setText(Integer.toString(userWeight));
 
         // display user weight user UserDetails class
@@ -95,6 +97,39 @@ public class CalculateBACBottomFragment extends Fragment
                 break;
 
         }
+    }
+
+    /*
+    * spinner click listener
+    * assign the selected item on spinner to variable
+    */
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id)
+    {
+        // don't really need a switch here, but leave in case next group
+        // decides to another spinner in fragment
+        switch(parent.getId())
+        {
+            case R.id.spinnerHrsDrinking:
+
+                //UserDetails.getInstance().setHrsSinceDrinking(Float.parseFloat(parent.getSelectedItem().toString()));
+                UserDetails.getInstance().setHrsSinceDrinking(HOURS[pos]);
+
+                Toast.makeText(getActivity(),
+                        "Hours: " + UserDetails.getInstance().getHrsSinceDrinking(),
+                        Toast.LENGTH_SHORT).show();
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    /*
+     * this method is required when using onItemSelectedListener
+     */
+    @Override
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
     }
 
 
@@ -141,15 +176,8 @@ public class CalculateBACBottomFragment extends Fragment
                 + sparklingWineStandardDrinks + redWineStandardDrinks + whiteWineStandardDrinks + bottleWineStandardDrinks;
 
         // call method to calculate bac using formula
-        bacValue = bacFormula(totalStandardDrinks);
-
-        // save BAC value to shared preferences
-        editor = userSharedPrefs.edit();
-        editor.putFloat(getString(R.string.user_current_bac_key), bacValue);
-        editor.commit();
-
-        //DecimalFormat decimalFormat = new DecimalFormat("0.00");
-        //displayBACtxtView.setText(decimalFormat.format(bacValue));
+        //bacValue = bacFormula(totalStandardDrinks);
+        bacFormula(totalStandardDrinks);
 
     }
 
@@ -164,22 +192,22 @@ public class CalculateBACBottomFragment extends Fragment
      *       H = hours since started drinking
      *       M = weight in kg
      */
-    private float bacFormula(float numOfDrinks)
+    private void bacFormula(float numOfDrinks)
     {
         float N, H, M;
         float bac;
         boolean gender;
 
         N = numOfDrinks;
-        H = 1;          // for testing hours since drinking is set to 1hr
-        // TODO: add code to get hours since drinking from spinner
+        //H = 1;          // for testing hours since drinking is set to 1hr
+        H = UserDetails.getInstance().getHrsSinceDrinking();
 
-        //M = userSharedPrefs.getInt(getString(R.string.user_weight_key), 0);
+        //M = drinkingSharedPrefs.getInt(getString(R.string.user_weight_key), 0);
         M = UserDetails.getInstance().getWeight();
 
         // get gender value from shared prefs, if no value is stored we return a default
         // value of true to represent a male.
-        //gender = userSharedPrefs.getBoolean(getString(R.string.user_gender_key), true);
+        //gender = drinkingSharedPrefs.getBoolean(getString(R.string.user_gender_key), true);
         gender = UserDetails.getInstance().getGender();
 
         // true = male
@@ -195,11 +223,24 @@ public class CalculateBACBottomFragment extends Fragment
             bac = ((10 * N) - (7.5f * H)) / (5.5f * M);
         }
 
+        saveDrinkingValues(numOfDrinks, H, bac);
+
+        // for testing to check values
         Log.d(TAG, Float.toString(bac));
 
-        return bac;
+        //return bac;
 
     }
 
+    // save BAC to shared preferences, this will save the value
+    // even when the user exits app.
+    public void saveDrinkingValues(float totalDrinks, float hrsDrinking, float bac)
+    {
+        editor = drinkSharedPrefs.edit();
+        editor.putFloat(getString(R.string.drinking_number_of_drinks_key), totalDrinks);
+        editor.putFloat(getString(R.string.drinking_hrs_drinking_key), hrsDrinking);
+        editor.putFloat(getString(R.string.drinking_current_bac_key), bac);
+        editor.commit();
+    }
 
 }

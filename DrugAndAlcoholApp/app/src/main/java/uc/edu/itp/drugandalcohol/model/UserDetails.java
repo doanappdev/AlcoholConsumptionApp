@@ -17,7 +17,8 @@ public class UserDetails
     private static int mWeight;
     private static boolean mMale;
     private static boolean mPregnant;
-    private static double mStandardDrinks;
+    private static float mStandardDrinks;
+    private static float mHrsSinceDrinking;
 
     private static UserDetails mInstance = null;
 
@@ -44,13 +45,15 @@ public class UserDetails
     public void setWeight(int weight) { mWeight = weight; }
     public void setGender(boolean male) { mMale = male; }
     public void setPregnant(boolean pregnant) { mPregnant = pregnant; }
-    public void setStandardDrinks(double standardDrinks) { mStandardDrinks = standardDrinks; }
+    public void setStandardDrinks(float standardDrinks) { mStandardDrinks = standardDrinks; }
+    public void setHrsSinceDrinking(float hrs) { mHrsSinceDrinking = hrs; }
 
     // getter methods
     public int getAge() { return mAge; }
     public int getWeight() { return mWeight; }
     public boolean getGender() { return mMale; }
     public boolean getPregnant() { return mPregnant; }
-    public double getStandardDrinks() { return mStandardDrinks; }
+    public float getStandardDrinks() { return mStandardDrinks; }
+    public float getHrsSinceDrinking() { return mHrsSinceDrinking; }
 
 }
