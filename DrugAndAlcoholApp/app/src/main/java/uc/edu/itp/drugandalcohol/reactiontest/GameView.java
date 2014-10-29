@@ -148,7 +148,8 @@ public class GameView extends SurfaceView
                 }
                 break;
             case MotionEvent.ACTION_UP:
-                //allows the player to touch the screen again
+                //allows the player to touch the screen again if they lift
+                //their finger off the screen
                 pressed = false;
                 break;
         }
@@ -177,10 +178,7 @@ public class GameView extends SurfaceView
         score = gameplay.getScore();
         hits = gameplay.getHits();
         misses = gameplay.getMisses();
-        if(gameplay.getHitTNT())
-            hitTNT = "YES";
-        else
-            hitTNT = "NO";
+        hitTNT = gameplay.getHitTNT() ? "YES" : "NO";
         timeText = gameplay.getSpentTimeText();
 
         GameScore.getInstance().setScore(score);

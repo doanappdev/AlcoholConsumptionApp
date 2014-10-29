@@ -6,6 +6,14 @@ import android.view.MotionEvent;
 /**
  - * Created by wh0-r-u on 15/10/2014.
  */
+
+/*
+*
+* UNUSED AND UNNECESSARY CLASS
+*
+*/
+
+//Used to be linked to gameplay function
 abstract class GameComponent {
     public GameComponent() {
         //Do stuff

@@ -6,6 +6,14 @@ import android.view.MotionEvent;
 /**
  * Created by wh0-r-u on 16/10/2014.
  */
+
+/*
+*
+* UNUSED AND UNNECESSARY CLASS
+*
+*/
+
+//This is a part of the surface view implementation
 public class InstructionsMenu extends GameComponent {
 
     private InstructionsData data;

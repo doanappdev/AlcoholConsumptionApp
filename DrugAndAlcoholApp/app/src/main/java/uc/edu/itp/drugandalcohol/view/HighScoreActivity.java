@@ -12,6 +12,13 @@ import uc.edu.itp.drugandalcohol.R;
 
 //This is just a dummy class. No implementations of
 //this class has been made yet.
+
+/*
+*
+* TO DO: IMPLEMENT HIGH SCORE MENU
+*
+*/
+
 public class HighScoreActivity extends Activity {
 
     TextView highScoreTxt;

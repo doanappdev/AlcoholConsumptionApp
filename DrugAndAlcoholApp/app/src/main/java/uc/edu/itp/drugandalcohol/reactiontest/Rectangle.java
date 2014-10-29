@@ -7,6 +7,13 @@ import android.graphics.RectF;
 /**
  * Created by AppDev on 14/10/2014.
  */
+
+/*
+*
+* UNUSED AND UNNECESSARY CLASS
+*
+*/
+
 public class Rectangle
 {
     private GameView gameView;

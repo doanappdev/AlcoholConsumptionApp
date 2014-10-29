@@ -8,6 +8,13 @@ import android.graphics.RectF;
 /**
  * Created by wh0-r-u on 16/10/2014.
  */
+
+/*
+*
+* UNUSED AND UNNECESSARY CLASS
+*
+*/
+
 public class Logo extends Sprite {
 
     public Logo(GameView view, Bitmap bmp, final int columns, final int rows)

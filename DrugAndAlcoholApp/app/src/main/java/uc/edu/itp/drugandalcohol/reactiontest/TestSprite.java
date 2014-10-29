@@ -12,6 +12,13 @@ import java.util.Random;
  * it can use a sprite sheet for the bitmap to create
  * animation
  */
+
+/*
+*
+* UNUSED AND UNNECESSARY CLASS
+*
+*/
+
 public class TestSprite
 {
         // direction = 0 up, 1 left, 2 down, 3 right,
