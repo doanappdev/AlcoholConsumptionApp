@@ -14,6 +14,7 @@ import uc.edu.itp.drugandalcohol.R;
 public class SettingsActivity extends Activity {
 
     //signal for parent activity
+    //ID must be unique
     final int signal = 1;
 
     //game settings
@@ -38,7 +39,7 @@ public class SettingsActivity extends Activity {
         speedByTimer = settingsIntent.getBooleanExtra("speedByTimer", false);
         randomiseSpeed = settingsIntent.getBooleanExtra("randomiseSpeed", true);
 
-        //Setting switch
+        //Setting switch for speed by timer
         speedByTimerSwi = (Switch)findViewById(R.id.swiSpeedByTimer);
         speedByTimerSwi.setChecked(speedByTimer);
         speedByTimerSwi.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +47,7 @@ public class SettingsActivity extends Activity {
             public void onClick(View view) { speedByTimer = !speedByTimer; }
         });
 
-        //Setting switch
+        //Setting switch for randomise speed
         randomiseSpeedSwi = (Switch)findViewById(R.id.swiRandomiseSpeed);
         randomiseSpeedSwi.setChecked(randomiseSpeed);
         randomiseSpeedSwi.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +55,7 @@ public class SettingsActivity extends Activity {
             public void onClick(View view) { randomiseSpeed = !randomiseSpeed; }
         });
 
+        //creates a button to return to game menu
         backBtn = (Button)findViewById(R.id.btnBack);
 
         //saves the current settings and returns to game menu
@@ -69,22 +71,17 @@ public class SettingsActivity extends Activity {
         });
     }
 
-    /*
-        using standard Intent bundle to pass user settings between 2 activities.
-        Eric you did not create this technique, the putExtra() is part
-        of the API, you can't take credit for it as you said in your message in
-        Source Tree, what you have done is used their method to pass data.
-        When you said you created a way to to pass data I was expecting you to
-        have used your own class not the Intent object. You cant take credit for some one else's work!
-        (this is just so you know for next time)
-     */
+    //overrides the onBackPressed function
+    //so that it can send its current settings
+    //over to the game menu
     @Override
     public void onBackPressed() {
-        /*settingsIntent = new Intent(getApplicationContext(),
-                GameMenuActivity.class);*/
+        //places Game Settings inside the intent to send over to parent activity
         settingsIntent.putExtra("speedByTimer", speedByTimer);
         settingsIntent.putExtra("randomiseSpeed", randomiseSpeed);
+        //signals parent activity that data is being transferred
         setResult(RESULT_OK, settingsIntent);
+        //closes this activity
         finish();
     }
 

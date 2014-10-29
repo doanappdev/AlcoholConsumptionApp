@@ -94,7 +94,6 @@ public class GameplayFunction {
     private int i;
     private int tempInt;
     private int currentInt;
-    private AlcoholClass currentAlcohol;
 
     //NOTE: The commented overrides appear because it used to have a
     //game component system where the surface views show the main menu,
@@ -216,23 +215,29 @@ public class GameplayFunction {
     //returns the condition for touch event
     public boolean onTouchEvent(MotionEvent event){
         for (i = buttons.length - 1; i >= 0; i--) {
+            //Checks if user input collides with any button.
+            //i is the current button id.
             if (!buttons[i].silouhette && buttons[i].isCollision(event.getX(), event.getY())) {
+                //this is triggered when button does not have a silouhette and
+                //finger hits that button
                 checkButtonCondition(buttons[i].id);
                 break;
             }
         }
-        /*if(misses >= MAX_MISSES || HitTNT){
-            clean();
-            //view.currentScreen = view.GAME_OVER;
-        }*/
         return condition();
     }
 
-    //returns game score data
+    //returns score
     public int getScore(){ return currentScore; }
+    //returns hits
     public int getHits(){ return hits; }
+    //returns misses
     public int getMisses(){ return misses; }
+    //returns tnt hit
+    public boolean getHitTNT(){ return HitTNT; }
+    //returns long number of spentTime
     public long getSpentTime(){ return spentTime; }
+    //returns string of spent time
     public String getSpentTimeText(){
         seconds = (int)(spentTime/1000);
         minutes = seconds / 60;
@@ -242,9 +247,8 @@ public class GameplayFunction {
         timeText += Integer.toString(seconds);
         return timeText;
     }
-    public boolean getHitTNT(){ return HitTNT; }
 
-    //unused function
+    //unused function - belongs to change surfaceView
     public void changeSurface(int width, int height)
     {
         g_width = width;
@@ -255,12 +259,17 @@ public class GameplayFunction {
     //updates the time and game speed
     private void updateTime(long currentTime, long previousTime){
         timeCount = currentTime - resetTime;
+        //checks setting condition
         if(settings.getSpeedByTimer()) {
+            //if difference of current time and previous time
+            //exceeds that threshold, increase game speed
             if(timeCount >= 20 * secondsToMills) {
                 resetTime = currentTime;
                 increaseGameSpeed(currentTime);
             }
         }else{
+            //if difference of current score and previous score
+            //exceeds that threshold, increase game speed
             if((currentScore - prevScore) >= scoreThreshold)
             {
                 prevScore = currentScore;
@@ -271,6 +280,7 @@ public class GameplayFunction {
             }
         }
 
+        //sets the time spent as string
         spentTime = currentTime - previousTime;
         seconds = (int)(spentTime/1000);
         minutes = seconds / 60;
@@ -295,17 +305,22 @@ public class GameplayFunction {
     private void checkButtonCondition(int id){
         switch(id){
             case 0:
+                //checks for beer list
                 if(beers.size() > 0)
                     //beerCount = quickTap(beerCount, id, beers);
                     timedTap(id, beers);
                 break;
+            //checks for wine list
             case 1: if(wines.size() > 0) timedTap(id, wines); break;
+            //checks for kegs list
             case 2:
                 if(kegs.size() > 0)
                     //quickTap(id, kegs);
                     timedTap(id, kegs);
                 break;
+            //checks for spirits list
             case 3: if(spirits.size() > 0) timedTap(id, spirits); break;
+            //checks for active TNT
             case 4:
                 currentScore += TNT.getPoints();
                 TNT.destroyTNT();
@@ -315,6 +330,7 @@ public class GameplayFunction {
             default:
                 break;
         }
+        //makes sure score is not a negative number
         if(currentScore < 0) currentScore = 0;
     }
 
@@ -322,11 +338,16 @@ public class GameplayFunction {
     //probably use in the future
     private void quickTap(int id, List<AlcoholClass> list){
         getClosest(list);
-        if(currentAlcohol.midY < buttons[id].getYLimit()){
-            currentScore += currentAlcohol.getPoints();
-            inactives.add(currentAlcohol);
+        //checks if current alcohol is not touching the button
+        if(list.get(currentInt).midY < buttons[id].getYLimit()){
+            //calculate score
+            currentScore += list.get(currentInt).getPoints();
+            //removes alcohol from list
+            inactives.add(list.get(currentInt));
             list.remove(currentInt);
+            //increments hit counter
             hits++;
+            //button is black if no alcohol is on the list
             if(list.size() < 1) buttons[id].silouhette = true;
         } else misses++;
     }
@@ -334,11 +355,16 @@ public class GameplayFunction {
     //Default way of scoring
     private void timedTap(int id, List<AlcoholClass> list){
         getClosest(list);
-        if(buttons[id].isIntersecting(currentAlcohol.getRect())){
-            currentScore += currentAlcohol.getPoints();
-            inactives.add(currentAlcohol);
+        //checks if current alcohol touches the button
+        if(buttons[id].isIntersecting(list.get(currentInt).getRect())){
+            //calculate score
+            currentScore += list.get(currentInt).getPoints();
+            //removes alcohol from list
+            inactives.add(list.get(currentInt));
             list.remove(currentInt);
+            //increments hit counter
             hits++;
+            //button is black if no alcohol is on the list
             if(list.size() < 1) buttons[id].silouhette = true;
         }else misses++;
     }
@@ -346,24 +372,27 @@ public class GameplayFunction {
     //returns object closest to the pressed button
     private void getClosest(List<AlcoholClass> list)
     {
-        currentAlcohol = list.get(0);
+        currentInt = 0;
         for(int j = 1; j < list.size(); j++){
-            if(list.get(j).midY > currentAlcohol.midY){
-                currentAlcohol = list.get(j);
+            //condition to check closest alcohol
+            if(list.get(j).midY > list.get(currentInt).midY)
                 currentInt = j;
-            }
         }
     }
 
     //checks if new sprites are made
     private void spawnSprites(long currentTime){
+        //timer count for each specific list gets calculated
         beerTimerCount = spawnSprite(currentTime, beerTimerCount, beerTimer, gameSpeed, 0, beers);
         wineTimerCount = spawnSprite(currentTime, wineTimerCount, wineTimer, gameSpeed, 1, wines);
         kegTimerCount = spawnSprite(currentTime, kegTimerCount, kegTimer, gameSpeed, 2, kegs);
         spiritTimerCount = spawnSprite(currentTime, spiritTimerCount, spiritTimer,
                 gameSpeed, 3, spirits);
 
+        //calculates time count for TNT
         timeCount = currentTime - TNTTimerCount;
+        //Reset currently active TNT to top of the screen
+        //if time count exceeds timer threshold
         if(timeCount >= TNTTimer){
             TNTTimerCount = currentTime;
             TNT.ResetTNT();
@@ -374,12 +403,18 @@ public class GameplayFunction {
     //creates a particular sprite
     private long spawnSprite(long currentTime, long count, long timer, int speed,
                             int id, List<AlcoholClass> list){
+        //calculates time count for alcohol
         timeCount = currentTime - count;
+        //Reset currently active alcohol to top of the screen
+        //if time count exceeds timer threshold
         if (timeCount >= timer){
+            //if game settings have random speed, randomise speed
+            //of current alcohol
             if(settings.getRandomiseSpeed()) genRandomSpeed();
-            currentAlcohol = Pop(id);
-            currentAlcohol.reset(0, speed+randomSpeed, id);
-            list.add(currentAlcohol);
+            //reuses alcohol if any inactive ones are there
+            //and add them to the list
+            list.add(Pop(id));
+            list.get(list.size()-1).reset(0, speed+randomSpeed, id);
             if(buttons[id].silouhette) buttons[id].silouhette = false;
             return currentTime;
         }else return count;
@@ -387,26 +422,31 @@ public class GameplayFunction {
 
     //recycling system to reduce wasted memory storage
     private AlcoholClass Pop(int id){
+        //if there are any inactive sprites, reuse them.
+        //else, create new alcohol
         return (inactives.size() > 0) ?
                 inactives.remove() :
                 new AlcoholClass(view,id,bmp,3,2);
     }
 
-    //places finished sprites here
+    //places finished sprites here and make them inactive
     private void Push(AlcoholClass inactive){
         inactives.add(inactive);
     }
 
     //move and draw all sprites
     private void updateSprites(Canvas canvas){
+        //each button is drawn here
         for(i = 0; i < buttonCount; i++)
             buttons[i].onDraw(canvas);
 
+        //updates and draws all alcohol sprites here
         updateSprite(canvas, 0, beers);
         updateSprite(canvas, 1, wines);
         updateSprite(canvas, 2, kegs);
         updateSprite(canvas, 3, spirits);
 
+        //draws and updates TNT
         TNT.onDraw(canvas);
         //checks if button needs to be darken.
         if(!TNT.active && !buttons[4].silouhette) buttons[4].silouhette = true;
@@ -415,14 +455,19 @@ public class GameplayFunction {
     //move and draw a sprite
     private void updateSprite(Canvas canvas, int id, List<AlcoholClass> list){
         for(i = 0; i < list.size(); i++) {
+            //draws current alcohol
             list.get(i).onDraw(canvas);
             //sprite is removed if player fails to time their taps
             if(!list.get(i).active){
-                currentAlcohol = list.get(i);
-                Push(currentAlcohol);
+                //removes current alcohol from list
+                Push(list.get(i));
                 list.remove(i);
+                //make sure this does not cause any null
+                //errors for this list
                 i--;
+                //increments miss counter
                 misses++;
+                //darkens button if list is empty
                 if(list.size() < 1 && !buttons[id].silouhette)
                     buttons[id].silouhette = true;
             }
@@ -431,17 +476,23 @@ public class GameplayFunction {
 
     //updates current score, misses, and time
     private void updateText(Canvas canvas){
+        //sets paint color and style
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.rgb(255, 128, 0));
+        //draws UI HUD Rect
         canvas.drawRect(0, 0, g_width, g_height/5, paint);
 
+        //changes paint color
         paint.setColor(Color.BLUE);
         paint.setTextSize(20*g_lowest/320);
 
         //currentScore is too long of a text compared to Score
         //At 600 pixels wide
+
+        //draws current results on screen
         canvas.drawText("Score - " + Integer.toString(currentScore), 0, g_height/20, paint);
         canvas.drawText("Misses - " + Integer.toString(misses), g_width*9/20, g_height/20, paint);
+        //draws current time spent below
         canvas.drawText(timeText, 0, g_height*3/20, paint);
     }
 
@@ -449,40 +500,36 @@ public class GameplayFunction {
     private void genRandomSpeed(){
         //rngResults = random.nextInt(10)
         switch(rngResults = (int)(Math.random()*10)){
+            //has a 10% chance to trigger this case
             case 1: randomSpeed = 1; break;
+            //has a 10% chance to trigger this case
             case 2:
                 randomSpeed = 1;
-                //if(scoreThreshold >= 700) randomSpeed++;
+                //As time progresses, random speed increase will be bigger
                 if(scoreThreshold >= 1050) randomSpeed++;
-                //if(scoreThreshold >= 1400) randomSpeed++;
                 break;
+            //has a 10% chance to trigger this case
             case 3:
                 randomSpeed = 2;
-                //if(scoreThreshold >= 700) randomSpeed++;
+                //As time progresses, random speed increase will be bigger
                 if(scoreThreshold >= 1050) randomSpeed++;
-                //if(scoreThreshold >= 1400) randomSpeed++;
                 break;
+            //has a 10% chance to trigger this case
             case 4:
                 randomSpeed = 2;
-                //if(scoreThreshold >= 700) randomSpeed++;
+                //As time progresses, random speed increase will be bigger
                 if(scoreThreshold >= 1050) randomSpeed++;
-                //if(scoreThreshold >= 1400) randomSpeed++;
-                //if(scoreThreshold >= 1100) randomSpeed++;
                 if(scoreThreshold >= 1650) randomSpeed++;
-                //if(scoreThreshold >= 2200) randomSpeed++;
                 break;
+            //has a 10% chance to trigger this case
             case 5:
                 randomSpeed = 3;
-                //if(scoreThreshold >= 700) randomSpeed++;
+                //As time progresses, random speed increase will be bigger
                 if(scoreThreshold >= 1050) randomSpeed++;
-                //if(scoreThreshold >= 1400) randomSpeed++;
-                //if(scoreThreshold >= 1100) randomSpeed++;
                 if(scoreThreshold >= 1650) randomSpeed++;
-                //if(scoreThreshold >= 2200) randomSpeed++;
                 break;
-            default:
-                randomSpeed = 0;
-                break;
+            //has a 50% chance to have no random increase
+            default: randomSpeed = 0; break;
         }
         //Log.d("RNG - ", String.valueOf(rngResults));
     }

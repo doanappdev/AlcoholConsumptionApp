@@ -9,6 +9,13 @@ import android.view.MotionEvent;
 /**
  * Created by wh0-r-u on 16/10/2014.
  */
+
+/*
+*
+* UNUSED AND UNNECESSARY CLASS
+*
+*/
+
 public class GameOverMenu extends GameComponent {
 
     private GameView view;

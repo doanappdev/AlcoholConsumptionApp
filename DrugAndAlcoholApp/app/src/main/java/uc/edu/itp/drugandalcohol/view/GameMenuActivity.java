@@ -54,8 +54,8 @@ public class GameMenuActivity extends Activity {
         speedByTimer = false;
         randomiseSpeed = true;
 
+        //creates a button to start reaction test
         gameViewBtn = (Button)findViewById(R.id.btnStartGame);
-
         gameViewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,8 +72,8 @@ public class GameMenuActivity extends Activity {
             }
         });
 
+        //creates a button to access game settings
         settingsBtn = (Button)findViewById(R.id.btnGameSettings);
-
         settingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,30 +90,31 @@ public class GameMenuActivity extends Activity {
             }
         });
 
+        //creates a buttons to access instructions
         instructionsBtn = (Button)findViewById(R.id.btnGameInstructions);
-
         instructionsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //TO DO: uncomment code below once instructions menu is implemented
                 Log.d("Game Menu Activity - ", "No instructions menu yet!");
                 //Intent instructionsIntent = new Intent(getApplicationContext(), InstructionsActivity.class);
                 //startActivity(instructionsIntent);
             }
         });
 
+        //creates a button to access high score menu
         highScoreBtn = (Button)findViewById(R.id.btnGameHighScore);
-
         highScoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Creates a dummy high score activity
+                //Creates a high score activity
                 Intent highScoreIntent = new Intent(getApplicationContext(), HighScoreActivity.class);
                 startActivity(highScoreIntent);
             }
         });
 
+        //creates a button to return to main menu
         mainMenuBtn = (Button)findViewById(R.id.btnBackMainMenu);
-
         mainMenuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -135,9 +136,11 @@ public class GameMenuActivity extends Activity {
     public void onActivityResult(int requestCode,int resultCode,Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
+        //current intent accesses data from previous activity
         resultsIntent = data;
 
         //makes sure this function execute right orders
+        //depending on previous activity accessed
         if(resultsIntent.getIntExtra("signal", 0) == 0)
         {
             //set game score data from reaction test

@@ -20,6 +20,7 @@ shaking effects when game ends.
 public class ReactionTestActivity extends Activity {
 
     //signal for parent activity
+    //ID must be unique
     final int signal = 0;
 
     //Game settings
@@ -27,8 +28,8 @@ public class ReactionTestActivity extends Activity {
     boolean randomiseSpeed;
     GameSettings settings;
 
-    GameView gView;
-    Intent intent;
+    GameView gView; //Game View
+    Intent intent; //Data Signals
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +41,10 @@ public class ReactionTestActivity extends Activity {
         speedByTimer = intent.getBooleanExtra("speedByTimer", false);
         randomiseSpeed = intent.getBooleanExtra("randomiseSpeed", true);
 
+        //creates the game settings to transfer to game view
         settings = new GameSettings(speedByTimer, randomiseSpeed);
 
-        // hide action bar
+        //hide action bar
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         //the surface view becomes the main viewing content
@@ -52,17 +54,20 @@ public class ReactionTestActivity extends Activity {
 
     //This function is called from the SurfaceView when game ends
     public void isFinished(int score, int hits, int misses, String hitTNT, String timeText){
+        //places Game Score Data inside the intent to send over to parent activity
         intent.putExtra("signal",signal);
         intent.putExtra("score",score);
         intent.putExtra("hits",hits);
         intent.putExtra("misses",misses);
         intent.putExtra("hitTNT",hitTNT);
         intent.putExtra("textTime",timeText);
+        //signals parent activity that data is being transferred
         setResult(RESULT_OK, intent);
+        //closes this activity
         finish();
     }
 
-    //This will properly close the game and send the results to the
+    //This will properly close the game and send game results to the
     //game over menu
     @Override
     public void onBackPressed(){

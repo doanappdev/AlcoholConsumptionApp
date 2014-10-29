@@ -16,15 +16,13 @@ public class GameSettings {
         this.randomiseSpeed = randomiseSpeed;
     }
 
-    public boolean getSpeedByTimer(){
-        return speedByTimer;
-    }
+    //getter methods
+    public boolean getSpeedByTimer(){ return speedByTimer; }
+    public boolean getRandomiseSpeed(){ return randomiseSpeed; }
+
+    //setter methods
     public void setSpeedByTimer(boolean value){
         speedByTimer = value;
-    }
-
-    public boolean getRandomiseSpeed(){
-        return randomiseSpeed;
     }
     public void setRandomiseSpeed(boolean value){
         randomiseSpeed = value;

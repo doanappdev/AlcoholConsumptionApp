@@ -2,6 +2,11 @@ package uc.edu.itp.drugandalcohol.model;
 
 /**
  * Created by wh0-r-u on 28/10/2014.
+ *
+ * Using singleton pattern so data from this class can be
+ * accessed from other activities and fragments.
+ * The singleton insures that only one object can be created
+ * by this class at a time.
  */
 public class GameScore {
     // declare member variables as static

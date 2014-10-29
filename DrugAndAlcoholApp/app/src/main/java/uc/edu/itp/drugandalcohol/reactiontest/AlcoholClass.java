@@ -65,7 +65,7 @@ public class AlcoholClass extends Sprite {
         setPoints();
     }
 
-    //TNT only, as it is not in a list
+    //Resets the TNT only, as TNT is not in a list
     public void ResetTNT(){
         y = 0;
         //y = gameView.getHeight()/20;
@@ -80,7 +80,8 @@ public class AlcoholClass extends Sprite {
         if (y > endY) active = false;
     }
 
-    //TNT only, as it is not in a list
+    //updates the sprite.
+    //for TNT only, as it is not in a list.
     private void TNTUpdate() {
         if(active){
             y += ySpeed;
@@ -94,29 +95,31 @@ public class AlcoholClass extends Sprite {
     //draws the alcohol
     @Override
     public void onDraw(Canvas canvas) {
-        if(id < 4)
-            update();
-        else
-            TNTUpdate();
+        //checks if alcohol is a TNT
+        if(id < 4) update();
+        else TNTUpdate();
+        //sets size and position of alcohol
         dst.set(x, y, x + width * 2, y + height * 2);
-        if(id > 3)
-            canvas.drawBitmap(bmp, src, dst, null);
-        else
-            canvas.drawBitmap(bmp, src, dst, paint);
+        if(id > 3) canvas.drawBitmap(bmp, src, dst, null);
+        else canvas.drawBitmap(bmp, src, dst, paint);
     }
 
-    //TNT only, as it is not in a list
+    //destroys TNT only by making it inactive,
+    //TNT only because it is not in a list
     public void destroyTNT(){
         y = endY;
         active = false;
     }
 
-    //adjusts and shows the point values
+    //shows the point values
     public int getPoints()
     {
         return points;
     }
+    //adjusts the point values
     private void setPoints(){
+        //TNT has negative scores, because it
+        //should not be hit AT ALL
         switch(id){
             case 4: points = -2000; break;
             default: points = 50 * (ySpeed - 1); break;

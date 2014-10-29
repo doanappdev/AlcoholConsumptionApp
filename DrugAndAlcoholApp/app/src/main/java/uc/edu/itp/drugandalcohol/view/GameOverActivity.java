@@ -49,7 +49,7 @@ public class GameOverActivity extends Activity {
         highScoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //spawns dummy activity
+                //opens high score activity
                 Intent highScoreIntent = new Intent(getApplicationContext(), HighScoreActivity.class);
                 startActivity(highScoreIntent);
             }

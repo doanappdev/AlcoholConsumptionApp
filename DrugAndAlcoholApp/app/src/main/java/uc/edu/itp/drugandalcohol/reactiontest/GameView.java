@@ -64,6 +64,7 @@ public class GameView extends SurfaceView
         holder = getHolder();
         holder.addCallback(new SurfaceHolder.Callback() {
 
+            //When gaveview closes, this will close the thread
             @Override
             public void surfaceDestroyed(SurfaceHolder holder) {
                 boolean retry = true;
@@ -78,6 +79,8 @@ public class GameView extends SurfaceView
                 }
             }
 
+            //when surface is created, initialize gameloop and
+            //this class before starting the loop
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
                 init();
@@ -88,7 +91,7 @@ public class GameView extends SurfaceView
             @Override
             public void surfaceChanged(SurfaceHolder holder, int format,
                                        int width, int height) {
-                //Do something
+                //TO DO - Add code to this event
                 //gameplay.changeSurface(width, height);
 
             }
@@ -104,44 +107,60 @@ public class GameView extends SurfaceView
 
         gameplay = new GameplayFunction(this, bmp, settings);
 
+        //sets previous and current time
         currentTime = System.currentTimeMillis();
         previousTime = currentTime;
 
+        //sends current time to gameplay class
         gameplay.reset(currentTime);
     }
 
-    //Has a closing condition so that game exits
-    //without any errors
+    //Draws the canvas
     @Override
     protected void onDraw(Canvas canvas){
 
+        //Has a closing condition so that game exits
+        //without any errors
         if(isClosed) {
-            //previousTime = currentTime;
+            //removes objects from memory allocation
             gameplay.clean();
+            //sends results over to reaction test activity
             getResults();
-
+            //loses the surface view
             doLose();
         }else{
+            //Draws over the previous frame to draw new images
             canvas.drawColor(Color.WHITE);
+
+            //gets current time
             currentTime = System.currentTimeMillis();
 
+            //updates game and draws images
             gameplay.update(currentTime, previousTime);
             gameplay.onDraw(canvas);
 
+            //checks if it needs to be closed
             isClosed = gameplay.condition();
         }
     }
 
-    //controls the flow of tapping
+    //controls the flow of tapping and input conditions
     @Override
-    public boolean onTouchEvent(MotionEvent event){ //300
+    public boolean onTouchEvent(MotionEvent event){
+        //gets event action from user input
         eventAction = event.getAction();
+
         switch (eventAction) {
             case MotionEvent.ACTION_DOWN:
                 //if the player holds down the screen, nothing will happen
                 if (!pressed && System.currentTimeMillis() - lastClick > 100){
+                    //makes sure it does not have holding functions
                     pressed = true;
+
+                    //sets last click time
                     lastClick = System.currentTimeMillis();
+
+                    //gameplay checks input conditions
                     synchronized (getHolder()){
                         isClosed = gameplay.onTouchEvent(event);
                     }
@@ -164,10 +183,9 @@ public class GameView extends SurfaceView
     //Requests its parent to finish game
     public void doLose() {
         synchronized (holder) {
-            //quit to mainmenu
+            //quit to game over menu
             ((ReactionTestActivity)super.getContext()).isFinished
                     (score, hits, misses, hitTNT, timeText);
-            //((Activity) super.getContext()).finish();
         }
     }
 

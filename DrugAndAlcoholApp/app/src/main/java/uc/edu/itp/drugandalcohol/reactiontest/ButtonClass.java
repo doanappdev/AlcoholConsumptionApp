@@ -49,14 +49,16 @@ public class ButtonClass extends Sprite
     //draws the button
     @Override
     public void onDraw(Canvas canvas){
+        //sets size and position of button
         dst.set(x, y, x + width * 2, y + height * 2);
-        if(silouhette)
-            canvas.drawBitmap(bmp, src, dst, silouhetteP);
+        //this is triggered if no sprites are in
+        //corresponding list
+        if(silouhette) canvas.drawBitmap(bmp, src, dst, silouhetteP);
         else{
-            if(id > 3)
-                canvas.drawBitmap(bmp, src, dst, null);
-            else
-                canvas.drawBitmap(bmp, src, dst, paint);
+            //If this is a TNT button, it does not need
+            //color manipulation.
+            if(id > 3)  canvas.drawBitmap(bmp, src, dst, null);
+            else canvas.drawBitmap(bmp, src, dst, paint);
         }
     }
 
