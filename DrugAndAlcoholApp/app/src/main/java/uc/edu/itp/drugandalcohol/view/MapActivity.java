@@ -32,6 +32,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.microsoft.windowsazure.mobileservices.*;
 
 import java.net.MalformedURLException;
+import java.util.List;
 
 import uc.edu.itp.drugandalcohol.R;
 import uc.edu.itp.drugandalcohol.model.ToDoItem;
@@ -41,9 +42,10 @@ public class MapActivity extends FragmentActivity implements LocationListener, V
     private String TAG = "MapActivity";
 
     private MobileServiceClient mClient;
-    // table name on cloud, did not have time to change settings provided
-    // by Microsoft, to change database name access web services project in
+    // did not have time to change table name of server project provided
+    // by Microsoft, to change database name access personalized server project in
     // Visual Studio and change relevant details
+    // TODO provide details where server project is located (most likely google drive)
     private MobileServiceTable mToDoItemTable;
 
     private GoogleMap mMap;
@@ -52,7 +54,7 @@ public class MapActivity extends FragmentActivity implements LocationListener, V
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
 
-    private Button saveLocationBtn;
+    private Button saveLocationBtn, getLocationBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -62,6 +64,9 @@ public class MapActivity extends FragmentActivity implements LocationListener, V
 
         saveLocationBtn = (Button)findViewById(R.id.btnSaveLocation);
         saveLocationBtn.setOnClickListener(this);
+
+        getLocationBtn = (Button)findViewById(R.id.btnGetLocation);
+        getLocationBtn.setOnClickListener(this);
 
         // check if users phone or emulator has google play services
         checkServicesConnected();
@@ -88,7 +93,7 @@ public class MapActivity extends FragmentActivity implements LocationListener, V
         // get Google Play availability status
         int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getBaseContext());
 
-        // show status
+        // check if phone has Google Play Services available
         if(status != ConnectionResult.SUCCESS)
         {
             // Google Play Services is not available
@@ -138,13 +143,19 @@ public class MapActivity extends FragmentActivity implements LocationListener, V
     }
 
 
+    // Create the Mobile Service Client instance, using the
+    // Mobile Service URL and Key provided from Azure website
+    // after set up cloud services
     public void connectAzureCloud()
     {
         try
         {
-            // Create the Mobile Service Client instance, using the
-            // Mobile Service URL and Key provided from Azure website
-            // after set up cloud services
+            // the following details can be downloaded from the azure website
+            // you will need to create an account to access azure services, we have provided
+            // details in the ******(hand over documents) on how to create the account.
+            // We used the free trial version which runs out in 30 days, we expect
+            // the 30 days to expire before the next team starts. You will need to
+            // obtain your own key, the url might need to be changed as well.
             mClient = new MobileServiceClient(
                     "https://alcohol-consumption-app-data.azure-mobile.net/",
                     "TJTOXgFJpedXaWKGLdMjHOngavMuZe52",
@@ -169,20 +180,37 @@ public class MapActivity extends FragmentActivity implements LocationListener, V
         {
             case R.id.btnSaveLocation:
                 saveLocation();
+                break;
+
+            case R.id.btnGetLocation:
+                getLocation();
         }
     }
 
     public void saveLocation()
     {
+        LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        String provider = service.getBestProvider(criteria, false);
+        Location location = service.getLastKnownLocation(provider);
+
+        // get current location data
+        double lat = location.getLatitude();
+        double lng = location.getLongitude();
+
         // using ToDOItem object because this is the table name provided by Microsoft when creating
-        // a SQL database following their tutorial. We can change the table name if we want to
-        // You have to change the settings in the Visual Studio Web services project provided by
-        // microsoft, due to time running out of time we decided not to change the name of the table
-        // this code is for demonstration on how to connect to cloud to save location data to
-        // database. Hopefully the next group can work on implementing this function
+        // a SQL database following their tutorial. We can change the table name if we want to.
+        // You have to change the settings in Visual Studio accessing the server project provided by
+        // microsoft, due to time running we decided not to change the name of the table
+        // this code is for demonstration purposes: It shows how to save data to the ID and
+        // text columns.
         ToDoItem item = new ToDoItem();
-        item.id = "test1@email.com";            // we can supply the users email as the ID this will help when retrieving data
-        item.text = "223.8976 554.567";
+        item.id = "test2@email.com";            // we can supply the users email as the ID this will help when retrieving data
+
+        // convert location value to string
+        item.text = Double.toString(lat) + " " + Double.toString(lng);
+
+        // insert item object into table using MobileServiceClient
         mClient.getTable(ToDoItem.class).insert(item, new TableOperationCallback<ToDoItem>() {
             @Override
             public void onCompleted(ToDoItem toDoItem, Exception e, ServiceFilterResponse serviceFilterResponse) {
@@ -198,12 +226,52 @@ public class MapActivity extends FragmentActivity implements LocationListener, V
         });
     }
 
+    /*
+     * This method demonstrates how to query the table
+     * The query is similar to a SQL SELECT statement
+     * e.g SELECT ID FROM tblName WHERE ID = "value"
+     *
+     * There should only be one item in the table with
+     * id of test2@email.com
+     */
+    public void getLocation()
+    {
+        mClient.getTable(ToDoItem.class).where().field("id").eq("test2@email.com")
+                .execute(new TableQueryCallback<ToDoItem>()
+                {
+                    public void onCompleted(List<ToDoItem> result,
+                                            int count,
+                                            Exception exception,
+                                            ServiceFilterResponse response)
+                    {
+                        // check for error
+                        if(exception == null)
+                        {
+                            // loop through results of query
+                            for(ToDoItem item : result)
+                            {
+                                // display location data matching the ID
+                                Toast.makeText(getApplicationContext(), "ID: " + item.id +
+                                        "\nLocation Value: " + item.text, Toast.LENGTH_LONG).show();
+
+                                // log data information to log cat for testing purposes
+                                Log.i(TAG, "Read object with ID: " + item.id +
+                                           "\nLocation Value: " + item.text);
+                            }
+                        }
+
+                    }
+                });
+    }
+
+
 
     /*
      * Use this method to add markers, lines, or move camera
      * this should only be called once and when we are sure that
      * mMap is not null
      */
+
     private void setUpMap()
     {
         mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Current Position"));
@@ -212,7 +280,7 @@ public class MapActivity extends FragmentActivity implements LocationListener, V
     @Override
     public void onLocationChanged(Location location)
     {
-        TextView tvLocation = (TextView)findViewById(R.id.txtViewLatitude);
+        //TextView tvLocation = (TextView)findViewById(R.id.txtViewLatitude);
 
         // get current location data
         double latitude = location.getLatitude();
@@ -231,7 +299,7 @@ public class MapActivity extends FragmentActivity implements LocationListener, V
         mMap.addMarker(new MarkerOptions().position(latLng).title("Current Position"));
 
         // display current location coordinates in text view
-        tvLocation.setText("Latitude: " + latitude + ", Longitude: " + longitude);
+        //tvLocation.setText("Latitude: " + latitude + ", Longitude: " + longitude);
     }
 
 
