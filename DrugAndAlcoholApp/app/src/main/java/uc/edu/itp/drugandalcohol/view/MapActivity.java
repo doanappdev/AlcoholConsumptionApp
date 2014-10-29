@@ -12,9 +12,13 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -24,10 +28,23 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import uc.edu.itp.drugandalcohol.R;
+// import required to connect to Microsoft Azure Cloud Services
+import com.microsoft.windowsazure.mobileservices.*;
 
-public class MapActivity extends FragmentActivity implements LocationListener
+import java.net.MalformedURLException;
+
+import uc.edu.itp.drugandalcohol.R;
+import uc.edu.itp.drugandalcohol.model.ToDoItem;
+
+public class MapActivity extends FragmentActivity implements LocationListener, View.OnClickListener
 {
+    private String TAG = "MapActivity";
+
+    private MobileServiceClient mClient;
+    // table name on cloud, did not have time to change settings provided
+    // by Microsoft, to change database name access web services project in
+    // Visual Studio and change relevant details
+    private MobileServiceTable mToDoItemTable;
 
     private GoogleMap mMap;
     private LocationManager locationManager;
@@ -35,14 +52,20 @@ public class MapActivity extends FragmentActivity implements LocationListener
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
 
+    private Button saveLocationBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
-        // check if users phone (or emulator has google play services)
+        saveLocationBtn = (Button)findViewById(R.id.btnSaveLocation);
+        saveLocationBtn.setOnClickListener(this);
+
+        // check if users phone or emulator has google play services
         checkServicesConnected();
+        connectAzureCloud();
 
         // click listener for short clicks
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener()
@@ -115,9 +138,70 @@ public class MapActivity extends FragmentActivity implements LocationListener
     }
 
 
+    public void connectAzureCloud()
+    {
+        try
+        {
+            // Create the Mobile Service Client instance, using the
+            // Mobile Service URL and Key provided from Azure website
+            // after set up cloud services
+            mClient = new MobileServiceClient(
+                    "https://alcohol-consumption-app-data.azure-mobile.net/",
+                    "TJTOXgFJpedXaWKGLdMjHOngavMuZe52",
+                    this
+            );
+
+            // log connection succeeded
+            Log.i(TAG, "Connection to cloud succeeded");
+        }
+        catch (MalformedURLException e)
+        {
+            //createAndShowDialog(new Exception("There was an error creating the Mobile Service. Verify the URL"), "Error");
+            // log connection succeeded
+            Log.d(TAG, "Connection failed - " + e.toString());
+        }
+    }
+
+   @Override
+    public void onClick(View v)
+    {
+        switch(v.getId())
+        {
+            case R.id.btnSaveLocation:
+                saveLocation();
+        }
+    }
+
+    public void saveLocation()
+    {
+        // using ToDOItem object because this is the table name provided by Microsoft when creating
+        // a SQL database following their tutorial. We can change the table name if we want to
+        // You have to change the settings in the Visual Studio Web services project provided by
+        // microsoft, due to time running out of time we decided not to change the name of the table
+        // this code is for demonstration on how to connect to cloud to save location data to
+        // database. Hopefully the next group can work on implementing this function
+        ToDoItem item = new ToDoItem();
+        item.id = "test1@email.com";            // we can supply the users email as the ID this will help when retrieving data
+        item.text = "223.8976 554.567";
+        mClient.getTable(ToDoItem.class).insert(item, new TableOperationCallback<ToDoItem>() {
+            @Override
+            public void onCompleted(ToDoItem toDoItem, Exception e, ServiceFilterResponse serviceFilterResponse) {
+                if (e == null) {
+                    // Insert succeeded
+                    Toast.makeText(getApplicationContext(), "Inserting Location Data to table Succeeded", Toast.LENGTH_LONG).show();
+                } else {
+                    // Insert failed
+                    Toast.makeText(getApplicationContext(), "Inserting Location Data to table Failed", Toast.LENGTH_LONG).show();
+                    Log.d(TAG, e.toString());
+                }
+            }
+        });
+    }
+
+
     /*
      * Use this method to add markers, lines, or move camera
-     * this should only be calld once and when we are sure that
+     * this should only be called once and when we are sure that
      * mMap is not null
      */
     private void setUpMap()
@@ -170,7 +254,7 @@ public class MapActivity extends FragmentActivity implements LocationListener
     }
 
     /*
-
+        Uncomment to add code to the activities menu bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

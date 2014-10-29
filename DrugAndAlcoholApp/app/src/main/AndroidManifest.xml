@@ -118,7 +118,7 @@
             android:label="@string/title_activity_high_score" >
         </activity>
         <activity
-            android:name=".UnitTestActivity"
+            android:name=".DummyCalculateBACTopFragmentActivity"
             android:exported="false"
             android:label="@string/title_activity_unit_test" >
         </activity>

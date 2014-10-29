@@ -60,6 +60,4 @@ public class CalculateBACTopFragmentTestCase extends ActivityInstrumentationTest
         Assert.assertEquals(10, testNumOfDrinks);
     }
 
-
-
 }

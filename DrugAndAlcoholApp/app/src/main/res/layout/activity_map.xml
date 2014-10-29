@@ -22,11 +22,25 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtViewLatitude"/>
 
-    <fragment
-        android:id="@+id/mapFragment"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/txtViewLongitude"
-        class="com.google.android.gms.maps.SupportMapFragment" />
+        android:layout_height="match_parent">
+
+        <fragment
+            android:id="@+id/mapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/txtViewLongitude"
+            class="com.google.android.gms.maps.SupportMapFragment" />
+
+        <Button
+            android:id="@+id/btnSaveLocation"
+            android:text="Save Location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|bottom" />
+
+    </FrameLayout>
+
 
 </RelativeLayout>

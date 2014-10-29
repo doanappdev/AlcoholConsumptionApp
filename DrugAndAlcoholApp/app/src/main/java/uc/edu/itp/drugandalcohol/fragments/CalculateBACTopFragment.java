@@ -571,9 +571,13 @@ public class CalculateBACTopFragment extends Fragment
 
     public int testNumberOfDrinks()
     {
-        int numOfDrinks = 10;
+        /*
+         * example test data
+         */
+        int numOfDrinksSuccess = 10;        // use this value to return a success test result
+        int numOfDrinksFail = 5;            // this value for a fail test result
 
-        return numOfDrinks;
+        return numOfDrinksFail;
     }
 
 }
