@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import uc.edu.itp.drugandalcohol.R;
 
+//This is just a dummy class. No implementations of
+//this class has been made yet.
 public class HighScoreActivity extends Activity {
 
     TextView highScoreTxt;

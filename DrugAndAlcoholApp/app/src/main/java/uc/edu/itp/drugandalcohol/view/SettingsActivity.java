@@ -13,9 +13,14 @@ import uc.edu.itp.drugandalcohol.R;
 
 public class SettingsActivity extends Activity {
 
+    //signal for parent activity
+    final int signal = 1;
+
+    //game settings
     boolean speedByTimer;
     boolean randomiseSpeed;
 
+    //buttons and switches
     Switch speedByTimerSwi;
     Switch randomiseSpeedSwi;
     Button backBtn;
@@ -27,13 +32,13 @@ public class SettingsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        settingsIntent = new Intent(getApplicationContext(),
-                GameMenuActivity.class);
-
+        //calls the parent activity to display current settings
+        settingsIntent = new Intent(getApplicationContext(), GameMenuActivity.class);
         settingsIntent = getIntent();
         speedByTimer = settingsIntent.getBooleanExtra("speedByTimer", false);
         randomiseSpeed = settingsIntent.getBooleanExtra("randomiseSpeed", true);
 
+        //Setting switch
         speedByTimerSwi = (Switch)findViewById(R.id.swiSpeedByTimer);
         speedByTimerSwi.setChecked(speedByTimer);
         speedByTimerSwi.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +46,7 @@ public class SettingsActivity extends Activity {
             public void onClick(View view) { speedByTimer = !speedByTimer; }
         });
 
+        //Setting switch
         randomiseSpeedSwi = (Switch)findViewById(R.id.swiRandomiseSpeed);
         randomiseSpeedSwi.setChecked(randomiseSpeed);
         randomiseSpeedSwi.setOnClickListener(new View.OnClickListener() {
@@ -50,11 +56,11 @@ public class SettingsActivity extends Activity {
 
         backBtn = (Button)findViewById(R.id.btnBack);
 
+        //saves the current settings and returns to game menu
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    /*settingsIntent = new Intent(getApplicationContext(),
-                    GameMenuActivity.class);*/
+                    settingsIntent.putExtra("signal",signal);
                     settingsIntent.putExtra("speedByTimer", speedByTimer);
                     settingsIntent.putExtra("randomiseSpeed", randomiseSpeed);
                     setResult(RESULT_OK, settingsIntent);

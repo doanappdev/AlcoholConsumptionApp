@@ -10,6 +10,8 @@ import android.graphics.Paint;
 import android.os.Handler;
 import android.view.SurfaceHolder;
 
+//This loop thread makes sure it maintains running at
+//set FPS. Also checks if it continues running or not
 public class GameLoopThread extends Thread
 {
     static final long FPS = 60;
@@ -38,6 +40,7 @@ public class GameLoopThread extends Thread
             try {
                 c = view.getHolder().lockCanvas();
                 synchronized (view.getHolder()) {
+                    //ignore this warning
                     view.onDraw(c);
                 }
             } finally {
@@ -56,38 +59,3 @@ public class GameLoopThread extends Thread
         }
     }
 }
-
-//Test Code below
-/*
-public class GameLoopThread extends Thread
-{
-    private GameView view;
-    private boolean running = false;
-
-    public GameLoopThread(GameView view) {
-        this.view = view;
-    }
-
-    public void setRunning(boolean run) {
-        running = run;
-    }
-
-    @Override
-    public void run() {
-        while (running) {
-            Canvas c = null;
-            try {
-                c = view.getHolder().lockCanvas();
-                synchronized (view.getHolder()) {
-                    view.onDraw(c);
-                }
-            } finally {
-                if (c != null) {
-                    view.getHolder().unlockCanvasAndPost(c);
-                }
-            }
-        }
-    }
-}
-* */
-

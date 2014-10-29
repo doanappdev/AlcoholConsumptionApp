@@ -19,9 +19,11 @@ import android.util.Log;
 
 public class ButtonClass extends Sprite
 {
+    //for button silouhettes
     public boolean silouhette;
     private Paint silouhetteP;
 
+    //creates a button and its settings
     public ButtonClass(GameView gameView, int id, Bitmap bmp, final int columns, final int rows)
     {
         super(gameView, id, bmp, columns, rows);
@@ -44,12 +46,7 @@ public class ButtonClass extends Sprite
         dst = new RectF(x, y, x + width * 2, y + height * 2);
     }
 
-    //@Override
-    /*public void update() {
-        if(silouhette)
-        else
-    }*/
-
+    //draws the button
     @Override
     public void onDraw(Canvas canvas){
         dst.set(x, y, x + width * 2, y + height * 2);
@@ -63,12 +60,15 @@ public class ButtonClass extends Sprite
         }
     }
 
+    //returns the y variable. used to be y + height.
     public float getYLimit(){ return y; } //y + height
 
+    //checks collision of mouse point
     public boolean isCollision(float x2, float y2) {
         return x2 > x && x2 < x + width * 2 && y2 > y && y2 < y + height * 2;
     }
 
+    //checks collision of sprites
     public boolean isIntersecting(RectF sample){
         return dst.intersect(sample);
     }

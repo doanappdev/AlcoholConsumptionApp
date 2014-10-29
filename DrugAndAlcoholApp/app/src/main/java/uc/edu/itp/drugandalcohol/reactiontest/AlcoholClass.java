@@ -10,14 +10,17 @@ import android.graphics.RectF;
 
 public class AlcoholClass extends Sprite {
 
+    //these variables are different from buttons
     private float endY;
     private int xSpeed;
     private int ySpeed;
     private int points;
-    private int rng;
-
     public boolean active;
 
+    //used to be able to spawn with different colors
+    private int rng;
+
+    //Sets values if this class is created for the first time
     public AlcoholClass(GameView gameView, int id, Bitmap bmp, final int columns, final int rows) {
         super(gameView, id, bmp, columns, rows);
 
@@ -25,6 +28,8 @@ public class AlcoholClass extends Sprite {
         endY = gameView.getHeight()*0.85f;
     }
 
+    //each time this class is created or reused, values are
+    //reset in this fashion.
     public void reset(int xSpeed, int ySpeed, int id){
         if(this.id != id){
             this.id = id;
@@ -60,12 +65,14 @@ public class AlcoholClass extends Sprite {
         setPoints();
     }
 
+    //TNT only, as it is not in a list
     public void ResetTNT(){
         y = 0;
         //y = gameView.getHeight()/20;
         active = true;
     }
 
+    //updates the sprite
     //@Override
     protected void update() {
         y += ySpeed;
@@ -73,6 +80,7 @@ public class AlcoholClass extends Sprite {
         if (y > endY) active = false;
     }
 
+    //TNT only, as it is not in a list
     private void TNTUpdate() {
         if(active){
             y += ySpeed;
@@ -83,6 +91,7 @@ public class AlcoholClass extends Sprite {
         }
     }
 
+    //draws the alcohol
     @Override
     public void onDraw(Canvas canvas) {
         if(id < 4)
@@ -96,16 +105,17 @@ public class AlcoholClass extends Sprite {
             canvas.drawBitmap(bmp, src, dst, paint);
     }
 
+    //TNT only, as it is not in a list
     public void destroyTNT(){
         y = endY;
         active = false;
     }
 
+    //adjusts and shows the point values
     public int getPoints()
     {
         return points;
     }
-
     private void setPoints(){
         switch(id){
             case 4: points = -2000; break;
@@ -113,6 +123,7 @@ public class AlcoholClass extends Sprite {
         }
     }
 
+    //returns its hitbox
     public RectF getRect(){
         return dst;
     }

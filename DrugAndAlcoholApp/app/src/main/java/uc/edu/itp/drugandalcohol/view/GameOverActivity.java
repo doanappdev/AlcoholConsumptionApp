@@ -13,12 +13,14 @@ import uc.edu.itp.drugandalcohol.R;
 
 public class GameOverActivity extends Activity {
 
+    //Game score Data
     int score;
     int hits;
     int misses;
     String hitTNT;
     String textTime;
 
+    //Text and button functions
     TextView scoreTxt;
     TextView hitsTxt;
     TextView missesTxt;
@@ -32,6 +34,7 @@ public class GameOverActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_over2);
 
+        //sets game score data
         Intent intent = getIntent();
         score = intent.getIntExtra("score", -1);
         hits = intent.getIntExtra("hits", -1);
@@ -41,15 +44,18 @@ public class GameOverActivity extends Activity {
 
         setResultsText();
 
+        //adds game button functions
         highScoreBtn = (Button)findViewById(R.id.btnGameHighScore);
         highScoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //spawns dummy activity
                 Intent highScoreIntent = new Intent(getApplicationContext(), HighScoreActivity.class);
                 startActivity(highScoreIntent);
             }
         });
 
+        //returns to game menu
         backBtn = (Button)findViewById(R.id.btnReturnGameMenu);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +65,7 @@ public class GameOverActivity extends Activity {
         });
     }
 
+    //sets results from test on screen
     private void setResultsText(){
         scoreTxt = (TextView)findViewById(R.id.txtScore);
         scoreTxt.setText(Integer.toString(score));

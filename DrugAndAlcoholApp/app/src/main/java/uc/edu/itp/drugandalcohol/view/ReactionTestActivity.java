@@ -11,11 +11,22 @@ import uc.edu.itp.drugandalcohol.R;
 import uc.edu.itp.drugandalcohol.reactiontest.GameSettings;
 import uc.edu.itp.drugandalcohol.reactiontest.GameView;
 
+/*
+This activity holds the main game. Its runs the standard Android Canvas
+SurfaceView. OpenGL ES 2.0 is a very good replacement for the SurfaceView
+for future modifications as it performs better and the Canvas has weird
+shaking effects when game ends.
+* */
 public class ReactionTestActivity extends Activity {
 
+    //signal for parent activity
+    final int signal = 0;
+
+    //Game settings
     boolean speedByTimer;
     boolean randomiseSpeed;
     GameSettings settings;
+
     GameView gView;
     Intent intent;
 
@@ -23,6 +34,8 @@ public class ReactionTestActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //This gets the settings from the Game Menu Activity. This is
+        //needed for players who want to adjust their gameplay options
         intent = getIntent();
         speedByTimer = intent.getBooleanExtra("speedByTimer", false);
         randomiseSpeed = intent.getBooleanExtra("randomiseSpeed", true);
@@ -31,11 +44,15 @@ public class ReactionTestActivity extends Activity {
 
         // hide action bar
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        //the surface view becomes the main viewing content
         gView = new GameView(this, settings);
         setContentView(gView);
     }
 
+    //This function is called from the SurfaceView when game ends
     public void isFinished(int score, int hits, int misses, String hitTNT, String timeText){
+        intent.putExtra("signal",signal);
         intent.putExtra("score",score);
         intent.putExtra("hits",hits);
         intent.putExtra("misses",misses);
@@ -45,6 +62,8 @@ public class ReactionTestActivity extends Activity {
         finish();
     }
 
+    //This will properly close the game and send the results to the
+    //game over menu
     @Override
     public void onBackPressed(){
         //super.onBackPressed()

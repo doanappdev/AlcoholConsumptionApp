@@ -28,26 +28,32 @@ import uc.edu.itp.drugandalcohol.view.ReactionTestActivity;
  */
 public class GameView extends SurfaceView
 {
-    private Bitmap bmp;
-    private SurfaceHolder holder;
-    private GameLoopThread gameLoopThread;
-    private GameplayFunction gameplay;
+    private Bitmap bmp; //bitmap for buttons and sprites
+    private SurfaceHolder holder; //used to synchronise events
+    private GameLoopThread gameLoopThread; //The loop to control the game
+    private GameplayFunction gameplay; //Gameplay function
+
+    //timer variables used
     private long lastClick;
     private long currentTime;
     private long previousTime;
 
+    //condition variables used
     private int eventAction;
     private boolean isClosed;
     private boolean pressed;
 
+    //game score data
     private int score;
     private int hits;
     private int misses;
     private String timeText;
     private String hitTNT;
 
+    //Stores settings from previous activities
     private GameSettings settings;
 
+    //sets up the surface view
     public GameView(Context context, GameSettings settings){
         super(context);
 
@@ -89,6 +95,7 @@ public class GameView extends SurfaceView
         });
     }
 
+    //Initialises the gameplay function and the bitmap image
     private void init(){
         isClosed = false;
 
@@ -103,6 +110,8 @@ public class GameView extends SurfaceView
         gameplay.reset(currentTime);
     }
 
+    //Has a closing condition so that game exits
+    //without any errors
     @Override
     protected void onDraw(Canvas canvas){
 
@@ -123,11 +132,13 @@ public class GameView extends SurfaceView
         }
     }
 
+    //controls the flow of tapping
     @Override
     public boolean onTouchEvent(MotionEvent event){ //300
         eventAction = event.getAction();
         switch (eventAction) {
             case MotionEvent.ACTION_DOWN:
+                //if the player holds down the screen, nothing will happen
                 if (!pressed && System.currentTimeMillis() - lastClick > 100){
                     pressed = true;
                     lastClick = System.currentTimeMillis();
@@ -137,16 +148,19 @@ public class GameView extends SurfaceView
                 }
                 break;
             case MotionEvent.ACTION_UP:
+                //allows the player to touch the screen again
                 pressed = false;
                 break;
         }
         return true;
     }
 
+    //Is called from activity function anytime
     public void closeGame(){
         isClosed = true;
     }
 
+    //Requests its parent to finish game
     public void doLose() {
         synchronized (holder) {
             //quit to mainmenu
@@ -156,6 +170,9 @@ public class GameView extends SurfaceView
         }
     }
 
+    //saves results from completed game. hitTNT variable
+    //is saved as a string for the game over activity to
+    //display the results
     private void getResults(){
         score = gameplay.getScore();
         hits = gameplay.getHits();
@@ -176,174 +193,4 @@ public class GameView extends SurfaceView
         //Log.d("GameView - Score: ", String.valueOf(GameScore.getInstance().getScore()));
         //Log.d("GameView - Time: ", GameScore.getInstance().getTimeText());
     }
-
-    //THROWAWAY VARIABLES
-    /*
-    public final int MAIN_MENU = 0;
-    public final int INSTRUCTIONS = 1;
-    public final int GAMEPLAY = 2;
-    public final int GAME_OVER = 3;
-    public int currentScreen;
-    public bool isClosed;
-    private bool condition;
-
-    //private Bitmap bmps[];
-
-    ///private GameComponent screens[];
-    //private GameplayFunction scoreKeeper;
-
-    private int gameSpeed; //This one is used in a different class
-    private String TAG = "GameView";
-    private int blockWidth;
-    private int blockHeight;
-    private static int ROWS = 3;
-    private static int COLS = 5;
-    private Rectangle rectangle, rectangle2, rectangle3;
-    private List<Rectangle> rectangles = new ArrayList<Rectangle>();
-    private List<TestSprite> sprites = new ArrayList<TestSprite>();
-    private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    */
-
-    //Throwaway Init() code
-    /*bmps = new Bitmap[3];
-    bmps[0] = BitmapFactory.decodeResource(getResources(), R.drawable.title);
-    bmps[1] = BitmapFactory.decodeResource(getResources(), R.drawable.menu_buttons);
-    bmps[2] = BitmapFactory.decodeResource(getResources(), R.drawable.alcohol_sprites);*/
-
-    //scoreKeeper = new GameplayFunction(this, bmps[2]);
-
-    /*screens = new GameComponent[]{
-            new MainMenu(this, bmps[0], bmps[1]),
-            new InstructionsMenu(),
-            scoreKeeper,
-            new GameOverMenu(this, bmps[1], scoreKeeper)
-    };*/
-
-    //currentScreen = MAIN_MENU;
-    //currentScreen = GAMEPLAY;
-    //screens[currentScreen].reset(currentTime);
-
-    //throwaway onDraw() code
-    /*screens[currentScreen].update(currentTime, previousTime);
-    screens[currentScreen].onDraw(canvas);
-
-    condition = screens[currentScreen].condition();
-    if(condition){
-        //switchMenus();
-        if(currentScreen == GAMEPLAY){
-            scoreKeeper.clean();
-            currentScreen = GAME_OVER;
-        }
-        previousTime = currentTime;
-        screens[currentScreen].reset(currentTime);
-    }
-    if(isClosed)
-        doLose();
-    */
-
-    //Throwaway onTouchEvent() code
-    /*
-    condition = screens[currentScreen].onTouchEvent(event);
-    if(condition){
-        previousTime = currentTime;
-        screens[currentScreen].reset(currentTime);
-    }
-    */
-
-    //THROWAWAY CODE BELOW
-     /*private void switchMenus(){
-        switch(currentScreen){
-            case MAIN_MENU:
-                break;
-            case INSTRUCTIONS:
-                break;
-            case GAMEPLAY:
-                break;
-            case GAME_OVER:
-                break;
-            default:
-                break;
-        }
-    }*/
-
-    /*
-    for(Rectangle rect : rectangles)
-    {
-        rect.onDraw(canvas, gameSpeed);
-    }
-
-    // increase game speed every 7 seconds
-    if(System.currentTimeMillis() - gameTime > 7000)
-    {
-
-        gameSpeed += 5;
-        gameTime = System.currentTimeMillis();
-    }
-
-    for (int i = rectangles.size() - 1; i >= 0; i--)
-    {
-        Rectangle rect = rectangles.get(i);
-        // check if touch event pos is on
-        // rectangle
-        if (rect.isClickedOn(event.getX(), event.getY()))
-        {
-            rectangles.remove(rect);
-            break;
-        }
-    }
-    */
-
-    /*
-    private void createRectangles()
-    {
-        // generate random number between 0-2
-        //Random random = new Random();
-        //int pos = random.nextInt(3);
-
-        // row 0
-        rectangles.add(rectangle = new Rectangle(this, 0, -427, Color.RED));
-        rectangles.add(rectangle = new Rectangle(this, 240, -427, Color.BLUE));
-        rectangles.add(rectangle = new Rectangle(this, 480, -427, Color.YELLOW));
-
-        // row 1
-        rectangles.add(rectangle = new Rectangle(this, 0, 0, Color.RED));
-        rectangles.add(rectangle = new Rectangle(this, 240, 0, Color.BLUE));
-        rectangles.add(rectangle = new Rectangle(this, 480, 0, Color.YELLOW));
-
-        // row 2
-        rectangles.add(rectangle = new Rectangle(this, 0, 427, Color.YELLOW));
-        rectangles.add(rectangle = new Rectangle(this, 240, 427, Color.RED));
-        rectangles.add(rectangle = new Rectangle(this, 480, 427, Color.BLUE));
-
-        // row 3
-        rectangles.add(rectangle = new Rectangle(this, 0, 854, Color.RED));
-        rectangles.add(rectangle = new Rectangle(this, 240, 854, Color.BLUE));
-        rectangles.add(rectangle = new Rectangle(this, 480, 854, Color.YELLOW));
-
-        gameSpeed = 5;
-
-    }
-
-
-     Example code to load images
-    private void createSprites() {
-        sprites.add(createSprite(R.drawable.bad1));
-        sprites.add(createSprite(R.drawable.bad2));
-        sprites.add(createSprite(R.drawable.bad3));
-        sprites.add(createSprite(R.drawable.bad4));
-        sprites.add(createSprite(R.drawable.bad5));
-        sprites.add(createSprite(R.drawable.good1));
-        sprites.add(createSprite(R.drawable.good2));
-        sprites.add(createSprite(R.drawable.good3));
-        sprites.add(createSprite(R.drawable.good4));
-
-    }
-
-    private Sprite createSprite(int resource)
-    {
-        Bitmap bmp = BitmapFactory.decodeResource(getResources(), resource);
-        return new Sprite(this, bmp);
-    }
-
-    */
 }
