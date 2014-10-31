@@ -4,359 +4,350 @@
     android:layout_height="match_parent"
     tools:context="uc.edu.itp.drugandalcohol.fragments.TabWineFragment">
 
-    <!--
-       begin beer heading row 0
-     -->
 
-    <LinearLayout
-        android:id="@+id/linearLayoutRow0"
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="48dp"
-        >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/txtViewWineType"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/border_width"
-            android:layout_marginRight="@dimen/border_width"
-            android:text="Type"
-            android:textColor="@color/md_font_87_percent_black"
-            android:textSize="16dp"
-            android:gravity="center_vertical"/>
+            android:layout_height="wrap_content">
 
-    </LinearLayout>
+            <!--
+                begin wine row 1
+            -->
+            <LinearLayout
+                android:id="@+id/lLayoutWineRow1"
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="72dp"
+                >
+
+                <FrameLayout
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_gravity="center_vertical">
+
+                    <ImageView
+                        android:id="@+id/imgViewWine1"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/sparkling_wine_150ml"
+                        />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutWineRow1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="72dp"
+                    android:layout_marginRight="@dimen/border_width"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtViewWine1A"
+                        android:layout_width="fill_parent"
+                        android:layout_height="36dp"
+                        android:text="Avg. Serving of Sparking Wine"
+                        android:textSize="16sp"
+                        android:textColor="@color/md_font_54_percent_black"
+                        android:gravity="bottom"/>
+
+                    <TextView
+                        android:id="@+id/txtViewWine1B"
+                        android:layout_width="fill_parent"
+                        android:layout_height="36dp"
+                        android:text="150ml (12% Alc. Vol)"
+                        android:textColor="@color/md_font_87_percent_black"
+                        android:gravity="top"/>
 
 
+                </LinearLayout>
 
-    <View
-        android:id="@+id/view1"
-        android:layout_width="fill_parent"
-        android:layout_height="16dp"
-        android:layout_below="@+id/linearLayoutRow0" />
+                <!--
+                    to support API lower than 15 use layoutMarginRight=""
+                -->
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    >
 
-    <!--
-        begin wine row 1
-    -->
-    <LinearLayout
-        android:id="@+id/linearLayoutRow1"
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="72dp"
-        android:layout_below="@+id/view1">
+                    <TextView
+                        android:id="@+id/txtViewWineInput1"
+                        android:layout_width="36dp"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/md_blue_a200"
+                        android:textSize="32sp"
+                        android:layout_gravity="right|center_vertical" />
 
-        <FrameLayout
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="12dp"
-            android:layout_gravity="center_vertical">
 
-            <ImageView
-                android:id="@+id/imgViewBeer1"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/sparkling_wine_150ml"
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/dividerWine1"
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dp"
+                android:layout_below="@+id/lLayoutWineRow1"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginRight="@dimen/border_width"
+                android:layout_marginEnd="@dimen/border_width"
+                android:background="@android:color/darker_gray"
+
                 />
-        </FrameLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="72dp"
-            android:layout_marginRight="@dimen/border_width"
-            android:orientation="vertical">
-
-            <TextView
+            <!--
+                begin wine row 2
+            -->
+            <LinearLayout
+                android:id="@+id/lLayoutWineRow2"
+                android:orientation="horizontal"
                 android:layout_width="fill_parent"
-                android:layout_height="36dp"
-                android:text="Avg. Serving of Sparking Wine"
-                android:textSize="16sp"
-                android:textColor="@color/md_font_54_percent_black"
-                android:gravity="bottom"/>
+                android:layout_height="72dp"
+                android:layout_below="@+id/dividerWine1">
 
-            <TextView
+                <FrameLayout
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_gravity="center_vertical">
+
+                    <ImageView
+                        android:id="@+id/imgViewWine2"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/red_wine_150ml"
+                        />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutWineRow2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="72dp"
+                    android:layout_marginRight="@dimen/border_width"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtViewWine2A"
+                        android:layout_width="fill_parent"
+                        android:layout_height="36dp"
+                        android:text="Avg. Serving of Red Wine"
+                        android:textSize="16sp"
+                        android:textColor="@color/md_font_54_percent_black"
+                        android:gravity="bottom"/>
+
+                    <TextView
+                        android:id="@+id/txtViewWine2B"
+                        android:layout_width="fill_parent"
+                        android:layout_height="36dp"
+                        android:text="150ml (13.5% Alc. Vol)"
+                        android:textColor="@color/md_font_87_percent_black"
+                        android:gravity="top"/>
+
+
+                </LinearLayout>
+
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/txtViewWineInput2"
+                        android:layout_width="36dp"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/md_blue_a200"
+                        android:textSize="32sp"
+                        android:layout_gravity="end|center_vertical" />
+
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/dividerWine2"
                 android:layout_width="fill_parent"
-                android:layout_height="36dp"
-                android:text="150ml (12% Alc. Vol)"
-                android:textColor="@color/md_font_87_percent_black"
-                android:gravity="top"/>
+                android:layout_height="0.5dp"
+                android:layout_below="@+id/lLayoutWineRow2"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginRight="@dimen/border_width"
+                android:layout_marginEnd="@dimen/border_width"
+                android:background="@android:color/darker_gray"
 
-
-        </LinearLayout>
-
-        <!--
-            to support API lower than 15 use layoutMarginRight=""
-        -->
-        <FrameLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            >
-
-            <TextView
-                android:id="@+id/txtViewWineInput1"
-                android:layout_width="36dp"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="@color/md_blue_a200"
-                android:textSize="32sp"
-                android:layout_gravity="right|center_vertical" />
-
-
-        </FrameLayout>
-
-    </LinearLayout>
-
-    <View
-        android:id="@+id/divider1"
-        android:layout_width="fill_parent"
-        android:layout_height="0.5dp"
-        android:layout_below="@+id/linearLayoutRow1"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:background="@android:color/darker_gray"
-
-        />
-
-    <!--
-        begin row 2
-    -->
-    <LinearLayout
-        android:id="@+id/lLayoutSpiritsRow2"
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="72dp"
-        android:layout_below="@+id/divider1">
-
-        <FrameLayout
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="12dp"
-            android:layout_gravity="center_vertical">
-
-            <ImageView
-                android:id="@+id/imgViewBeer2"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/red_wine_150ml"
                 />
-        </FrameLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="72dp"
-            android:layout_marginRight="@dimen/border_width"
-            android:orientation="vertical">
-
-            <TextView
+            <!--
+                begin wine row 3
+            -->
+            <LinearLayout
+                android:id="@+id/lLayoutWineRow3"
+                android:orientation="horizontal"
                 android:layout_width="fill_parent"
-                android:layout_height="36dp"
-                android:text="Avg. Serving of Red Wine"
-                android:textSize="16sp"
-                android:textColor="@color/md_font_54_percent_black"
-                android:gravity="bottom"/>
+                android:layout_height="72dp"
+                android:layout_below="@+id/dividerWine2">
 
-            <TextView
+                <FrameLayout
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_gravity="center_vertical">
+
+                    <ImageView
+                        android:id="@+id/imgViewWine3"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/white_wine_150ml"
+                        />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutWineRow3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="72dp"
+                    android:layout_marginRight="@dimen/border_width"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtViewWine3A"
+                        android:layout_width="fill_parent"
+                        android:layout_height="36dp"
+                        android:text="Avg. Serving of White Wine"
+                        android:textSize="16sp"
+                        android:textColor="@color/md_font_54_percent_black"
+                        android:gravity="bottom"/>
+
+                    <TextView
+                        android:id="@+id/txtViewWine3B"
+                        android:layout_width="fill_parent"
+                        android:layout_height="36dp"
+                        android:text="150ml (11.5% Alc. Vol)"
+                        android:textColor="@color/md_font_87_percent_black"
+                        android:gravity="top"/>
+
+
+                </LinearLayout>
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/txtViewWineInput3"
+                        android:layout_width="36dp"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/md_blue_a200"
+                        android:textSize="32sp"
+                        android:layout_gravity="end|center_vertical" />
+
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/dividerWine3"
                 android:layout_width="fill_parent"
-                android:layout_height="36dp"
-                android:text="150ml (13.5% Alc. Vol)"
-                android:textColor="@color/md_font_87_percent_black"
-                android:gravity="top"/>
+                android:layout_height="0.5dp"
+                android:layout_below="@+id/lLayoutWineRow3"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginRight="@dimen/border_width"
+                android:layout_marginEnd="@dimen/border_width"
+                android:background="@android:color/darker_gray"
 
-
-        </LinearLayout>
-
-        <!--
-            to support API lower than 15 use layoutMarginRight=""
-        -->
-        <FrameLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            >
-
-            <TextView
-                android:id="@+id/txtViewWineInput2"
-                android:layout_width="36dp"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="@color/md_blue_a200"
-                android:textSize="32sp"
-                android:layout_gravity="end|center_vertical" />
-
-
-        </FrameLayout>
-
-    </LinearLayout>
-
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="fill_parent"
-        android:layout_height="0.5dp"
-        android:layout_below="@+id/lLayoutSpiritsRow2"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:background="@android:color/darker_gray"
-
-        />
-
-    <!--
-        begin row 3
-    -->
-    <LinearLayout
-        android:id="@+id/lLayoutBeerRow3"
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="72dp"
-        android:layout_below="@+id/divider2">
-
-        <FrameLayout
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="12dp"
-            android:layout_gravity="center_vertical">
-
-            <ImageView
-                android:id="@+id/imgViewBeer3"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/white_wine_150ml"
                 />
-        </FrameLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="72dp"
-            android:layout_marginRight="@dimen/border_width"
-            android:orientation="vertical">
-
-            <TextView
+            <!--
+                begin wine row 4
+            -->
+            <LinearLayout
+                android:id="@+id/lLayoutWineRow4"
+                android:orientation="horizontal"
                 android:layout_width="fill_parent"
-                android:layout_height="36dp"
-                android:text="Avg. Serving of White Wine"
-                android:textSize="16sp"
-                android:textColor="@color/md_font_54_percent_black"
-                android:gravity="bottom"/>
+                android:layout_height="72dp"
+                android:layout_below="@+id/dividerWine3">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="36dp"
-                android:text="150ml (11.5% Alc. Vol)"
-                android:textColor="@color/md_font_87_percent_black"
-                android:gravity="top"/>
+                <FrameLayout
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_gravity="center_vertical">
 
+                    <ImageView
+                        android:id="@+id/imgViewWine4"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/bottle_red_750ml"
+                        />
+                </FrameLayout>
 
-        </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearLayoutWineRow4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="72dp"
+                    android:layout_marginRight="@dimen/border_width"
+                    android:layout_marginEnd="@dimen/border_width"
+                    android:orientation="vertical">
 
-        <!--
-            to support API lower than 15 use layoutMarginRight=""
-        -->
-        <FrameLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            >
+                    <TextView
+                        android:id="@+id/txtViewWine4A"
+                        android:layout_width="fill_parent"
+                        android:layout_height="36dp"
+                        android:text="Bottle of Red Wine"
+                        android:textSize="16sp"
+                        android:textColor="@color/md_font_54_percent_black"
+                        android:gravity="bottom"/>
 
-            <TextView
-                android:id="@+id/txtViewWineInput3"
-                android:layout_width="36dp"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="@color/md_blue_a200"
-                android:textSize="32sp"
-                android:layout_gravity="end|center_vertical" />
-
-
-        </FrameLayout>
-
-    </LinearLayout>
-
-    <View
-        android:id="@+id/divider3"
-        android:layout_width="fill_parent"
-        android:layout_height="0.5dp"
-        android:layout_below="@+id/lLayoutBeerRow3"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:background="@android:color/darker_gray"
-
-        />
-
-    <!--
-        begin beer row 4
-    -->
-    <LinearLayout
-        android:id="@+id/lLayoutBeerRow4"
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="72dp"
-        android:layout_below="@+id/divider3">
-
-        <FrameLayout
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="12dp"
-            android:layout_gravity="center_vertical">
-
-            <ImageView
-                android:id="@+id/imgViewBeer4"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/bottle_red_750ml"
-                />
-        </FrameLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="72dp"
-            android:layout_marginRight="@dimen/border_width"
-            android:layout_marginEnd="@dimen/border_width"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="36dp"
-                android:text="Bottle of Red Wine"
-                android:textSize="16sp"
-                android:textColor="@color/md_font_54_percent_black"
-                android:gravity="bottom"/>
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="36dp"
-                android:text="750ml (13.5% Alc. Vol)"
-                android:textColor="@color/md_font_87_percent_black"
-                android:gravity="top"/>
+                    <TextView
+                        android:id="@+id/txtViewWine4B"
+                        android:layout_width="fill_parent"
+                        android:layout_height="36dp"
+                        android:text="750ml (13.5% Alc. Vol)"
+                        android:textColor="@color/md_font_87_percent_black"
+                        android:gravity="top"/>
 
 
-        </LinearLayout>
+                </LinearLayout>
 
-        <!--
-            to support API lower than 15 use layoutMarginRight=""
-        -->
-        <FrameLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            >
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    >
 
-            <TextView
-                android:id="@+id/txtViewWineInput4"
-                android:layout_width="36dp"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="@color/md_blue_a200"
-                android:textSize="32sp"
+                    <TextView
+                        android:id="@+id/txtViewWineInput4"
+                        android:layout_width="36dp"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/md_blue_a200"
+                        android:textSize="32sp"
 
-                android:layout_gravity="end|center_vertical" />
+                        android:layout_gravity="end|center_vertical" />
 
 
-        </FrameLayout>
+                </FrameLayout>
 
-    </LinearLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

@@ -12,11 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import uc.edu.itp.drugandalcohol.R;
 import uc.edu.itp.drugandalcohol.model.AlcoholType;
+import uc.edu.itp.drugandalcohol.model.Beer;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,7 +28,7 @@ public class TabBeerFragment extends Fragment
     // TAG is used for debugging and printing to the LogCat
     private static String TAG = "TabBeerFragment";
 
-    AlcoholType alcoholType;
+    Beer beer;
 
     // declare various layout components so we can attach click event listeners
     // to them.
@@ -52,7 +52,7 @@ public class TabBeerFragment extends Fragment
 
         // pass getActivity() as context reference to AlcoholType which
         // creates a SharedPreference object to save drinks consumed
-        alcoholType = new AlcoholType(getActivity());
+        beer = new Beer(getActivity());
 
         // assign layout from XML to component & attach click listener
         attachViewToId(view);
@@ -134,7 +134,7 @@ public class TabBeerFragment extends Fragment
             case R.id.txtViewBeer1A:
             case R.id.txtViewBeer1B:
             case R.id.txtViewBeerInput1:
-                showNumberPad(AlcoholType.BEER_ROW_1_CLICKED);
+                showNumberPad(Beer.BEER_ROW_1_CLICKED);
                 break;
 
             // beer row 2 clicked
@@ -142,7 +142,7 @@ public class TabBeerFragment extends Fragment
             case R.id.txtViewBeer2A:
             case R.id.txtViewBeer2B:
             case R.id.txtViewBeerInput2:
-                showNumberPad(AlcoholType.BEER_ROW_2_CLICKED);
+                showNumberPad(Beer.BEER_ROW_2_CLICKED);
                 break;
 
             // beer row 3 clicked
@@ -150,7 +150,7 @@ public class TabBeerFragment extends Fragment
             case R.id.txtViewBeer3A:
             case R.id.txtViewBeer3B:
             case R.id.txtViewBeerInput3:
-                showNumberPad(AlcoholType.BEER_ROW_3_CLICKED);
+                showNumberPad(Beer.BEER_ROW_3_CLICKED);
                 break;
 
             // beer row 4 clicked
@@ -158,7 +158,7 @@ public class TabBeerFragment extends Fragment
             case R.id.txtViewBeer4A:
             case R.id.txtViewBeer4B:
             case R.id.txtViewBeerInput4:
-                showNumberPad(AlcoholType.BEER_ROW_4_CLICKED);
+                showNumberPad(Beer.BEER_ROW_4_CLICKED);
                 break;
         }
     }
@@ -189,23 +189,22 @@ public class TabBeerFragment extends Fragment
         {
             switch (requestCode)
             {
-                case AlcoholType.BEER_ROW_1_CLICKED:
+                case Beer.BEER_ROW_1_CLICKED:
                     // assign value from number pad to text view
                     beer1InputTxtView.setText(Integer.toString(standardDrinks));
                     break;
 
-                case AlcoholType.BEER_ROW_2_CLICKED:
+                case Beer.BEER_ROW_2_CLICKED:
                     beer2InputTxtView.setText(Integer.toString(standardDrinks));
                     break;
 
-                case AlcoholType.BEER_ROW_3_CLICKED:
+                case Beer.BEER_ROW_3_CLICKED:
                     beer3InputTxtView.setText(Integer.toString(standardDrinks));
                     break;
 
-                case AlcoholType.BEER_ROW_4_CLICKED:
+                case Beer.BEER_ROW_4_CLICKED:
                     beer4InputTxtView.setText(Integer.toString(standardDrinks));
                     break;
-
 
             }
 
@@ -215,12 +214,10 @@ public class TabBeerFragment extends Fragment
 
         // save number of drinks consumed for each input text view,
         // need to convert value to integer before storing value
-        alcoholType.setTotalBeersConsumed(Integer.parseInt(beer1InputTxtView.getText().toString()),
-                                          Integer.parseInt(beer2InputTxtView.getText().toString()),
-                                          Integer.parseInt(beer3InputTxtView.getText().toString()),
-                                          Integer.parseInt(beer4InputTxtView.getText().toString()));
+        beer.setTotalDrinksConsumed(Integer.parseInt(beer1InputTxtView.getText().toString()),
+                Integer.parseInt(beer2InputTxtView.getText().toString()),
+                Integer.parseInt(beer3InputTxtView.getText().toString()),
+                Integer.parseInt(beer4InputTxtView.getText().toString()));
 
-        // save values to shared preferences
-        alcoholType.saveBeerConsumed();
     }
 }

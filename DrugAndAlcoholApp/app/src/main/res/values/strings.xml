@@ -29,20 +29,28 @@
 
 
 
-    <!-- key values for shared preferences -->
-    <string name="sm_beer_key">SmallBeerKey</string>
-    <string name="lg_beer_key">LargeBeerKey</string>
-    <string name="beer_bottle_key">BeerBottleKey</string>
-    <string name="beer_can_key">BeerCanKey</string>
-    <string name="wine_sparkling_key">WineSparklingKey</string>
-    <string name="wine_red_key">WineRedKey</string>
-    <string name="wine_white_key">WineWhiteKey</string>
-    <string name="wine_bottle_key">WineBottleKey</string>
-    <string name="spirits_ready_drink_key">SpiritsReadyToDrinkKey</string>
-    <string name="spirits_shoot_key">SpiritsShootKey</string>
-    <string name="spirits_premix_full_key">SpiritsPremixFullKey</string>
-    <string name="spirits_premix_high_key">SpiritsPremixHighKey</string>
-    <string name="user_age_key">UserAgeKey</string>
+    <!--
+    key values for shared preferences
+    the numbers associated with the drinks
+    represent the row number
+    e.g. Beer1Key represents Beer1Row in layout
+    -->
+    <string name="BEER_ONE_KEY">Beer1Key</string>
+    <string name="BEER_TWO_KEY">Beer2Key</string>
+    <string name="BEER_THREE_KEY">Beer3Key</string>
+    <string name="BEER_FOUR_KEY">Beer4Key</string>
+
+    <string name="WINE_ONE_KEY">Wine1Key</string>
+    <string name="WINE_TWO_KEY">Wine2Key</string>
+    <string name="WINE_THREE_KEY">Wine3Key</string>
+    <string name="WINE_FOUR_KEY">Wine4Key</string>
+
+    <string name="SPIRITS_ONE_KEY">Spirits1Key</string>
+    <string name="SPIRITS_TWO_KEY">Spirits2Key</string>
+    <string name="SPIRITS_THREE_KEY">Spirits3Key</string>
+    <string name="SPIRITS_FOUR_KEY">Spirits4Key</string>
+
+    <string name="USER_AGE_KEY">UserAgeKey</string>
     <string name="user_weight_key">UserWeightKey</string>
     <string name="user_gender_key">UserGenderKey</string>
     <string name="user_pregnant_key">UserPregnantKey</string>
@@ -67,7 +75,6 @@
 
     <!-- spinner contact values -->
     <string name="emergency_contacts_prompt">Emergency Contacts</string>
-
     <string-array name="emergency_contacts">
         <item>Joe</item>
         <item>Jane</item>
@@ -75,9 +82,11 @@
         <item>Jenny</item>
     </string-array>
 
-    <!-- standard emergency messages -->
+    <!--
+        this string array holds the standard emergency messages
+        used in the emergency SMS UI
+    -->
     <string name="standard_msg_prompt">Select Message</string>
-
     <string-array name="standard_msg">
         <item>I have hurt myself can you call me?</item>
         <item>I am lost can you track my position?</item>
@@ -85,9 +94,10 @@
         <item>Can you track my position, using app?</item>
     </string-array>
 
-    <!-- hours since drinking values -->
+    <!--
+        these values are stored in the hours since drinking spinner
+    -->
     <string name="hours_drinking_prompt">Select value</string>
-
     <string-array name="number_of_hours">
         <item>30 min</item>
         <item>1 hour</item>
@@ -99,6 +109,9 @@
         <item>4 hours</item>
     </string-array>
 
+    <!--
+        this string array holds the tips and quotes used in the app
+    -->
     <string-array name="tips_quotes">
         <item>You don’t have to use alcohol or other drugs to have fun</item>
         <item>Don’t get into a car with a driver who has been drinking</item>
@@ -116,6 +129,11 @@
         <item>Avoid drinking games</item>
     </string-array>
 
+    <!--
+        this string array holds values for various stages of alcohol consumption
+        they can be used as tips or quotes to help the drinker be aware of the
+        effects of alcohol on their body
+     -->
     <string-array name="alcohol_stages">
         <item>Sub-Clinical: Behavior basically normal by ordinary observation</item>
         <item>Euphoria: Mild euphoria, sociability, talkativeness, increased

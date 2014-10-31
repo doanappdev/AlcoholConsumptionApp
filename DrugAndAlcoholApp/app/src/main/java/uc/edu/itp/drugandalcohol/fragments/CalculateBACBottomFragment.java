@@ -15,7 +15,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import uc.edu.itp.drugandalcohol.R;
 import uc.edu.itp.drugandalcohol.model.AlcoholType;
@@ -169,14 +168,14 @@ public class CalculateBACBottomFragment extends Fragment
         //float mWeight = weight;
 
         // get total number of drinks consumed from shared preferences
-        float numOfSmBeers = drinkSharedPrefs.getFloat(getString(R.string.sm_beer_key), 0);
-        float numOfLgBeers = drinkSharedPrefs.getFloat(getString(R.string.lg_beer_key), 0);
-        float numOfBeerBottles = drinkSharedPrefs.getFloat(getString(R.string.beer_bottle_key), 0);
-        float numOfBeerCans = drinkSharedPrefs.getFloat(getString(R.string.beer_can_key), 0);
-        float numOfSparklingWine = drinkSharedPrefs.getFloat(getString(R.string.wine_sparkling_key), 0);
-        float numOfRedWine = drinkSharedPrefs.getFloat(getString(R.string.wine_red_key), 0);
-        float numOfWhiteWine = drinkSharedPrefs.getFloat(getString(R.string.wine_white_key), 0);
-        float numOfBottleWine = drinkSharedPrefs.getFloat(getString(R.string.wine_bottle_key), 0);
+        float numOfSmBeers = drinkSharedPrefs.getFloat(getString(R.string.BEER_ONE_KEY), 0);
+        float numOfLgBeers = drinkSharedPrefs.getFloat(getString(R.string.BEER_TWO_KEY), 0);
+        float numOfBeerBottles = drinkSharedPrefs.getFloat(getString(R.string.BEER_THREE_KEY), 0);
+        float numOfBeerCans = drinkSharedPrefs.getFloat(getString(R.string.BEER_FOUR_KEY), 0);
+        float numOfSparklingWine = drinkSharedPrefs.getFloat(getString(R.string.WINE_ONE_KEY), 0);
+        float numOfRedWine = drinkSharedPrefs.getFloat(getString(R.string.WINE_TWO_KEY), 0);
+        float numOfWhiteWine = drinkSharedPrefs.getFloat(getString(R.string.WINE_THREE_KEY), 0);
+        float numOfBottleWine = drinkSharedPrefs.getFloat(getString(R.string.WINE_FOUR_KEY), 0);
 
         // apply standard drinks value to number of drinks
         // e.g 1 small beer = 1.1 standard drinks
@@ -272,17 +271,14 @@ public class CalculateBACBottomFragment extends Fragment
     public void saveDrinkingValues(float totalDrinks, float hrsDrinking, float bac)
     {
         editor = drinkSharedPrefs.edit();
-        editor.putFloat(getString(R.string.sm_beer_key), 0);
-        editor.putFloat(getString(R.string.lg_beer_key), 0);
-        editor.putFloat(getString(R.string.beer_bottle_key), 0);
-        editor.putFloat(getString(R.string.beer_can_key), 0);
+        editor.putFloat(getString(R.string.BEER_ONE_KEY), 0);
+        editor.putFloat(getString(R.string.BEER_TWO_KEY), 0);
+        editor.putFloat(getString(R.string.BEER_THREE_KEY), 0);
+        editor.putFloat(getString(R.string.BEER_FOUR_KEY), 0);
         editor.putFloat(getString(R.string.drinking_current_bac_key), bac);
         editor.apply();
         //editor.commit();
     }
-
-
-
 
     // testing BAC formula for unit testing
     public float testBACFormula(float numOfDrinks, float hrs, float weight, boolean gender)

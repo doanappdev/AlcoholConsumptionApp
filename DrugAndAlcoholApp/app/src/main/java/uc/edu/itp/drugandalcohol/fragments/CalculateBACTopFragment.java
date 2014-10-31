@@ -4,7 +4,6 @@ package uc.edu.itp.drugandalcohol.fragments;
 
 import android.app.Activity;
 import android.app.FragmentManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,13 +14,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
 import uc.edu.itp.drugandalcohol.R;
-import uc.edu.itp.drugandalcohol.controller.SimpleTabDefinition;
 import uc.edu.itp.drugandalcohol.controller.TabDefinition;
 import uc.edu.itp.drugandalcohol.model.AlcoholType;
 
@@ -539,11 +536,11 @@ public class CalculateBACTopFragment extends Fragment
         // key value is stored as string in strings.xml to allow other fragments easy access
         // to them
         SharedPreferences.Editor editor = sharedPrefs.edit();
-        editor.putInt(getString(R.string.sm_beer_key), numOfSmBeers);
-        editor.putInt(getString(R.string.lg_beer_key), numOfLgBeers);
-        editor.putInt(getString(R.string.beer_bottle_key), numOfBeerBottles);
-        editor.putInt(getString(R.string.beer_can_key), numOfBeerCans);
-        editor.putInt(getString(R.string.wine_sparkling_key), numOfSparkWine);
+        editor.putInt(getString(R.string.BEER_ONE_KEY), numOfSmBeers);
+        editor.putInt(getString(R.string.BEER_TWO_KEY), numOfLgBeers);
+        editor.putInt(getString(R.string.BEER_THREE_KEY), numOfBeerBottles);
+        editor.putInt(getString(R.string.BEER_FOUR_KEY), numOfBeerCans);
+        editor.putInt(getString(R.string.WINE_ONE_KEY), numOfSparkWine);
         // TODO: add code to finish saving to shared preferences
         editor.commit();
 
@@ -555,24 +552,24 @@ public class CalculateBACTopFragment extends Fragment
         /*
          * get values from shared preferences and display in text view
          */
-        if(sharedPrefs.contains(getActivity().getString(R.string.sm_beer_key)))
+        if(sharedPrefs.contains(getActivity().getString(R.string.BEER_ONE_KEY)))
         {
-            beer1InputTxtView.setText(Integer.toString(sharedPrefs.getInt(getActivity().getString(R.string.sm_beer_key), 0)));
+            beer1InputTxtView.setText(Integer.toString(sharedPrefs.getInt(getActivity().getString(R.string.BEER_ONE_KEY), 0)));
         }
 
-        if(sharedPrefs.contains(getActivity().getString(R.string.lg_beer_key)))
+        if(sharedPrefs.contains(getActivity().getString(R.string.BEER_TWO_KEY)))
         {
-            beer2InputTxtView.setText(Integer.toString(sharedPrefs.getInt(getActivity().getString(R.string.lg_beer_key), 0)));
+            beer2InputTxtView.setText(Integer.toString(sharedPrefs.getInt(getActivity().getString(R.string.BEER_TWO_KEY), 0)));
         }
 
-        if(sharedPrefs.contains(getActivity().getString(R.string.beer_bottle_key)))
+        if(sharedPrefs.contains(getActivity().getString(R.string.BEER_THREE_KEY)))
         {
-            beer3InputTxtView.setText(Integer.toString(sharedPrefs.getInt(getActivity().getString(R.string.beer_bottle_key), 0)));
+            beer3InputTxtView.setText(Integer.toString(sharedPrefs.getInt(getActivity().getString(R.string.BEER_THREE_KEY), 0)));
         }
 
-        if(sharedPrefs.contains(getActivity().getString(R.string.beer_can_key)))
+        if(sharedPrefs.contains(getActivity().getString(R.string.BEER_FOUR_KEY)))
         {
-            beer4InputTxtView.setText(Integer.toString(sharedPrefs.getInt(getActivity().getString(R.string.beer_can_key), 0)));
+            beer4InputTxtView.setText(Integer.toString(sharedPrefs.getInt(getActivity().getString(R.string.BEER_FOUR_KEY), 0)));
         }
 
         // TODO: add code to load drinks consumed if user returns to BAC screen
