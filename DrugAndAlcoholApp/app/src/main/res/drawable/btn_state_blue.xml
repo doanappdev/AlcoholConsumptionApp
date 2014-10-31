@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- button state colors for display BAC button -->
+    <item android:state_pressed="true"
+        android:drawable="@color/md_blue_700" /> <!-- pressed = color 700-->
+
+    <item android:state_focused="true"
+        android:drawable="@color/md_blue_600" /> <!-- focused = color 700-->
+
+    <item android:state_hovered="true"
+        android:drawable="@color/md_blue_600" /> <!-- hovered = color 600-->
+
+    <item android:drawable="@color/md_blue_500" /> <!-- default = color 500-->
+</selector>

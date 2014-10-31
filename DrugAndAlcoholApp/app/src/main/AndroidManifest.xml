@@ -126,6 +126,11 @@
             android:name=".DummyCalculateBACBottomFragmentActivity"
             android:label="@string/title_activity_dummy_calculate_bacbottom_fragment" >
         </activity>
+        <activity
+            android:name=".view.TabTestActivity"
+            android:label="@string/title_activity_tab_test"
+            android:theme="@style/TabActivityTheme">
+        </activity>
     </application>
 
 </manifest>

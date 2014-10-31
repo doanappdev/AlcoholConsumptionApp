@@ -19,7 +19,10 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.Random;
+
 import uc.edu.itp.drugandalcohol.R;
+import uc.edu.itp.drugandalcohol.model.AlcoholType;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,9 +33,10 @@ public class DisplayBACDialogFragment extends DialogFragment
 {
     SharedPreferences drinkingSharedPrefs;
 
-    TextView displayBACTxtView;
+    TextView displayBACTxtView, displayTipsQuotes;
     Button btnOk;
 
+    Random rand;
     float bacValue;
 
 
@@ -102,24 +106,16 @@ public class DisplayBACDialogFragment extends DialogFragment
     {
         View view = inflater.inflate(R.layout.display_bac_dialog, container, false);
 
+        displayBACTxtView = (TextView)view.findViewById(R.id.txtViewDisplayBAC);
+        displayTipsQuotes = (TextView)view.findViewById(R.id.txtViewTipsQuotes);
+
         btnOk = (Button)view.findViewById(R.id.btnDialogOK);
         btnOk.setOnClickListener(this);
 
-        // get value from shared preferences
-        drinkingSharedPrefs = getActivity().getSharedPreferences("DrinkPrefs", Context.MODE_PRIVATE);
-        // get calculated BAC from shared preferences, if no value stored assign default value
-        // of 0.00
-        bacValue = drinkingSharedPrefs.getFloat(getString(R.string.drinking_current_bac_key), 0.00f);
-        String s = String.format("%.2f", bacValue);
+        rand = new Random();
 
-        displayBACTxtView = (TextView)view.findViewById(R.id.txtViewDisplayBAC);
-        // display BAC in text view
-        //DecimalFormat decimalFormat = new DecimalFormat("0.00");
-        //displayBACTxtView.setText(Float.toString(bacValue));
-        displayBACTxtView.setText(s);
+        displayBACValue();
 
-        //Log.d("DisplayBACDialogFragment", Float.toString(bacValue));
-        Log.d("DisplayBACDialogFragment", s);
 
         // return inflated layout as view for fragment
         return view;
@@ -139,6 +135,28 @@ public class DisplayBACDialogFragment extends DialogFragment
 
         }
 
+    }
+
+    public void displayBACValue()
+    {
+        // generate random number between 0-12
+        int randMsgPos = rand.nextInt(13);
+
+        String[] tipsAndQuotes = getResources().getStringArray(R.array.tips_quotes);
+
+        // get BAC value from shared preferences
+        drinkingSharedPrefs = getActivity().getSharedPreferences(AlcoholType.DRINK_PREF_FILE_NAME, Context.MODE_PRIVATE);
+        // get calculated BAC from shared preferences, if no value stored assign default value
+        // of 0.00
+        bacValue = drinkingSharedPrefs.getFloat(getString(R.string.drinking_current_bac_key), 0.00f);
+        String s = String.format("%.2f", bacValue);
+
+        // display BAC in text view
+        displayBACTxtView.setText(s);
+        displayTipsQuotes.setText(tipsAndQuotes[randMsgPos]);
+
+        // check value of 's'
+        Log.d("DisplayBACDialogFragment", s);
     }
 
 

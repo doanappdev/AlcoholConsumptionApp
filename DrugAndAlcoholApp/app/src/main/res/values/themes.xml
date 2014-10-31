@@ -87,4 +87,19 @@
         <item name="android:textColor">#ffffff</item>
     </style>
 
+    <!-- ************************************************************************* -->
+
+    <!-- define no action bar theme for main activity -->
+    <style name="TabActivityTheme" parent="android:Theme.Holo.Light">
+        <!-- Customize theme here. -->
+
+    </style>
+
+    <!-- define action bar theme for game menu activity -->
+    <style name="TabActivityTheme.ActionBar" parent="android:style/Widget.Holo.Light.ActionBar">
+        <!-- Customize theme here. -->
+        <item name="android:background">@color/md_blue_500</item>
+        <item name="android:titleTextStyle">@style/ActionBar.TitleBarTextColor</item>
+    </style>
+
 </resources>

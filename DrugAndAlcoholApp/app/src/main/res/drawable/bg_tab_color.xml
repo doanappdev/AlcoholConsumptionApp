@@ -2,4 +2,23 @@
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!--
+    <item android:state_pressed="false" android:state_selected="false" android:color="@color/tab_unselected_text_color"/>
+    <item android:state_pressed="true" android:color="@color/tab_selected_text_color"/>
+    <item android:state_pressed="false" android:state_selected="true" android:color="@color/tab_selected_text_color"/>
+    <item android:color="@color/tab_unselected_text_color"></item>
+    -->
+
+    <!-- button state colors for display BAC button -->
+    <item android:state_pressed="true"
+        android:drawable="@color/md_orange_700" /> <!-- pressed = color 700-->
+
+    <item android:state_focused="true"
+        android:drawable="@color/md_orange_300" /> <!-- focused = color 300 lighter than 500 -->
+
+    <item android:state_hovered="true"
+        android:drawable="@color/md_orange_600" /> <!-- hovered = color 600-->
+
+    <item android:drawable="@color/md_orange_500" /> <!-- default = color 500-->
+
 </selector>

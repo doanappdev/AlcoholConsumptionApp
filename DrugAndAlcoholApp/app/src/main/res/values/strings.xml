@@ -14,9 +14,20 @@
     <string name="title_activity_emergency_sms">EmergencySMSActivity</string>
     <string name="title_activity_emergency">Emergency SMS</string>
     <string name="title_activity_expandable_list">ExpandableListActivity</string>
-    <string name="beer_tab">Beer</string>
-    <string name="wine_tab">Wine</string>
-    <string name="spirits_tab">Spirits</string>
+    <string name="title_activity_reaction_test">ReactionTestActivity</string>
+    <string name="title_activity_game_menu">GameMenuActivity</string>
+    <string name="title_activity_game_over">GameOverActivity</string>
+    <string name="title_activity_proximity">ProximityActivity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_proximity_alert">ProximityAlertActivity</string>
+    <string name="title_activity_notification_view">NotificationViewActivity</string>
+    <string name="title_activity_high_score">HighScoreActivity</string>
+    <string name="title_activity_unit_test">UnitTestActivity</string>
+    <string name="title_activity_dummy_calculate_bacbottom_fragment">DummyCalculateBACBottomFragmentActivity</string>
+    <string name="title_activity_tab_test">TabTestActivity</string>
+
+
 
     <!-- key values for shared preferences -->
     <string name="sm_beer_key">SmallBeerKey</string>
@@ -88,17 +99,40 @@
         <item>4 hours</item>
     </string-array>
 
-    <!-- activity titles -->
-    <string name="title_activity_reaction_test">ReactionTestActivity</string>
-    <string name="title_activity_game_menu">GameMenuActivity</string>
-    <string name="title_activity_game_over">GameOverActivity</string>
-    <string name="title_activity_proximity">ProximityActivity</string>
-    <string name="title_activity_settings">SettingsActivity</string>
-    <string name="title_activity_map">MapActivity</string>
-    <string name="title_activity_proximity_alert">ProximityAlertActivity</string>
-    <string name="title_activity_notification_view">NotificationViewActivity</string>
-    <string name="title_activity_high_score">HighScoreActivity</string>
-    <string name="title_activity_unit_test">UnitTestActivity</string>
-    <string name="title_activity_dummy_calculate_bacbottom_fragment">DummyCalculateBACBottomFragmentActivity</string>
+    <string-array name="tips_quotes">
+        <item>You don’t have to use alcohol or other drugs to have fun</item>
+        <item>Don’t get into a car with a driver who has been drinking</item>
+        <item>Don’t leave drinks unattended</item>
+        <item>Don’t accept drinks from strangers.</item>
+        <item>Know where you’re going and how you’re getting there</item>
+        <item>Its a good idea to plan how you will get home before you start drinking; also have a back-up plan</item>
+        <item>Keep yourself hydrated when drinking</item>
+        <item>Know your limits learn to say ‘No’</item>
+        <item>Do not succumb to peer pressure.</item>
+        <item>Don’t drink on an empty stomach.</item>
+        <item>The general rule of thumb is that 2 "Standard Drinks" in the first hour will raise your BAC to 0.05%,
+            and one "Standard Drink" per hour thereafter will maintain that level</item>
+        <item>Don’t make any sexual choices when you’ve been drinking.</item>
+        <item>Avoid drinking games</item>
+    </string-array>
+
+    <string-array name="alcohol_stages">
+        <item>Sub-Clinical: Behavior basically normal by ordinary observation</item>
+        <item>Euphoria: Mild euphoria, sociability, talkativeness, increased
+            self-confidence; decreased inhibitions. Diminution of attention, judgment and control.
+            Beginning of sensory-motor impairment. Loss of efficiency in finer performance tests </item>
+        <item>Excitement: Emotional instability; loss of critical judgment. Impairment of perception, memory and comprehension.
+            Decreased sensory response; increased reaction time. Reduced visual acuity; peripheral vision and glare recovery.
+            Loss of sensory-motor coordination; impaired balance. Drowsiness.</item>
+        <item>Confusion: Disorientation, mental confusion; dizziness. Exaggerated emotional states.
+            Disturbances of vision and of perception of color, form, motion and dimensions. Increased pain threshold.
+            Increased loss of muscular coordination; staggering gait; slurred speech. Apathy, lethargy.</item>
+        <item>Stupor: General inertia; approaching loss of motor functions. Markedly decreased response to stimuli.
+            High decrease in muscular coordination; inability to stand or walk. Vomiting; incontinence.
+            Impaired consciousness; sleep or stupor.</item>
+        <item>Coma: Complete unconsciousness. Depressed or abolished reflexes. Subnormal body temperature. Incontinence.
+            Impairment of circulation and respiration. Possible death.</item>
+        <item>Death: Result from respiratory arrest </item>
+    </string-array>
 
 </resources>

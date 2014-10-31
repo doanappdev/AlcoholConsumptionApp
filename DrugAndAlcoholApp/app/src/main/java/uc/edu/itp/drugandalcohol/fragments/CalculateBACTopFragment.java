@@ -32,7 +32,9 @@ import uc.edu.itp.drugandalcohol.model.AlcoholType;
 public class CalculateBACTopFragment extends Fragment
         implements TabHost.OnTabChangeListener, View.OnTouchListener, View.OnClickListener
 {
-    // set text for tab heading
+    /*
+    // set text for tab heading, pass the details for each tab using array
+    // of TabDefinitions
     private final TabDefinition[] tabDefinitions = new TabDefinition[] {
             new SimpleTabDefinition(R.id.tab1, R.layout.tab_heading,
                     R.string.beer_tab, R.id.tabTitle, new Fragment()),
@@ -42,6 +44,7 @@ public class CalculateBACTopFragment extends Fragment
                     R.string.spirits_tab, R.id.tabTitle, new Fragment()),
 
     };
+    */
 
 
     // fields
@@ -94,6 +97,7 @@ public class CalculateBACTopFragment extends Fragment
     @Override
     public void onTabChanged(String tabId)
     {
+        /*
         for (TabDefinition tab : tabDefinitions)
         {
             if (tabId != tab.getId())
@@ -107,11 +111,13 @@ public class CalculateBACTopFragment extends Fragment
 
         throw new IllegalArgumentException("The specified tab id '" +
                 tabId + "' does not exist.");
+                */
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    //@Override
+   // public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    //{
+        /*
         // inflate fragment_calculate_bac_top as the fragment view
         v = inflater.inflate(R.layout.fragment_calculate_bac_top, null);
 
@@ -123,7 +129,7 @@ public class CalculateBACTopFragment extends Fragment
             _tabHost.addTab(createTab(inflater, _tabHost, v, tab));
         }
 
-        alcoholType = new AlcoholType();
+        //alcoholType = new AlcoholType();
 
         // declare image view
         beer1ImgView = (ImageView)v.findViewById(R.id.imgViewBeer1);
@@ -246,12 +252,14 @@ public class CalculateBACTopFragment extends Fragment
         }
 
         return v;
-    }
+        */
+    //}
 
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState)
     {
+        /*
         super.onActivityCreated(savedInstanceState);
         setRetainInstance(true);
 
@@ -260,6 +268,7 @@ public class CalculateBACTopFragment extends Fragment
         if (tabDefinitions.length > 0) {
             onTabChanged(tabDefinitions[0].getId());
         }
+        */
     }
 
     //

@@ -225,8 +225,9 @@ public class NumberPadFragment extends DialogFragment
 
     /*
      * use this method when user clicks the ok button
-     * we return the number of drinks consumed entered
-     * into the text view by user
+     * we return the number of drinks consumed
+     * in a Bundle object using putInt(key, value) so
+     * the calling Fragment can access the value
      */
     public void returnNumber()
     {
@@ -245,8 +246,8 @@ public class NumberPadFragment extends DialogFragment
     }
 
     /*
-     * use this method if you want to pass a default value of zero
-     * back to the calling fragment this can be changed if we want
+     * this method will pass a default value of zero
+     * back to the calling fragment, this can be changed if we want
      * to pass a different value
      */
     public void closeDialog()

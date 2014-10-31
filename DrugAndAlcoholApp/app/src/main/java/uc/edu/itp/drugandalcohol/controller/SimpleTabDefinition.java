@@ -1,6 +1,7 @@
 package uc.edu.itp.drugandalcohol.controller;
 
 import android.app.Fragment;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,13 +10,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.LinearLayout.LayoutParams;
 
+import uc.edu.itp.drugandalcohol.R;
 import uc.edu.itp.drugandalcohol.controller.TabDefinition;
 
 /**
  * Created by AppDev on 1/10/2014.
+ * This class extends TabDefinition (which is an abstract class)
  */
 public class SimpleTabDefinition extends TabDefinition
 {
+    private final static String TAG = "SimpleTabDefinition";
     //
     // Fields
     //
@@ -62,12 +66,29 @@ public class SimpleTabDefinition extends TabDefinition
                 tabsView,
                 false);
 
-        // set up the title of the tab. this will populate the text with the
-        // string defined by the resource passed in when this instance was
+        // set up the title of the tab. this will populate the text view with the
+        // string value of _tabTitleResourceId passed as a parameter when this instance is
         // created. the text will also be centered within the title control.
         TextView titleView = (TextView)indicator.findViewById(_tabTitleViewId);
         titleView.setText(_tabTitleResourceId);
         titleView.setGravity(Gravity.CENTER);
+
+        // We can set the tab focus to the Beer tab
+        // first check if the string value equals '2131296262'
+        // which is the int value of "Beer" in the strings.xml file
+        // if true we set the text view background color
+        //if(_tabTitleResourceId == 2131296262)   // number for beer tab title in strings.xml file
+       // {
+        //    titleView.setTextColor(R.color.white1);
+            // R.color.md_orange_300 = 2131034152
+        //    titleView.setBackgroundColor(2131034152);
+        //    titleView.setFocusable(true);
+        //    Log.d(TAG, "String equals " + titleView.getText());
+        //}
+
+        //Log.i(TAG, "Resource ID: " + _tabTitleResourceId);
+        //Log.i(TAG, "Color value (md_orange_500): " + R.color.md_orange_500);
+
 
         // ensure the control we're inflating is layed out properly. this will
         // cause our tab titles to be placed evenly weighted across the top.

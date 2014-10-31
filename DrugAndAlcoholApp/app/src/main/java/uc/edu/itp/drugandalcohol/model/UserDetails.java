@@ -30,13 +30,6 @@ public class UserDetails
         // check if object for class has been created already
         if(mInstance == null) { mInstance = new UserDetails(); }
 
-        // when UserDetails object is created we set these values to default values
-        //mAge = 0;
-        //mWeight = 0;
-        //mMale = true;
-        //mPregnant = false;
-        //mStandardDrinks = 0;
-
         return mInstance;
     }
 
@@ -52,7 +45,7 @@ public class UserDetails
     public int getAge() { return mAge; }
     public int getWeight() { return mWeight; }
     public boolean getGender() { return mMale; }
-    public boolean getPregnant() { return mPregnant; }
+    public boolean getPregnant() { return mPregnant; }              // not sure if we need these methods
     public float getStandardDrinks() { return mStandardDrinks; }
     public float getHrsSinceDrinking() { return mHrsSinceDrinking; }
 

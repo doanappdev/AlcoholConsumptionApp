@@ -18,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import uc.edu.itp.drugandalcohol.R;
+import uc.edu.itp.drugandalcohol.model.AlcoholType;
 import uc.edu.itp.drugandalcohol.model.UserDetails;
 
 /**
@@ -67,17 +68,11 @@ public class CalculateBACBottomFragment extends Fragment
         calculateBAC2Btn = (Button)v.findViewById(R.id.btnCalculateBAC2);
         calculateBAC2Btn.setOnClickListener(this);
 
-        drinkSharedPrefs = getActivity().getSharedPreferences("DrinkPrefs", Context.MODE_PRIVATE);
+        drinkSharedPrefs = getActivity().getSharedPreferences(AlcoholType.DRINK_PREF_FILE_NAME, Context.MODE_PRIVATE);
         userSharedPrefs = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
 
-        // dsiplay user weight, value was saved to shared preferences if they entered their
-        // details in user details screen, if no value was entered a default value of 0.00 is
-        // displayed
-        //int noWeightEntered = 0;
-        //int userWeight = drinkingSharedPrefs.getInt(getString(R.string.user_weight_key), noWeightEntered);
-        //userWeightEditTxt.setText(Integer.toString(userWeight));
-
-        // display user weight from UserDetails class
+        // display user weight in userWeightEditTxt view. if user has not entered their
+        // weight from the enter user details screen the weight will display 0.
         userWeightEditTxt.setText(Integer.toString(UserDetails.getInstance().getWeight()));
 
         return v;
@@ -88,13 +83,8 @@ public class CalculateBACBottomFragment extends Fragment
     {
         switch(v.getId())
         {
-            //case R.id.btnCalculateBAC:
-                //calculateBAC();
-                //break;
-
             case R.id.btnCalculateBAC2:
-                calculateBAC();
-                showBACDialog();
+                if(checkWeightEntered()) { showBACDialog(); }
                 break;
 
         }
@@ -107,7 +97,7 @@ public class CalculateBACBottomFragment extends Fragment
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id)
     {
         // don't really need a switch here, but leave in case next group
-        // decides to another spinner in fragment
+        // decides to add another spinner in fragment
         switch(parent.getId())
         {
             case R.id.spinnerHrsDrinking:
@@ -115,9 +105,9 @@ public class CalculateBACBottomFragment extends Fragment
                 //UserDetails.getInstance().setHrsSinceDrinking(Float.parseFloat(parent.getSelectedItem().toString()));
                 UserDetails.getInstance().setHrsSinceDrinking(HOURS[pos]);
 
-                Toast.makeText(getActivity(),
-                        "Hours: " + UserDetails.getInstance().getHrsSinceDrinking(),
-                        Toast.LENGTH_SHORT).show();
+                // check value of hours drinking  stored in UserDetails class
+                Log.d(TAG, "Hours Drinking: " + UserDetails.getInstance().getHrsSinceDrinking());
+
                 break;
 
             default:
@@ -144,20 +134,49 @@ public class CalculateBACBottomFragment extends Fragment
 
     }
 
+    // this method checks if the user has entered their details required for calculating
+    // BAC
+    //public boolean checkUserDetailsEntered()
+    //{
+       // UserDetails.getInstance().getHrsSinceDrinking();
+    //}
 
-    private void calculateBAC()
+    public boolean checkWeightEntered()
+    {
+        boolean weightEntered = false;
+        float weight = Float.parseFloat(userWeightEditTxt.getText().toString());
+
+        if(weight == 0f)
+        {
+            userWeightEditTxt.setError("Enter your weight to calculate BAC");
+        }
+        else
+        {
+            // weight value does not equal 0 so we assume the weight has been entered
+            // and pass that value to the getBACFormulaValues() method
+            getBACFormulaValues(weight);
+            weightEntered = true;
+        }
+
+        return weightEntered;
+    }
+
+
+    private void getBACFormulaValues(float weight)
     {
         float totalStandardDrinks;
         float bacValue;
+        //float mWeight = weight;
 
-        int numOfSmBeers = drinkSharedPrefs.getInt(getString(R.string.sm_beer_key), 0);
-        int numOfLgBeers = drinkSharedPrefs.getInt(getString(R.string.lg_beer_key), 0);
-        int numOfBeerBottles = drinkSharedPrefs.getInt(getString(R.string.beer_bottle_key), 0);
-        int numOfBeerCans = drinkSharedPrefs.getInt(getString(R.string.beer_can_key), 0);
-        int numOfSparklingWine = drinkSharedPrefs.getInt(getString(R.string.wine_sparkling_key), 0);
-        int numOfRedWine = drinkSharedPrefs.getInt(getString(R.string.wine_red_key), 0);
-        int numOfWhiteWine = drinkSharedPrefs.getInt(getString(R.string.wine_white_key), 0);
-        int numOfBottleWine = drinkSharedPrefs.getInt(getString(R.string.wine_bottle_key), 0);
+        // get total number of drinks consumed from shared preferences
+        float numOfSmBeers = drinkSharedPrefs.getFloat(getString(R.string.sm_beer_key), 0);
+        float numOfLgBeers = drinkSharedPrefs.getFloat(getString(R.string.lg_beer_key), 0);
+        float numOfBeerBottles = drinkSharedPrefs.getFloat(getString(R.string.beer_bottle_key), 0);
+        float numOfBeerCans = drinkSharedPrefs.getFloat(getString(R.string.beer_can_key), 0);
+        float numOfSparklingWine = drinkSharedPrefs.getFloat(getString(R.string.wine_sparkling_key), 0);
+        float numOfRedWine = drinkSharedPrefs.getFloat(getString(R.string.wine_red_key), 0);
+        float numOfWhiteWine = drinkSharedPrefs.getFloat(getString(R.string.wine_white_key), 0);
+        float numOfBottleWine = drinkSharedPrefs.getFloat(getString(R.string.wine_bottle_key), 0);
 
         // apply standard drinks value to number of drinks
         // e.g 1 small beer = 1.1 standard drinks
@@ -176,9 +195,8 @@ public class CalculateBACBottomFragment extends Fragment
         totalStandardDrinks = smBeerStandardDrinks + lgBeerStandardDrinks + bottleBeerStandardDrinks + canBeerStandDrinks
                 + sparklingWineStandardDrinks + redWineStandardDrinks + whiteWineStandardDrinks + bottleWineStandardDrinks;
 
-        // call method to calculate bac using formula
-        //bacValue = bacFormula(totalStandardDrinks);
-        bacFormula(totalStandardDrinks);
+        // call method to apply bac formula
+        bacFormula(totalStandardDrinks, weight);
 
     }
 
@@ -193,7 +211,7 @@ public class CalculateBACBottomFragment extends Fragment
      *       H = hours since started drinking
      *       M = weight in kg
      */
-    private void bacFormula(float numOfDrinks)
+    private void bacFormula(float numOfDrinks, float userWeight)
     {
         float N, H, M;
         float bac;
@@ -203,8 +221,38 @@ public class CalculateBACBottomFragment extends Fragment
         //H = 1;          // for testing hours since drinking is set to 1hr
         H = UserDetails.getInstance().getHrsSinceDrinking();
 
-        //M = drinkingSharedPrefs.getInt(getString(R.string.user_weight_key), 0);
-        M = (float)UserDetails.getInstance().getWeight();
+        M = userWeight;
+        // get gender value from shared prefs, if no value is stored we return a default
+        // value of true to represent a male.
+        gender = UserDetails.getInstance().getGender();
+
+        //// check if weight has been entered
+        //if(checkWeightEntered())
+        //{
+
+
+            // true = male
+            // false = female
+            if(gender)
+            {
+                // calculate BAC for a male
+                bac = ((10 * N) - (7.5f * H)) / (6.8f * M);
+            }
+            else
+            {
+                // calculate BAC for female
+                bac = ((10 * N) - (7.5f * H)) / (5.5f * M);
+            }
+
+            saveDrinkingValues(numOfDrinks, H, bac);
+
+            // for testing to check values
+            Log.d(TAG, Float.toString(bac));
+        //}
+
+
+
+
 
         // test if weight is equal to 0
         //if(M == 0f)
@@ -212,43 +260,29 @@ public class CalculateBACBottomFragment extends Fragment
             //userWeightEditTxt.setError("Enter your weight");
         //}
 
-        // get gender value from shared prefs, if no value is stored we return a default
-        // value of true to represent a male.
-        //gender = drinkingSharedPrefs.getBoolean(getString(R.string.user_gender_key), true);
-        gender = UserDetails.getInstance().getGender();
 
-        // true = male
-        // false = female
-        if(gender)
-        {
-            // calculate BAC for a male
-            bac = ((10 * N) - (7.5f * H)) / (6.8f * M);
-        }
-        else
-        {
-            // calculate BAC for female
-            bac = ((10 * N) - (7.5f * H)) / (5.5f * M);
-        }
-
-        saveDrinkingValues(numOfDrinks, H, bac);
-
-        // for testing to check values
-        Log.d(TAG, Float.toString(bac));
 
         //return bac;
 
     }
 
-    // save BAC to shared preferences, this will save the value
+
+    // save BAC to shared preferences, this will save the number of drinks
     // even when the user exits app.
     public void saveDrinkingValues(float totalDrinks, float hrsDrinking, float bac)
     {
         editor = drinkSharedPrefs.edit();
-        editor.putFloat(getString(R.string.drinking_number_of_drinks_key), totalDrinks);
-        editor.putFloat(getString(R.string.drinking_hrs_drinking_key), hrsDrinking);
+        editor.putFloat(getString(R.string.sm_beer_key), 0);
+        editor.putFloat(getString(R.string.lg_beer_key), 0);
+        editor.putFloat(getString(R.string.beer_bottle_key), 0);
+        editor.putFloat(getString(R.string.beer_can_key), 0);
         editor.putFloat(getString(R.string.drinking_current_bac_key), bac);
-        editor.commit();
+        editor.apply();
+        //editor.commit();
     }
+
+
+
 
     // testing BAC formula for unit testing
     public float testBACFormula(float numOfDrinks, float hrs, float weight, boolean gender)

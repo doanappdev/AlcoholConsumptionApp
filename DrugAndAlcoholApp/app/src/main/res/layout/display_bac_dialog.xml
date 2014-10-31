@@ -2,7 +2,9 @@
     android:id="@+id/rLayout_display_bac1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/border_width"
     >
+
 
     <RelativeLayout
         android:id="@+id/rLayout_display_bac2"
@@ -50,6 +52,21 @@
             android:textColor="@color/white1"
             android:gravity="center" />
 
+        <TextView
+            android:id="@+id/txtViewTipsQuotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtViewDisplayMsgBAC"
+            android:layout_marginBottom="@dimen/border_width"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:text="Test String"
+            android:textSize="22sp"
+            android:textColor="@color/md_blue_a400"
+            android:gravity="center"
+            android:inputType="textMultiLine"
+            />
+
 
         </RelativeLayout>
 
@@ -58,7 +75,8 @@
     <RelativeLayout
         android:id="@+id/lLayout_display_bac"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
+        android:layout_marginBottom="@dimen/border_width"
         android:layout_below="@id/rLayout_display_bac2"
         android:background="@color/white1">
 
@@ -69,12 +87,10 @@
             android:layout_marginTop="24dp"
             android:layout_marginRight="@dimen/border_width"
             android:layout_marginBottom="@dimen/border_width"
-            android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:text="OK"
-            android:textColor="@color/md_blue_500"
-            android:background="@drawable/btn_state_white"
+            android:text="ACCEPT"
+            android:textColor="@color/white1"
+            android:background="@drawable/btn_state_blue"
             android:gravity="center_vertical|center_horizontal" />
 
     </RelativeLayout>

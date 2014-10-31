@@ -9,6 +9,8 @@ import java.util.UUID;
 
 /**
  * Created by AppDev on 1/10/2014.
+ * TabDefinition is an abstract class which creates the
+ * tabs for the CalculateBACTopFragment
  */
 public abstract class TabDefinition
 {

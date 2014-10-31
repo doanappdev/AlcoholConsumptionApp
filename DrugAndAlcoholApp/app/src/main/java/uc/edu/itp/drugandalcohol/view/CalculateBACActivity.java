@@ -19,8 +19,6 @@ import uc.edu.itp.drugandalcohol.fragments.TabWineFragment;
 
 public class CalculateBACActivity extends FragmentActivity
 {
-    CalculateBACTopFragment topFragment;
-    CalculateBACBottomFragment bottomFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -28,9 +26,6 @@ public class CalculateBACActivity extends FragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculate_bac);
 
-        // instantiate fragments so they can be accessed for testing with Junit
-        topFragment = new CalculateBACTopFragment();
-        bottomFragment = new CalculateBACBottomFragment();
 
     }
 

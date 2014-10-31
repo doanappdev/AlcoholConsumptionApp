@@ -8,7 +8,8 @@ import uc.edu.itp.drugandalcohol.R;
 
 /**
  * This tab listener class manages the selected tab clicks to show
- * or remove a fragment
+ * or remove a fragment.
+ * FragmentTransaction requires a min SDK version of 13.
  */
 public class TabListener implements ActionBar.TabListener
 {
@@ -20,13 +21,15 @@ public class TabListener implements ActionBar.TabListener
     }
 
     @Override
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
-
-        //ft.replace(R.id.fragment_calculate_container, mFragment);
+    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft)
+    {
+        // fragment_container is in activity_tab_test.xml
+        ft.replace(R.id.fragment_container, mFragment);
     }
 
     @Override
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
+    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft)
+    {
 
         ft.remove(mFragment);
     }
