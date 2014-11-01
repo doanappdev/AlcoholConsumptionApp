@@ -28,6 +28,7 @@ public class UserDetailsFragmentTestCase extends ActivityInstrumentationTestCase
         super.setUp();
         mUserDetailsActivity = getActivity();
         mUserDetailsFragment = mUserDetailsActivity.userDetailsFragment;
+
     }
 
     public void testPreConditions()
