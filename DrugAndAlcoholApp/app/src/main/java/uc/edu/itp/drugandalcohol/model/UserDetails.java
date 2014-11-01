@@ -1,5 +1,8 @@
 package uc.edu.itp.drugandalcohol.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by AppDeveloper on 27/10/2014.
  *
@@ -19,11 +22,15 @@ public class UserDetails
     private static boolean mPregnant;
     private static float mStandardDrinks;
     private static float mHrsSinceDrinking;
+    private static List<Float> mBAC_List;
 
     private static UserDetails mInstance = null;
 
     // constructor
-    protected UserDetails() {}
+    protected UserDetails()
+    {
+        mBAC_List = new ArrayList<Float>();
+    }
 
     public static synchronized UserDetails getInstance()
     {
@@ -41,6 +48,7 @@ public class UserDetails
     public void setStandardDrinks(float standardDrinks) { mStandardDrinks = standardDrinks; }
     public void setHrsSinceDrinking(float hrs) { mHrsSinceDrinking = hrs; }
 
+
     // getter methods
     public int getAge() { return mAge; }
     public int getWeight() { return mWeight; }
@@ -48,5 +56,8 @@ public class UserDetails
     public boolean getPregnant() { return mPregnant; }              // not sure if we need these methods
     public float getStandardDrinks() { return mStandardDrinks; }
     public float getHrsSinceDrinking() { return mHrsSinceDrinking; }
+
+    public void addToBACList(float bacValue) { mBAC_List.add(bacValue); }
+    //public void removeBACList
 
 }
