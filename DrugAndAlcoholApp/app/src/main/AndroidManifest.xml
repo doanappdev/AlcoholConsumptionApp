@@ -129,7 +129,11 @@
         <activity
             android:name=".view.TabTestActivity"
             android:label="@string/title_activity_tab_test"
-            android:theme="@style/TabActivityTheme">
+            android:theme="@style/TabActivityTheme" >
+        </activity>
+        <activity
+            android:name=".view.AlcoholTabActivity"
+            android:label="@string/title_activity_alcohol_tab" >
         </activity>
     </application>
 

@@ -36,12 +36,10 @@ public class EmergencyFragmentTestCase extends ActivityInstrumentationTestCase2<
 
     public void testPreConditions()
     {
-
         assertNotNull(mEmergencyActivity);
         assertNotNull(mEmergencyFragment);
-
     }
-
+/*
     public void testInteractionUI()
     {
         mEmergencyActivity.runOnUiThread(new Runnable() {
@@ -51,6 +49,7 @@ public class EmergencyFragmentTestCase extends ActivityInstrumentationTestCase2<
             }
         });
     }
+*/
 
     public void testContacts()
     {

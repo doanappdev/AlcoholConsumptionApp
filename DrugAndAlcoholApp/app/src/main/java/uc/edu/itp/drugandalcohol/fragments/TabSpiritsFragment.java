@@ -224,5 +224,14 @@ public class TabSpiritsFragment extends Fragment
 
     }
 
+    /*******************************************************************************
+     * Testing methods
+     *
+     ******************************************************************************/
 
+
+    public String getSpiritsTabStringTest()
+    {
+        return "Testing spirits tab";
+    }
 }

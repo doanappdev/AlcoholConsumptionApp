@@ -20,11 +20,47 @@ import uc.edu.itp.drugandalcohol.fragments.TabWineFragment;
 public class CalculateBACActivity extends FragmentActivity
 {
 
+    // Declare Tab Variables
+    // make these public so we can access them in test class
+    public ActionBar actionBar;
+    public ActionBar.Tab Tab1, Tab2, Tab3;
+
+    public TabBeerFragment beerTabFragment = new TabBeerFragment();
+    public TabWineFragment wineTabFragment = new TabWineFragment();
+    public TabSpiritsFragment spiritsFragment = new TabSpiritsFragment();
+
+    // only need to create this object for testing, do not need it to
+    // create UI
+    public CalculateBACBottomFragment calculateBACBottomFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calculate_bac);
+        setContentView(R.layout.activity_alcohol_tab);
+
+        // get reference to action bar
+        actionBar = getActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS); // create action bar tabs
+        actionBar.setDisplayShowTitleEnabled(false);    // hide action bar title
+        actionBar.setDisplayShowHomeEnabled(false);     // hide action bar title
+
+        // set tab icon and titles
+        Tab1 = actionBar.newTab().setText("Beer");
+        Tab2 = actionBar.newTab().setText("Wine");
+        Tab3 = actionBar.newTab().setText("Spirits");
+
+        // set tab listeners
+        Tab1.setTabListener(new TabListener(beerTabFragment));
+        Tab2.setTabListener(new TabListener(wineTabFragment));
+        Tab3.setTabListener(new TabListener(spiritsFragment));
+
+        // add tabs to actionbar
+        actionBar.addTab(Tab1);
+        actionBar.addTab(Tab2);
+        actionBar.addTab(Tab3);
+
+        calculateBACBottomFragment = new CalculateBACBottomFragment();
 
 
     }

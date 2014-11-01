@@ -6,14 +6,25 @@
     android:orientation="vertical"
     tools:context="uc.edu.itp.drugandalcohol.view.CalculateBACActivity">
 
-    <fragment
-        android:id="@+id/topCalculateFragment"
+    <!--
+         This layout has 2 fragments
+
+         fragment 1 includes the the following fragments
+         TabBeerFragment, TabWineFragment, TabSpiritsFragment
+         they will display the various alcohol types
+     -->
+    <FrameLayout
+        android:id="@+id/fragment_tab_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.6"
-        class="uc.edu.itp.drugandalcohol.fragments.CalculateBACTopFragment"
-        tools:layout="@layout/fragment_calculate_bac_top" />
+        android:layout_weight="0.6">
 
+    </FrameLayout>
+
+    <!--
+        fragment 2 displays a spinner, text view and button
+        to allow user to input data required for calculating
+    -->
     <fragment
         android:id="@+id/bottomCalculateFragment"
         android:layout_width="match_parent"

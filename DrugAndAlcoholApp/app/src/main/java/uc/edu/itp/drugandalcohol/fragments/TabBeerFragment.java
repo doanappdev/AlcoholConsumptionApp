@@ -220,4 +220,15 @@ public class TabBeerFragment extends Fragment
                 Integer.parseInt(beer4InputTxtView.getText().toString()));
 
     }
+
+    /*******************************************************************************
+     * Testing methods
+     *
+     ******************************************************************************/
+
+
+    public String getBeerTabStringTest()
+    {
+        return "Testing beer tab";
+    }
 }

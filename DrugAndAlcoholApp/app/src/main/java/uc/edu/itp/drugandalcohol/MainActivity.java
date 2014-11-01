@@ -21,7 +21,6 @@ import uc.edu.itp.drugandalcohol.view.EmergencyActivity;
 import uc.edu.itp.drugandalcohol.view.GameMenuActivity;
 import uc.edu.itp.drugandalcohol.view.MapActivity;
 import uc.edu.itp.drugandalcohol.view.ReactionTestActivity;
-import uc.edu.itp.drugandalcohol.view.TabTestActivity;
 import uc.edu.itp.drugandalcohol.view.UserDetailsActivity;
 
 
@@ -63,11 +62,9 @@ public class MainActivity extends Activity
             @Override
             public void onClick(View view) {
 
-                //Intent calculateBACIntent = new Intent(getApplicationContext(), CalculateBACActivity.class);
-                //startActivity(calculateBACIntent);
-
-                Intent calculateBACIntent = new Intent(getApplicationContext(), TabTestActivity.class);
+                Intent calculateBACIntent = new Intent(getApplicationContext(), CalculateBACActivity.class);
                 startActivity(calculateBACIntent);
+
             }
         });
 

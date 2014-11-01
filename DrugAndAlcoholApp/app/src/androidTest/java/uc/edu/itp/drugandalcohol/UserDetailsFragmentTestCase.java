@@ -21,14 +21,13 @@ public class UserDetailsFragmentTestCase extends ActivityInstrumentationTestCase
         super(UserDetailsActivity.class);
     }
 
-    /* do a test to see of the fragment is created correctly */
+    /* do a test to see if the fragment is created correctly */
     @Override
     protected void setUp() throws Exception
     {
         super.setUp();
         mUserDetailsActivity = getActivity();
         mUserDetailsFragment = mUserDetailsActivity.userDetailsFragment;
-
     }
 
     public void testPreConditions()

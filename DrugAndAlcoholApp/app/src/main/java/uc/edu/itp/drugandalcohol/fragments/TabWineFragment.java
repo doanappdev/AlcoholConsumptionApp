@@ -216,5 +216,16 @@ public class TabWineFragment extends Fragment
 
     }
 
+    /*******************************************************************************
+     * Testing methods
+     *
+     ******************************************************************************/
+
+
+    public String getWineTabStringTest()
+    {
+        return "Testing wine tab";
+    }
+
 
 }

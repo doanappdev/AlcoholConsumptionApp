@@ -23,8 +23,8 @@ public class TabListener implements ActionBar.TabListener
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft)
     {
-        // fragment_container is in activity_tab_test.xml
-        ft.replace(R.id.fragment_container, mFragment);
+        // fragment_container is in activity_alcohol_tab.xml
+        ft.replace(R.id.fragment_tab_container, mFragment);
     }
 
     @Override
