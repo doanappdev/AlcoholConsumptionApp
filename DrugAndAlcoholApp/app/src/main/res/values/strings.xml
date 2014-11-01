@@ -153,4 +153,18 @@
         <item>Death: Result from respiratory arrest </item>
     </string-array>
 
+    <string name="Contacts">Contact</string>
+    <string-array name="Contact_list">
+        <item>Bob</item>
+        <item>John</item>
+        <item>Blake</item>
+    </string-array>
+
+    <string name="Numbers">Number</string>
+    <string-array name="Number_List">
+        <item>0431000000</item>
+        <item>0431020304</item>
+        <item>0431050709</item>
+    </string-array>
+
 </resources>

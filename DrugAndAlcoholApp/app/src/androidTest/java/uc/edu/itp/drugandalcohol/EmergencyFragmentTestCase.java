@@ -34,13 +34,20 @@ public class EmergencyFragmentTestCase extends ActivityInstrumentationTestCase2<
 
     public void testInteractionUI()
     {
-        dummyEmergencyFragmentActivity.runOnUiThread(new Runnable() {
+        /*dummyEmergencyFragmentActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 dummyEmergencyFragmentActivity.addItemsToSpinner();
             }
-        });
+        });*/
+    }
 
-
+    public void testContacts()
+    {
+        int contactPosition = 0;
+        String contactTest = emergencyFragment.getSelectedContact(contactPosition);
+        String numberTest = emergencyFragment.getSelectNumber(contactPosition);
+        assertEquals("Bob",contactTest);
+        assertEquals("0431000000", numberTest);
     }
 }

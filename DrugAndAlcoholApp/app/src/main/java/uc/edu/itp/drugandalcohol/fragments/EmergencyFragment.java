@@ -367,4 +367,20 @@ public class EmergencyFragment extends Fragment
         return super.onOptionsItemSelected(item);
     }
 
+
+    public String getSelectNumber(int pos)
+    {
+        String[] testNumber = getResources().getStringArray(R.array.Number_List);
+        String thisNumber = testNumber[pos];
+
+        return thisNumber;
+    }
+
+    public String getSelectedContact(int pos)
+    {
+        String[] testContacts = getResources().getStringArray(R.array.Contact_list);
+        String thisContact = testContacts[pos];
+
+        return thisContact;
+    }
 }
