@@ -48,9 +48,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--
+            this activity sets the weight edit text to a value of 0 or
+            the users weight if they have entered value in UserDetailsActivity.
+            the keyboard would load on activity startup due to setting the text
+            for weightEditTxt.
+            to prevent keyboard from loading we set:
+             windowSoftInputMode = stateHidden
+        -->
         <activity
             android:name=".view.CalculateBACActivity"
             android:label="@string/title_activity_calculate"
+            android:windowSoftInputMode="stateHidden"
             android:theme="@style/CalculateBACActivityTheme" >
         </activity>
         <activity
@@ -117,24 +126,7 @@
             android:name=".view.HighScoreActivity"
             android:label="@string/title_activity_high_score" >
         </activity>
-        <activity
-            android:name=".DummyCalculateBACTopFragmentActivity"
-            android:exported="false"
-            android:label="@string/title_activity_unit_test" >
-        </activity>
-        <activity
-            android:name=".DummyCalculateBACBottomFragmentActivity"
-            android:label="@string/title_activity_dummy_calculate_bacbottom_fragment" >
-        </activity>
-        <activity
-            android:name=".view.TabTestActivity"
-            android:label="@string/title_activity_tab_test"
-            android:theme="@style/TabActivityTheme" >
-        </activity>
-        <activity
-            android:name=".view.AlcoholTabActivity"
-            android:label="@string/title_activity_alcohol_tab" >
-        </activity>
+
     </application>
 
 </manifest>

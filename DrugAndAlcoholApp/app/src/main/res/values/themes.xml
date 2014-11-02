@@ -1,28 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--
-        the theme applied to the application or activity
+        define theme applied to the application or activity
 
         we can set the theme for:
          android:Theme.Holo.Light
          android:Theme.Holo.Dark
          etc..
+
+        [android:] prefix is used to support API 11 and above
+        without prefix is to support API <11
     -->
+
+    <!-- define color for action bar text which other themes can refer to-->
+    <style name="ActionBar.TitleBarTextColor" parent="android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+    <!-- define no action bar for main activity -->
+    <style name="MainActivityTheme" parent="android:Theme.Holo.Light.NoActionBar">
+        <!-- Customize theme here. -->
+
+    </style>
 
     <!-- ************************************************************************* -->
 
+    <!-- define name for theme -->
     <style name="EmergencySMSTheme" parent="android:Theme.Holo.Light">
     <!--
         create action bar item to apply custom theme
-        [android:] prefix is used to support API 11 and above
-        without prefix is to support API <11
     -->
         <item name="android:actionBarStyle">@style/EmergencySMSTheme.ActionBar</item>
     </style>
 
     <!--
-        define style for MyActionBar theme e.g.
-        background color, text color, icon
+        define style for ActionBar theme
+        e.g. background color, text color, icon
     -->
     <style name="EmergencySMSTheme.ActionBar" parent="android:style/Widget.Holo.Light.ActionBar">
         <!-- Customize theme here. -->
@@ -33,16 +46,18 @@
 
     <!-- ************************************************************************* -->
 
+    <!-- define theme name -->
     <style name="UserDetailsActivityTheme" parent="android:Theme.Holo.Light">
 
+        <!-- apply style to actionBarStyle -->
         <item name="android:actionBarStyle">@style/UserDetailsActivityTheme.ActionBar</item>
 
     </style>
 
-    <!-- define action bar theme for user details activity -->
+    <!-- define attributes for style -->
     <style name="UserDetailsActivityTheme.ActionBar" parent="android:style/Widget.Holo.Light.ActionBar">
         <!-- Customize theme here. -->
-        <item name="android:background">@color/md_purple_700</item>
+        <item name="android:background">@color/md_blue_500</item>
         <item name="android:titleTextStyle">@style/ActionBar.TitleBarTextColor</item>
         <item name="android:icon">@drawable/ic_social_add_person_white</item>
     </style>
@@ -51,15 +66,20 @@
 
     <style name="CalculateBACActivityTheme" parent="android:Theme.Holo.Light">
         <item name="android:actionBarStyle">@style/CalculateBACActivityTheme.ActionBar</item>
+        <item name="android:actionBarTabTextStyle">@style/AlcoholTabsTextColor</item>
     </style>
 
-    <!-- define action bar theme for user details activity -->
+    <!-- define style for actionbar -->
     <style name="CalculateBACActivityTheme.ActionBar" parent="android:style/Widget.Holo.Light.ActionBar">
-        <!-- Customize theme here. -->
         <item name="android:background">@color/md_blue_500</item>
         <item name="android:titleTextStyle">@style/ActionBar.TitleBarTextColor</item>
         <item name="android:icon">@drawable/ic_navigation_back_white</item>
+    </style>
 
+    <!-- define style for tabs -->
+    <style name="AlcoholTabsTextColor" parent="android:style/Widget.Holo.Light.ActionBar.TabText">
+        <!-- tab text color -->
+        <item name="android:textColor">@color/white1</item>
     </style>
 
     <!-- ************************************************************************* -->
@@ -67,39 +87,14 @@
         <item name="android:actionBarStyle">@style/GameMenuActivityTheme.ActionBar</item>
     </style>
 
-    <!-- define action bar theme for game menu activity -->
     <style name="GameMenuActivityTheme.ActionBar" parent="android:style/Widget.Holo.Light.ActionBar">
-        <!-- Customize theme here. -->
         <item name="android:background">@color/md_blue_500</item>
         <item name="android:titleTextStyle">@style/ActionBar.TitleBarTextColor</item>
     </style>
 
-    <!-- ************************************************************************* -->
 
-    <!-- define no action bar theme for main activity -->
-    <style name="MainActivityTheme" parent="android:Theme.Holo.Light.NoActionBar">
-        <!-- Customize theme here. -->
-
-    </style>
-
-    <!-- define color for action bar text -->
-    <style name="ActionBar.TitleBarTextColor" parent="android:style/TextAppearance.Holo.Widget.ActionBar.Title">
-        <item name="android:textColor">#ffffff</item>
-    </style>
 
     <!-- ************************************************************************* -->
 
-    <!-- define no action bar theme for main activity -->
-    <style name="TabActivityTheme" parent="android:Theme.Holo.Light">
-        <!-- Customize theme here. -->
-
-    </style>
-
-    <!-- define action bar theme for game menu activity -->
-    <style name="TabActivityTheme.ActionBar" parent="android:style/Widget.Holo.Light.ActionBar">
-        <!-- Customize theme here. -->
-        <item name="android:background">@color/md_blue_500</item>
-        <item name="android:titleTextStyle">@style/ActionBar.TitleBarTextColor</item>
-    </style>
 
 </resources>

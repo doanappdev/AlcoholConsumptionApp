@@ -70,6 +70,7 @@ public class CalculateBACBottomFragment extends Fragment
         // weight from the enter user details screen the weight will display 0.
         userWeightEditTxt.setText(Integer.toString(UserDetails.getInstance().getWeight()));
 
+
         return v;
     }
 

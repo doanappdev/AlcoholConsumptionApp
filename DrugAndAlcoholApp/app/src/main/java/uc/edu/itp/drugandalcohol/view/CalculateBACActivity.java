@@ -28,21 +28,26 @@ public class CalculateBACActivity extends FragmentActivity
     public TabWineFragment wineTabFragment = new TabWineFragment();
     public TabSpiritsFragment spiritsFragment = new TabSpiritsFragment();
 
-    // only need to create this object for testing, do not need it to
-    // create UI
+    // only need to create this object for testing,
+    // do not need it to create UI
     public CalculateBACBottomFragment calculateBACBottomFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_alcohol_tab);
+        setContentView(R.layout.activity_calculate_bac);
 
         // get reference to action bar
         actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS); // create action bar tabs
-        actionBar.setDisplayShowTitleEnabled(false);    // hide action bar title
-        actionBar.setDisplayShowHomeEnabled(false);     // hide action bar title
+        //actionBar.setDisplayShowTitleEnabled(false);    // hide action bar title
+        //actionBar.setDisplayShowHomeEnabled(false);     // hide action bar title
+
+        // set tab color to colors defined in actionbar_tab_indicator
+        actionBar.setStackedBackgroundDrawable(getResources()
+                .getDrawable(R.drawable.actionbar_tab_indicator));
+
 
         // set tab icon and titles
         Tab1 = actionBar.newTab().setText("Beer");
@@ -59,12 +64,19 @@ public class CalculateBACActivity extends FragmentActivity
         actionBar.addTab(Tab2);
         actionBar.addTab(Tab3);
 
+        // instantiate object so testing class can access the bottom fragement
+        // if we remove this line the calculateBAC UI will still display the
+        // bottom fragment as the xml file for this activity will load the
+        // fragment
         calculateBACBottomFragment = new CalculateBACBottomFragment();
 
 
     }
 
 
+    /*
+        commenting out so menu icon does not show on action bar
+        if you want to add menu options for activity remove comments
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -83,4 +95,5 @@ public class CalculateBACActivity extends FragmentActivity
         }
         return super.onOptionsItemSelected(item);
     }
+    */
 }

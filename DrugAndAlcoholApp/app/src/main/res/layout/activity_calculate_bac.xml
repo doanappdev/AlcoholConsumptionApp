@@ -25,12 +25,11 @@
         fragment 2 displays a spinner, text view and button
         to allow user to input data required for calculating
     -->
-    <fragment
+    <fragment class="uc.edu.itp.drugandalcohol.fragments.CalculateBACBottomFragment"
         android:id="@+id/bottomCalculateFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.4"
-        class="uc.edu.itp.drugandalcohol.fragments.CalculateBACBottomFragment"
         tools:layout="@layout/fragment_calculate_bac_bottom2" />
 
 
