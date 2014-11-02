@@ -47,29 +47,26 @@ public class GameplayFunction {
 
     //Timer counts used
     private long timeCount;
-    private long beerTimerCount;
-    private long wineTimerCount;
-    private long kegTimerCount;
-    private long spiritTimerCount;
-    private long TNTTimerCount;
+    private long timerCountList0;
+    private long timerCountList1;
+    private long timerCountList2;
+    private long timerCountList3;
 
     //Timer conditions used
-    private long beerTimer;
-    private long wineTimer;
-    private long kegTimer;
-    private long spiritTimer;
-    private long TNTTimer;
+    private long timerList0;
+    private long timerList1;
+    private long timerList2;
+    private long timerList3;
 
     //Counters used for all buttons
     private int buttonCount;
 
     //Storages for alcohol sprites
-    private List<AlcoholClass> kegs;
-    private List<AlcoholClass> wines;
-    private List<AlcoholClass> beers;
-    private List<AlcoholClass> spirits;
+    private List<AlcoholClass> list0;
+    private List<AlcoholClass> list1;
+    private List<AlcoholClass> list2;
+    private List<AlcoholClass> list3;
     private Queue<AlcoholClass> inactives;
-    private AlcoholClass TNT;
 
     //Storage for bitmap and View
     private Bitmap bmp;
@@ -92,7 +89,6 @@ public class GameplayFunction {
 
     //Temporary variables for faster performance
     private int i;
-    private int tempInt;
     private int currentInt;
 
     //NOTE: The commented overrides appear because it used to have a
@@ -107,16 +103,14 @@ public class GameplayFunction {
         this.view = view;
         this.settings = settings;
 
-        buttonCount = 5;
+        buttonCount = 4;
 
         paint = new Paint();
-        beers = new LinkedList<AlcoholClass>();
-        wines = new LinkedList<AlcoholClass>();
-        kegs = new LinkedList<AlcoholClass>();
-        spirits = new LinkedList<AlcoholClass>();
+        list0 = new LinkedList<AlcoholClass>();
+        list1 = new LinkedList<AlcoholClass>();
+        list2 = new LinkedList<AlcoholClass>();
+        list3 = new LinkedList<AlcoholClass>();
         inactives = new LinkedList<AlcoholClass>();
-
-        TNT = new AlcoholClass(view, 4, bmp, 3, 2);
 
         float xResult, yResult;
         int width = (bmp.getWidth()/3);
@@ -134,10 +128,11 @@ public class GameplayFunction {
             //width times the id number of a button divided by 1 less
             //the number of buttons in total, plus 10% of game width,
             //minus the scaled width of the button divided by 2.
-            xResult = (g_width*i/5) + (g_width/10) - width;
+            xResult = (g_width*i*8/30) + (g_width/10) - width;
             //Log.d("Gameplay Function: X - ", String.valueOf(xResult));
             yResult = g_height*0.85f;
 
+            //Sets the x and y position of each button
             buttons[i].setPosX(xResult);
             buttons[i].setPosY(yResult);
         }
@@ -166,20 +161,16 @@ public class GameplayFunction {
         gameSpeed = 2;
         randomSpeed = 0;
 
-        TNT.reset(0, gameSpeed, 4);
-
-        beerTimer = 5000L;
-        wineTimer = 7500L;
-        kegTimer = 6000L;
-        spiritTimer = 9000L;
-        TNTTimer = 12000L;
+        timerList0 = 5000L;
+        timerList1 = 7500L;
+        timerList2 = 6000L;
+        timerList3 = 9000L;
 
         resetTime = currentTime;
-        beerTimerCount = currentTime;
-        wineTimerCount = currentTime;
-        kegTimerCount = currentTime;
-        spiritTimerCount = currentTime;
-        TNTTimerCount = currentTime;
+        timerCountList0 = currentTime;
+        timerCountList1 = currentTime;
+        timerCountList2 = currentTime;
+        timerCountList3 = currentTime;
     }
 
     //removes all objects before closing surface view
@@ -187,14 +178,11 @@ public class GameplayFunction {
     {
         //for(i = 0; i < buttonCount; i++) buttons[i].silouhette = true;
 
-        while(beers.size() > 0) beers.remove(0);
-        while(kegs.size() > 0) kegs.remove(0);
-        while(wines.size() > 0) wines.remove(0);
-        while(spirits.size() > 0) spirits.remove(0);
+        while(list0.size() > 0) list0.remove(0);
+        while(list1.size() > 0) list1.remove(0);
+        while(list2.size() > 0) list2.remove(0);
+        while(list3.size() > 0) list3.remove(0);
         while(inactives.size() > 0) inactives.remove();
-
-        //TNT.destroyTNT();
-        TNT = null;
     }
 
     //@Override
@@ -292,11 +280,10 @@ public class GameplayFunction {
 
     //increases game speed and reduces spawn timer
     private void increaseGameSpeed(long currentTime){
-        if(beerTimer > 500L) beerTimer -= 100L;
-        if(wineTimer > 500L) wineTimer -= 100L;
-        if(kegTimer > 500L) kegTimer -= 100L;
-        if(spiritTimer > 500L) spiritTimer -= 100L;
-        if(TNTTimer > 500L) TNTTimer -= 500L;
+        if(timerList0 > 500L) timerList0 -= 100L;
+        if(timerList1 > 500L) timerList1 -= 100L;
+        if(timerList2 > 500L) timerList2 -= 100L;
+        if(timerList3 > 500L) timerList3 -= 100L;
         gameSpeed++;
     }
 
@@ -304,31 +291,15 @@ public class GameplayFunction {
     //sprites
     private void checkButtonCondition(int id){
         switch(id){
-            case 0:
-                //checks for beer list
-                if(beers.size() > 0)
-                    //beerCount = quickTap(beerCount, id, beers);
-                    timedTap(id, beers);
-                break;
-            //checks for wine list
-            case 1: if(wines.size() > 0) timedTap(id, wines); break;
-            //checks for kegs list
-            case 2:
-                if(kegs.size() > 0)
-                    //quickTap(id, kegs);
-                    timedTap(id, kegs);
-                break;
-            //checks for spirits list
-            case 3: if(spirits.size() > 0) timedTap(id, spirits); break;
-            //checks for active TNT
-            case 4:
-                currentScore += TNT.getPoints();
-                TNT.destroyTNT();
-                buttons[id].silouhette = true;
-                HitTNT = true;
-                break;
-            default:
-                break;
+            //checks for list 0
+            case 0: if(list0.size() > 0) timedTap(id, list0); break;
+            //checks for list 1
+            case 1: if(list1.size() > 0) timedTap(id, list1); break;
+            //checks for list 2
+            case 2: if(list2.size() > 0) timedTap(id, list2); break;
+            //checks for list 3
+            case 3: if(list3.size() > 0) timedTap(id, list3); break;
+            default: /*Nothing is called here*/ break;
         }
         //makes sure score is not a negative number
         if(currentScore < 0) currentScore = 0;
@@ -342,11 +313,16 @@ public class GameplayFunction {
         if(list.get(currentInt).midY < buttons[id].getYLimit()){
             //calculate score
             currentScore += list.get(currentInt).getPoints();
-            //removes alcohol from list
-            inactives.add(list.get(currentInt));
-            list.remove(currentInt);
-            //increments hit counter
-            hits++;
+            //Checks if TNT is hit
+            if(list.get(currentInt).getPoints() == -2000) HitTNT = true;
+            else
+            {
+                //removes alcohol from list
+                inactives.add(list.get(currentInt));
+                list.remove(currentInt);
+                //increments hit counter
+                hits++;
+            }
             //button is black if no alcohol is on the list
             if(list.size() < 1) buttons[id].silouhette = true;
         } else misses++;
@@ -359,11 +335,16 @@ public class GameplayFunction {
         if(buttons[id].isIntersecting(list.get(currentInt).getRect())){
             //calculate score
             currentScore += list.get(currentInt).getPoints();
-            //removes alcohol from list
-            inactives.add(list.get(currentInt));
-            list.remove(currentInt);
-            //increments hit counter
-            hits++;
+            //Checks if TNT is hit
+            if(list.get(currentInt).getPoints() == -2000) HitTNT = true;
+            else
+            {
+                //removes alcohol from list
+                inactives.add(list.get(currentInt));
+                list.remove(currentInt);
+                //increments hit counter
+                hits++;
+            }
             //button is black if no alcohol is on the list
             if(list.size() < 1) buttons[id].silouhette = true;
         }else misses++;
@@ -383,21 +364,14 @@ public class GameplayFunction {
     //checks if new sprites are made
     private void spawnSprites(long currentTime){
         //timer count for each specific list gets calculated
-        beerTimerCount = spawnSprite(currentTime, beerTimerCount, beerTimer, gameSpeed, 0, beers);
-        wineTimerCount = spawnSprite(currentTime, wineTimerCount, wineTimer, gameSpeed, 1, wines);
-        kegTimerCount = spawnSprite(currentTime, kegTimerCount, kegTimer, gameSpeed, 2, kegs);
-        spiritTimerCount = spawnSprite(currentTime, spiritTimerCount, spiritTimer,
-                gameSpeed, 3, spirits);
-
-        //calculates time count for TNT
-        timeCount = currentTime - TNTTimerCount;
-        //Reset currently active TNT to top of the screen
-        //if time count exceeds timer threshold
-        if(timeCount >= TNTTimer){
-            TNTTimerCount = currentTime;
-            TNT.ResetTNT();
-            if (buttons[4].silouhette) buttons[4].silouhette = false;
-        }
+        timerCountList0 = spawnSprite(currentTime, timerCountList0, timerList0,
+                gameSpeed, 0, list0);
+        timerCountList1 = spawnSprite(currentTime, timerCountList1, timerList1,
+                gameSpeed, 1, list1);
+        timerCountList2 = spawnSprite(currentTime, timerCountList2, timerList2,
+                gameSpeed, 2, list2);
+        timerCountList3 = spawnSprite(currentTime, timerCountList3, timerList3,
+                gameSpeed, 3, list3);
     }
 
     //creates a particular sprite
@@ -411,10 +385,13 @@ public class GameplayFunction {
             //if game settings have random speed, randomise speed
             //of current alcohol
             if(settings.getRandomiseSpeed()) genRandomSpeed();
+            //randomises a sprite so that potential hazards may appear.
+            int rng = (int)(Math.random()*5);
             //reuses alcohol if any inactive ones are there
             //and add them to the list
-            list.add(Pop(id));
-            list.get(list.size()-1).reset(0, speed+randomSpeed, id);
+            list.add(Pop(rng));
+            list.get(list.size()-1).reset(0, speed+randomSpeed, rng);
+            list.get(list.size()-1).setPosX(buttons[id].x);
             if(buttons[id].silouhette) buttons[id].silouhette = false;
             return currentTime;
         }else return count;
@@ -441,15 +418,10 @@ public class GameplayFunction {
             buttons[i].onDraw(canvas);
 
         //updates and draws all alcohol sprites here
-        updateSprite(canvas, 0, beers);
-        updateSprite(canvas, 1, wines);
-        updateSprite(canvas, 2, kegs);
-        updateSprite(canvas, 3, spirits);
-
-        //draws and updates TNT
-        TNT.onDraw(canvas);
-        //checks if button needs to be darken.
-        if(!TNT.active && !buttons[4].silouhette) buttons[4].silouhette = true;
+        updateSprite(canvas, 0, list0);
+        updateSprite(canvas, 1, list1);
+        updateSprite(canvas, 2, list2);
+        updateSprite(canvas, 3, list3);
     }
 
     //move and draw a sprite
@@ -459,14 +431,15 @@ public class GameplayFunction {
             list.get(i).onDraw(canvas);
             //sprite is removed if player fails to time their taps
             if(!list.get(i).active){
+                //increments miss counter if it's not a TNT
+                if(list.get(i).getPoints() != -2000)
+                    misses++;
                 //removes current alcohol from list
                 Push(list.get(i));
                 list.remove(i);
                 //make sure this does not cause any null
                 //errors for this list
                 i--;
-                //increments miss counter
-                misses++;
                 //darkens button if list is empty
                 if(list.size() < 1 && !buttons[id].silouhette)
                     buttons[id].silouhette = true;

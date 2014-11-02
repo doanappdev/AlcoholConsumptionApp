@@ -51,7 +51,6 @@ public class AlcoholClass extends Sprite {
         }
 
         int g_width = gameView.getWidth();
-        x = g_width*id/5 + g_width/10 - width;
         y = 0;
         //y = gameView.getHeight()/20;
 
