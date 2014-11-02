@@ -212,8 +212,9 @@ public class TabBeerFragment extends Fragment
             Log.i(TAG, "Value clicked on NumberPad = " + standardDrinks);
         }
 
-        // save number of drinks consumed for each input text view,
-        // need to convert value to integer before storing value
+        // setTotalDrinksConsumed() sets the text value for the text view
+        // and saves the number to shared preferences by calling
+        // saveTotalDrinksConsumed()
         beer.setTotalDrinksConsumed(Integer.parseInt(beer1InputTxtView.getText().toString()),
                 Integer.parseInt(beer2InputTxtView.getText().toString()),
                 Integer.parseInt(beer3InputTxtView.getText().toString()),

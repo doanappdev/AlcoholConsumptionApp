@@ -159,5 +159,9 @@ public class DisplayBACDialogFragment extends DialogFragment
         Log.d("DisplayBACDialogFragment", s);
     }
 
+    /*******************************************************************************
+     * Testing methods
+     *
+     ******************************************************************************/
 
 }

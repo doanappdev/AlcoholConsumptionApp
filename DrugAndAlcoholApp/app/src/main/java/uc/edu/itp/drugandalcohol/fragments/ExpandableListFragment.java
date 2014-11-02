@@ -88,5 +88,10 @@ public class ExpandableListFragment extends Fragment {
         listDataChild.put(listDataHeader.get(2), spirits);
     }
 
+    /*******************************************************************************
+     * Testing methods
+     *
+     ******************************************************************************/
+
 
 }

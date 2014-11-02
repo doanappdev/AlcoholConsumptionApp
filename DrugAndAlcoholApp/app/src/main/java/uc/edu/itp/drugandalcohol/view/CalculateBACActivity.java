@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import uc.edu.itp.drugandalcohol.R;
 import uc.edu.itp.drugandalcohol.controller.TabListener;
 import uc.edu.itp.drugandalcohol.fragments.CalculateBACBottomFragment;
-import uc.edu.itp.drugandalcohol.fragments.CalculateBACTopFragment;
 import uc.edu.itp.drugandalcohol.fragments.TabBeerFragment;
 import uc.edu.itp.drugandalcohol.fragments.TabSpiritsFragment;
 import uc.edu.itp.drugandalcohol.fragments.TabWineFragment;

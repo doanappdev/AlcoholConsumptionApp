@@ -267,6 +267,11 @@ public class UserDetailsFragment extends Fragment
         return intBuddyNumber;
     }
 
+    /*******************************************************************************
+     * Testing methods
+     *
+     ******************************************************************************/
+
 
     /*
      * test method is used to check if Junit is connecting to this method
