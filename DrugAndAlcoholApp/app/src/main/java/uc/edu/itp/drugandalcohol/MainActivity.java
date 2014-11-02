@@ -2,38 +2,41 @@ package uc.edu.itp.drugandalcohol;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
-import com.microsoft.windowsazure.mobileservices.*;
+import java.util.Random;
 
-import java.net.MalformedURLException;
-
-import uc.edu.itp.drugandalcohol.controller.LocationDataAdapter;
-import uc.edu.itp.drugandalcohol.model.LocationData;
 import uc.edu.itp.drugandalcohol.view.CalculateBACActivity;
 import uc.edu.itp.drugandalcohol.view.EmergencyActivity;
 import uc.edu.itp.drugandalcohol.view.GameMenuActivity;
 import uc.edu.itp.drugandalcohol.view.MapActivity;
-import uc.edu.itp.drugandalcohol.view.ReactionTestActivity;
 import uc.edu.itp.drugandalcohol.view.UserDetailsActivity;
 
 
 public class MainActivity extends Activity
 {
-    // TAG is identifier when printing to the logcat for
+    // TAG is identifier when printing to the log cat for
     // debugging/testing purposes
-    private final String TAG = "MainActivity";
+    private final static String TAG = "MainActivity";
+    private final static String EULA_FILE_NAME = "Eula_Shared_Prefs";
+    private static boolean EULA_ACCEPTED = false;
 
     ImageButton detailsImgBtn, calculateImgBtn, emergencyImgBtn,
-            gameMenuImgBtn, proximityImgBtn;
+            gameMenuImgBtn, proximityImgBtn, deleteDataImgBtn;
 
-    boolean EULA_ACCEPTED = false;
+    Random rand;
+    int randNum;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -41,14 +44,33 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+        // attach image buttons to ID's
         detailsImgBtn = (ImageButton)findViewById(R.id.imgBtnEnterDetails);
         calculateImgBtn = (ImageButton)findViewById(R.id.imgBtnCalculateBAC);
         emergencyImgBtn = (ImageButton)findViewById(R.id.imgBtnEmergencySMS);
         gameMenuImgBtn = (ImageButton)findViewById(R.id.imgBtnReactionTest);
         proximityImgBtn = (ImageButton)findViewById(R.id.imgBtnProximity);
+        deleteDataImgBtn = (ImageButton)findViewById(R.id.imgBtnDeleteData);
 
-        startEULA();
 
+        // EULA_ACCEPTED when user clicks accept on
+        // EULA dialog
+        if(!EULA_ACCEPTED)
+        {
+            // display EULA when app is first installed
+            displayEULA();
+        }
+        else
+        {
+            rand = new Random();
+            randNum = rand.nextInt(13); // generate random number between 0-12
+            // display random tips or quotes
+            displayTipsQuotes(randNum);
+        }
+
+
+
+        // click event handlers for image buttons
         detailsImgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,42 +115,118 @@ public class MainActivity extends Activity
             }
         });
 
+        deleteDataImgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+               displayConfirmDelete();
+            }
+        });
+
 
     }
 
-    public void startEULA()
+    public void displayEULA()
     {
-        // check if user has agreed to EULA, only want to display
-        // this dialog once
-        if(!EULA_ACCEPTED)
-        {
+        // create alert dialog to display EULA
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+                alertDialog.setPositiveButton("ACCEPT", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // set boolean value equal to true when user
+                        // clicks OK on EULA dialog
+                        EULA_ACCEPTED = true;
 
-            // Display EULA
-            final AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
-            alertDialog.setPositiveButton("ACCEPT", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    // set boolean value equal to true when user
-                    // clicks OK on EULA dialog
-                    EULA_ACCEPTED = true;
-                    dialogInterface.dismiss();
-                }
-            })
-                    .setNegativeButton("QUIT", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    //dialogInterface.cancel();
-                                    onStop();
-                                }
+                        // close dialog
+                        dialogInterface.dismiss();
+                    }
+                })
+                .setNegativeButton("DECLINE", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //dialogInterface.cancel();
+                                onStop();
                             }
-                    );
+                        }
+                );
 
-            View childView = getLayoutInflater().inflate(R.layout.fragment_eula, null);
-            alertDialog.setView(childView);
+        // create layout for dialog
+        View childView = getLayoutInflater().inflate(R.layout.fragment_eula, null);
+        alertDialog.setView(childView);
+        // show dialog
+        alertDialog.show();
 
-            alertDialog.show();
+    }
 
-        }
+    /*
+     * method creates dialog to display random tip/quote to
+     * user.
+     */
+    public void displayTipsQuotes(int pos)
+    {
+        // get string array values from strings.xml file
+        // and store values in array
+        String[] tipsAndQuotes = getResources().getStringArray(R.array.tips_quotes);
+        String randomTipQuote = tipsAndQuotes[pos];
+
+        // create alert dialog to display EULA
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                // close dialog
+                dialogInterface.dismiss();
+            }
+            })
+            .setNegativeButton("CLOSE", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            //dialogInterface.cancel();
+                            onStop();
+                        }
+                    }
+            );
+
+        // create layout for dialog
+        View view = getLayoutInflater().inflate(R.layout.fragment_tips_quotes_dialog, null);
+
+        TextView tipsQuotesTxtView = (TextView)view.findViewById(R.id.txtViewTipsQuotes);
+        tipsQuotesTxtView.setText(randomTipQuote);
+
+        alertDialog.setView(view);
+        // show dialog
+        alertDialog.show();
+    }
+
+    public void displayConfirmDelete()
+    {
+        // create alert dialog to display confirm delete
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+        alertDialog.setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                // TODO add code to delete data
+                // close dialog
+                dialogInterface.dismiss();
+            }
+        })
+                .setNegativeButton("DECLINE", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                // close dialog and app
+                                onStop();
+                            }
+                        }
+                );
+
+        // create layout for dialog
+        View childView = getLayoutInflater().inflate(R.layout.fragment_confirm_delete_dialog, null);
+        alertDialog.setView(childView);
+        // show dialog
+        alertDialog.show();
     }
 
     @Override
@@ -142,14 +240,13 @@ public class MainActivity extends Activity
     {
         super.onStop();
 
-        // close MainActivity and exit app
-        //finish();
 
         /*
             Todo: add code to save phone state and data
-         */
+        */
     }
 
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -168,4 +265,5 @@ public class MainActivity extends Activity
         }
         return super.onOptionsItemSelected(item);
     }
+    */
 }

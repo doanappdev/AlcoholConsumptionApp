@@ -12,7 +12,6 @@ public abstract class AlcoholType
     // this the name of the XML file which is used to save values to shared preferences
     public static final String DRINK_PREF_FILE_NAME = "DrinksConsumedPrefFile";
 
-
     Context mContext;
     SharedPreferences drinksSharedPrefs;
 

@@ -2,32 +2,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/border_width"
+    android:padding="@dimen/dialog_padding_width"
+    android:background="@color/white1"
+    tools:context="uc.edu.itp.drugandalcohol.fragments.dialogs.EULADialogFragment">
 
-    tools:context="uc.edu.itp.drugandalcohol.fragments.EULADialogFragment">
-
+    <!-- dialog title -->
     <TextView
         android:id="@+id/txtViewEULA"
-        android:text="EULA"
-        android:textSize="16dp"
+        android:text="@string/title_dialog_eula"
+        android:textSize="20sp"
         android:textColor="@color/md_font_87_percent_black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:background="#fffff4f2" />
+        android:layout_marginBottom="4dp" />
 
+    <!-- dialog content -->
     <TextView
-        android:id="@+id/txtViewDescription"
-        android:text="@string/eula_agreement"
-        android:textSize="14dp"
+        android:id="@+id/txtViewEULAContent"
+        android:text="@string/eula_agreement_text"
+        android:textSize="14sp"
         android:textColor="@color/md_font_87_percent_black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtViewEULA"/>
 
+    <!-- dialog actions
+    <Button
+        android:id="@+id/btnAcceptEULA"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:layout_below="@+id/txtViewEULAContent"
+        android:layout_marginTop="@dimen/dialog_padding_width"
+        android:layout_marginLeft="@dimen/border_width"
+        android:layout_marginRight="@dimen/border_width"
+        android:layout_marginBottom="@dimen/border_width"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:text="@string/button_accept"
+        android:textColor="@color/md_font_87_percent_black"
+        android:background="@color/white1"/>
 
-
-
-
+    <Button
+        android:id="@+id/btnDeclineEULA"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:layout_below="@+id/txtViewEULAContent"
+        android:layout_marginTop="@dimen/dialog_padding_width"
+        android:layout_marginLeft="@dimen/border_width"
+        android:layout_marginRight="@dimen/border_width"
+        android:layout_marginBottom="@dimen/border_width"
+        android:layout_toStartOf="@+id/btnAcceptEULA"
+        android:layout_toLeftOf="@+id/btnAcceptEULA"
+        android:text="@string/button_decline"
+        android:textColor="@color/md_font_87_percent_black"
+        android:background="@color/white1"/>
+    -->
 
 </RelativeLayout>

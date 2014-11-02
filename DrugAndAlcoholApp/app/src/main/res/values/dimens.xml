@@ -5,5 +5,8 @@
 
 
     <dimen name="border_width">16dp</dimen>
+    <dimen name="dialog_padding_width">24dp</dimen>
+    <dimen name="button_width">88dp</dimen>
+    <dimen name="button_height">36dp</dimen>
     <dimen name="border_radius">4dp</dimen>
 </resources>

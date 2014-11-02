@@ -121,11 +121,12 @@ public class UserDetailsFragment extends Fragment
 
                 if(pregnantSwitch.isChecked())
                 {
-                    isPREGNANT = true;      //  user is male
+                    isPREGNANT = true;      //  user is pregnant
+                    checkPregnantValue();
                 }
                 else
                 {
-                    isPREGNANT = false;     //  user is female
+                    isPREGNANT = false;     //  user is not pregnant
                 }
 
                 break;
@@ -139,33 +140,16 @@ public class UserDetailsFragment extends Fragment
      */
     private void saveUserPrefs()
     {
-        // get values from UI
-        //int buddyNumInt = checkInputNumber();
-        //int userAge = checkInputAge();
-        //int userWeight = checkInputWeight();
-        //String buddyName = checkInputName();
-
         // no need to instantiate UserDetails object because it
         // is a singleton object
         UserDetails.getInstance().setAge(checkInputAge());
         UserDetails.getInstance().setWeight(checkInputWeight());
-        UserDetails.getInstance().setGender(isMALE);
+        UserDetails.getInstance().setGender(getGenderValue());
         UserDetails.getInstance().setPregnant(isPREGNANT);
         UserDetails.getInstance().setStandardDrinks(0);
 
         buddyContact.setName(checkInputName());
-        buddyContact.setNumber(checkInputNumber());
-
-        /*
-        // save values to user shared preferences
-        SharedPreferences.Editor editor = drinkingSharedPrefs.edit();
-        editor.putInt(getString(R.string.user_age_key), userAge);
-        editor.putInt(getString(R.string.user_weight_key), userWeight);
-        editor.putInt(getString(R.string.buddy_number_key), buddyNumInt);
-        editor.putString(getString(R.string.buddy_name_key), buddyName);
-        editor.putBoolean(getString(R.string.user_gender_key), isMALE);
-        editor.commit();
-        */
+        buddyContact.setNumber(checkInputPhNumber());
 
         // display toast to confirm details saved (for testing)
         Toast.makeText(getActivity(),  "User Details Entered\nUser Age: " + UserDetails.getInstance().getAge() +
@@ -178,7 +162,9 @@ public class UserDetailsFragment extends Fragment
     }
 
     /*
-     * check the value for age entered by the user
+     * check the value entered for users age
+     * first check if the string is empty,
+     * next check if 18 is less than 18
      */
     public int checkInputAge()
     {
@@ -193,8 +179,14 @@ public class UserDetailsFragment extends Fragment
         }
         else
         {
-            // age entered, convert to integer
+            // value for age entered, convert to integer
             userAge = Integer.parseInt(strUserAge);
+
+            // check if age is less than 18
+            if(userAge < 18)
+            {
+                userAgeEditTxt.setError("The legal age to drink is 18");
+            }
 
         }
 
@@ -205,7 +197,7 @@ public class UserDetailsFragment extends Fragment
     public int checkInputWeight()
     {
         int userWeight = 0;
-        // get value value from edit text box
+        // get weight value from edit text box
         String strUserWeight = userWeightEditTxt.getText().toString();
 
         // check if string is empty
@@ -216,22 +208,26 @@ public class UserDetailsFragment extends Fragment
         }
         else
         {
-            // weight is entered has been entered convert string to integer
+            // weight is entered convert string to integer
             userWeight = Integer.parseInt(strUserWeight);
         }
 
         return userWeight;
     }
 
-    public boolean checkGenderValue()
+    public boolean getGenderValue()
     {
-        // isMALE is set to false, when user clicks on gender switch
-        // value will change
         return isMALE;
     }
 
     public boolean checkPregnantValue()
     {
+        if(isPREGNANT)
+        {
+            Toast.makeText(getActivity(), "If you are pregnant it is recommended you do not drink",
+                    Toast.LENGTH_LONG).show();
+        }
+
         return isPREGNANT;
     }
 
@@ -249,7 +245,7 @@ public class UserDetailsFragment extends Fragment
         return strBuddyName;
     }
 
-    public int checkInputNumber()
+    public int checkInputPhNumber()
     {
         int intBuddyNumber = 0;
         String strBuddyNumber = buddyNumberEditTxt.getText().toString();

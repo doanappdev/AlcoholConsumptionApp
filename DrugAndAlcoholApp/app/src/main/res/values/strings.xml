@@ -5,8 +5,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="eula_agreement">The information provided is not meant to be relied
-            upon. It is general in nature.....Do you agree to this?</string>
+
 
     <!-- title values for activities -->
     <string name="title_activity_calculate">Calculate BAC</string>
@@ -24,8 +23,18 @@
     <string name="title_activity_notification_view">NotificationViewActivity</string>
     <string name="title_activity_high_score">HighScoreActivity</string>
     <string name="title_activity_unit_test">UnitTestActivity</string>
-    <string name="title_activity_dummy_calculate_bacbottom_fragment">DummyCalculateBACBottomFragmentActivity</string>
     <string name="title_activity_tab_test">TabTestActivity</string>
+
+    <!-- dialog titles -->
+    <string name="title_dialog_delete_data">Delete Data</string>
+    <string name="title_dialog_eula">EULA</string>
+    <string name="title_dialog_tips_quotes">Tips and Quotes</string>
+
+    <!-- dialog contents -->
+     <string name="eula_agreement_text">The information provided is not meant to be relied
+            upon. It is general in nature.....Do you agree to this?</string>
+
+    <string name="delete_data_text">Are you sure you want to delete app data?</string>
 
     <!--
     key values for shared preferences
@@ -49,6 +58,7 @@
     <string name="HOURS_DRINKING_KEY">HrsDrinkingKey</string>
     <string name="CURRENT_BAC_KEY">CurrentBACKey</string>
     <string name="OLD_BAC_KEY">OldBACKey</string>
+    <string name="EULA_ACCEPTED_KEY">EULAAcceptedKey</string>
 
 
     <!-- TODO: delete string values not needed -->
@@ -57,15 +67,17 @@
     <string name="user_gender_key">UserGenderKey</string>
     <string name="user_pregnant_key">UserPregnantKey</string>
     <string name="drinking_number_of_drinks_key">NumOfStandardDrinksKey</string>
-
     <string name="drinking_current_bac_key">CurrentBACKey</string>
     <string name="drinking_old_bac_key">OldBACKey</string>
     <string name="buddy_name_key">BuddyNameKey</string>
     <string name="buddy_number_key">BuddyNumberKey</string>
+
+
     <string name="emergency_prompt">Choose a friend</string>
 
     <!-- button text values -->
     <string name="button_accept">ACCEPT</string>
+    <string name="button_decline">DECLINE</string>
     <string name="button_done">DONE</string>
     <string name="button_ok">OK</string>
     <string name="button_edit">EDIT</string>

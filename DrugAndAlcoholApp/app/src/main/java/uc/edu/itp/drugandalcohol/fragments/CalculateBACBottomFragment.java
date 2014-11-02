@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import uc.edu.itp.drugandalcohol.R;
+import uc.edu.itp.drugandalcohol.fragments.dialogs.BACDialogFragment;
 import uc.edu.itp.drugandalcohol.model.AlcoholType;
 import uc.edu.itp.drugandalcohol.model.UserDetails;
 
@@ -34,15 +35,12 @@ public class CalculateBACBottomFragment extends Fragment
     private static final float[] HOURS = {0.5f, 1.0f, 1.5f, 2.0f, 2.5f, 3.0f, 3.5f, 4.0f};
 
     EditText userWeightEditTxt;
-    //Button calculateBACBtn;
-    Button calculateBAC2Btn;
+    Button calculateBACBtn;
 
     SharedPreferences drinkSharedPrefs, userSharedPrefs;
     SharedPreferences.Editor editor;
 
     Spinner spinnerHrsDrinking;
-
-    //private static final String USER_WEIGHT = "userWeightKey";
 
     public CalculateBACBottomFragment() {
         // Required empty public constructor
@@ -60,11 +58,11 @@ public class CalculateBACBottomFragment extends Fragment
 
         userWeightEditTxt = (EditText)v.findViewById(R.id.editTxtUserWeight);
 
-        calculateBAC2Btn = (Button)v.findViewById(R.id.btnCalculateBAC2);
-        calculateBAC2Btn.setOnClickListener(this);
+        calculateBACBtn = (Button)v.findViewById(R.id.btnCalculateBAC2);
+        calculateBACBtn.setOnClickListener(this);
 
         drinkSharedPrefs = getActivity().getSharedPreferences(AlcoholType.DRINK_PREF_FILE_NAME, Context.MODE_PRIVATE);
-        userSharedPrefs = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        //userSharedPrefs = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
 
         // display user weight in userWeightEditTxt view. if user has not entered their
         // weight from the enter user details screen the weight will display 0.
@@ -119,12 +117,11 @@ public class CalculateBACBottomFragment extends Fragment
         // TODO Auto-generated method stub
     }
 
-
-
+    // create fragment manager to display the
     void showBACDialog()
     {
         FragmentManager fm = getFragmentManager();
-        DisplayBACDialogFragment bacDialogFragment = new DisplayBACDialogFragment();
+        BACDialogFragment bacDialogFragment = new BACDialogFragment();
         bacDialogFragment.setTargetFragment(this, 0);
         bacDialogFragment.show(fm, "Calculate BAC Bottom");
 
@@ -155,8 +152,6 @@ public class CalculateBACBottomFragment extends Fragment
     private void getBACFormulaValues(float weight)
     {
         float totalStandardDrinks;
-        float bacValue;
-        //float mWeight = weight;
 
         // get total number of drinks consumed from shared preferences
         float numOfSmBeers = drinkSharedPrefs.getFloat(getString(R.string.BEER_ONE_KEY), 0);

@@ -1,0 +1,28 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dialog_padding_width"
+    tools:context="uc.edu.itp.drugandalcohol.fragments.dialogs.ConfirmDeleteDialogFragment">
+
+    <!-- dialog title -->
+    <TextView
+        android:id="@+id/txtViewDeleteTitle"
+        android:text="@string/title_dialog_delete_data"
+        android:textSize="20sp"
+        android:textColor="@color/md_font_87_percent_black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dialog_padding_width" />
+
+    <!-- dialog content -->
+    <TextView
+        android:id="@+id/txtViewDeleteContent"
+        android:text="@string/delete_data_text"
+        android:textSize="14sp"
+        android:textColor="@color/md_font_87_percent_black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtViewDeleteTitle"/>
+
+</RelativeLayout>

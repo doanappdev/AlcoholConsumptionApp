@@ -1,0 +1,31 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dialog_padding_width"
+    tools:context="uc.edu.itp.drugandalcohol.fragments.dialogs.TipsQuotesDialogFragment">
+
+   <TextView
+       android:id="@+id/txtViewTipsQuotesH1"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="@string/title_dialog_tips_quotes"
+       android:textSize="20sp"
+       android:textColor="@color/md_font_54_percent_black"
+
+       android:layout_alignParentTop="true"
+       />
+
+   <TextView
+       android:id="@+id/txtViewTipsQuotes"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_margin="@dimen/border_width"
+       android:layout_below="@+id/txtViewTipsQuotesH1"
+       android:text="This text view will display the tips or quotes"
+       android:textSize="14sp"
+       android:textColor="@color/md_blue_600"
+       android:inputType="textMultiLine"
+       android:gravity="center"/>
+
+</RelativeLayout>

@@ -15,14 +15,7 @@
         android:weightSum="1">
 
 
-        <TextView
-            android:text="Welcome to"
-            android:textColor="@color/white1"
-            android:textSize="14dp"
-            android:layout_gravity="left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"/>
+       
 
         <TextView
             android:text="Alcohol Consumption"
@@ -31,6 +24,7 @@
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             />
 
         <ImageView
@@ -45,16 +39,17 @@
         <TextView
             android:text="Drink responsibly"
             android:textColor="@color/white1"
-            android:textSize="18dp"
+            android:textSize="22dp"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/border_width"
             />
 
         <TextView
             android:text="While having a good time"
             android:textColor="@color/white1"
-            android:textSize="14dp"
+            android:textSize="16dp"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -172,11 +167,11 @@
                 android:background="@drawable/btn_state_white"/>
 
             <ImageButton
-                android:id="@+id/imgBtnExit"
+                android:id="@+id/imgBtnDeleteData"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:src="@drawable/close_cross_48"
+                android:src="@drawable/ic_delete_data_48"
                 android:background="@drawable/btn_state_white"/>
 
         </LinearLayout>
