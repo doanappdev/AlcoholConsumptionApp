@@ -12,12 +12,6 @@ public class Wine extends AlcoholType
 {
     private static final String TAG = "Beer";
 
-    // key values for saving to shared preferences
-    public static final String WINE_ONE_KEY = "WineKeyOne";
-    public static final String WINE_TWO_KEY = "WineKeyTwo";
-    public static final String WINE_THREE_KEY = "WineKeyThree";
-    public static final String WINE_FOUR_KEY = "WineKeyFour";
-
     public static final int WINE_ROW_1_CLICKED = 4;
     public static final int WINE_ROW_2_CLICKED = 5;
     public static final int WINE_ROW_3_CLICKED = 6;
@@ -53,11 +47,11 @@ public class Wine extends AlcoholType
         // save values to shared preferences, values are saved as (Key, Value) pairs
         // key value is stored as string in strings.xml to allow other fragments easy access
         // to them
-        SharedPreferences.Editor editor = sharedPrefs.edit();
-        editor.putFloat(mContext.getString(R.string.BEER_ONE_KEY), mWine1Consumed);
-        editor.putFloat(mContext.getString(R.string.BEER_TWO_KEY), mWine2Consumed);
-        editor.putFloat(mContext.getString(R.string.BEER_THREE_KEY), mWine3Consumed);
-        editor.putFloat(mContext.getString(R.string.BEER_FOUR_KEY), mWine4Consumed);
+        SharedPreferences.Editor editor = drinksSharedPrefs.edit();
+        editor.putFloat(mContext.getString(R.string.WINE_ONE_KEY), mWine1Consumed);
+        editor.putFloat(mContext.getString(R.string.WINE_TWO_KEY), mWine2Consumed);
+        editor.putFloat(mContext.getString(R.string.WINE_THREE_KEY), mWine3Consumed);
+        editor.putFloat(mContext.getString(R.string.WINE_FOUR_KEY), mWine4Consumed);
         editor.apply();     // apply writes data in the background
         //editor.commit();    // commit writes its data to persistent storage immediately
     }

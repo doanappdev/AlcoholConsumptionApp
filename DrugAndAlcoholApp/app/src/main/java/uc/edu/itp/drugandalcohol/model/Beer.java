@@ -45,6 +45,7 @@ public class Beer extends AlcoholType
         mBeer3Consumed = drink3;
         mBeer4Consumed = drink4;
 
+        // save number of drinks consumed to shared preferences
         saveTotalDrinksConsumed();
     }
 
@@ -52,10 +53,11 @@ public class Beer extends AlcoholType
     @Override
     public void saveTotalDrinksConsumed()
     {
-        // save values to shared preferences, values are saved as (Key, Value) pairs
-        // key value is stored as string in strings.xml to allow other fragments easy access
+        // save values to shared preferences defined in super class (AlcoholType),
+        // values are saved as (Key, Value) pairs
+        // key is stored as string in strings.xml to allow other fragments easy access
         // to them
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = drinksSharedPrefs.edit();
         editor.putFloat(mContext.getString(R.string.BEER_ONE_KEY), mBeer1Consumed);
         editor.putFloat(mContext.getString(R.string.BEER_TWO_KEY), mBeer2Consumed);
         editor.putFloat(mContext.getString(R.string.BEER_THREE_KEY), mBeer3Consumed);

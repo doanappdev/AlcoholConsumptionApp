@@ -55,10 +55,6 @@ public class CalculateBACBottomFragment extends Fragment
     {
         View v = inflater.inflate(R.layout.fragment_calculate_bac_bottom2, null);
 
-        //displayBACtxtView = (TextView)v.findViewById(R.id.txtViewDisplayBAC);
-        //calculateBACBtn = (Button)v.findViewById(R.id.btnCalculateBAC);
-        //calculateBACBtn.setOnClickListener(this);
-
         spinnerHrsDrinking = (Spinner)v.findViewById(R.id.spinnerHrsDrinking);
         spinnerHrsDrinking.setOnItemSelectedListener(this);
 
@@ -133,12 +129,6 @@ public class CalculateBACBottomFragment extends Fragment
 
     }
 
-    // this method checks if the user has entered their details required for calculating
-    // BAC
-    //public boolean checkUserDetailsEntered()
-    //{
-       // UserDetails.getInstance().getHrsSinceDrinking();
-    //}
 
     public boolean checkWeightEntered()
     {
@@ -176,8 +166,13 @@ public class CalculateBACBottomFragment extends Fragment
         float numOfRedWine = drinkSharedPrefs.getFloat(getString(R.string.WINE_TWO_KEY), 0);
         float numOfWhiteWine = drinkSharedPrefs.getFloat(getString(R.string.WINE_THREE_KEY), 0);
         float numOfBottleWine = drinkSharedPrefs.getFloat(getString(R.string.WINE_FOUR_KEY), 0);
+        float numOfSpirits1 = drinkSharedPrefs.getFloat(getString(R.string.SPIRITS_ONE_KEY), 0);
+        float numOfSpirits2 = drinkSharedPrefs.getFloat(getString(R.string.SPIRITS_TWO_KEY), 0);
+        float numOfSpirits3 = drinkSharedPrefs.getFloat(getString(R.string.SPIRITS_THREE_KEY), 0);
+        float numOfSpirits4 = drinkSharedPrefs.getFloat(getString(R.string.SPIRITS_FOUR_KEY), 0);
 
-        // apply standard drinks value to number of drinks
+
+        // apply standard drinks value to number of drinks consumed
         // e.g 1 small beer = 1.1 standard drinks
         //       large beer = 1.6 standard drinks
         float smBeerStandardDrinks = 1.1f * numOfSmBeers;
@@ -190,9 +185,15 @@ public class CalculateBACBottomFragment extends Fragment
         float whiteWineStandardDrinks = 1.4f * numOfWhiteWine;
         float bottleWineStandardDrinks = 8.0f * numOfBottleWine;
 
+        float spirits1StandardDrinks = 1.2f * numOfSpirits1;
+        float spirits2StandardDrinks = 1.0f * numOfSpirits2;
+        float spirits3StandardDrinks = 1.5f * numOfSpirits3;
+        float spirits4StandardDrinks = 1.6f * numOfSpirits4;
+
         // calculate total standard drinks
         totalStandardDrinks = smBeerStandardDrinks + lgBeerStandardDrinks + bottleBeerStandardDrinks + canBeerStandDrinks
-                + sparklingWineStandardDrinks + redWineStandardDrinks + whiteWineStandardDrinks + bottleWineStandardDrinks;
+                + sparklingWineStandardDrinks + redWineStandardDrinks + whiteWineStandardDrinks + bottleWineStandardDrinks
+                + spirits1StandardDrinks + spirits2StandardDrinks + spirits3StandardDrinks + spirits4StandardDrinks;
 
         // call method to apply bac formula
         bacFormula(totalStandardDrinks, weight);
@@ -224,12 +225,6 @@ public class CalculateBACBottomFragment extends Fragment
         // get gender value from shared prefs, if no value is stored we return a default
         // value of true to represent a male.
         gender = UserDetails.getInstance().getGender();
-
-        //// check if weight has been entered
-        //if(checkWeightEntered())
-        //{
-
-
             // true = male
             // false = female
             if(gender)
@@ -246,39 +241,26 @@ public class CalculateBACBottomFragment extends Fragment
             saveDrinkingValues(numOfDrinks, H, bac);
 
             // for testing to check values
-            Log.d(TAG, Float.toString(bac));
-        //}
-
-
-
-
-
-        // test if weight is equal to 0
-        //if(M == 0f)
-        //{
-            //userWeightEditTxt.setError("Enter your weight");
-        //}
-
-
-
-        //return bac;
+            Log.d(TAG, "BAC: " + Float.toString(bac) + " NumOfDrinks: " + numOfDrinks + " Hours: " + H);
 
     }
 
 
-    // save BAC to shared preferences, this will save the number of drinks
-    // even when the user exits app.
-    public void saveDrinkingValues(float totalDrinks, float hrsDrinking, float bac)
+    // save vales to shared preferences,
+    public void saveDrinkingValues(float totalStdDrinks, float hrsDrinking, float bac)
     {
         editor = drinkSharedPrefs.edit();
-        editor.putFloat(getString(R.string.BEER_ONE_KEY), 0);
-        editor.putFloat(getString(R.string.BEER_TWO_KEY), 0);
-        editor.putFloat(getString(R.string.BEER_THREE_KEY), 0);
-        editor.putFloat(getString(R.string.BEER_FOUR_KEY), 0);
-        editor.putFloat(getString(R.string.drinking_current_bac_key), bac);
+        editor.putFloat(getString(R.string.TOTAL_STANDARD_DRINKS_KEY), totalStdDrinks);
+        editor.putFloat(getString(R.string.HOURS_DRINKING_KEY), hrsDrinking);
+        editor.putFloat(getString(R.string.CURRENT_BAC_KEY), bac);
         editor.apply();
         //editor.commit();
     }
+
+    /*******************************************************************************
+     * Testing methods
+     *
+     ******************************************************************************/
 
     // testing BAC formula for unit testing
     public float testBACFormula(float numOfDrinks, float hrs, float weight, boolean gender)
@@ -298,5 +280,7 @@ public class CalculateBACBottomFragment extends Fragment
 
         return bac;
     }
+
+
 
 }

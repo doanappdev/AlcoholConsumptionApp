@@ -261,6 +261,11 @@ public class NumberPadFragment extends DialogFragment
         getTargetFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_CANCELED, i);
     }
 
+    /*******************************************************************************
+     * Testing methods
+     *
+     ******************************************************************************/
+
 
 
 }

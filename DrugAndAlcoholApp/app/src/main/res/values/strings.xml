@@ -45,12 +45,19 @@
     <string name="SPIRITS_TWO_KEY">Spirits2Key</string>
     <string name="SPIRITS_THREE_KEY">Spirits3Key</string>
     <string name="SPIRITS_FOUR_KEY">Spirits4Key</string>
+    <string name="TOTAL_STANDARD_DRINKS_KEY">TotalStandardDrinksKey</string>
+    <string name="HOURS_DRINKING_KEY">HrsDrinkingKey</string>
+    <string name="CURRENT_BAC_KEY">CurrentBACKey</string>
+    <string name="OLD_BAC_KEY">OldBACKey</string>
+
+
+    <!-- TODO: delete string values not needed -->
     <string name="USER_AGE_KEY">UserAgeKey</string>
     <string name="user_weight_key">UserWeightKey</string>
     <string name="user_gender_key">UserGenderKey</string>
     <string name="user_pregnant_key">UserPregnantKey</string>
     <string name="drinking_number_of_drinks_key">NumOfStandardDrinksKey</string>
-    <string name="drinking_hrs_drinking_key">HrsDrinkingKey</string>
+
     <string name="drinking_current_bac_key">CurrentBACKey</string>
     <string name="drinking_old_bac_key">OldBACKey</string>
     <string name="buddy_name_key">BuddyNameKey</string>
