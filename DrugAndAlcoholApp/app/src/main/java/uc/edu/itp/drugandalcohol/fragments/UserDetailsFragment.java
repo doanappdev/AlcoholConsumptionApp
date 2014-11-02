@@ -30,7 +30,7 @@ public class UserDetailsFragment extends Fragment
     LinearLayout pregnantLayout;
     SharedPreferences userSharedPrefs;
 
-    Button acceptBtn, cancelBtn, editBtn;
+    Button acceptBtn, cancelBtn;
 
     EditText userAgeEditTxt, userWeightEditTxt, buddyNameEditTxt, buddyNumberEditTxt;
     Switch genderSwitch, pregnantSwitch;
@@ -84,7 +84,8 @@ public class UserDetailsFragment extends Fragment
                 break;
 
             case R.id.btnCancel:
-                onStop();
+                // close activity and fragment
+                getActivity().finish();
                 break;
 
         }
@@ -122,7 +123,7 @@ public class UserDetailsFragment extends Fragment
                 if(pregnantSwitch.isChecked())
                 {
                     isPREGNANT = true;      //  user is pregnant
-                    checkPregnantValue();
+
                 }
                 else
                 {
@@ -132,6 +133,8 @@ public class UserDetailsFragment extends Fragment
                 break;
 
         }
+
+        displayPregnantMsg(isPREGNANT);
     }
 
 
@@ -152,7 +155,7 @@ public class UserDetailsFragment extends Fragment
         buddyContact.setNumber(checkInputPhNumber());
 
         // display toast to confirm details saved (for testing)
-        Toast.makeText(getActivity(),  "User Details Entered\nUser Age: " + UserDetails.getInstance().getAge() +
+        Toast.makeText(getActivity(),  "User Details Saved\nUser Age: " + UserDetails.getInstance().getAge() +
                                        "\nUser Weight: " + UserDetails.getInstance().getWeight() +
                                        "\nMale: " + isMALE +
                                        "\nPregnant: " + isPREGNANT +
@@ -220,15 +223,15 @@ public class UserDetailsFragment extends Fragment
         return isMALE;
     }
 
-    public boolean checkPregnantValue()
+    public void displayPregnantMsg(boolean pregnant)
     {
-        if(isPREGNANT)
+        if(pregnant)
         {
             Toast.makeText(getActivity(), "If you are pregnant it is recommended you do not drink",
                     Toast.LENGTH_LONG).show();
         }
 
-        return isPREGNANT;
+        //return isPREGNANT;
     }
 
     public String checkInputName()

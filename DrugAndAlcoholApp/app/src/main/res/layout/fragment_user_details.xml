@@ -320,27 +320,25 @@
         <Button
             android:id="@+id/btnAccept"
             android:text="@string/button_accept"
-            android:textColor="@color/md_orange_500"
+            android:textColor="@color/white1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_margin="8dp"
-            android:background="@drawable/btn_state_white"/>
+            android:background="@drawable/btn_state_orange"/>
 
         <Button
             android:id="@+id/btnCancel"
             android:text="@string/button_cancel"
-            android:textColor="@color/md_orange_500"
+            android:textColor="@color/white1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@+id/btnAccept"
-            android:layout_toStartOf="@+id/btnAccept"
             android:layout_margin="8dp"
-            android:background="@drawable/btn_state_white"/>
+            android:background="@drawable/btn_state_orange"/>
 
-
+        <!--
         <Button
             android:id="@+id/btnEdit"
             android:text="@string/button_edit"
@@ -351,6 +349,7 @@
             android:layout_margin="8dp"
             android:background="@drawable/btn_state_white"
             />
+        -->
 
     </RelativeLayout>
 
