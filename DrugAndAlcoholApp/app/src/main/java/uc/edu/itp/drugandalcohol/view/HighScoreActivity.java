@@ -15,13 +15,17 @@ import uc.edu.itp.drugandalcohol.R;
 
 /*
 *
-* TO DO: IMPLEMENT HIGH SCORE MENU
+* TO DO: IMPLEMENT HIGH SCORE MENU FUNCTIONS
 *
 */
 
 public class HighScoreActivity extends Activity {
 
-    TextView highScoreTxt;
+    TextView no1Txt;
+    TextView no2Txt;
+    TextView no3Txt;
+    TextView no4Txt;
+    TextView no5Txt;
     Button backBtn;
 
     @Override
@@ -29,16 +33,18 @@ public class HighScoreActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_high_score);
 
-        highScoreTxt = (TextView)findViewById(R.id.txtHighScore);
-        highScoreTxt.setText(
-            "1 - 733t m4n: OVER 9000!!!\n" +
-            "2 - 2nd b35t: just under 9000... :(\n" +
-            "3 - m1d773 ch17d: 7777\n" +
-            "4 - Forest Gump: 500\n" +
-            "5 - w0r5t p74y4 3v4: -1000000"
-        );
+        no1Txt = (TextView)findViewById(R.id.txtNo1);
+        no1Txt.setText("OVER 9000!!!");
+        no2Txt = (TextView)findViewById(R.id.txtNo2);
+        no2Txt.setText("just under 9000... :(");
+        no3Txt = (TextView)findViewById(R.id.txtNo3);
+        no3Txt.setText("7777");
+        no4Txt = (TextView)findViewById(R.id.txtNo4);
+        no4Txt.setText("1'm Gump.");
+        no5Txt = (TextView)findViewById(R.id.txtNo5);
+        no5Txt.setText("-3.141592653... etc.");
 
-        backBtn = (Button)findViewById(R.id.btnBack);
+        backBtn = (Button)findViewById(R.id.btnExitHighScore);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
