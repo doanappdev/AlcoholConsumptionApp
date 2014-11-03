@@ -368,12 +368,24 @@ public class EmergencyFragment extends Fragment
     }
 
 
+
+
+    /*******************************************************************************
+     * Testing methods
+     *
+     ******************************************************************************/
+
     public String getSelectNumber(int pos)
     {
+        // the IDE has message that the variable thisNumber is redundant
+        // you can just return the array like this
+        // return testNumber[pos];
+        // no need to create extra variable, I suggest you remove it
         String[] testNumber = getResources().getStringArray(R.array.Number_List);
         String thisNumber = testNumber[pos];
 
         return thisNumber;
+        //return testNumber[pos];
     }
 
     public String getSelectedContact(int pos)
@@ -383,9 +395,4 @@ public class EmergencyFragment extends Fragment
 
         return thisContact;
     }
-
-    /*******************************************************************************
-     * Testing methods
-     *
-     ******************************************************************************/
 }

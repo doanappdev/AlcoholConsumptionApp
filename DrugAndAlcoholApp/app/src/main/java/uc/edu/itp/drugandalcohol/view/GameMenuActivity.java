@@ -189,4 +189,10 @@ public class GameMenuActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+    public String testGameMenuString()
+    {
+        return "This is a string from Game Menu";
+    }
 }

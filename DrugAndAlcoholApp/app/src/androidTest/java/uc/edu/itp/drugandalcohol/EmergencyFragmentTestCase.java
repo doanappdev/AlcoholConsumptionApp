@@ -14,9 +14,6 @@ public class EmergencyFragmentTestCase extends ActivityInstrumentationTestCase2<
 {
    EmergencyActivity mEmergencyActivity;
 
-    //UserDetailsActivity mUserDetailsActivity;
-    //UserDetailsFragment mUserDetailsFragment;
-
     EmergencyFragment mEmergencyFragment;
 
     public EmergencyFragmentTestCase()
@@ -39,17 +36,7 @@ public class EmergencyFragmentTestCase extends ActivityInstrumentationTestCase2<
         assertNotNull(mEmergencyActivity);
         assertNotNull(mEmergencyFragment);
     }
-/*
-    public void testInteractionUI()
-    {
-        mEmergencyActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                mEmergencyFragment.addItemsToSpinner();
-            }
-        });
-    }
-*/
+
 
     public void testContacts()
     {

@@ -213,7 +213,7 @@ public class MainActivity extends Activity
                 dialogInterface.dismiss();
             }
         })
-                .setNegativeButton("DECLINE", new DialogInterface.OnClickListener() {
+                .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 // close dialog and app

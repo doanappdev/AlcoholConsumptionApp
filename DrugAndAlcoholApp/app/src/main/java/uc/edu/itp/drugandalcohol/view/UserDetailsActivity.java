@@ -24,7 +24,7 @@ public class UserDetailsActivity extends FragmentActivity
         setContentView(R.layout.activity_user_details);
 
         /*
-         * The FragmentManger clas and the FragmentTransaction class allow you to add,
+         * The FragmentManger class and the FragmentTransaction class allow you to add,
          * remove and replace fragments in the layout of your activity.
          * Fragments can be dynamically modify via transactions. To dynamically add
          * fragments to an existing layout you typically define a container in the XML
