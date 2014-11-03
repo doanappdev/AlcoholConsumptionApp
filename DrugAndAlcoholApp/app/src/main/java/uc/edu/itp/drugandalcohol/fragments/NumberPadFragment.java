@@ -36,14 +36,6 @@ public class NumberPadFragment extends DialogFragment
 
     TextView displayTxtView;
 
-    //NumberPadListener numberPadListener;
-
-    // interface to help communicate with the calling fragment
-    //public interface NumberPadListener
-    //{
-    //    public void message(String data);
-    //}
-
     /*
 	 * newInstance() method allows a new instance of the fragment to be created,
 	 * and at the same time it accepts an argument specifying the string(title)
@@ -80,31 +72,8 @@ public class NumberPadFragment extends DialogFragment
                 ViewGroup.LayoutParams.MATCH_PARENT);
 
 
-
         return dialog;
 
-         /*
-        // create a AlertDialog
-        // use the builder class for convenient dialog construction
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage(R.string.eula_agreement)
-               .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
-                   public void onClick(DialogInterface dialog, int id)
-                   {
-                       // close the dialog
-                       dismiss();
-                   }
-               })
-               .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                   public void onClick(DialogInterface dialog, int id) {
-                       // close the dialog
-                       dismiss();
-                   }
-               });
-
-        // return the alert dialog object
-        return builder.create();
-        */
     }
 
 
@@ -148,30 +117,7 @@ public class NumberPadFragment extends DialogFragment
         return view;
     }
 
-    /*
-        override the onAttach method to help pass info between number pad fragment
-        and calculate BAC fragment
 
-    @Override
-    public void onAttach(Activity activity)
-    {
-        super.onAttach(activity);
-
-        numberPadListener = (NumberPadListener)getActivity();
-
-        numberPadListener.message("55");
-
-        //if(activity instanceof NumberPadListener)
-        //{
-        //    numberPadListener = (NumberPadListener)getTargetFragment();
-        //}
-        //else
-        //{
-        //    throw new ClassCastException(activity.toString()
-        //            + " must implement NumberPadFragment.numberPadListener");
-        //}
-    }
-     */
     @Override
     public void onClick(View view)
     {

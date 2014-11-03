@@ -38,7 +38,6 @@ public class EmergencyFragment extends Fragment
         implements View.OnClickListener, AdapterView.OnItemSelectedListener
 {
 
-
     private Spinner contactSpinner, standardMsgSpinner;
     private TextView sendToTxtView;
     private EditText customMsgEditTxt, contactNumberEditTxt;
@@ -292,6 +291,7 @@ public class EmergencyFragment extends Fragment
 
                 contactNumberEditTxt.setVisibility(EditText.VISIBLE);
                 showPhNumEditTxt = true;
+
                 Toast.makeText(getActivity(),
                                 "Name: " + selectedName +
                                 "\nNumber: " + selectedPhNum +

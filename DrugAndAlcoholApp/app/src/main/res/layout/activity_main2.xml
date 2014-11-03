@@ -18,9 +18,10 @@
        
 
         <TextView
+            android:id="@+id/txtViewMainH1"
             android:text="Alcohol Consumption"
             android:textColor="@color/white1"
-            android:textSize="24dp"
+            android:textSize="28dp"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

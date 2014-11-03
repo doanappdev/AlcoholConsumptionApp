@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -31,6 +32,7 @@ public class MainActivity extends Activity
     private final static String EULA_FILE_NAME = "Eula_Shared_Prefs";
     private static boolean EULA_ACCEPTED = false;
 
+    TextView heading1TxtView;
     ImageButton detailsImgBtn, calculateImgBtn, emergencyImgBtn,
             gameMenuImgBtn, proximityImgBtn, deleteDataImgBtn;
 
@@ -51,6 +53,12 @@ public class MainActivity extends Activity
         gameMenuImgBtn = (ImageButton)findViewById(R.id.imgBtnReactionTest);
         proximityImgBtn = (ImageButton)findViewById(R.id.imgBtnProximity);
         deleteDataImgBtn = (ImageButton)findViewById(R.id.imgBtnDeleteData);
+        heading1TxtView = (TextView)findViewById(R.id.txtViewMainH1);
+
+        // setting the font for text view
+        Typeface font = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/Roboto-Bold.ttf");
+        heading1TxtView.setTypeface(font);
+
 
 
         // EULA_ACCEPTED when user clicks accept on

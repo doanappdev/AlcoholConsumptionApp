@@ -6,7 +6,9 @@ import android.app.Dialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.PendingIntent;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -26,6 +28,7 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -72,13 +75,13 @@ public class MapActivity extends FragmentActivity implements LocationListener, V
         getLocationBtn = (Button)findViewById(R.id.btnGetLocation);
         getLocationBtn.setOnClickListener(this);
 
+        /** Opening the editor object to write data to sharedPreferences */
+        sharedPreferences = getApplicationContext().getSharedPreferences("GpsLocation", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
         // check if users phone or emulator has google play services
         checkServicesConnected();
         connectAzureCloud();
-
-        // enable home icon (back  button) on action bar
-        //ActionBar actionBar = getActionBar();
-        //actionBar.setHomeButtonEnabled(true);
 
         // click listener for short clicks
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener()
@@ -88,6 +91,59 @@ public class MapActivity extends FragmentActivity implements LocationListener, V
             {
                 // remove existing marker from map
                 mMap.clear();
+
+                // draw marker and circle on map
+                drawMarker(latLng);
+                drawCircle(latLng);
+
+                // This intent will call the activity ProximityActivity
+                Intent proximityIntent = new Intent();
+                proximityIntent.setClass(getApplicationContext(), ProximityAlertActivity.class);
+
+                // Creating a pending intent which will be invoked by LocationManager when the specified
+                // region is entered or exited
+                pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, proximityIntent, 0);
+
+                // Setting proximity alert where user touches the map
+                // The pending intent will be invoked when the device enters or exits the radius
+                // of 20 meters away from the marked point.
+                // The -1 indicates that, the monitor will not be expired
+                locationManager.addProximityAlert(latLng.latitude, latLng.longitude, 20, -1, pendingIntent);
+
+                saveGPS(latLng);
+
+            }
+        });
+
+
+         // click listener for long clicks
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng point) {
+                // This intent will call the activity ProximityActivity
+                Intent proximityIntent = new Intent();
+                proximityIntent.setClass(getApplicationContext(), ProximityAlertActivity.class);
+
+                // Creating a pending intent which will be invoked by LocationManager when the specified region is
+                // entered or exited
+                pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, proximityIntent, 0);
+
+                // Removing the proximity alert
+                locationManager.removeProximityAlert(pendingIntent);
+
+                // Removing the marker and circle from the Google Map
+                mMap.clear();
+
+                // Open the editor object to delete data from sharedPreferences
+                editor = sharedPreferences.edit();
+
+                // Clearing the editor
+                editor.clear();
+
+                // Committing the changes
+                editor.commit();
+
+                Toast.makeText(getBaseContext(), "Proximity Alert is removed", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -121,6 +177,7 @@ public class MapActivity extends FragmentActivity implements LocationListener, V
 
             // enable MyLocation layer of Google Map
             mMap.setMyLocationEnabled(true);
+
 
             // get LocationManager object from system services
             locationManager = (LocationManager)getSystemService(LOCATION_SERVICE);
@@ -175,8 +232,6 @@ public class MapActivity extends FragmentActivity implements LocationListener, V
         }
         catch (MalformedURLException e)
         {
-            //createAndShowDialog(new Exception("There was an error creating the Mobile Service. Verify the URL"), "Error");
-            // log connection succeeded
             Log.d(TAG, "Connection failed - " + e.toString());
         }
     }
@@ -195,6 +250,38 @@ public class MapActivity extends FragmentActivity implements LocationListener, V
         }
     }
 
+    /**
+     * saveGPS saves the latitude and longitude of position touched on map using shared preferences.
+     * Store data using KEY/VALUE pair e.g. editor.putInt("key_name", int value);
+     * Get data e.g. sharedPrefs.getInt("key_name", null);
+     * To clear all data from SharedPreferences use following:
+     * editor.clear();
+     * editor.commit();
+     * @param latLng
+     */
+    private void saveGPS(LatLng latLng)
+    {
+        /** Storing the latitude of the current location to the shared preferences */
+        editor.putString("lat", Double.toString(latLng.latitude));
+
+        /** Storing the longitude of the current location to the shared preferences */
+        editor.putString("lng", Double.toString(latLng.longitude));
+
+        /** Storing the zoom level to the shared preferences */
+        editor.putString("zoom", Float.toString(mMap.getCameraPosition().zoom));
+
+        /** Saving the values stored in the shared preferences */
+        editor.commit();
+
+        Toast.makeText(getBaseContext(), "Proximity Alert is added", Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * this method is similar to the one above, however it saves the location and sends the
+     * data to azure cloud. This method will be removed or edit as the azure cloud
+     * service free trial runs out on the 15/11/14.
+     *
+     */
     public void saveLocation()
     {
         LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
@@ -221,20 +308,24 @@ public class MapActivity extends FragmentActivity implements LocationListener, V
         // helper method to save location info to LocationData object
         saveUserLocation(item.id, Double.toString(lat), Double.toString(lng));
 
+        Toast.makeText(getApplicationContext(), "Inserting Location Data to cloud succeeded", Toast.LENGTH_LONG).show();
+
+        /*
         // insert item object into table using MobileServiceClient
         mClient.getTable(ToDoItem.class).insert(item, new TableOperationCallback<ToDoItem>() {
             @Override
             public void onCompleted(ToDoItem toDoItem, Exception e, ServiceFilterResponse serviceFilterResponse) {
                 if (e == null) {
                     // Insert succeeded
-                    Toast.makeText(getApplicationContext(), "Inserting Location Data to table Succeeded", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Inserting Location Data to cloud succeeded", Toast.LENGTH_LONG).show();
                 } else {
                     // Insert failed
-                    Toast.makeText(getApplicationContext(), "Inserting Location Data to table Failed", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Inserting Location Data to cloud failed", Toast.LENGTH_LONG).show();
                     Log.d(TAG, e.toString());
                 }
             }
         });
+        */
     }
 
     // save data to object so we can access info in emergency SMS
@@ -281,18 +372,63 @@ public class MapActivity extends FragmentActivity implements LocationListener, V
                 });
     }
 
+    /**
+     * draw a marker on the map
+     * @param point
+     */
+    private void drawMarker(LatLng point){
+        // Creating an instance of MarkerOptions
+        MarkerOptions markerOptions = new MarkerOptions();
+
+        // Setting latitude and longitude for the marker
+        markerOptions.position(point);
+
+        // Adding marker on the Google Map
+        mMap.addMarker(markerOptions);
+    }
+
+    /**
+     * draw circle around the marker
+     * @param point
+     */
+    private void drawCircle(LatLng point){
+
+        // Instantiating CircleOptions to draw a circle around the marker
+        CircleOptions circleOptions = new CircleOptions();
+
+        // Specifying the center of the circle
+        circleOptions.center(point);
+
+        // set circle radius to 20 meters
+        circleOptions.radius(20);
+
+        // Border color of the circle
+        circleOptions.strokeColor(Color.BLACK);
+
+        // Fill color of the circle
+        circleOptions.fillColor(0x30ff0000);
+
+        // Border width of the circle
+        circleOptions.strokeWidth(2);
+
+        // Adding the circle to the GoogleMap
+        mMap.addCircle(circleOptions);
+
+    }
+
 
 
     /*
      * Use this method to add markers, lines, or move camera
      * this should only be called once and when we are sure that
      * mMap is not null
-     */
+
 
     private void setUpMap()
     {
         mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Current Position"));
     }
+     */
 
     @Override
     public void onLocationChanged(Location location)
@@ -310,10 +446,10 @@ public class MapActivity extends FragmentActivity implements LocationListener, V
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
 
         // zoom in on the map
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(13));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(14));
 
-        // add market on map to indicate current location
-        mMap.addMarker(new MarkerOptions().position(latLng).title("Current Position"));
+        // add marker on map to indicate current location
+        //mMap.addMarker(new MarkerOptions().position(latLng).title("Current Position"));
 
         // display current location coordinates in text view
         //tvLocation.setText("Latitude: " + latitude + ", Longitude: " + longitude);
