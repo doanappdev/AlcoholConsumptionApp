@@ -5,41 +5,21 @@ package uc.edu.itp.drugandalcohol.model;
  */
 public class LocationData
 {
-    /**
-     * Latitude text
-     */
-    @com.google.gson.annotations.SerializedName("latitude")
-    private String mLatitude;
 
-    /**
-     * Longitude text
-     */
-    @com.google.gson.annotations.SerializedName("longitude")
-    private String mLongitude;
-
-    /**
-     * User Id
-     */
-    @com.google.gson.annotations.SerializedName("id")
-    private String mId;
+    private static String mLatitude;
+    private static String mLongitude;
+    private static String mId;
 
     public LocationData()
     {
 
     }
 
-    /*
-    @Override
-    public String toString() {
-        return getLongitude();
-    }
-    */
-
     public LocationData(String id, String lat, String longitude)
     {
-        this.setId(id);
-        this.setLat(lat);
-        this.setLong(longitude);
+        mId = id;
+        mLatitude = lat;
+        mLongitude = longitude;
     }
 
     /*

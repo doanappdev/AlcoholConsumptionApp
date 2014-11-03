@@ -2,6 +2,7 @@ package uc.edu.itp.drugandalcohol.fragments;
 
 
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -69,6 +70,10 @@ public class UserDetailsFragment extends Fragment
         cancelBtn.setOnClickListener(this);
 
         genderSwitch.setOnCheckedChangeListener(this);
+
+        // enable home icon (back  button) on action bar
+        ActionBar actionBar = getActivity().getActionBar();
+        actionBar.setHomeButtonEnabled(true);
 
         // Inflate the layout for this fragment
         return v;

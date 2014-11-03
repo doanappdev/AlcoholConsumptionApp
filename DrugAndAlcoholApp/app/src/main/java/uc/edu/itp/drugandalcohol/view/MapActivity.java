@@ -1,5 +1,6 @@
 package uc.edu.itp.drugandalcohol.view;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.FragmentManager;
@@ -35,6 +36,7 @@ import java.net.MalformedURLException;
 import java.util.List;
 
 import uc.edu.itp.drugandalcohol.R;
+import uc.edu.itp.drugandalcohol.model.LocationData;
 import uc.edu.itp.drugandalcohol.model.ToDoItem;
 
 public class MapActivity extends FragmentActivity implements LocationListener, View.OnClickListener
@@ -54,6 +56,8 @@ public class MapActivity extends FragmentActivity implements LocationListener, V
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
 
+    private LocationData locationData;
+
     private Button saveLocationBtn, getLocationBtn;
 
     @Override
@@ -71,6 +75,10 @@ public class MapActivity extends FragmentActivity implements LocationListener, V
         // check if users phone or emulator has google play services
         checkServicesConnected();
         connectAzureCloud();
+
+        // enable home icon (back  button) on action bar
+        //ActionBar actionBar = getActionBar();
+        //actionBar.setHomeButtonEnabled(true);
 
         // click listener for short clicks
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener()
@@ -210,6 +218,9 @@ public class MapActivity extends FragmentActivity implements LocationListener, V
         // convert location value to string
         item.text = Double.toString(lat) + " " + Double.toString(lng);
 
+        // helper method to save location info to LocationData object
+        saveUserLocation(item.id, Double.toString(lat), Double.toString(lng));
+
         // insert item object into table using MobileServiceClient
         mClient.getTable(ToDoItem.class).insert(item, new TableOperationCallback<ToDoItem>() {
             @Override
@@ -224,6 +235,12 @@ public class MapActivity extends FragmentActivity implements LocationListener, V
                 }
             }
         });
+    }
+
+    // save data to object so we can access info in emergency SMS
+    public void saveUserLocation(String id, String lat, String longitude)
+    {
+        locationData = new LocationData(id, lat, longitude);
     }
 
     /*

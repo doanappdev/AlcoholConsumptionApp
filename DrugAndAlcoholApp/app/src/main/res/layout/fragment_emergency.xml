@@ -1,104 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white1"
-    android:layout_margin="@dimen/border_width"
-    tools:context="uc.edu.itp.drugandalcohol.fragments.EmergencyFragment" >
-    
+    >
+
     <LinearLayout
-        android:id="@+id/layoutRow1"
-        android:layout_width="fill_parent"
+        android:id="@+id/lLayoutSendTo"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginTop="@dimen/dialog_padding_width"
+        android:layout_marginLeft="@dimen/border_width"
+        android:layout_marginRight="@dimen/border_width"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
-        
+
         <TextView
-            android:id="@+id/txtViewTo"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:hint="To"
-            />
+            android:id="@+id/txtViewSendTo"
+            android:layout_width="0dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:hint="Ph. Contacts"
+            android:layout_weight="0.3"/>
 
         <Spinner
-            android:id="@+id/spinnerContacts"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:spinnerMode="dropdown"
-            android:entries="@array/emergency_contacts"
-            android:prompt="@string/emergency_prompt"
-            />
-        
-        
-        
+            android:id="@+id/spinnerContactNumbers"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:prompt="@string/emergency_contacts_prompt"
+            android:layout_weight="0.7">
+        </Spinner>
+
     </LinearLayout>
 
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/lLayoutSendTo"
+        android:background="@android:color/darker_gray" />
+
     <LinearLayout
-        android:id="@+id/layoutRow2"
-        android:layout_width="fill_parent"
-        android:layout_height="48dp"
-        android:layout_below="@id/layoutRow1"
+        android:id="@+id/lLayoutContactNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/border_width"
+        android:layout_marginRight="@dimen/border_width"
+        android:layout_below="@+id/divider1"
         android:orientation="vertical">
 
-        <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="48dp"
+        <TextView
+            android:id="@+id/txtViewContactNumber"
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:hint="Number"/>
 
-
-
-            <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"></TableRow>
-
-            <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text=" Number"
-                    android:id="@+id/textView4"
-                    android:layout_column="0"
-                    android:phoneNumber="true"
-                    android:layout_gravity="left|top" />
-            </TableRow>
+        <EditText
+            android:id="@+id/editTxtContactNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:visibility="gone"/>
 
     </LinearLayout>
 
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/lLayoutContactNumber"
+        android:background="@android:color/darker_gray" />
 
     <LinearLayout
-        android:id="@+id/layoutRow3"
-        android:layout_width="fill_parent"
-        android:layout_height="48dp"
-        android:layout_below="@id/layoutRow2">
+        android:id="@+id/lLayoutContactStandardMsg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/border_width"
+        android:layout_marginRight="@dimen/border_width"
+        android:layout_below="@+id/divider2"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtViewContactStandardMsg"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:hint="Standard Message"/>
 
         <Spinner
             android:id="@+id/spinnerStandardMsg"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:spinnerMode="dropdown"
             android:entries="@array/standard_msg"
-            android:prompt="@string/standard_msg_prompt"
-            />
+            android:visibility="gone" />
 
     </LinearLayout>
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+
+        android:layout_below="@+id/lLayoutContactStandardMsg"
+        android:background="@android:color/darker_gray" />
 
     <LinearLayout
-        android:id="@+id/layoutRow4"
-        android:layout_width="fill_parent"
+        android:id="@+id/lLayoutContactCustomMsg"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/layoutRow3">
+        android:layout_marginLeft="@dimen/border_width"
+        android:layout_marginRight="@dimen/border_width"
+        android:layout_below="@+id/divider3"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtViewContactCustomMsg"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:hint="Custom Message"/>
 
         <EditText
-            android:id="@+id/editTextCustomMsg"
-            android:layout_width="fill_parent"
-            android:layout_height="48dp"
-            android:hint="Custom Message"
-            android:inputType="textMultiLine" />
-
+            android:id="@+id/editTxtContactCustomMsg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textShortMessage|textMultiLine"
+            android:visibility="gone"/>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSend"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/border_width"
+        android:text="@string/button_send"
+        android:textColor="@color/white1"
+        android:background="@drawable/btn_state_blue"
+        />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="@dimen/border_width"
+        android:text="@string/button_cancel"
+        android:textColor="@color/white1"
+        android:background="@drawable/btn_state_blue"
+        />
+
 
 </RelativeLayout>

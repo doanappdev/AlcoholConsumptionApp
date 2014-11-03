@@ -18,13 +18,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import uc.edu.itp.drugandalcohol.MainActivity;
 import uc.edu.itp.drugandalcohol.R;
@@ -41,12 +40,14 @@ public class EmergencyFragment extends Fragment
 
 
     private Spinner contactSpinner, standardMsgSpinner;
+    private TextView sendToTxtView;
     private EditText customMsgEditTxt, contactNumberEditTxt;
     private Button sendBtn, cancelBtn;
 
     private List<String> contactNameList = new ArrayList<String>();
     private List<String> contactNumberList = new ArrayList<String>();
 
+    private boolean showSendToSpinner = false;
     private boolean showSpinner = false;
     private boolean showEditText = false;
     private boolean showPhNumEditTxt = false;
@@ -62,18 +63,20 @@ public class EmergencyFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_emergency1, container, false);
+        View view = inflater.inflate(R.layout.fragment_emergency, container, false);
 
-        LinearLayout lLayoutStandardMsg, lLayoutCustomMsg, lLayoutContactNumber;
+        LinearLayout lLayoutStandardMsg, lLayoutCustomMsg, lLayoutContactNumber, lLayoutSendTo;
 
         // assign layouts and views defined in XML files
+        //lLayoutSendTo = (LinearLayout)view.findViewById(R.id.lLayoutSendTo);
         lLayoutStandardMsg = (LinearLayout)view.findViewById(R.id.lLayoutContactStandardMsg);
         lLayoutCustomMsg = (LinearLayout)view.findViewById(R.id.lLayoutContactCustomMsg);
         lLayoutContactNumber = (LinearLayout)view.findViewById(R.id.lLayoutContactNumber);
 
+        sendToTxtView = (TextView)view.findViewById(R.id.txtViewSendTo);
         customMsgEditTxt = (EditText)view.findViewById(R.id.editTxtContactCustomMsg);
         contactNumberEditTxt = (EditText)view.findViewById(R.id.editTxtContactNumber);
-        contactSpinner = (Spinner)view.findViewById(R.id.spinnerContactNames);
+        contactSpinner = (Spinner)view.findViewById(R.id.spinnerContactNumbers);
         standardMsgSpinner = (Spinner)view.findViewById(R.id.spinnerStandardMsg);
         sendBtn = (Button)view.findViewById(R.id.btnSend);
         cancelBtn = (Button)view.findViewById(R.id.btnCancel);
@@ -85,13 +88,14 @@ public class EmergencyFragment extends Fragment
         standardMsgSpinner.setOnItemSelectedListener(this);
 
         // add click event for linear layout
+        //setClickEventSendTo(lLayoutSendTo);
         setClickEventStandardMsg(lLayoutStandardMsg);
         setClickEventCustomMsg(lLayoutCustomMsg);
         setClickEventContactNumber(lLayoutContactNumber);
 
         addItemsToSpinner();
 
-        // enable home icon on action bar
+        // enable home icon (back  button) on action bar
         ActionBar actionBar = getActivity().getActionBar();
         actionBar.setHomeButtonEnabled(true);
 
@@ -142,6 +146,35 @@ public class EmergencyFragment extends Fragment
 
         return getActivity().getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);
     }
+
+    /*
+     * use this code if you want to show/hide spinner contact when user clicks on it
+    private void setClickEventSendTo(LinearLayout ll)
+    {
+        ll.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if(motionEvent.getAction() == MotionEvent.ACTION_DOWN)
+                {
+                    if(!showSendToSpinner)
+                    {
+                        // show phone contacts spinner when user clicks on linear layout
+                        contactSpinner.setVisibility(LinearLayout.VISIBLE);
+                        showSendToSpinner = true;
+                    }
+                    else
+                    {
+                        // contact spinner is already showing so we hide the spinner
+                        contactSpinner.setVisibility(LinearLayout.GONE);
+                        showSendToSpinner = false;
+                    }
+                }
+                return false;
+            }
+        });
+    }
+    */
+
 
     private void setClickEventStandardMsg(LinearLayout ll)
     {
@@ -234,7 +267,8 @@ public class EmergencyFragment extends Fragment
                 break;
 
             case R.id.btnCancel:
-
+                // close fragment/activity and return to main activity
+                getActivity().finish();
                 break;
         }
     }
@@ -247,7 +281,7 @@ public class EmergencyFragment extends Fragment
     {
         switch(parent.getId())
         {
-            case R.id.spinnerContactNames:
+            case R.id.spinnerContactNumbers:
                 // get selected name from spinner
                 selectedName = parent.getItemAtPosition(pos).toString();
 
@@ -287,6 +321,8 @@ public class EmergencyFragment extends Fragment
         buddyNumber = contactNumberList.get(contactSpinner.getSelectedItemPosition());
         message = String.valueOf(standardMsgSpinner.getSelectedItem());
 
+        // TODO: add code here to get users location and add to message
+
         sendEmergencySMS(buddyName, buddyNumber, message);
 
         /*
@@ -319,12 +355,12 @@ public class EmergencyFragment extends Fragment
             // un-comment this code when ready to test with other numbers
             //smsManager.sendTextMessage(number, null, msg, null, null);
 
-            // supply known number
+            // for demonstration supply known number
             String number1 = "0451683962"; // Eric's mobile number
             smsManager.sendTextMessage(number1, null, msg, null, null);
 
             /*
-            // testing values for message
+            // check what values were used in the SMS
             Toast.makeText(getActivity(),
                     "Your message has been sent to\nName: " + name +
                             "\nNumber: " + number1 +
@@ -377,7 +413,7 @@ public class EmergencyFragment extends Fragment
 
     public String getSelectNumber(int pos)
     {
-        // the IDE has message that the variable thisNumber is redundant
+        // Blake: the IDE has message that the variable thisNumber is redundant
         // you can just return the array like this
         // return testNumber[pos];
         // no need to create extra variable, I suggest you remove it
