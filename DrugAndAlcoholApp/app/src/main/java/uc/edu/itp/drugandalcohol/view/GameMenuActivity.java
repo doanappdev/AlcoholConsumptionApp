@@ -95,10 +95,8 @@ public class GameMenuActivity extends Activity {
         instructionsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TO DO: uncomment code below once instructions menu is implemented
-                Log.d("Game Menu Activity - ", "No instructions menu yet!");
-                //Intent instructionsIntent = new Intent(getApplicationContext(), InstructionsActivity.class);
-                //startActivity(instructionsIntent);
+                Intent instructionsIntent = new Intent(getApplicationContext(), InstructionsActivity.class);
+                startActivity(instructionsIntent);
             }
         });
 

@@ -91,6 +91,10 @@
             android:label="@string/title_activity_game_over" >
         </activity>
         <activity
+            android:name=".view.InstructionsActivity"
+            android:label="@string/title_activity_instructions" >
+        </activity>
+        <activity
             android:name=".view.SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>

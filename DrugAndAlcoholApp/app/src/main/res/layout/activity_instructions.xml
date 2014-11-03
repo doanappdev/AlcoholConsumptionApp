@@ -1,0 +1,138 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_orange_600"
+    tools:context="uc.edu.itp.drugandalcohol.view.InstructionsActivity">
+
+    <TextView
+        android:id="@+id/txtInstructionsH1"
+        android:text="Instructions"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_marginTop="@dimen/border_width"
+        android:layout_marginLeft="56dp"
+        android:gravity="center_vertical"
+        android:textSize="40dp"
+        android:textColor="@color/white1"
+        />
+
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="@dimen/border_width"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_below="@+id/txtInstructionsH1"
+        android:background="@color/white1"
+        />
+
+    <LinearLayout
+        android:id="@+id/lLayoutGameResults"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider1"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/md_orange_300"
+        android:orientation="vertical">
+
+        <TextView
+            android:text=" "
+            android:id="@+id/txtInstructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:textSize="24sp"
+            android:textColor="@color/white1"
+            android:layout_weight="0.6" />
+
+        <TextView
+            android:text=" "
+            android:id="@+id/txtPageNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:textSize="24sp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/white1"
+            android:layout_weight="0.2" />
+
+        <LinearLayout
+            android:id="@+id/lLayoutNextPrev"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider1"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/md_orange_300"
+            android:orientation="horizontal"
+            android:weightSum="1.0">
+
+            <Button
+                android:id="@+id/btnPrev"
+                android:text="Next"
+                android:textSize="24dp"
+                android:textColor="#FFFF00"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lLayoutGameResults"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/border_width"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:background="@color/md_orange_700"
+                android:layout_weight="0.5"/>
+
+            <Button
+                android:id="@+id/btnNext"
+                android:text="Prev"
+                android:textSize="24dp"
+                android:textColor="#FFFF00"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lLayoutGameResults"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/border_width"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:background="@color/md_orange_700"
+                android:layout_weight="0.5"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnExitInstructions"
+            android:text="Exit Instructions"
+            android:textSize="24dp"
+            android:textColor="#FFFF00"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lLayoutGameResults"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/border_width"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@color/md_orange_700"/>
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="@dimen/border_width"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_below="@+id/txtInstructionsH1"
+            android:background="@color/white1"
+            />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -16,6 +16,7 @@
     <string name="title_activity_reaction_test">ReactionTestActivity</string>
     <string name="title_activity_game_menu">GameMenuActivity</string>
     <string name="title_activity_game_over">GameOverActivity</string>
+    <string name="title_activity_instructions">InstructionsActivity</string>
     <string name="title_activity_proximity">ProximityActivity</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="title_activity_map">MapActivity</string>
@@ -140,6 +141,14 @@
             and one "Standard Drink" per hour thereafter will maintain that level</item>
         <item>Don’t make any sexual choices when you’ve been drinking.</item>
         <item>Avoid drinking games</item>
+    </string-array>
+
+    <!--         this string array holds instructions for the reaction test-->
+    <string-array name="instructions">
+        <item>The goal of the game is the get as many points as possible
+            until you hit a TNT box, or you made 5 misses.</item>
+        <item>Tap the alcohol when it is above the buttons down the bottom to score points.</item>
+        <item>Gain more points by hitting alcohols that move fast.</item>
     </string-array>
 
     <!--
