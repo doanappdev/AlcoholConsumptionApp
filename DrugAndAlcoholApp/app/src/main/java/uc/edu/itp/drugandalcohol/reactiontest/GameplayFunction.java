@@ -62,10 +62,10 @@ public class GameplayFunction {
     private int buttonCount;
 
     //Storages for alcohol sprites
-    private List<AlcoholClass> list0;
-    private List<AlcoholClass> list1;
-    private List<AlcoholClass> list2;
-    private List<AlcoholClass> list3;
+    private List<AlcoholClass> beers;
+    private List<AlcoholClass> wines;
+    private List<AlcoholClass> kegs;
+    private List<AlcoholClass> spirits;
     private Queue<AlcoholClass> inactives;
 
     //Storage for bitmap and View
@@ -106,10 +106,10 @@ public class GameplayFunction {
         buttonCount = 4;
 
         paint = new Paint();
-        list0 = new LinkedList<AlcoholClass>();
-        list1 = new LinkedList<AlcoholClass>();
-        list2 = new LinkedList<AlcoholClass>();
-        list3 = new LinkedList<AlcoholClass>();
+        beers = new LinkedList<AlcoholClass>();
+        wines = new LinkedList<AlcoholClass>();
+        kegs = new LinkedList<AlcoholClass>();
+        spirits = new LinkedList<AlcoholClass>();
         inactives = new LinkedList<AlcoholClass>();
 
         float xResult, yResult;
@@ -178,10 +178,10 @@ public class GameplayFunction {
     {
         //for(i = 0; i < buttonCount; i++) buttons[i].silouhette = true;
 
-        while(list0.size() > 0) list0.remove(0);
-        while(list1.size() > 0) list1.remove(0);
-        while(list2.size() > 0) list2.remove(0);
-        while(list3.size() > 0) list3.remove(0);
+        while(beers.size() > 0) beers.remove(0);
+        while(wines.size() > 0) wines.remove(0);
+        while(kegs.size() > 0) kegs.remove(0);
+        while(spirits.size() > 0) spirits.remove(0);
         while(inactives.size() > 0) inactives.remove();
     }
 
@@ -292,13 +292,13 @@ public class GameplayFunction {
     private void checkButtonCondition(int id){
         switch(id){
             //checks for list 0
-            case 0: if(list0.size() > 0) timedTap(id, list0); break;
+            case 0: if(beers.size() > 0) timedTap(id, beers); break;
             //checks for list 1
-            case 1: if(list1.size() > 0) timedTap(id, list1); break;
+            case 1: if(wines.size() > 0) timedTap(id, wines); break;
             //checks for list 2
-            case 2: if(list2.size() > 0) timedTap(id, list2); break;
+            case 2: if(kegs.size() > 0) timedTap(id, kegs); break;
             //checks for list 3
-            case 3: if(list3.size() > 0) timedTap(id, list3); break;
+            case 3: if(spirits.size() > 0) timedTap(id, spirits); break;
             default: /*Nothing is called here*/ break;
         }
         //makes sure score is not a negative number
@@ -363,20 +363,15 @@ public class GameplayFunction {
 
     //checks if new sprites are made
     private void spawnSprites(long currentTime){
-        //timer count for each specific list gets calculated
-        timerCountList0 = spawnSprite(currentTime, timerCountList0, timerList0,
-                gameSpeed, 0, list0);
-        timerCountList1 = spawnSprite(currentTime, timerCountList1, timerList1,
-                gameSpeed, 1, list1);
-        timerCountList2 = spawnSprite(currentTime, timerCountList2, timerList2,
-                gameSpeed, 2, list2);
-        timerCountList3 = spawnSprite(currentTime, timerCountList3, timerList3,
-                gameSpeed, 3, list3);
+        //timer count for randomly chosen lists gets calculated
+        timerCountList0 = spawnSprite(currentTime, timerCountList0, timerList0);
+        timerCountList1 = spawnSprite(currentTime, timerCountList1, timerList1);
+        timerCountList2 = spawnSprite(currentTime, timerCountList2, timerList2);
+        timerCountList3 = spawnSprite(currentTime, timerCountList3, timerList3);
     }
 
     //creates a particular sprite
-    private long spawnSprite(long currentTime, long count, long timer, int speed,
-                            int id, List<AlcoholClass> list){
+    private long spawnSprite(long currentTime, long count, long timer){
         //calculates time count for alcohol
         timeCount = currentTime - count;
         //Reset currently active alcohol to top of the screen
@@ -385,14 +380,42 @@ public class GameplayFunction {
             //if game settings have random speed, randomise speed
             //of current alcohol
             if(settings.getRandomiseSpeed()) genRandomSpeed();
-            //randomises a sprite so that potential hazards may appear.
+            //randomises the button location.
+            int idLocation = (int)(Math.random()*4);
+            //generates random result
             int rng = (int)(Math.random()*5);
+            //determines if id is a TNT or alcohol
+            if(rng < 4) rng = idLocation;
+
             //reuses alcohol if any inactive ones are there
-            //and add them to the list
-            list.add(Pop(rng));
-            list.get(list.size()-1).reset(0, speed+randomSpeed, rng);
-            list.get(list.size()-1).setPosX(buttons[id].x);
-            if(buttons[id].silouhette) buttons[id].silouhette = false;
+            //and add them to a randomly chosen list
+            switch(idLocation){
+                case 1:
+                    wines.add(Pop(rng));
+                    //resets position of a sprite
+                    wines.get(wines.size()-1).reset(0, gameSpeed+randomSpeed, rng);
+                    wines.get(wines.size()-1).setPosX(buttons[idLocation].x);
+                    break;
+                case 2:
+                    kegs.add(Pop(rng));
+                    //resets position of a sprite
+                    kegs.get(kegs.size()-1).reset(0, gameSpeed+randomSpeed, rng);
+                    kegs.get(kegs.size()-1).setPosX(buttons[idLocation].x);
+                    break;
+                case 3:
+                    spirits.add(Pop(rng));
+                    //resets position of a sprite
+                    spirits.get(spirits.size()-1).reset(0, gameSpeed+randomSpeed, rng);
+                    spirits.get(spirits.size()-1).setPosX(buttons[idLocation].x);
+                    break;
+                default:
+                    beers.add(Pop(rng));
+                    //resets position of a sprite
+                    beers.get(beers.size()-1).reset(0, gameSpeed+randomSpeed, rng);
+                    beers.get(beers.size()-1).setPosX(buttons[idLocation].x);
+                    break;
+            }
+            if(buttons[idLocation].silouhette) buttons[idLocation].silouhette = false;
             return currentTime;
         }else return count;
     }
@@ -418,10 +441,10 @@ public class GameplayFunction {
             buttons[i].onDraw(canvas);
 
         //updates and draws all alcohol sprites here
-        updateSprite(canvas, 0, list0);
-        updateSprite(canvas, 1, list1);
-        updateSprite(canvas, 2, list2);
-        updateSprite(canvas, 3, list3);
+        updateSprite(canvas, 0, beers);
+        updateSprite(canvas, 1, wines);
+        updateSprite(canvas, 2, kegs);
+        updateSprite(canvas, 3, spirits);
     }
 
     //move and draw a sprite
