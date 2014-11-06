@@ -495,4 +495,26 @@ public class MapActivity extends FragmentActivity implements LocationListener, V
         return super.onOptionsItemSelected(item);
     }
     */
+
+    /*******************************************************************************
+     * Testing methods
+     *
+     ******************************************************************************/
+    public boolean getLocationButtonClick()
+    {
+        return getLocationBtn.performClick();
+    }
+
+    public boolean getSaveButtonClick()
+    {
+        return saveLocationBtn.performClick();
+    }
+
+    public LocationData getLocation(String id,String latitude,String longitude)
+    {
+        saveUserLocation(id, latitude, longitude);
+        return locationData;
+    }
+
+
 }

@@ -40,12 +40,42 @@ public class EmergencyFragmentTestCase extends ActivityInstrumentationTestCase2<
 
     public void testContacts()
     {
+        try {
+            int contactPosition = 0;
+            String contactTest = mEmergencyFragment.getSelectedContact(contactPosition);
+            String numberTest = mEmergencyFragment.getSelectNumber(contactPosition);
+            assertEquals("Bob", contactTest);
+            assertEquals("0431000000", numberTest);
+        }
+        catch(Exception e)
+        {
 
-        int contactPosition = 0;
-        String contactTest = mEmergencyFragment.getSelectedContact(contactPosition);
-        String numberTest = mEmergencyFragment.getSelectNumber(contactPosition);
-        assertEquals("Bob",contactTest);
-        assertEquals("0431000000", numberTest);
+        }
+    }
 
+    public void testCancelButton()
+    {
+        try
+        {
+            boolean wasSent = mEmergencyFragment.getCancelButtonClick();
+            assertEquals(true, wasSent);
+        }
+        catch(Exception e)
+        {
+
+        }
+    }
+
+    public void testSendSMS()
+    {
+        try
+        {
+            boolean wasSent = mEmergencyFragment.getSendButtonClick();
+            assertEquals(true, wasSent);
+        }
+        catch(Exception e)
+        {
+
+        }
     }
 }

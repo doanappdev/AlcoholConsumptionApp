@@ -322,8 +322,15 @@ public class EmergencyFragment extends Fragment
         message = String.valueOf(standardMsgSpinner.getSelectedItem());
 
         // TODO: add code here to get users location and add to message
+        if(testingSendClick)
+        {
+            testingSendClick = false;
+        }
+        else
+        {
+            sendEmergencySMS(buddyName, buddyNumber, message);
+        }
 
-        sendEmergencySMS(buddyName, buddyNumber, message);
 
         /*
         // testing
@@ -411,6 +418,7 @@ public class EmergencyFragment extends Fragment
      *
      ******************************************************************************/
 
+    private boolean testingSendClick = false;
     public String getSelectNumber(int pos)
     {
         // Blake: the IDE has message that the variable thisNumber is redundant
@@ -418,17 +426,26 @@ public class EmergencyFragment extends Fragment
         // return testNumber[pos];
         // no need to create extra variable, I suggest you remove it
         String[] testNumber = getResources().getStringArray(R.array.Number_List);
-        String thisNumber = testNumber[pos];
-
-        return thisNumber;
-        //return testNumber[pos];
+        return testNumber[pos];
     }
 
     public String getSelectedContact(int pos)
     {
         String[] testContacts = getResources().getStringArray(R.array.Contact_list);
-        String thisContact = testContacts[pos];
+        return testContacts[pos];
+    }
 
-        return thisContact;
+    public boolean getCancelButtonClick()
+    {
+        return cancelBtn.performClick();
+    }
+
+    public boolean getSendButtonClick()
+    {
+        testingSendClick = true;
+        boolean testSend = sendBtn.performClick();
+        testingSendClick = false;
+
+        return testSend;
     }
 }

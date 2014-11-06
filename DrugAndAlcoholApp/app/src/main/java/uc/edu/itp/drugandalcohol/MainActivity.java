@@ -274,4 +274,38 @@ public class MainActivity extends Activity
         return super.onOptionsItemSelected(item);
     }
     */
+    /*******************************************************************************
+     * Testing methods
+     *
+     ******************************************************************************/
+    public boolean testDetailsButton()
+    {
+        return detailsImgBtn.performClick();
+    }
+
+    public boolean testCalculateButton()
+    {
+        return detailsImgBtn.performClick();
+    }
+
+    public boolean testEmergencyButton()
+    {
+        return detailsImgBtn.performClick();
+    }
+
+    public boolean testGameButton()
+    {
+        return detailsImgBtn.performClick();
+    }
+
+    public boolean testProximityButton()
+    {
+        return detailsImgBtn.performClick();
+    }
+
+    public boolean testDeleteButton()
+    {
+        return detailsImgBtn.performClick();
+    }
+
 }

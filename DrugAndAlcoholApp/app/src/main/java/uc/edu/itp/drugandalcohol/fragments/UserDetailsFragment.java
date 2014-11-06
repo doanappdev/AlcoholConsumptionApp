@@ -196,6 +196,11 @@ public class UserDetailsFragment extends Fragment
                 userAgeEditTxt.setError("The legal age to drink is 18");
             }
 
+            if(userAge > 130)
+            {
+                userAgeEditTxt.setError("I think your lying");
+            }
+
         }
 
         return userAge;
@@ -287,4 +292,19 @@ public class UserDetailsFragment extends Fragment
         return "This is the test string";
     }
 
+    public Boolean testSetDetails(String age, String weight, boolean male, boolean pregnant, String budName, String budContact)
+    {
+        userAgeEditTxt.setText(age);
+        userWeightEditTxt.setText(weight);
+        //true for male false for female
+        isMALE = male;
+        isPREGNANT = pregnant;
+        buddyNameEditTxt.setText(budName);
+        buddyNumberEditTxt.setText(budContact);
+
+
+
+        //String[] userDetails = new String[6];
+        return acceptBtn.performClick();
+    }
 }
