@@ -40,13 +40,75 @@ public class UserDetailsFragmentTestCase extends ActivityInstrumentationTestCase
         this test will throw error because actual string is different to
         expected string
      */
-    public void testString() throws Exception
+    public void testUserDetails()
     {
-        String testString = mUserDetailsActivity.userDetailsFragment.testMethod();
+        try
+        {
+            //boolean worked = mUserDetailsActivity.userDetailsFragment.testSetDetails("23","60", false, false, "Bob", "0439287465");
 
-        // assertEquals(expected, actual) will check expected string
-        // value with actual string returned from method
-        Assert.assertEquals("This is the test", testString);
+            String age = "1";
+            int result = mUserDetailsActivity.userDetailsFragment.testIncorrectAge(age);
+
+            // assertEquals(expected, actual) will check expected string
+            // value with actual string returned from method
+            assertEquals(1, result);
+        }
+        catch(Exception e)
+        {
+
+        }
     }
 
+    public void testSetDetailsOne()
+    {
+        try
+        {
+            boolean detailsSet = mUserDetailsActivity.userDetailsFragment.testSetDetails("23","60",false,false,"Bob","0439287465");
+            assertEquals(true, detailsSet);
+        }
+        catch(Exception e)
+        {
+
+        }
+    }
+
+    public void testSetDetailsTwo()
+    {
+        try
+        {
+            boolean detailsSet = mUserDetailsActivity.userDetailsFragment.testSetDetails("25","80",true,false,"Fred","0439288225");
+            assertEquals(true, detailsSet);
+        }
+        catch(Exception e)
+        {
+
+        }
+    }
+
+
+    public void testSetDetailsThree()
+    {
+        try
+        {
+            boolean detailsSet = mUserDetailsActivity.userDetailsFragment.testSetDetails("1","80",true,false,"Fred","0439288225");
+            assertEquals(true, detailsSet);
+        }
+        catch(Exception e)
+        {
+
+        }
+    }
+
+    public void testCancelButton()
+    {
+        try
+        {
+            boolean cancel = mUserDetailsActivity.userDetailsFragment.testCancelButton();
+            assertEquals(true, cancel);
+        }
+        catch(Exception e)
+        {
+
+        }
+    }
 }

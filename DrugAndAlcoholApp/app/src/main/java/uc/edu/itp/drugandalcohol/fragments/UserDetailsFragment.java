@@ -304,7 +304,44 @@ public class UserDetailsFragment extends Fragment
 
 
 
+
         //String[] userDetails = new String[6];
         return acceptBtn.performClick();
+
+
     }
+
+    public Boolean testCancelButton()
+    {
+        return cancelBtn.performClick();
+    }
+
+    public int testIncorrectAge(String age)
+    {
+        userAgeEditTxt.setText(age);
+        int checkAge = checkInputAge();
+        return checkAge;
+    }
+
+    public int testIncorrectWeight(String number)
+    {
+        userWeightEditTxt.setText(number);
+        int checkNumber = checkInputPhNumber();
+        return checkNumber;
+    }
+
+    public String testIncorrectBuddyName(String buddy)
+    {
+        buddyNameEditTxt.setText(buddy);
+        String name = checkInputName();
+        return name;
+    }
+
+    public int testIncorrectBuddyContact(String number)
+    {
+        buddyNumberEditTxt.setText(number);
+        int checkNumber = checkInputPhNumber();
+        return checkNumber;
+    }
+
 }
