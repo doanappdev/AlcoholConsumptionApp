@@ -34,7 +34,19 @@ for UI elements in the XML layout file use the following:
 
 To maintain version control follow these steps:
 
-1. Open Source Tree and pull the latest version
+1. Open Source Tree and click on __Pull__  button to get the latest version
+
+![PullBtnSm.png](https://bitbucket.org/repo/boxaga/images/1627093295-PullBtnSm.png)
+
 2. Add changes to code using android studio
-3. Save changes to project
-4. __Push__ the changes to the repository using Source Tree by clicking on the __Commit__ button, add your name and comment
+
+3. Upload changes to repository using Source Tree by clicking the __Commit__ button on menu bar
+
+![CommitBtnSm.png](https://bitbucket.org/repo/boxaga/images/3936207557-CommitBtnSm.png)
+
+4. Add comment
+5. Make sure __Push changes immediately__ check box is selected 
+6. Click the __Commit__ button to saves changes to repository
+
+![Commit_Pull_Btns.png](https://bitbucket.org/repo/boxaga/images/1845131968-Commit_Pull_Btns.png)
+
